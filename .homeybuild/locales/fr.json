@@ -1,0 +1,224 @@
+{
+  "app": {
+    "title": "GeoZones"
+  },
+  "settings": {
+    "tabs": {
+      "zones": "Zones",
+      "groups": "Groupes",
+      "categories": "Catégories",
+      "test": "Test",
+      "import_export": "Import / Export",
+      "help": "Aide",
+      "subjects": "Sujets"
+    },
+    "status": {
+      "loading": "Chargement…",
+      "ready": "Prêt",
+      "saved": "Enregistré",
+      "error": "Erreur",
+      "unsaved": "Modifications non enregistrées"
+    },
+    "actions": {
+      "add_circle": "Ajouter un cercle",
+      "add_polygon": "Ajouter un polygone",
+      "save": "Enregistrer",
+      "delete": "Supprimer",
+      "duplicate": "Dupliquer",
+      "fit_all": "Afficher toutes les zones",
+      "use_map_center": "Utiliser le centre de la carte",
+      "run_test": "Tester",
+      "export_json": "Exporter la config",
+      "import_replace": "Importer et remplacer",
+      "import_merge": "Importer et fusionner",
+      "add_field": "Ajouter",
+      "apply": "Appliquer les changements",
+      "cancel": "Annuler",
+      "purge_subjects": "Purger maintenant les sujets inactifs"
+    },
+    "labels": {
+      "search": "Rechercher des zones",
+      "map": "Map",
+      "properties": "Propriétés de la zone",
+      "name": "Nom",
+      "type": "Type",
+      "color": "Couleur",
+      "active": "Active",
+      "groups": "Groupes",
+      "categories": "Catégories",
+      "center_lat": "Latitude du centre",
+      "center_lng": "Longitude du centre",
+      "radius": "Rayon (m)",
+      "hysteresis": "Hystérésis (m)",
+      "polygon_points": "Points du polygone",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "subject_id": "Subject ID (optionnel)",
+      "json": "JSON",
+      "test_summary": "Résultat",
+      "zone_list": "Zones",
+      "group_list": "Groupes",
+      "category_list": "Catégories",
+      "standard_zone": "zone",
+      "new_group": "Nouveau groupe — Entrée pour ajouter",
+      "new_category": "Nouvelle catégorie — Entrée pour ajouter",
+      "inactive": "inactive",
+      "zone": "Zone",
+      "subjects": "Sujets",
+      "diagnostics": "Diagnostics",
+      "autopurge_enabled": "Purge automatique des sujets inactifs",
+      "autopurge_days": "Jours avant purge auto (0 = désactivé)",
+      "heavy_debug": "Activer les logs debug lourds"
+    },
+    "placeholders": {
+      "search_zone": "Rechercher par nom de zone",
+      "zone_name": "Maison",
+      "group": "Famille",
+      "category": "Maison",
+      "subject_id": "subject_1",
+      "new_group": "Saisis un groupe puis Entrée",
+      "new_category": "Saisis une catégorie puis Entrée"
+    },
+    "help": {
+      "title": "Fonctionnement de GeoZones",
+      "intro": "GeoZones stocke des zones géographiques réutilisables dans les settings de Homey Pro. Vous créez vos zones une seule fois dans la page de configuration, puis vous les réutilisez dans les cartes Flow sans créer de device virtuel.",
+      "rules_title": "Règles métier",
+      "tips_title": "Bonnes pratiques",
+      "create_title": "Créer et modifier des zones sur la carte",
+      "create_circle_title": "Créer un cercle",
+      "create_polygon_title": "Créer un polygone",
+      "rules": [
+        "Seules les zones actives sont évaluées dans les Flows et dans l’onglet Test.",
+        "Un point situé sur le bord est considéré comme à l’intérieur de la zone.",
+        "Les noms de zone doivent rester uniques. Les valeurs réservées not_defined, unknown et error ne peuvent pas être utilisées comme noms de zone, groupe ou catégorie.",
+        "Une zone peut avoir plusieurs groupes et plusieurs catégories. Les valeurs vides et les caractères invisibles sont ignorés automatiquement.",
+        "Si plusieurs zones correspondent en même temps, GeoZones garde d’abord la priorité la plus élevée, puis la plus petite areaM2, puis le nom de zone pour un arbitrage stable.",
+        "Un polygone auto-intersecté est refusé pour éviter une géométrie ambiguë."
+      ],
+      "tips": [
+        "Commencez par la carte : dessinez la forme, puis affinez les propriétés dans le panneau de zone.",
+        "Utilisez groupes et catégories comme libellés réutilisables pour qu’une zone participe à plusieurs automatisations.",
+        "Utilisez l’onglet Test avant de construire un Flow pour vérifier la zone gagnante, les valeurs précédentes et les transitions d’état sujet.",
+        "N’utilisez un ID de sujet que si vous voulez que GeoZones mémorise l’état et déclenche les événements sujet.",
+        "Enregistrez après les modifications importantes pour garder la configuration Homey Pro synchronisée avec la carte."
+      ],
+      "create_circle_steps": [
+        "Ouvrez l’onglet Zones puis cliquez sur « Ajouter un cercle ».",
+        "Cliquez sur la carte à l’endroit voulu, puis faites glisser pour définir le rayon du cercle.",
+        "Sélectionnez ensuite la zone dans la liste sous la carte pour modifier son nom, sa couleur, ses groupes, ses catégories et son hystérésis.",
+        "Vous pouvez déplacer ou redimensionner le cercle directement sur la carte avec les outils d’édition Leaflet.",
+        "Cliquez sur Enregistrer pour conserver le résultat dans Homey Pro."
+      ],
+      "create_polygon_steps": [
+        "Ouvrez l’onglet Zones puis cliquez sur « Ajouter un polygone ».",
+        "Cliquez sur la carte pour poser chaque sommet. Ajoutez autant de points que nécessaire pour suivre la forme voulue.",
+        "Double-cliquez pour terminer le tracé.",
+        "Sélectionnez ensuite la zone dans la liste pour modifier son nom, sa couleur, ses groupes et ses catégories.",
+        "Vous pouvez éditer les sommets plus tard directement sur la carte. Si le polygone s’auto-intersecte, GeoZones le refuse pour éviter des résultats ambigus."
+      ],
+      "example_circle_title": "Exemple cercle : Tour Eiffel",
+      "example_circle_body": "Exemple pédagogique : un cercle centré sur la Tour Eiffel avec un rayon de 250 m. C’est idéal pour comprendre un cas simple où un seul point central suffit.",
+      "example_circle_meta": "Centre : 48.85837, 2.294481 · Rayon : 250 m · Hystérésis : 35 m",
+      "example_polygon_title": "Exemple polygone : Paris",
+      "example_polygon_body": "Exemple pédagogique : un polygone simplifié autour de Paris. Il montre quand un polygone est plus pertinent qu’un cercle, par exemple pour suivre les limites approximatives d’une ville ou d’un quartier.",
+      "example_polygon_meta": "Polygone simplifié autour de Paris pour illustrer une zone de forme libre.",
+      "load_example_circle": "Ajouter cet exemple sur la carte",
+      "load_example_polygon": "Ajouter cet exemple sur la carte",
+      "store_pitch": "GeoZones répond à un besoin peu couvert sur Homey Pro : créer de vraies zones géographiques réutilisables dans les Flows, sans device supplémentaire.",
+      "how_it_works_more_a": "Dans l’onglet Zones, chaque zone est un cercle ou un polygone. Un cercle est idéal autour d’un point connu comme la maison, le bureau, un parking ou un magasin. Un polygone convient mieux quand la forme réelle compte, par exemple une ville, un campus, un site industriel, un quartier ou une propriété irrégulière. Chaque zone possède aussi une couleur, un état actif, des groupes, des catégories, une priorité et une valeur areaM2 pré-calculée utilisée pour départager les zones.",
+      "how_it_works_more_b": "Quand GeoZones évalue des coordonnées, l’app vérifie uniquement les zones actives. Elle teste si le point est à l’intérieur de chaque cercle ou polygone. Si plusieurs zones correspondent en même temps, GeoZones garde d’abord la priorité la plus élevée, puis la plus petite areaM2 afin qu’une petite zone précise gagne face à une zone plus large. Pour les cercles, l’hystérésis augmente le rayon de sortie pour le dernier sujet connu afin d’éviter des bascules trop rapides près du bord.",
+      "create_intro": "L’onglet Zones est l’espace de travail principal. La grande carte sert à dessiner et modifier la géométrie. L’encart Zones sous la carte permet de rechercher, parcourir et sélectionner les zones existantes. L’encart Propriétés de la zone permet de renommer une zone, changer sa couleur, l’activer ou la désactiver, lui associer des groupes et des catégories, et modifier les valeurs spécifiques aux cercles comme le centre, le rayon et l’hystérésis.",
+      "create_more": "Pour créer un cercle, cliquez sur Ajouter un cercle puis dessinez directement sur la carte. Pour créer un polygone, cliquez sur Ajouter un polygone et placez les points les uns après les autres. Une fois la zone créée, cliquez dessus dans la liste ou directement sur la carte pour éditer ses détails. Vous pouvez aussi utiliser les outils Leaflet intégrés pour redimensionner les cercles, les déplacer, ajuster les sommets des polygones ou supprimer une forme sur la carte.",
+      "flow_title": "Utiliser GeoZones dans les cartes Flow",
+      "flow_intro": "GeoZones est conçu pour les Flows Homey. La page Settings définit les données réutilisables, puis les cartes Flow consomment ces données avec des coordonnées en direct venant d’une autre app, d’un téléphone, d’un webhook ou de votre propre logique.",
+      "flow_more": "Le scénario typique est le suivant : un autre Flow fournit une latitude et une longitude, une carte ET vérifie si ces coordonnées correspondent à une zone, un groupe ou une catégorie, puis la carte ALORS détermine la zone gagnante et expose des tags comme la zone, les groupes, les catégories, le type et les valeurs précédentes pour la suite de l’automatisation. La carte ET peut aussi mettre à jour l’état mémorisé du sujet.",
+      "flow_and_title": "Cartes ET",
+      "flow_then_title": "Carte ALORS",
+      "flow_and_cards": [
+        "Coordonnées dans une zone : vrai si le point correspond à la zone sélectionnée.",
+        "Coordonnées dans un groupe : vrai si la zone gagnante appartient au groupe sélectionné.",
+        "Coordonnées dans une catégorie : vrai si la zone gagnante appartient à la catégorie sélectionnée.",
+        "Coordonnées dans n’importe quelle zone : utile pour savoir si au moins une zone correspond.",
+        "Coordonnées dans aucune zone : utile pour les automatisations “hors de toutes les zones définies”."
+      ],
+      "flow_then_cards": [
+        "Évaluer la position géographique : résout la meilleure zone avec les mêmes règles que les cartes condition.",
+        "L’action renvoie des tags comme la zone, les groupes, les catégories, les valeurs précédentes, le type de zone et les métriques de déplacement.",
+        "Utilisez un ID de sujet si vous voulez que la mémoire d’état, la continuité de l’hystérésis et les triggers sujet restent séparés pour chaque personne ou appareil."
+      ],
+      "flow_when_title": "Déclencheurs",
+      "flow_when_cards": [
+        "Valeur mémorisée du sujet changée : se déclenche quand la zone, les groupes ou les catégories mémorisés changent, y compris lors des transitions depuis ou vers unknown, not_defined ou error.",
+        "Sujet mémorisé entré dans une valeur : se déclenche lorsqu’un sujet entre dans une zone, un groupe ou une catégorie.",
+        "Sujet mémorisé a quitté une valeur : se déclenche lorsqu’un sujet quitte une zone, un groupe ou une catégorie."
+      ],
+      "subjects_title": "Sujets et mémoire",
+      "subjects_body": "GeoZones peut conserver un état mémorisé par sujet. Un sujet stocke sa zone actuelle, ses groupes, ses catégories, ses dernières coordonnées et son horodatage.",
+      "subjects_rules": [
+        "Utilisez un ID de sujet dans l’action d’évaluation ou dans la condition de correspondance des coordonnées avec l’option de mise à jour activée pour écrire l’état mémorisé.",
+        "unknown signifie que le sujet n’a pas encore d’état mémorisé. not_defined signifie qu’une évaluation a réussi mais qu’aucune zone ne correspond. error signifie qu’une évaluation persistante a échoué.",
+        "L’onglet Sujets liste les sujets mémorisés et permet de les supprimer manuellement.",
+        "La purge automatique peut supprimer les sujets inactifs après un nombre de jours configurable."
+      ],
+      "debug_title": "Journalisation debug",
+      "debug_body": "Des logs minimaux sont toujours écrits. Le debug lourd ajoute des traces internes détaillées et ne doit être activé que pour le dépannage.",
+      "debug_rules": [
+        "Le debug lourd augmente l’utilisation CPU et mémoire.",
+        "Désactivez-le après le dépannage pour garder une charge normale faible."
+      ],
+      "debug_warning": "Le debug lourd augmente la charge CPU et mémoire et doit être activé uniquement pour le débogage.",
+      "json_title": "Ajouter une zone depuis JSON",
+      "json_body": "L’action JSON accepte un objet de zone strict pour un cercle ou un polygone. Les champs inconnus sont ignorés, mais les champs utiles invalides provoquent une erreur explicite.",
+      "json_rules": [
+        "Le nom doit être unique et ne peut pas être not_defined, unknown ou error.",
+        "Champs cercle : name, type=circle, center.lat, center.lng, radius, hysteresis optionnel, active, priority, color, groups et categories.",
+        "Champs polygone : name, type=polygon, paths, active optionnel, priority, color, groups et categories.",
+        "areaM2 est recalculée par GeoZones et ne doit pas être utilisée comme donnée d’import de référence."
+      ]
+    },
+    "messages": {
+      "confirm_delete_zone": "Supprimer cette zone ?",
+      "confirm_delete_item": "Supprimer cet élément ?",
+      "invalid_json": "JSON invalide",
+      "zone_name_required": "Le nom de zone est obligatoire",
+      "zone_name_duplicate": "Les noms de zone doivent être uniques",
+      "polygon_self_intersection": "Ce polygone s’auto-intersecte et ne peut pas être enregistré",
+      "zone_saved": "Zone enregistrée",
+      "config_saved": "Configuration enregistrée",
+      "group_removed": "Groupe retiré de toutes les zones",
+      "category_removed": "Catégorie retirée de toutes les zones",
+      "import_done": "Import terminé",
+      "test_empty": "Aucun test pour le moment",
+      "no_zone_selected": "Sélectionne une zone sur la carte ou dans la liste",
+      "map_note": "Dessine directement sur la carte, puis enregistre tes changements.",
+      "zone_deleted": "Zone supprimée",
+      "changes_cancelled": "Modifications non enregistrées annulées",
+      "import_loaded": "JSON appliqué localement. Cliquez sur Enregistrer pour conserver les changements.",
+      "invalid_root_object": "La racine du JSON doit être un objet.",
+      "zones_must_be_array": "zones doit être un tableau.",
+      "groups_must_be_array": "groups doit être un tableau.",
+      "categories_must_be_array": "categories doit être un tableau.",
+      "invalid_circle_center": "Centre du cercle invalide",
+      "invalid_radius": "Rayon invalide",
+      "invalid_hysteresis": "Hystérésis invalide",
+      "invalid_polygon_points": "Un polygone doit contenir au moins 3 points",
+      "invalid_polygon_coordinates": "Coordonnées de polygone invalides",
+      "zone_groups_must_be_array": "Les groupes de zone doivent être un tableau",
+      "zone_categories_must_be_array": "Les catégories de zone doivent être un tableau",
+      "invalid_color": "Couleur invalide",
+      "test_no_match": "Aucune zone correspondante",
+      "no_subjects": "Aucun sujet mémorisé pour le moment",
+      "subjects_purged": "Sujets purgés",
+      "reserved_name": "Ce nom est réservé",
+      "reserved_group_or_category": "Les valeurs réservées ne peuvent pas être utilisées pour les groupes ou les catégories"
+    },
+    "defaults": {
+      "circle_name": "Cercle",
+      "polygon_name": "Polygone"
+    },
+    "import": {
+      "note_title": "Fonctionnement de cet onglet",
+      "note_body": "Le JSON affiché ici est un aperçu en direct du brouillon courant. Le modifier ne met pas à jour les autres onglets tant que vous n’avez pas cliqué sur Importer et remplacer ou Importer et fusionner. Enregistrer stocke le brouillon courant dans Homey. Annuler recharge la dernière configuration enregistrée."
+    }
+  }
+}

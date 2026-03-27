@@ -1,0 +1,6 @@
+GeoZones 1.2.2
+
+- Final runtime validation passed with 19/19 tests in HomeyScript
+- Improved Flow card localisation for Dutch and German
+- Polished help and wording consistency for store readiness
+- Version bump for store preparation

@@ -1,0 +1,222 @@
+{
+  "app": {
+    "title": "GeoZones"
+  },
+  "settings": {
+    "tabs": {
+      "zones": "Zonen",
+      "groups": "Gruppen",
+      "categories": "Kategorien",
+      "test": "Test",
+      "import_export": "Import / Export",
+      "help": "Hilfe",
+      "subjects": "Subjekte"
+    },
+    "status": {
+      "loading": "Wird geladen…",
+      "ready": "Bereit",
+      "saved": "Gespeichert",
+      "error": "Fehler",
+      "unsaved": "Nicht gespeicherte Änderungen"
+    },
+    "actions": {
+      "add_circle": "Kreis hinzufügen",
+      "add_polygon": "Polygon hinzufügen",
+      "save": "Speichern",
+      "delete": "Löschen",
+      "duplicate": "Duplizieren",
+      "fit_all": "Alle Zonen anzeigen",
+      "use_map_center": "Kartenzentrum verwenden",
+      "run_test": "Test ausführen",
+      "export_json": "Konfiguration exportieren",
+      "import_replace": "Importieren und ersetzen",
+      "import_merge": "Importieren und zusammenführen",
+      "add_field": "Hinzufügen",
+      "apply": "Änderungen anwenden",
+      "cancel": "Abbrechen",
+      "purge_subjects": "Purge inactive subjects now"
+    },
+    "labels": {
+      "search": "Zonen suchen",
+      "map": "Map",
+      "properties": "Zoneneigenschaften",
+      "name": "Name",
+      "type": "Type",
+      "color": "Farbe",
+      "active": "Aktiv",
+      "groups": "Gruppen",
+      "categories": "Kategorien",
+      "center_lat": "Breitengrad Mittelpunkt",
+      "center_lng": "Längengrad Mittelpunkt",
+      "radius": "Radius (m)",
+      "hysteresis": "Hysterese (m)",
+      "polygon_points": "Polygonpunkte",
+      "latitude": "Breitengrad",
+      "longitude": "Längengrad",
+      "subject_id": "Subject-ID (optional)",
+      "json": "JSON",
+      "test_summary": "Ergebnis",
+      "zone_list": "Zonen",
+      "group_list": "Gruppen",
+      "category_list": "Kategorien",
+      "standard_zone": "Zone",
+      "new_group": "Neue Gruppe — Enter zum Hinzufügen",
+      "new_category": "Neue Kategorie — Enter zum Hinzufügen",
+      "inactive": "inaktiv",
+      "zone": "Zone",
+      "subjects": "Subjects",
+      "diagnostics": "Diagnostics",
+      "autopurge_enabled": "Autopurge inactive subjects",
+      "autopurge_days": "Autopurge days (0 = disabled)",
+      "heavy_debug": "Enable heavy debug logging"
+    },
+    "placeholders": {
+      "search_zone": "Nach Zonenname suchen",
+      "zone_name": "Zuhause",
+      "group": "Familie",
+      "category": "Zuhause",
+      "subject_id": "subject_1",
+      "new_group": "Gruppe eingeben und Enter drücken",
+      "new_category": "Kategorie eingeben und Enter drücken"
+    },
+    "help": {
+      "title": "So funktioniert GeoZones",
+      "intro": "GeoZones speichert wiederverwendbare geografische Bereiche in den Einstellungen von Homey Pro. Du erstellst Zonen einmal auf der Einstellungsseite und verwendest dieselben Zonen danach in Flow-Karten, ohne ein virtuelles Gerät anzulegen.",
+      "rules_title": "Regeln",
+      "tips_title": "Empfehlungen",
+      "create_title": "Zonen auf der Karte erstellen und bearbeiten",
+      "create_circle_title": "Einen Kreis erstellen",
+      "create_polygon_title": "Ein Polygon erstellen",
+      "rules": [
+        "Nur aktive Zonen werden in Flows und im Test-Tab ausgewertet.",
+        "Ein Punkt auf dem Rand zählt als innerhalb der Zone.",
+        "Zonennamen müssen eindeutig bleiben. Die reservierten Werte not_defined, unknown und error dürfen nicht als Name für Zone, Gruppe oder Kategorie verwendet werden.",
+        "Eine Zone kann mehrere Gruppen und Kategorien haben. Leere Werte und unsichtbare Zeichen werden automatisch ignoriert.",
+        "Wenn mehrere Zonen gleichzeitig passen, wählt GeoZones zuerst die höchste Priorität, dann die kleinste areaM2 und danach den Zonennamen für einen stabilen Tie-Break.",
+        "Ein sich selbst schneidendes Polygon wird abgelehnt, um mehrdeutige Geometrie zu vermeiden."
+      ],
+      "tips": [
+        "Beginne mit der Karte: Zeichne die Form und verfeinere dann die Eigenschaften im Zonenbereich.",
+        "Verwende Gruppen und Kategorien als wiederverwendbare Labels, damit eine Zone in mehreren Automationen genutzt werden kann.",
+        "Nutze den Test-Tab vor dem Erstellen eines Flows, um die Gewinnerzone, vorherige Werte und Zustandsübergänge des Subjekts zu prüfen.",
+        "Verwende eine Subjekt-ID nur dann, wenn GeoZones den Zustand speichern und Subjekt-Trigger auslösen soll.",
+        "Speichere wichtige Änderungen, damit die Konfiguration auf Homey Pro mit der Karte synchron bleibt."
+      ],
+      "create_circle_steps": [
+        "Öffne den Reiter Zonen und klicke auf „Kreis hinzufügen“.",
+        "Klicke auf die Karte, um den Mittelpunkt zu setzen, und ziehe dann, um den Radius festzulegen.",
+        "Wähle die Zone in der Liste aus, um Name, Farbe, Gruppen, Kategorien und Hysterese anzupassen.",
+        "Speichere die Konfiguration, wenn alles passt."
+      ],
+      "create_polygon_steps": [
+        "Öffne den Reiter Zonen und klicke auf „Polygon hinzufügen“.",
+        "Klicke auf die Karte, um jeden Punkt des Polygons zu setzen.",
+        "Beende die Form mit einem Doppelklick.",
+        "Wenn sich das Polygon selbst schneidet, lehnt GeoZones es ab, um uneindeutige Ergebnisse zu vermeiden."
+      ],
+      "example_circle_title": "Kreisbeispiel: Eiffelturm",
+      "example_circle_body": "Ein einfaches Beispiel für einen Kreis um den Eiffelturm. Das ist die richtige Wahl für eine schnelle Zone um einen zentralen Punkt.",
+      "example_circle_meta": "Mittelpunkt: 48.85837, 2.294481 · Radius: 250 m · Hysterese: 35 m",
+      "example_polygon_title": "Polygonbeispiel: Paris",
+      "example_polygon_body": "Ein einfaches Beispiel für ein Polygon um Paris. Es zeigt den Unterschied zwischen einem Kreis und einer freien Form, wenn die echte Form zählt.",
+      "example_polygon_meta": "Vereinfachtes Polygon um Paris zur Darstellung einer freien Form.",
+      "load_example_circle": "Dieses Beispiel auf der Karte hinzufügen",
+      "load_example_polygon": "Dieses Beispiel auf der Karte hinzufügen",
+      "store_pitch": "GeoZones schließt auf Homey Pro eine Lücke mit wiederverwendbaren geografischen Zonen, Gruppen und Kategorien, ohne Geräte anzulegen.",
+      "how_it_works_more_a": "Im Tab Zonen ist jede Zone entweder ein Kreis oder ein Polygon. Ein Kreis eignet sich ideal um einen bekannten Punkt wie Zuhause, Arbeit, einen Parkplatz oder ein Geschäft. Ein Polygon ist besser, wenn die echte Form wichtig ist, zum Beispiel für eine Stadt, einen Campus, ein Industriegelände, ein Viertel oder ein unregelmäßiges Grundstück. Jede Zone hat außerdem eine Farbe, einen Aktiv-Status, optionale Gruppen, optionale Kategorien, eine Priorität und einen vorab berechneten areaM2-Wert für Tie-Breaks.",
+      "how_it_works_more_b": "Wenn GeoZones Koordinaten auswertet, prüft die App nur aktive Zonen. Sie testet, ob der Punkt innerhalb jedes Kreises oder Polygons liegt. Wenn mehrere Zonen gleichzeitig passen, behält GeoZones zuerst die höchste Priorität und danach die kleinste areaM2, damit eine kleine präzise Zone gegenüber einer größeren gewinnt. Bei Kreisen vergrößert die Hysterese den Austrittsradius für das zuletzt bekannte Subjekt, damit Homey an der Grenze nicht zu schnell umschaltet.",
+      "create_intro": "Der Tab Zonen ist der zentrale Arbeitsbereich. Auf der großen Karte zeichnest und bearbeitest du die Geometrie. Die Zonenkarte unter der Karte hilft dir beim Suchen, Prüfen und Auswählen vorhandener Zonen. Im Bereich Zoneneigenschaften kannst du eine Zone umbenennen, die Farbe ändern, sie aktivieren oder deaktivieren, Gruppen und Kategorien zuweisen und bei Kreisen Mittelpunkt, Radius und Hysterese bearbeiten.",
+      "create_more": "Klicke auf Kreis hinzufügen, um einen neuen Kreis direkt auf der Karte zu zeichnen. Klicke auf Polygon hinzufügen, um eine freie Form Punkt für Punkt zu erstellen. Sobald die Zone existiert, kannst du sie in der Liste oder direkt auf der Karte auswählen und ihre Details bearbeiten. Mit den integrierten Leaflet-Bearbeitungswerkzeugen kannst du Kreise verschieben oder vergrößern, Polygonpunkte anpassen und Formen löschen.",
+      "flow_title": "GeoZones in Flow-Karten verwenden",
+      "flow_intro": "GeoZones ist für Homey Flows gedacht. Die Einstellungsseite definiert wiederverwendbare Daten, und die Flow-Karten nutzen diese später mit Live-Koordinaten aus einer anderen App, einem Telefon, einem Webhook oder deiner eigenen Logik.",
+      "flow_more": "Ein typischer Ablauf ist: Ein anderer Flow liefert Breiten- und Längengrad, eine UND-Karte prüft, ob diese Koordinaten zu einer Zone, Gruppe oder Kategorie passen, und die DANN-Karte bestimmt anschließend die Gewinnerzone und stellt Tags wie Zone, Gruppen, Kategorien, Typ und vorherige Werte für die restliche Automation bereit. Die UND-Karte kann außerdem den gespeicherten Subjektzustand aktualisieren.",
+      "flow_and_title": "UND-Karten",
+      "flow_then_title": "DANN-Karte",
+      "flow_and_cards": [
+        "Koordinaten sind in einer Zone: wahr, wenn der Punkt zur gewählten Zone passt.",
+        "Koordinaten sind in einer Gruppe: wahr, wenn die beste Zone zur gewählten Gruppe gehört.",
+        "Koordinaten sind in einer Kategorie: wahr, wenn die beste Zone zur gewählten Kategorie gehört.",
+        "Koordinaten sind in irgendeiner Zone: nützlich, wenn mindestens eine Übereinstimmung reicht.",
+        "Koordinaten sind in keiner Zone: nützlich für Automationen außerhalb aller definierten Bereiche."
+      ],
+      "flow_then_cards": [
+        "Geografische Position auswerten: ermittelt die beste passende Zone mit denselben Regeln wie die Bedingungskarten.",
+        "Die Aktion liefert Tags wie Zone, Gruppen, Kategorien, vorherige Werte, Zonentyp und Bewegungskennzahlen zurück.",
+        "Verwende eine Subjekt-ID, wenn Zustandsspeicher, Hysterese-Kontinuität und Subjekt-Trigger pro Person oder Gerät getrennt bleiben sollen."
+      ],
+      "flow_when_title": "Triggers",
+      "flow_when_cards": [
+        "Gespeicherter Subjektwert geändert: wird ausgelöst, wenn sich die gespeicherte Zone, Gruppen oder Kategorien ändern, einschließlich Übergängen von oder zu unknown, not_defined oder error.",
+        "Gespeichertes Subjekt ist in einen Wert eingetreten: wird ausgelöst, wenn ein Subjekt eine Zone, Gruppe oder Kategorie betritt.",
+        "Gespeichertes Subjekt hat einen Wert verlassen: wird ausgelöst, wenn ein Subjekt eine Zone, Gruppe oder Kategorie verlässt."
+      ],
+      "subjects_title": "Subjects and memory",
+      "subjects_body": "GeoZones kann einen gespeicherten Zustand pro Subjekt behalten. Ein Subjekt speichert seine aktuelle Zone, Gruppen, Kategorien, die letzten Koordinaten und den Zeitstempel.",
+      "subjects_rules": [
+        "Verwende eine Subjekt-ID in der Auswertungsaktion oder in der Koordinatenbedingung mit aktivierter Zustandsaktualisierung, um den gespeicherten Zustand zu schreiben.",
+        "unknown bedeutet, dass für das Subjekt noch kein gespeicherter Zustand existiert. not_defined bedeutet, dass die Auswertung erfolgreich war, aber keine Zone gepasst hat. error bedeutet, dass eine persistente Auswertung fehlgeschlagen ist.",
+        "Der Tab Subjekte listet gespeicherte Subjekte auf und ermöglicht das manuelle Löschen.",
+        "Die automatische Bereinigung kann inaktive Subjekte nach einer konfigurierbaren Anzahl von Tagen entfernen."
+      ],
+      "debug_title": "Debug logging",
+      "debug_body": "Minimal logs are always written. Heavy debug logging adds detailed internal traces and should only be enabled when troubleshooting.",
+      "debug_rules": [
+        "Heavy debug logging increases CPU and memory usage.",
+        "Disable it again after debugging to keep normal overhead low."
+      ],
+      "debug_warning": "Heavy debug logging increases CPU and memory usage and should only be enabled for debugging.",
+      "json_title": "Add a zone from JSON",
+      "json_body": "Die JSON-Aktion akzeptiert genau ein striktes Zonenobjekt für einen Kreis oder ein Polygon. Unbekannte Felder werden ignoriert, aber ungültige relevante Felder verursachen einen expliziten Fehler.",
+      "json_rules": [
+        "Der Name muss eindeutig sein und darf nicht not_defined, unknown oder error sein.",
+        "Kreisfelder: name, type=circle, center.lat, center.lng, radius, optionale hysteresis, active, priority, color, groups und categories.",
+        "Polygonfelder: name, type=polygon, paths, optionale active, priority, color, groups und categories.",
+        "areaM2 wird von GeoZones neu berechnet und sollte nicht als vertrauenswürdiger Importwert verwendet werden."
+      ]
+    },
+    "messages": {
+      "confirm_delete_zone": "Diese Zone löschen?",
+      "confirm_delete_item": "Diesen Eintrag löschen?",
+      "invalid_json": "Ungültiges JSON",
+      "zone_name_required": "Zonenname ist erforderlich",
+      "zone_name_duplicate": "Zonennamen müssen eindeutig sein",
+      "polygon_self_intersection": "Dieses Polygon schneidet sich selbst und kann nicht gespeichert werden",
+      "zone_saved": "Zone gespeichert",
+      "config_saved": "Konfiguration gespeichert",
+      "group_removed": "Gruppe aus allen Zonen entfernt",
+      "category_removed": "Kategorie aus allen Zonen entfernt",
+      "import_done": "Import abgeschlossen",
+      "test_empty": "Noch kein Test ausgeführt",
+      "no_zone_selected": "Wähle eine Zone auf der Karte oder in der Liste aus",
+      "map_note": "Direkt auf der Karte zeichnen und danach die Änderungen speichern.",
+      "zone_deleted": "Zone gelöscht",
+      "changes_cancelled": "Nicht gespeicherte Änderungen verworfen",
+      "import_loaded": "JSON lokal übernommen. Klicke auf Speichern, um die Änderungen zu behalten.",
+      "invalid_root_object": "Die JSON-Wurzel muss ein Objekt sein.",
+      "zones_must_be_array": "zones muss ein Array sein.",
+      "groups_must_be_array": "groups muss ein Array sein.",
+      "categories_must_be_array": "categories muss ein Array sein.",
+      "invalid_circle_center": "Ungültiger Kreismittelpunkt",
+      "invalid_radius": "Ungültiger Radius",
+      "invalid_hysteresis": "Ungültige Hysterese",
+      "invalid_polygon_points": "Ein Polygon muss mindestens 3 Punkte enthalten",
+      "invalid_polygon_coordinates": "Ungültige Polygonkoordinaten",
+      "zone_groups_must_be_array": "Zonengruppen müssen ein Array sein",
+      "zone_categories_must_be_array": "Zonenkategorien müssen ein Array sein",
+      "invalid_color": "Ungültige Farbe",
+      "test_no_match": "Keine passende Zone",
+      "no_subjects": "No subjects stored yet",
+      "subjects_purged": "Subjects purged",
+      "reserved_name": "Dieser Name ist reserviert",
+      "reserved_group_or_category": "Reservierte Werte dürfen nicht für Gruppen oder Kategorien verwendet werden"
+    },
+    "defaults": {
+      "circle_name": "Kreis",
+      "polygon_name": "Polygon"
+    },
+    "import": {
+      "note_title": "So funktioniert dieser Tab",
+      "note_body": "Das hier angezeigte JSON ist eine Live-Vorschau des aktuellen Entwurfs. Das Bearbeiten aktualisiert die anderen Tabs erst, wenn du auf Importieren und ersetzen oder Importieren und zusammenführen klickst. Speichern sichert den aktuellen Entwurf in Homey. Abbrechen lädt die zuletzt gespeicherte Konfiguration neu."
+    }
+  }
+}

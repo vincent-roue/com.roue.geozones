@@ -1,0 +1,7 @@
+GeoZones 1.2.3
+
+- Store polish release
+- Reworked App Store descriptions and readmes in EN/FR/NL/DE
+- Simplified Flow card titles and hints
+- Removed leftover inverse wording from locales
+- Exported app images at Homey Store sizes

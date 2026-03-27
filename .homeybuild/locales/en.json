@@ -1,0 +1,226 @@
+{
+  "app": {
+    "title": "GeoZones"
+  },
+  "settings": {
+    "tabs": {
+      "zones": "Zones",
+      "groups": "Groups",
+      "categories": "Categories",
+      "test": "Test",
+      "import_export": "Import / Export",
+      "help": "Help",
+      "subjects": "Subjects"
+    },
+    "status": {
+      "loading": "Loading…",
+      "ready": "Ready",
+      "saved": "Saved",
+      "error": "Error",
+      "unsaved": "Unsaved changes"
+    },
+    "actions": {
+      "add_circle": "Add circle",
+      "add_polygon": "Add polygon",
+      "save": "Save",
+      "delete": "Delete",
+      "duplicate": "Duplicate",
+      "fit_all": "Fit all zones",
+      "use_map_center": "Use map center",
+      "run_test": "Run test",
+      "export_json": "Export config",
+      "import_replace": "Import and replace",
+      "import_merge": "Import and merge",
+      "add_field": "Add",
+      "apply": "Apply changes",
+      "cancel": "Cancel",
+      "purge_subjects": "Purge inactive subjects now"
+    },
+    "labels": {
+      "search": "Search zones",
+      "map": "Map",
+      "properties": "Zone properties",
+      "name": "Name",
+      "type": "Type",
+      "color": "Color",
+      "active": "Active",
+      "groups": "Groups",
+      "categories": "Categories",
+      "center_lat": "Center latitude",
+      "center_lng": "Center longitude",
+      "radius": "Radius (m)",
+      "hysteresis": "Hysteresis (m)",
+      "polygon_points": "Polygon points",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "subject_id": "Subject ID (optional)",
+      "json": "JSON",
+      "test_summary": "Result",
+      "zone_list": "Zones",
+      "group_list": "Groups",
+      "category_list": "Categories",
+      "standard_zone": "zone",
+      "new_group": "New group — press Enter",
+      "new_category": "New category — press Enter",
+      "inactive": "inactive",
+      "zone": "Zone",
+      "subjects": "Subjects",
+      "diagnostics": "Diagnostics",
+      "autopurge_enabled": "Autopurge inactive subjects",
+      "autopurge_days": "Autopurge days (0 = disabled)",
+      "heavy_debug": "Enable heavy debug logging"
+    },
+    "placeholders": {
+      "search_zone": "Search by zone name",
+      "zone_name": "Home",
+      "group": "Family",
+      "category": "Home",
+      "subject_id": "subject_1",
+      "new_group": "Type a group and press Enter",
+      "new_category": "Type a category and press Enter"
+    },
+    "help": {
+      "title": "How GeoZones works",
+      "intro": "GeoZones stores reusable geographic areas in Homey Pro settings. You create zones once in the Settings page, then you reuse those same zones in Flow cards without creating any virtual device.",
+      "rules_title": "Rules",
+      "tips_title": "Tips",
+      "create_title": "Create zones on the map",
+      "create_circle_title": "Create a circle",
+      "create_polygon_title": "Create a polygon",
+      "rules": [
+        "Only active zones are evaluated in Flows and in the Test tab.",
+        "A point on the border counts as inside the zone.",
+        "Zone names must stay unique. The reserved values not_defined, unknown and error cannot be used as zone, group or category names.",
+        "Groups and categories can contain several values per zone. Empty values and invisible characters are ignored automatically.",
+        "If several zones match at the same time, GeoZones first keeps the highest priority, then the smallest areaM2, then the zone name for a stable tie-break.",
+        "A self-intersecting polygon is rejected to avoid ambiguous geometry."
+      ],
+      "tips": [
+        "Use the map first: draw the shape, then refine the properties in the zone panel.",
+        "Use groups and categories as reusable labels so one zone can participate in many automations.",
+        "Use the Test tab before building a Flow to verify the winning zone, previous values and subject memory transitions.",
+        "Use subject IDs only when you want GeoZones to remember state and fire subject triggers.",
+        "Save after important edits so the configuration stored on Homey Pro stays in sync with the map."
+      ],
+      "create_circle_steps": [
+        "Open the Zones tab.",
+        "Click Add circle.",
+        "Click on the map and drag to define the circle radius.",
+        "Select the new zone in the list if it is not already selected.",
+        "Rename it, choose a color, add groups or categories, and set hysteresis if needed.",
+        "Click Save to persist the result in Homey Pro."
+      ],
+      "create_polygon_steps": [
+        "Open the Zones tab.",
+        "Click Add polygon.",
+        "Click on the map for each point of the shape.",
+        "Double-click to finish the polygon.",
+        "Select the zone, then edit its name, color, groups and categories.",
+        "Use the map edit tools later to move points, then save the configuration."
+      ],
+      "example_circle_title": "Circle example: Eiffel Tower",
+      "example_circle_body": "Teaching example of a circle around the Eiffel Tower. This is ideal for a quick zone around one central point.",
+      "example_circle_meta": "Center: 48.85837, 2.294481 · Radius: 250 m · Hysteresis: 35 m",
+      "example_polygon_title": "Polygon example: Paris",
+      "example_polygon_body": "Teaching example of a simplified polygon around Paris. It shows why a free-form shape can be more relevant than a circle for a city or district.",
+      "example_polygon_meta": "Simplified polygon around Paris to illustrate a free-form zone.",
+      "load_example_circle": "Add this example to the map",
+      "load_example_polygon": "Add this example to the map",
+      "store_pitch": "GeoZones fills a real gap on Homey Pro by providing reusable geographic zones, groups and categories without creating devices.",
+      "how_it_works_more_a": "In the Zones tab, each zone is a circle or a polygon. A circle is ideal around one known point such as home, work, a parking area or a shop. A polygon is better when the real shape matters, for example a city, campus, industrial site, neighbourhood or irregular property. Each zone also has a color, an active flag, optional groups, optional categories, a priority and a precomputed areaM2 value used for tie-breaks.",
+      "how_it_works_more_b": "When GeoZones evaluates coordinates, the app checks only active zones. It tests whether the point is inside each circle or polygon. If several zones match at the same time, GeoZones first keeps the highest priority, then the smallest areaM2 so a precise small zone wins over a larger one. For circles, hysteresis enlarges the exit radius for the last known subject so Homey does not switch too quickly when coordinates move near the border.",
+      "create_intro": "The Zones tab is the main workspace. The large map is where you draw and edit geometry. The Zones card below the map helps you search, review and select existing zones. The Zone properties card lets you rename a zone, change its color, enable or disable it, attach groups and categories, and edit circle-specific values such as center, radius and hysteresis.",
+      "create_more": "To create a new circle, click Add circle and draw directly on the map. To create a polygon, click Add polygon and place the points one after another. Once the zone exists, click it in the list or directly on the map to edit its details. You can also use the built-in Leaflet edit tools to resize circles, move them, adjust polygon points or delete shapes from the map.",
+      "flow_title": "Use GeoZones in Flow cards",
+      "flow_intro": "GeoZones is designed for Homey Flows. The settings page defines the reusable data, and the Flow cards consume that data later with live coordinates coming from another app, a phone, a webhook or your own logic.",
+      "flow_more": "Typical usage is: another Flow provides latitude and longitude, an AND card checks whether those coordinates match a zone, group or category, and the THEN card determines the winning zone and exposes tags such as zone, groups, categories, type and previous values for the rest of the automation. The AND card can optionally update the stored subject state too.",
+      "flow_and_title": "AND cards",
+      "flow_then_title": "THEN card",
+      "flow_and_cards": [
+        "Coordinates are in a zone: true when the point matches the selected zone.",
+        "Coordinates are in a group: true when the winning zone belongs to the selected group.",
+        "Coordinates are in a category: true when the winning zone belongs to the selected category.",
+        "Coordinates are in any zone: useful when you only need to know whether at least one zone matches.",
+        "Coordinates are in no zone: useful for “outside of all defined areas” automations."
+      ],
+      "flow_then_cards": [
+        "Evaluate geographic position: resolves the best matching zone using the same rules as the condition cards.",
+        "The action returns tags such as zone, groups, categories, previous values, zone type and movement metrics.",
+        "Use a Subject ID when you want state memory, hysteresis continuity and subject triggers to stay separate for each person or device."
+      ],
+      "flow_when_title": "Triggers",
+      "flow_when_cards": [
+        "Stored subject value changed: triggers when the stored zone, groups or categories change, including transitions from or to unknown, not_defined or error.",
+        "Stored subject entered a value: triggers when a subject enters a zone, group or category.",
+        "Stored subject left a value: triggers when a subject leaves a zone, group or category."
+      ],
+      "subjects_title": "Subjects and memory",
+      "subjects_body": "GeoZones can keep one stored state per subject. A subject stores its current zone, groups, categories, last coordinates and timestamp.",
+      "subjects_rules": [
+        "Use a Subject ID in the evaluation action or in the coordinate-matching condition with state update enabled to write the stored state.",
+        "unknown means the subject has no stored state yet. not_defined means the subject was evaluated successfully but no zone matched. error means a persistent evaluation failed.",
+        "The Subjects tab lists stored subjects and lets you delete them manually.",
+        "Automatic purge can remove inactive subjects after a configurable number of days."
+      ],
+      "debug_title": "Debug logging",
+      "debug_body": "Minimal logs are always written. Heavy debug logging adds detailed internal traces and should only be enabled when troubleshooting.",
+      "debug_rules": [
+        "Heavy debug logging increases CPU and memory usage.",
+        "Disable it again after debugging to keep normal overhead low."
+      ],
+      "debug_warning": "Heavy debug logging increases CPU and memory usage and should only be enabled for debugging.",
+      "json_title": "Add a zone from JSON",
+      "json_body": "The JSON action accepts one strict zone object for a circle or a polygon. Unknown fields are ignored, but invalid useful fields cause an explicit error.",
+      "json_rules": [
+        "The name must be unique and cannot be not_defined, unknown or error.",
+        "Circle fields: name, type=circle, center.lat, center.lng, radius, optional hysteresis, active, priority, color, groups and categories.",
+        "Polygon fields: name, type=polygon, paths, optional active, priority, color, groups and categories.",
+        "areaM2 is recalculated by GeoZones and should not be relied on as import input."
+      ]
+    },
+    "messages": {
+      "confirm_delete_zone": "Delete this zone?",
+      "confirm_delete_item": "Delete this item?",
+      "invalid_json": "Invalid JSON",
+      "zone_name_required": "Zone name is required",
+      "zone_name_duplicate": "Zone names must be unique",
+      "polygon_self_intersection": "This polygon intersects itself and cannot be saved",
+      "zone_saved": "Zone saved",
+      "config_saved": "Configuration saved",
+      "group_removed": "Group removed from all zones",
+      "category_removed": "Category removed from all zones",
+      "import_done": "Import completed",
+      "test_empty": "No test run yet",
+      "no_zone_selected": "Select a zone on the map or in the list",
+      "map_note": "Draw directly on the map, then save your changes.",
+      "zone_deleted": "Zone deleted",
+      "changes_cancelled": "Unsaved changes cancelled",
+      "import_loaded": "JSON applied locally. Click Save to keep the changes.",
+      "invalid_root_object": "The JSON root must be an object.",
+      "zones_must_be_array": "zones must be an array.",
+      "groups_must_be_array": "groups must be an array.",
+      "categories_must_be_array": "categories must be an array.",
+      "invalid_circle_center": "Invalid circle center",
+      "invalid_radius": "Invalid radius",
+      "invalid_hysteresis": "Invalid hysteresis",
+      "invalid_polygon_points": "A polygon must contain at least 3 points",
+      "invalid_polygon_coordinates": "Invalid polygon coordinates",
+      "zone_groups_must_be_array": "Zone groups must be an array",
+      "zone_categories_must_be_array": "Zone categories must be an array",
+      "invalid_color": "Invalid color",
+      "test_no_match": "No zone matched",
+      "no_subjects": "No subjects stored yet",
+      "subjects_purged": "Subjects purged",
+      "reserved_name": "This name is reserved",
+      "reserved_group_or_category": "Reserved values cannot be used for groups or categories"
+    },
+    "defaults": {
+      "circle_name": "Circle",
+      "polygon_name": "Polygon"
+    },
+    "import": {
+      "note_title": "How this tab works",
+      "note_body": "The JSON shown here is a live preview of the current draft. Editing it does not update the other tabs until you click Import and replace or Import and merge. Save stores the current draft in Homey. Cancel reloads the last saved configuration."
+    }
+  }
+}

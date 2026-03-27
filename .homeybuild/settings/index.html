@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GeoZones</title>
+
+  <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+  <link rel="stylesheet" href="./app.css" />
+</head>
+<body>
+  <div class="settings-actions">
+    <button
+      id="btnCancelTop"
+      class="icon-button"
+      type="button"
+      title="Cancel"
+      aria-label="Cancel"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 6l12 12"></path>
+        <path d="M18 6l-12 12"></path>
+      </svg>
+    </button>
+
+    <button
+      id="btnSaveTop"
+      class="icon-button primary"
+      type="button"
+      title="Save"
+      aria-label="Save"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 4h13l3 3v13H4z"></path>
+        <path d="M8 4v6h8V4"></path>
+        <path d="M8 20v-6h8v6"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand">
+        <h1 id="appTitle">GeoZones</h1>
+        <p id="statusText">Loading…</p>
+      </div>
+
+      <nav class="tabs clean-tabs" id="tabs" role="tablist" aria-label="GeoZones sections">
+  <button class="tab active" role="tab" aria-selected="true" aria-controls="panel-zones" id="tab-zones" data-tab="zones">Zones</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="panel-groups" id="tab-groups" data-tab="groups" tabindex="-1">Groups</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="panel-categories" id="tab-categories" data-tab="categories" tabindex="-1">Categories</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="panel-subjects" id="tab-subjects" data-tab="subjects" tabindex="-1">Subjects</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="panel-test" id="tab-test" data-tab="test" tabindex="-1">Test</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="panel-import" id="tab-import" data-tab="import" tabindex="-1">Import / Export</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="panel-help" id="tab-help" data-tab="help" tabindex="-1">Help</button>
+</nav>
+    </header>
+
+    <main>
+      <section class="tab-panel active" id="panel-zones" role="tabpanel" aria-labelledby="tab-zones" data-panel="zones">
+        <div class="map-card card">
+          <div class="map-toolbar">
+            <button id="btnAddCircle" type="button"></button>
+            <button id="btnAddPolygon" type="button"></button>
+            <button id="btnFitAll" type="button"></button>
+          </div>
+          <div id="map"></div>
+        </div>
+
+        <div class="zones-grid">
+          <div class="card zones-list-card">
+            <div class="zones-list-header">
+              <h2 id="titleZoneList"></h2>
+              <div class="zone-search-wrap">
+                <label for="searchZone" id="labelSearchZone"></label>
+                <input id="searchZone" type="text" />
+              </div>
+            </div>
+            <div id="zoneList" class="zone-list"></div>
+          </div>
+
+          <div class="card inspector">
+            <h2 id="titleZoneProperties"></h2>
+            <div class="empty-state" id="zoneEmpty"></div>
+
+            <div id="zoneEditor" class="hidden">
+              <div class="field">
+                <label for="zoneName" id="labelZoneName"></label>
+                <input id="zoneName" type="text" />
+              </div>
+
+              <div class="field color-field">
+                <label for="zoneColor" id="labelZoneColor"></label>
+                <input id="zoneColor" type="color" />
+              </div>
+
+              <div class="toggle-row">
+                <label><input id="zoneActive" type="checkbox" /> <span id="labelZoneActive"></span></label>
+              </div>
+
+              <div class="chips-section">
+                <div class="chips-header">
+                  <span id="labelZoneGroups"></span>
+                  <button id="btnZoneAddGroup" class="small" type="button"></button>
+                </div>
+                <div id="zoneGroupsEditor"></div>
+              </div>
+
+              <div class="chips-section">
+                <div class="chips-header">
+                  <span id="labelZoneCategories"></span>
+                  <button id="btnZoneAddCategory" class="small" type="button"></button>
+                </div>
+                <div id="zoneCategoriesEditor"></div>
+              </div>
+
+              <div id="circleFields">
+                <div class="row two-cols">
+                  <div class="field">
+                    <label for="zoneCenterLat" id="labelCenterLat"></label>
+                    <input id="zoneCenterLat" type="number" step="any" />
+                  </div>
+                  <div class="field">
+                    <label for="zoneCenterLng" id="labelCenterLng"></label>
+                    <input id="zoneCenterLng" type="number" step="any" />
+                  </div>
+                </div>
+
+                <div class="row two-cols">
+                  <div class="field">
+                    <label for="zoneRadius" id="labelRadius"></label>
+                    <input id="zoneRadius" type="number" min="1" step="1" />
+                  </div>
+                  <div class="field">
+                    <label for="zoneHysteresis" id="labelHysteresis"></label>
+                    <input id="zoneHysteresis" type="number" min="0" step="1" />
+                  </div>
+                </div>
+              </div>
+
+              <div id="polygonFields" class="field hidden">
+                <label for="zonePaths" id="labelPolygonPoints"></label>
+                <textarea id="zonePaths" rows="8"></textarea>
+              </div>
+
+              <div class="toolbar bottom-toolbar">
+                <button id="btnDeleteZone" class="danger" type="button"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-groups" role="tabpanel" aria-labelledby="tab-groups" data-panel="groups">
+        <div class="card list-card">
+          <div class="section-header">
+            <h2 id="titleGroups"></h2>
+          </div>
+          <div class="field quick-add-field">
+            <label for="newGroupInput" id="labelNewGroup"></label>
+            <input id="newGroupInput" type="text" />
+          </div>
+          <div id="groupList"></div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-categories" role="tabpanel" aria-labelledby="tab-categories" data-panel="categories">
+        <div class="card list-card">
+          <div class="section-header">
+            <h2 id="titleCategories"></h2>
+          </div>
+          <div class="field quick-add-field">
+            <label for="newCategoryInput" id="labelNewCategory"></label>
+            <input id="newCategoryInput" type="text" />
+          </div>
+          <div id="categoryList"></div>
+        </div>
+      </section>
+
+      
+      <section class="tab-panel" id="panel-subjects" role="tabpanel" aria-labelledby="tab-subjects" data-panel="subjects">
+        <div class="grid-two">
+          <div class="card list-card">
+            <div class="section-header">
+              <h2 id="titleSubjects"></h2>
+            </div>
+            <div class="row two-cols">
+              <div class="field">
+                <label for="autopurgeEnabled" id="labelAutopurgeEnabled"></label>
+                <input id="autopurgeEnabled" type="checkbox" />
+              </div>
+              <div class="field">
+                <label for="autopurgeDays" id="labelAutopurgeDays"></label>
+                <input id="autopurgeDays" type="number" min="0" step="1" />
+              </div>
+            </div>
+            <div class="toolbar">
+              <button id="btnPurgeSubjects" type="button"></button>
+            </div>
+            <div id="subjectList"></div>
+          </div>
+
+          <div class="card list-card">
+            <div class="section-header">
+              <h2 id="titleDiagnostics"></h2>
+            </div>
+            <div class="field">
+              <label for="heavyDebugEnabled" id="labelHeavyDebug"></label>
+              <input id="heavyDebugEnabled" type="checkbox" />
+            </div>
+            <p id="heavyDebugWarning" class="help-paragraph"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-test" role="tabpanel" aria-labelledby="tab-test" data-panel="test">
+        <div class="grid-two">
+          <div class="card">
+            <div class="row two-cols">
+              <div class="field">
+                <label for="testLat" id="labelTestLat"></label>
+                <input id="testLat" type="number" step="any" />
+              </div>
+              <div class="field">
+                <label for="testLong" id="labelTestLong"></label>
+                <input id="testLong" type="number" step="any" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="testSubjectId" id="labelTestSubjectId"></label>
+              <input id="testSubjectId" type="text" />
+            </div>
+            <div class="toolbar">
+              <button id="btnRunTest" type="button"></button>
+              <button id="btnUseMapCenter" type="button"></button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div id="testSummary" class="summary-block"></div>
+            <pre id="testLogs"></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-import" role="tabpanel" aria-labelledby="tab-import" data-panel="import">
+        <div class="card">
+          <div class="import-note">
+            <strong id="importNoteTitle"></strong>
+            <p id="importNoteBody"></p>
+          </div>
+
+          <div class="toolbar import-toolbar">
+            <button id="btnImportReplace" type="button"></button>
+            <button id="btnImportMerge" type="button"></button>
+          </div>
+
+          <div id="importError" class="import-error hidden"></div>
+
+          <div class="field">
+            <label for="jsonBox" id="labelJson"></label>
+            <textarea id="jsonBox" rows="18" class="json-box"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-help" role="tabpanel" aria-labelledby="tab-help" data-panel="help">
+        <div id="helpContent" class="help-static"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+  <script src="./i18n.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+GeoZones 1.2.1
+
+- Fixed reserved names so not_defined, unknown and error are rejected everywhere for zone names and for groups/categories.
+- Updated Flow card hints and titles in English, French, Dutch and German.
+- Rewrote the Settings Help tab in all supported languages to match the 1.2.x behavior: no inverse zones, areaM2 tie-break, subject states unknown / not_defined / error, and state updates from Flow conditions.
+- Clarified JSON import rules, subject memory behavior and trigger semantics.

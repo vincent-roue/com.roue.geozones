@@ -1,0 +1,1574 @@
+{
+  "id": "com.roue.geozones",
+  "version": "1.0.0",
+  "sdk": 3,
+  "compatibility": ">=5.0.0",
+  "platforms": [
+    "local"
+  ],
+  "brandColor": "#2F6FED",
+  "name": {
+    "en": "GeoZones",
+    "fr": "GeoZones",
+    "nl": "GeoZones",
+    "de": "GeoZones"
+  },
+  "description": {
+    "en": "Create zones on a map and trigger Homey flows based on where a person or device is.",
+    "fr": "Créez des zones sur une carte et déclenchez des flows Homey selon l’endroit où se trouve une personne ou un appareil.",
+    "nl": "Maak zones op een kaart en start Homey-flows op basis van waar een persoon of apparaat zich bevindt.",
+    "de": "Erstelle Zonen auf einer Karte und starte Homey-Flows basierend darauf, wo sich eine Person oder ein Gerät befindet."
+  },
+  "category": [
+    "tools"
+  ],
+  "author": {
+    "name": "Vincent Roué"
+  },
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "api": {
+    "evaluate": {
+      "method": "POST",
+      "path": "/evaluate"
+    },
+    "testPoint": {
+      "method": "POST",
+      "path": "/test"
+    },
+    "getConfig": {
+      "method": "GET",
+      "path": "/config"
+    },
+    "setConfig": {
+      "method": "PUT",
+      "path": "/config"
+    },
+    "resetSubject": {
+      "method": "DELETE",
+      "path": "/subjects/:id"
+    },
+    "purgeSubjects": {
+      "method": "POST",
+      "path": "/subjects/purge"
+    }
+  },
+  "flow": {
+    "conditions": [
+      {
+        "id": "coords_match_value",
+        "title": {
+          "en": "Coordinates match a zone, group or category",
+          "fr": "Les coordonnées correspondent à une zone, un groupe ou une catégorie",
+          "nl": "Coördinaten komen overeen met een zone, groep of categorie",
+          "de": "Koordinaten entsprechen einer Zone, Gruppe oder Kategorie"
+        },
+        "titleFormatted": {
+          "en": "Coordinates [[lat]], [[long]] for subject [[subjectId]] !{{match|do not match}} [[type]] [[value]] with state update [[updateState]]",
+          "fr": "Les coordonnées [[lat]], [[long]] du sujet [[subjectId]] !{{correspondent à|ne correspondent pas à}} [[type]] [[value]] avec mise à jour d'état [[updateState]]",
+          "nl": "Coördinaten [[lat]], [[long]] voor onderwerp [[subjectId]] !{{komen overeen met|komen niet overeen met}} [[type]] [[value]] met statusupdate [[updateState]]",
+          "de": "Koordinaten [[lat]], [[long]] für Subjekt [[subjectId]] !{{entsprechen|entsprechen nicht}} [[type]] [[value]] mit Zustandsaktualisierung [[updateState]]"
+        },
+        "hint": {
+          "en": "Check whether coordinates match a zone, group or category. Enable state update to remember the subject and trigger subject flows.",
+          "fr": "Vérifie si des coordonnées correspondent à une zone, un groupe ou une catégorie. Activez la mise à jour d’état pour mémoriser le sujet et déclencher les flows sujet.",
+          "nl": "Controleer of coördinaten overeenkomen met een zone, groep of categorie. Schakel statusupdate in om het onderwerp te onthouden en onderwerpflows te activeren.",
+          "de": "Prüfe, ob Koordinaten zu einer Zone, Gruppe oder Kategorie passen. Aktiviere die Zustandsaktualisierung, um das Subjekt zu speichern und Subjekt-Flows auszulösen."
+        },
+        "args": [
+          {
+            "name": "lat",
+            "type": "number",
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Latitude",
+              "de": "Latitude"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Longitude",
+              "de": "Longitude"
+            }
+          },
+          {
+            "name": "subjectId",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Subject ID (optional)",
+              "fr": "ID du sujet (optionnel)",
+              "nl": "Onderwerp-ID (optioneel)",
+              "de": "Subjekt-ID (optional)"
+            },
+            "placeholder": {
+              "en": "subject_1",
+              "fr": "subject_1",
+              "nl": "subject_1",
+              "de": "subject_1"
+            }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "title": {
+              "en": "Type",
+              "fr": "Type",
+              "nl": "Type",
+              "de": "Type"
+            },
+            "values": [
+              {
+                "id": "zone",
+                "title": {
+                  "en": "Zone",
+                  "fr": "Zone",
+                  "nl": "Zone",
+                  "de": "Zone"
+                }
+              },
+              {
+                "id": "group",
+                "title": {
+                  "en": "Group",
+                  "fr": "Groupe",
+                  "nl": "Groep",
+                  "de": "Gruppe"
+                }
+              },
+              {
+                "id": "category",
+                "title": {
+                  "en": "Category",
+                  "fr": "Catégorie",
+                  "nl": "Categorie",
+                  "de": "Kategorie"
+                }
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "title": {
+              "en": "Value",
+              "fr": "Valeur",
+              "nl": "Waarde",
+              "de": "Wert"
+            }
+          },
+          {
+            "name": "updateState",
+            "type": "checkbox",
+            "title": {
+              "en": "Update subject state",
+              "fr": "Mettre à jour l'état du sujet",
+              "nl": "Onderwerpstatus bijwerken",
+              "de": "Subjektzustand aktualisieren"
+            }
+          }
+        ]
+      },
+      {
+        "id": "subject_in_value",
+        "title": {
+          "en": "Stored subject state matches a zone, group or category",
+          "fr": "L’état mémorisé du sujet correspond à une zone, un groupe ou une catégorie",
+          "nl": "De opgeslagen onderwerpstatus komt overeen met een zone, groep of categorie",
+          "de": "Der gespeicherte Subjektzustand entspricht einer Zone, Gruppe oder Kategorie"
+        },
+        "titleFormatted": {
+          "en": "Subject [[subjectId]] !{{is in|is not in}} [[type]] [[value]]",
+          "fr": "Le sujet [[subjectId]] !{{est dans|n'est pas dans}} [[type]] [[value]]",
+          "nl": "Onderwerp [[subjectId]] !{{bevindt zich in|bevindt zich niet in}} [[type]] [[value]]",
+          "de": "Subjekt [[subjectId]] !{{befindet sich in|befindet sich nicht in}} [[type]] [[value]]"
+        },
+        "hint": {
+          "en": "Check the last stored state for a subject without recalculating coordinates. unknown means the subject has not been evaluated yet.",
+          "fr": "Vérifie le dernier état mémorisé d’un sujet sans recalculer les coordonnées. unknown signifie que le sujet n’a pas encore été évalué.",
+          "nl": "Controleer de laatst opgeslagen status van een onderwerp zonder coördinaten opnieuw te berekenen. unknown betekent dat het onderwerp nog niet is geëvalueerd.",
+          "de": "Prüfe den zuletzt gespeicherten Zustand eines Subjekts, ohne Koordinaten neu zu berechnen. unknown bedeutet, dass das Subjekt noch nicht ausgewertet wurde."
+        },
+        "args": [
+          {
+            "name": "subjectId",
+            "type": "text",
+            "title": {
+              "en": "Subject ID",
+              "fr": "ID du sujet",
+              "nl": "Onderwerp-ID",
+              "de": "Subjekt-ID"
+            },
+            "placeholder": {
+              "en": "subject_1",
+              "fr": "subject_1",
+              "nl": "subject_1",
+              "de": "subject_1"
+            }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "title": {
+              "en": "Type",
+              "fr": "Type",
+              "nl": "Type",
+              "de": "Type"
+            },
+            "values": [
+              {
+                "id": "zone",
+                "title": {
+                  "en": "Zone",
+                  "fr": "Zone",
+                  "nl": "Zone",
+                  "de": "Zone"
+                }
+              },
+              {
+                "id": "group",
+                "title": {
+                  "en": "Group",
+                  "fr": "Groupe",
+                  "nl": "Groep",
+                  "de": "Gruppe"
+                }
+              },
+              {
+                "id": "category",
+                "title": {
+                  "en": "Category",
+                  "fr": "Catégorie",
+                  "nl": "Categorie",
+                  "de": "Kategorie"
+                }
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "title": {
+              "en": "Value",
+              "fr": "Valeur",
+              "nl": "Waarde",
+              "de": "Wert"
+            }
+          }
+        ]
+      },
+      {
+        "id": "value_exists",
+        "title": {
+          "en": "A zone, group, category or subject exists",
+          "fr": "Une zone, un groupe, une catégorie ou un sujet existe",
+          "nl": "Er bestaat een zone, groep, categorie of onderwerp",
+          "de": "Eine Zone, Gruppe, Kategorie oder ein Subjekt existiert"
+        },
+        "titleFormatted": {
+          "en": "[[type]] [[value]] !{{exists|does not exist}}",
+          "fr": "[[type]] [[value]] !{{existe|n'existe pas}}",
+          "nl": "[[type]] [[value]] !{{bestaat|bestaat niet}}",
+          "de": "[[type]] [[value]] !{{existiert|existiert nicht}}"
+        },
+        "hint": {
+          "en": "Check whether a zone, group, category or subject currently exists in GeoZones.",
+          "fr": "Vérifie si une zone, un groupe, une catégorie ou un sujet existe actuellement dans GeoZones.",
+          "nl": "Controleer of er momenteel een zone, groep, categorie of onderwerp bestaat in GeoZones.",
+          "de": "Prüfe, ob aktuell eine Zone, Gruppe, Kategorie oder ein Subjekt in GeoZones existiert."
+        },
+        "args": [
+          {
+            "name": "type",
+            "type": "dropdown",
+            "title": {
+              "en": "Type",
+              "fr": "Type",
+              "nl": "Type",
+              "de": "Type"
+            },
+            "values": [
+              {
+                "id": "zone",
+                "title": {
+                  "en": "Zone",
+                  "fr": "Zone",
+                  "nl": "Zone",
+                  "de": "Zone"
+                }
+              },
+              {
+                "id": "group",
+                "title": {
+                  "en": "Group",
+                  "fr": "Groupe",
+                  "nl": "Groep",
+                  "de": "Gruppe"
+                }
+              },
+              {
+                "id": "category",
+                "title": {
+                  "en": "Category",
+                  "fr": "Catégorie",
+                  "nl": "Categorie",
+                  "de": "Kategorie"
+                }
+              },
+              {
+                "id": "subject",
+                "title": {
+                  "en": "Subject",
+                  "fr": "Sujet",
+                  "nl": "Onderwerp",
+                  "de": "Subjekt"
+                }
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "title": {
+              "en": "Value",
+              "fr": "Valeur",
+              "nl": "Waarde",
+              "de": "Wert"
+            }
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "evaluate_position",
+        "title": {
+          "en": "Determine the zone for a position",
+          "fr": "Déterminer la zone d’une position",
+          "nl": "Bepaal de zone voor een positie",
+          "de": "Bestimme die Zone für eine Position"
+        },
+        "hint": {
+          "en": "Check a latitude and longitude and return the matching zone, groups and categories. Add a Subject ID to remember the result and detect changes over time.",
+          "fr": "Vérifie une latitude et une longitude et renvoie la zone, les groupes et les catégories correspondants. Ajoutez un ID de sujet pour mémoriser le résultat et détecter les changements dans le temps.",
+          "nl": "Controleer een breedte- en lengtegraad en geef de overeenkomende zone, groepen en categorieën terug. Voeg een onderwerp-ID toe om het resultaat te onthouden en veranderingen in de tijd te detecteren.",
+          "de": "Prüfe Breiten- und Längengrad und gib die passende Zone, Gruppen und Kategorien zurück. Füge eine Subjekt-ID hinzu, um das Ergebnis zu speichern und Änderungen im Zeitverlauf zu erkennen."
+        },
+        "args": [
+          {
+            "name": "lat",
+            "type": "number",
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Latitude",
+              "de": "Latitude"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Longitude",
+              "de": "Longitude"
+            }
+          },
+          {
+            "name": "subjectId",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Subject ID (optional)",
+              "fr": "ID du sujet (optionnel)",
+              "nl": "Onderwerp-ID (optioneel)",
+              "de": "Subjekt-ID (optional)"
+            },
+            "placeholder": {
+              "en": "subject_1",
+              "fr": "subject_1",
+              "nl": "subject_1",
+              "de": "subject_1"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "groups",
+            "type": "string",
+            "title": {
+              "en": "Groups",
+              "fr": "Groupes",
+              "nl": "Groepen",
+              "de": "Gruppen"
+            }
+          },
+          {
+            "name": "categories",
+            "type": "string",
+            "title": {
+              "en": "Categories",
+              "fr": "Catégories",
+              "nl": "Categorieën",
+              "de": "Kategorien"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "previous_groups",
+            "type": "string",
+            "title": {
+              "en": "Previous groups",
+              "fr": "Groupes précédents",
+              "nl": "Vorige groepen",
+              "de": "Vorherige Gruppen"
+            }
+          },
+          {
+            "name": "previous_categories",
+            "type": "string",
+            "title": {
+              "en": "Previous categories",
+              "fr": "Catégories précédentes",
+              "nl": "Vorige categorieën",
+              "de": "Vorherige Kategorien"
+            }
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "title": {
+              "en": "Zone type",
+              "fr": "Type de zone",
+              "nl": "Zonetype",
+              "de": "Zonentyp"
+            }
+          },
+          {
+            "name": "found",
+            "type": "boolean",
+            "title": {
+              "en": "Found",
+              "fr": "Trouvé",
+              "nl": "Gevonden",
+              "de": "Gefunden"
+            }
+          },
+          {
+            "name": "zone_changed",
+            "type": "boolean",
+            "title": {
+              "en": "Zone changed",
+              "fr": "Zone changée",
+              "nl": "Zone gewijzigd",
+              "de": "Zone geändert"
+            }
+          },
+          {
+            "name": "group_changed",
+            "type": "boolean",
+            "title": {
+              "en": "Groups changed",
+              "fr": "Groupes changés",
+              "nl": "Groepen gewijzigd",
+              "de": "Gruppen geändert"
+            }
+          },
+          {
+            "name": "category_changed",
+            "type": "boolean",
+            "title": {
+              "en": "Categories changed",
+              "fr": "Catégories changées",
+              "nl": "Categorieën gewijzigd",
+              "de": "Kategorien geändert"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed km/h",
+              "fr": "Vitesse km/h",
+              "nl": "Snelheid km/u",
+              "de": "Geschwindigkeit km/h"
+            }
+          },
+          {
+            "name": "distance_since_last_m",
+            "type": "number",
+            "title": {
+              "en": "Distance since last m",
+              "fr": "Distance depuis la dernière mesure (m)",
+              "nl": "Afstand sinds laatste meting (m)",
+              "de": "Abstand seit letzter Messung (m)"
+            }
+          },
+          {
+            "name": "time_delta_s",
+            "type": "number",
+            "title": {
+              "en": "Time delta s",
+              "fr": "Écart de temps (s)",
+              "nl": "Tijdsverschil s",
+              "de": "Zeitdifferenz s"
+            }
+          }
+        ]
+      },
+      {
+        "id": "calculate_distance",
+        "title": {
+          "en": "Calculate distance between two coordinates",
+          "fr": "Calculer la distance entre deux coordonnées",
+          "nl": "Afstand tussen twee coördinaten berekenen",
+          "de": "Entfernung zwischen zwei Koordinaten berechnen"
+        },
+        "hint": {
+          "en": "Calculate the straight-line distance between two coordinates.",
+          "fr": "Calcule la distance à vol d’oiseau entre deux coordonnées.",
+          "nl": "Bereken de hemelsbrede afstand tussen twee coördinaten.",
+          "de": "Berechne die Luftlinienentfernung zwischen zwei Koordinaten."
+        },
+        "args": [
+          {
+            "name": "lat1",
+            "type": "number",
+            "title": {
+              "en": "Latitude 1",
+              "fr": "Latitude 1",
+              "nl": "Latitude 1",
+              "de": "Latitude 1"
+            }
+          },
+          {
+            "name": "long1",
+            "type": "number",
+            "title": {
+              "en": "Longitude 1",
+              "fr": "Longitude 1",
+              "nl": "Longitude 1",
+              "de": "Longitude 1"
+            }
+          },
+          {
+            "name": "lat2",
+            "type": "number",
+            "title": {
+              "en": "Latitude 2",
+              "fr": "Latitude 2",
+              "nl": "Latitude 2",
+              "de": "Latitude 2"
+            }
+          },
+          {
+            "name": "long2",
+            "type": "number",
+            "title": {
+              "en": "Longitude 2",
+              "fr": "Longitude 2",
+              "nl": "Longitude 2",
+              "de": "Longitude 2"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "distance_m",
+            "type": "number",
+            "title": {
+              "en": "Distance m",
+              "fr": "Distance m",
+              "nl": "Distance m",
+              "de": "Distance m"
+            }
+          },
+          {
+            "name": "distance_km",
+            "type": "number",
+            "title": {
+              "en": "Distance km",
+              "fr": "Distance km",
+              "nl": "Distance km",
+              "de": "Distance km"
+            }
+          }
+        ]
+      },
+      {
+        "id": "distance_to_zone",
+        "title": {
+          "en": "Calculate distance to a zone",
+          "fr": "Calculer la distance jusqu'à une zone",
+          "nl": "Afstand tot een zone berekenen",
+          "de": "Entfernung zu einer Zone berechnen"
+        },
+        "hint": {
+          "en": "Calculate how far a coordinate is from a zone. Returns 0 when the coordinate is already inside.",
+          "fr": "Calcule la distance entre une coordonnée et une zone. Renvoie 0 si la coordonnée est déjà à l’intérieur.",
+          "nl": "Bereken hoe ver een coördinaat van een zone verwijderd is. Geeft 0 terug als het coördinaat al binnen de zone ligt.",
+          "de": "Berechne, wie weit eine Koordinate von einer Zone entfernt ist. Gibt 0 zurück, wenn die Koordinate bereits innerhalb der Zone liegt."
+        },
+        "args": [
+          {
+            "name": "lat",
+            "type": "number",
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Latitude",
+              "de": "Latitude"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Longitude",
+              "de": "Longitude"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "text",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "distance_m",
+            "type": "number",
+            "title": {
+              "en": "Distance m",
+              "fr": "Distance m",
+              "nl": "Distance m",
+              "de": "Distance m"
+            }
+          },
+          {
+            "name": "distance_km",
+            "type": "number",
+            "title": {
+              "en": "Distance km",
+              "fr": "Distance km",
+              "nl": "Distance km",
+              "de": "Distance km"
+            }
+          },
+          {
+            "name": "inside",
+            "type": "boolean",
+            "title": {
+              "en": "Inside",
+              "fr": "À l'intérieur",
+              "nl": "Binnen",
+              "de": "Innerhalb"
+            }
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "title": {
+              "en": "Zone type",
+              "fr": "Type de zone",
+              "nl": "Zonetype",
+              "de": "Zonentyp"
+            }
+          }
+        ]
+      },
+      {
+        "id": "add_zone_json",
+        "title": {
+          "en": "Add a zone from JSON",
+          "fr": "Ajouter une zone depuis JSON",
+          "nl": "Zone toevoegen vanuit JSON",
+          "de": "Zone aus JSON hinzufügen"
+        },
+        "hint": {
+          "en": "Add one circle or polygon zone from a JSON object. Invalid fields return a clear error.",
+          "fr": "Ajoute une zone cercle ou polygone à partir d’un objet JSON. Les champs invalides renvoient une erreur claire.",
+          "nl": "Voeg één cirkel- of polygoonzone toe vanuit een JSON-object. Ongeldige velden geven een duidelijke fout.",
+          "de": "Füge eine Kreis- oder Polygonzone aus einem JSON-Objekt hinzu. Ungültige Felder geben einen klaren Fehler zurück."
+        },
+        "args": [
+          {
+            "name": "zone_json",
+            "type": "text",
+            "title": {
+              "en": "Zone JSON",
+              "fr": "JSON de zone",
+              "nl": "Zone-JSON",
+              "de": "Zonen-JSON"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ]
+      },
+      {
+        "id": "create_circle_zone",
+        "title": {
+          "en": "Create a circle zone",
+          "fr": "Créer une zone cercle",
+          "nl": "Cirkelzone maken",
+          "de": "Kreiszone erstellen"
+        },
+        "hint": {
+          "en": "Create a circle zone from a center point and radius. Reserved names are not allowed.",
+          "fr": "Crée une zone cercle à partir d’un point central et d’un rayon. Les noms réservés ne sont pas autorisés.",
+          "nl": "Maak een cirkelzone op basis van een middelpunt en straal. Gereserveerde namen zijn niet toegestaan.",
+          "de": "Erstelle eine Kreiszone aus Mittelpunkt und Radius. Reservierte Namen sind nicht erlaubt."
+        },
+        "args": [
+          {
+            "name": "name",
+            "type": "text",
+            "title": {
+              "en": "Name",
+              "fr": "Nom",
+              "nl": "Naam",
+              "de": "Name"
+            }
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "title": {
+              "en": "Center latitude",
+              "fr": "Latitude du centre",
+              "nl": "Breedtegraad middelpunt",
+              "de": "Breitengrad Mittelpunkt"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "title": {
+              "en": "Center longitude",
+              "fr": "Longitude du centre",
+              "nl": "Lengtegraad middelpunt",
+              "de": "Längengrad Mittelpunkt"
+            }
+          },
+          {
+            "name": "radius",
+            "type": "number",
+            "title": {
+              "en": "Radius m",
+              "fr": "Rayon m",
+              "nl": "Straal m",
+              "de": "Radius m"
+            }
+          },
+          {
+            "name": "color",
+            "type": "color",
+            "required": false,
+            "title": {
+              "en": "Color (optional)",
+              "fr": "Couleur (optionnelle)",
+              "nl": "Kleur (optioneel)",
+              "de": "Farbe (optional)"
+            }
+          },
+          {
+            "name": "active",
+            "type": "checkbox",
+            "required": false,
+            "title": {
+              "en": "Active",
+              "fr": "Active",
+              "nl": "Actief",
+              "de": "Aktiv"
+            }
+          },
+          {
+            "name": "hysteresis",
+            "type": "number",
+            "required": false,
+            "title": {
+              "en": "Hysteresis m (optional)",
+              "fr": "Hystérésis m (optionnel)",
+              "nl": "Hysterese m (optioneel)",
+              "de": "Hysterese m (optional)"
+            }
+          },
+          {
+            "name": "priority",
+            "type": "number",
+            "required": false,
+            "title": {
+              "en": "Priority (optional)",
+              "fr": "Priorité (optionnelle)",
+              "nl": "Prioriteit (optioneel)",
+              "de": "Priorität (optional)"
+            }
+          },
+          {
+            "name": "group_1",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Group 1",
+              "fr": "Groupe 1",
+              "nl": "Groep 1",
+              "de": "Gruppe 1"
+            }
+          },
+          {
+            "name": "group_2",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Group 2",
+              "fr": "Groupe 2",
+              "nl": "Groep 2",
+              "de": "Gruppe 2"
+            }
+          },
+          {
+            "name": "group_3",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Group 3",
+              "fr": "Groupe 3",
+              "nl": "Groep 3",
+              "de": "Gruppe 3"
+            }
+          },
+          {
+            "name": "category_1",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Category 1",
+              "fr": "Catégorie 1",
+              "nl": "Categorie 1",
+              "de": "Kategorie 1"
+            }
+          },
+          {
+            "name": "category_2",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Category 2",
+              "fr": "Catégorie 2",
+              "nl": "Categorie 2",
+              "de": "Kategorie 2"
+            }
+          },
+          {
+            "name": "category_3",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Category 3",
+              "fr": "Catégorie 3",
+              "nl": "Categorie 3",
+              "de": "Kategorie 3"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ]
+      },
+      {
+        "id": "set_zone_active",
+        "title": {
+          "en": "Set zone active state",
+          "fr": "Définir l'état actif d'une zone",
+          "nl": "Actieve status van zone instellen",
+          "de": "Aktivstatus einer Zone festlegen"
+        },
+        "hint": {
+          "en": "Enable or disable an existing zone by name.",
+          "fr": "Active ou désactive une zone existante par son nom.",
+          "nl": "Schakel een bestaande zone in of uit op naam.",
+          "de": "Aktiviere oder deaktiviere eine vorhandene Zone anhand ihres Namens."
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "text",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "active",
+            "type": "checkbox",
+            "title": {
+              "en": "Active",
+              "fr": "Active",
+              "nl": "Active",
+              "de": "Active"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "active",
+            "type": "boolean",
+            "title": {
+              "en": "Active",
+              "fr": "Active",
+              "nl": "Actief",
+              "de": "Aktiv"
+            }
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "id": "subject_value_changed",
+        "title": {
+          "en": "A stored subject value changed",
+          "fr": "Une valeur mémorisée du sujet a changé",
+          "nl": "Een opgeslagen onderwerpwaarde is gewijzigd",
+          "de": "Ein gespeicherter Subjektwert hat sich geändert"
+        },
+        "hint": {
+          "en": "Triggers whenever the stored zone, groups or categories of a subject change, including transitions from or to unknown, not_defined or error.",
+          "fr": "Se déclenche chaque fois que la zone, les groupes ou les catégories mémorisés d’un sujet changent, y compris lors des transitions depuis ou vers unknown, not_defined ou error.",
+          "nl": "Wordt geactiveerd wanneer de opgeslagen zone, groep of categorie van een onderwerp verandert.",
+          "de": "Wird ausgelöst, wenn sich die gespeicherte Zone, Gruppe oder Kategorie eines Subjekts ändert."
+        },
+        "args": [
+          {
+            "name": "subjectId",
+            "type": "text",
+            "title": {
+              "en": "Subject ID",
+              "fr": "ID du sujet",
+              "nl": "Onderwerp-ID",
+              "de": "Subjekt-ID"
+            }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "title": {
+              "en": "Type",
+              "fr": "Type",
+              "nl": "Type",
+              "de": "Type"
+            },
+            "values": [
+              {
+                "id": "zone",
+                "title": {
+                  "en": "Zone",
+                  "fr": "Zone",
+                  "nl": "Zone",
+                  "de": "Zone"
+                }
+              },
+              {
+                "id": "group",
+                "title": {
+                  "en": "Group",
+                  "fr": "Groupe",
+                  "nl": "Groep",
+                  "de": "Gruppe"
+                }
+              },
+              {
+                "id": "category",
+                "title": {
+                  "en": "Category",
+                  "fr": "Catégorie",
+                  "nl": "Categorie",
+                  "de": "Kategorie"
+                }
+              }
+            ]
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_id",
+            "type": "string",
+            "title": {
+              "en": "Subject ID",
+              "fr": "ID du sujet",
+              "nl": "Onderwerp-ID",
+              "de": "Subjekt-ID"
+            }
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "title": {
+              "en": "Type",
+              "fr": "Type",
+              "nl": "Type",
+              "de": "Typ"
+            }
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "title": {
+              "en": "Value",
+              "fr": "Valeur",
+              "nl": "Waarde",
+              "de": "Wert"
+            }
+          },
+          {
+            "name": "previous_value",
+            "type": "string",
+            "title": {
+              "en": "Previous value",
+              "fr": "Valeur précédente",
+              "nl": "Vorige waarde",
+              "de": "Vorheriger Wert"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "groups",
+            "type": "string",
+            "title": {
+              "en": "Groups",
+              "fr": "Groupes",
+              "nl": "Groepen",
+              "de": "Gruppen"
+            }
+          },
+          {
+            "name": "categories",
+            "type": "string",
+            "title": {
+              "en": "Categories",
+              "fr": "Catégories",
+              "nl": "Categorieën",
+              "de": "Kategorien"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "previous_groups",
+            "type": "string",
+            "title": {
+              "en": "Previous groups",
+              "fr": "Groupes précédents",
+              "nl": "Vorige groepen",
+              "de": "Vorherige Gruppen"
+            }
+          },
+          {
+            "name": "previous_categories",
+            "type": "string",
+            "title": {
+              "en": "Previous categories",
+              "fr": "Catégories précédentes",
+              "nl": "Vorige categorieën",
+              "de": "Vorherige Kategorien"
+            }
+          }
+        ]
+      },
+      {
+        "id": "subject_entered_value",
+        "title": {
+          "en": "A stored subject entered a value",
+          "fr": "Un sujet mémorisé est entré dans une valeur",
+          "nl": "Een opgeslagen onderwerp is een waarde binnengekomen",
+          "de": "Ein gespeichertes Subjekt hat einen Wert betreten"
+        },
+        "hint": {
+          "en": "Triggers when a stored subject enters a zone, group or category.",
+          "fr": "Se déclenche lorsqu’un sujet mémorisé entre dans une zone, un groupe ou une catégorie.",
+          "nl": "Wordt geactiveerd wanneer een onderwerp een opgeslagen zone, groep of categorie binnenkomt.",
+          "de": "Wird ausgelöst, wenn ein Subjekt eine gespeicherte Zone, Gruppe oder Kategorie betritt."
+        },
+        "args": [
+          {
+            "name": "subjectId",
+            "type": "text",
+            "title": {
+              "en": "Subject ID",
+              "fr": "ID du sujet",
+              "nl": "Onderwerp-ID",
+              "de": "Subjekt-ID"
+            }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "title": {
+              "en": "Type",
+              "fr": "Type",
+              "nl": "Type",
+              "de": "Type"
+            },
+            "values": [
+              {
+                "id": "zone",
+                "title": {
+                  "en": "Zone",
+                  "fr": "Zone",
+                  "nl": "Zone",
+                  "de": "Zone"
+                }
+              },
+              {
+                "id": "group",
+                "title": {
+                  "en": "Group",
+                  "fr": "Groupe",
+                  "nl": "Groep",
+                  "de": "Gruppe"
+                }
+              },
+              {
+                "id": "category",
+                "title": {
+                  "en": "Category",
+                  "fr": "Catégorie",
+                  "nl": "Categorie",
+                  "de": "Kategorie"
+                }
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "title": {
+              "en": "Value",
+              "fr": "Valeur",
+              "nl": "Value",
+              "de": "Value"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_id",
+            "type": "string",
+            "title": {
+              "en": "Subject ID",
+              "fr": "ID du sujet",
+              "nl": "Subject ID",
+              "de": "Subject ID"
+            }
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "title": {
+              "en": "Type",
+              "fr": "Type",
+              "nl": "Type",
+              "de": "Type"
+            }
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "title": {
+              "en": "Value",
+              "fr": "Valeur",
+              "nl": "Value",
+              "de": "Value"
+            }
+          },
+          {
+            "name": "previous_value",
+            "type": "string",
+            "title": {
+              "en": "Previous value",
+              "fr": "Valeur précédente",
+              "nl": "Previous value",
+              "de": "Previous value"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "groups",
+            "type": "string",
+            "title": {
+              "en": "Groups",
+              "fr": "Groupes",
+              "nl": "Groups",
+              "de": "Groups"
+            }
+          },
+          {
+            "name": "categories",
+            "type": "string",
+            "title": {
+              "en": "Categories",
+              "fr": "Catégories",
+              "nl": "Categories",
+              "de": "Categories"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Previous zone",
+              "de": "Previous zone"
+            }
+          },
+          {
+            "name": "previous_groups",
+            "type": "string",
+            "title": {
+              "en": "Previous groups",
+              "fr": "Groupes précédents",
+              "nl": "Previous groups",
+              "de": "Previous groups"
+            }
+          },
+          {
+            "name": "previous_categories",
+            "type": "string",
+            "title": {
+              "en": "Previous categories",
+              "fr": "Catégories précédentes",
+              "nl": "Previous categories",
+              "de": "Previous categories"
+            }
+          }
+        ]
+      },
+      {
+        "id": "subject_left_value",
+        "title": {
+          "en": "A stored subject left a value",
+          "fr": "Un sujet mémorisé a quitté une valeur",
+          "nl": "Een opgeslagen onderwerp heeft een waarde verlaten",
+          "de": "Ein gespeichertes Subjekt hat einen Wert verlassen"
+        },
+        "hint": {
+          "en": "Triggers when a stored subject leaves a zone, group or category.",
+          "fr": "Se déclenche lorsqu’un sujet mémorisé quitte une zone, un groupe ou une catégorie.",
+          "nl": "Wordt geactiveerd wanneer een onderwerp een opgeslagen zone, groep of categorie verlaat.",
+          "de": "Wird ausgelöst, wenn ein Subjekt eine gespeicherte Zone, Gruppe oder Kategorie verlässt."
+        },
+        "args": [
+          {
+            "name": "subjectId",
+            "type": "text",
+            "title": {
+              "en": "Subject ID",
+              "fr": "ID du sujet",
+              "nl": "Onderwerp-ID",
+              "de": "Subjekt-ID"
+            }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "title": {
+              "en": "Type",
+              "fr": "Type",
+              "nl": "Type",
+              "de": "Type"
+            },
+            "values": [
+              {
+                "id": "zone",
+                "title": {
+                  "en": "Zone",
+                  "fr": "Zone",
+                  "nl": "Zone",
+                  "de": "Zone"
+                }
+              },
+              {
+                "id": "group",
+                "title": {
+                  "en": "Group",
+                  "fr": "Groupe",
+                  "nl": "Groep",
+                  "de": "Gruppe"
+                }
+              },
+              {
+                "id": "category",
+                "title": {
+                  "en": "Category",
+                  "fr": "Catégorie",
+                  "nl": "Categorie",
+                  "de": "Kategorie"
+                }
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "title": {
+              "en": "Value",
+              "fr": "Valeur",
+              "nl": "Value",
+              "de": "Value"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_id",
+            "type": "string",
+            "title": {
+              "en": "Subject ID",
+              "fr": "ID du sujet",
+              "nl": "Subject ID",
+              "de": "Subject ID"
+            }
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "title": {
+              "en": "Type",
+              "fr": "Type",
+              "nl": "Type",
+              "de": "Type"
+            }
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "title": {
+              "en": "Value",
+              "fr": "Valeur",
+              "nl": "Value",
+              "de": "Value"
+            }
+          },
+          {
+            "name": "previous_value",
+            "type": "string",
+            "title": {
+              "en": "Previous value",
+              "fr": "Valeur précédente",
+              "nl": "Previous value",
+              "de": "Previous value"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "groups",
+            "type": "string",
+            "title": {
+              "en": "Groups",
+              "fr": "Groupes",
+              "nl": "Groups",
+              "de": "Groups"
+            }
+          },
+          {
+            "name": "categories",
+            "type": "string",
+            "title": {
+              "en": "Categories",
+              "fr": "Catégories",
+              "nl": "Categories",
+              "de": "Categories"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Previous zone",
+              "de": "Previous zone"
+            }
+          },
+          {
+            "name": "previous_groups",
+            "type": "string",
+            "title": {
+              "en": "Previous groups",
+              "fr": "Groupes précédents",
+              "nl": "Previous groups",
+              "de": "Previous groups"
+            }
+          },
+          {
+            "name": "previous_categories",
+            "type": "string",
+            "title": {
+              "en": "Previous categories",
+              "fr": "Catégories précédentes",
+              "nl": "Previous categories",
+              "de": "Previous categories"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "homepage": "https://github.com/vincent-roue/com.roue.geozones",
+  "source": "https://github.com/vincent-roue/com.roue.geozones",
+  "homeyCommunityTopicId": 153017,
+  "support": "https://community.homey.app/t/app-pro-geozones/153017",
+  "bugs": {
+    "url": "https://community.homey.app/t/app-pro-geozones/153017"
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "vincentroue"
+      }
+    }
+  },
+  "tags": {
+    "en": [
+      "geofencing",
+      "location",
+      "zones",
+      "presence",
+      "gps"
+    ],
+    "fr": [
+      "géolocalisation",
+      "localisation",
+      "zones",
+      "présence",
+      "gps"
+    ],
+    "nl": [
+      "geofencing",
+      "locatie",
+      "zones",
+      "aanwezigheid",
+      "gps"
+    ],
+    "de": [
+      "geofencing",
+      "standort",
+      "zonen",
+      "anwesenheit",
+      "gps"
+    ]
+  }
+}

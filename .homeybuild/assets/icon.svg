@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <path
+    fill="currentColor"
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="
+      M128 256
+      C128 256 64 180 64 96
+      A64 64 0 1 1 192 96
+      C192 180 128 256 128 256
+      Z
+
+      M128 96
+      m -30,0
+      a 30,30 0 1,0 60,0
+      a 30,30 0 1,0 -60,0
+    "
+  />
+</svg>

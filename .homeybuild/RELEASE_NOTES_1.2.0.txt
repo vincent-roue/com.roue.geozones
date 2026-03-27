@@ -1,0 +1,8 @@
+GeoZones 1.2.0
+
+- Replaced the ambiguous default zone state "none" with "not_defined".
+- Added explicit subject zone states: unknown and error.
+- Removed inverse zones from the engine, settings UI and Flow definitions.
+- Precomputed and stored zone area in areaM2 during configuration sanitization.
+- Reserved not_defined, unknown and error for zone, group and category names.
+- Simplified zone distance calculations to standard circles and polygons only.

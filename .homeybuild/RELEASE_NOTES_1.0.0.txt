@@ -1,0 +1,8 @@
+GeoZones 1.0.0
+
+- First public release on the Homey App Store
+- Create circle and polygon zones
+- Reusable groups and categories
+- Stored subject state with unknown / not_defined / error
+- Flow cards for evaluation, distance checks and state-based triggers
+- Store-ready app descriptions, readmes and images
