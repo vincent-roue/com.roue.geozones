@@ -356,6 +356,12 @@
           "nl": "Bepaal de zone voor een positie",
           "de": "Bestimme die Zone für eine Position"
         },
+        "titleFormatted": {
+          "en": "Determine the zone for [[lat]], [[long]] and subject [[subjectId]]",
+          "fr": "Déterminer la zone pour [[lat]], [[long]] et le sujet [[subjectId]]",
+          "nl": "Bepaal de zone voor [[lat]], [[long]] en onderwerp [[subjectId]]",
+          "de": "Bestimme die Zone für [[lat]], [[long]] und Subjekt [[subjectId]]"
+        },
         "hint": {
           "en": "Check a latitude and longitude and return the matching zone, groups and categories. Add a Subject ID to remember the result and detect changes over time.",
           "fr": "Vérifie une latitude et une longitude et renvoie la zone, les groupes et les catégories correspondants. Ajoutez un ID de sujet pour mémoriser le résultat et détecter les changements dans le temps.",
@@ -552,6 +558,12 @@
           "nl": "Afstand tussen twee coördinaten berekenen",
           "de": "Entfernung zwischen zwei Koordinaten berechnen"
         },
+        "titleFormatted": {
+          "en": "Calculate distance between [[lat1]], [[long1]] and [[lat2]], [[long2]]",
+          "fr": "Calculer la distance entre [[lat1]], [[long1]] et [[lat2]], [[long2]]",
+          "nl": "Bereken de afstand tussen [[lat1]], [[long1]] en [[lat2]], [[long2]]",
+          "de": "Berechne die Distanz zwischen [[lat1]], [[long1]] und [[lat2]], [[long2]]"
+        },
         "hint": {
           "en": "Calculate the straight-line distance between two coordinates.",
           "fr": "Calcule la distance à vol d’oiseau entre deux coordonnées.",
@@ -630,6 +642,12 @@
           "fr": "Calculer la distance jusqu'à une zone",
           "nl": "Afstand tot een zone berekenen",
           "de": "Entfernung zu einer Zone berechnen"
+        },
+        "titleFormatted": {
+          "en": "Calculate distance from [[lat]], [[long]] to zone [[zone]]",
+          "fr": "Calculer la distance entre [[lat]], [[long]] et la zone [[zone]]",
+          "nl": "Bereken de afstand van [[lat]], [[long]] tot zone [[zone]]",
+          "de": "Berechne die Distanz von [[lat]], [[long]] zur Zone [[zone]]"
         },
         "hint": {
           "en": "Calculate how far a coordinate is from a zone. Returns 0 when the coordinate is already inside.",
@@ -730,6 +748,12 @@
           "nl": "Zone toevoegen vanuit JSON",
           "de": "Zone aus JSON hinzufügen"
         },
+        "titleFormatted": {
+          "en": "Add a zone from JSON [[zone_json]]",
+          "fr": "Ajouter une zone depuis JSON [[zone_json]]",
+          "nl": "Zone toevoegen vanuit JSON [[zone_json]]",
+          "de": "Zone aus JSON [[zone_json]] hinzufügen"
+        },
         "hint": {
           "en": "Add one circle or polygon zone from a JSON object. Invalid fields return a clear error.",
           "fr": "Ajoute une zone cercle ou polygone à partir d’un objet JSON. Les champs invalides renvoient une erreur claire.",
@@ -768,6 +792,12 @@
           "fr": "Créer une zone cercle",
           "nl": "Cirkelzone maken",
           "de": "Kreiszone erstellen"
+        },
+        "titleFormatted": {
+          "en": "Create circle zone [[name]] at [[lat]], [[long]] with radius [[radius]], color [[color]], active [[active]], hysteresis [[hysteresis]], priority [[priority]], groups [[group_1]], [[group_2]], [[group_3]] and categories [[category_1]], [[category_2]], [[category_3]]",
+          "fr": "Créer la zone cercle [[name]] à [[lat]], [[long]] avec rayon [[radius]], couleur [[color]], active [[active]], hystérésis [[hysteresis]], priorité [[priority]], groupes [[group_1]], [[group_2]], [[group_3]] et catégories [[category_1]], [[category_2]], [[category_3]]",
+          "nl": "Maak cirkelzone [[name]] op [[lat]], [[long]] met straal [[radius]], kleur [[color]], actief [[active]], hysterese [[hysteresis]], prioriteit [[priority]], groepen [[group_1]], [[group_2]], [[group_3]] en categorieën [[category_1]], [[category_2]], [[category_3]]",
+          "de": "Erstelle Kreiszone [[name]] bei [[lat]], [[long]] mit Radius [[radius]], Farbe [[color]], aktiv [[active]], Hysterese [[hysteresis]], Priorität [[priority]], Gruppen [[group_1]], [[group_2]], [[group_3]] und Kategorien [[category_1]], [[category_2]], [[category_3]]"
         },
         "hint": {
           "en": "Create a circle zone from a center point and radius. Reserved names are not allowed.",
@@ -948,6 +978,12 @@
           "nl": "Actieve status van zone instellen",
           "de": "Aktivstatus einer Zone festlegen"
         },
+        "titleFormatted": {
+          "en": "Set zone [[zone]] active to [[active]]",
+          "fr": "Définir l’état actif de la zone [[zone]] sur [[active]]",
+          "nl": "Stel actief van zone [[zone]] in op [[active]]",
+          "de": "Setze aktiv für Zone [[zone]] auf [[active]]"
+        },
         "hint": {
           "en": "Enable or disable an existing zone by name.",
           "fr": "Active ou désactive une zone existante par son nom.",
@@ -1008,6 +1044,12 @@
           "fr": "Une valeur mémorisée du sujet a changé",
           "nl": "Een opgeslagen onderwerpwaarde is gewijzigd",
           "de": "Ein gespeicherter Subjektwert hat sich geändert"
+        },
+        "titleFormatted": {
+          "en": "Stored subject [[subjectId]] changed for [[type]]",
+          "fr": "Le sujet mémorisé [[subjectId]] a changé pour [[type]]",
+          "nl": "Opgeslagen onderwerp [[subjectId]] is gewijzigd voor [[type]]",
+          "de": "Gespeichertes Subjekt [[subjectId]] wurde für [[type]] geändert"
         },
         "hint": {
           "en": "Triggers whenever the stored zone, groups or categories of a subject change, including transitions from or to unknown, not_defined or error.",
@@ -1176,6 +1218,12 @@
           "fr": "Un sujet mémorisé est entré dans une valeur",
           "nl": "Een opgeslagen onderwerp is een waarde binnengekomen",
           "de": "Ein gespeichertes Subjekt hat einen Wert betreten"
+        },
+        "titleFormatted": {
+          "en": "Stored subject [[subjectId]] entered [[type]] [[value]]",
+          "fr": "Le sujet mémorisé [[subjectId]] est entré dans [[type]] [[value]]",
+          "nl": "Opgeslagen onderwerp [[subjectId]] ging [[type]] [[value]] binnen",
+          "de": "Gespeichertes Subjekt [[subjectId]] ist in [[type]] [[value]] eingetreten"
         },
         "hint": {
           "en": "Triggers when a stored subject enters a zone, group or category.",
@@ -1354,6 +1402,12 @@
           "fr": "Un sujet mémorisé a quitté une valeur",
           "nl": "Een opgeslagen onderwerp heeft een waarde verlaten",
           "de": "Ein gespeichertes Subjekt hat einen Wert verlassen"
+        },
+        "titleFormatted": {
+          "en": "Stored subject [[subjectId]] left [[type]] [[value]]",
+          "fr": "Le sujet mémorisé [[subjectId]] a quitté [[type]] [[value]]",
+          "nl": "Opgeslagen onderwerp [[subjectId]] verliet [[type]] [[value]]",
+          "de": "Gespeichertes Subjekt [[subjectId]] hat [[type]] [[value]] verlassen"
         },
         "hint": {
           "en": "Triggers when a stored subject leaves a zone, group or category.",

@@ -1,4 +1,0 @@
-GeoZones 1.1.1
-
-- Fixed Homey flow condition titleFormatted validation errors caused by duplicate argument placeholders in inverted condition titles.
-- Updated version to 1.1.1.
