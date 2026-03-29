@@ -1,0 +1,85 @@
+{
+  "title": {
+    "en": "Subject position changed",
+    "fr": "La position du sujet a changé",
+    "nl": "Positie van onderwerp is gewijzigd",
+    "de": "Position des Subjekts wurde geändert"
+  },
+  "titleFormatted": {
+    "en": "Position of [[subject]] changed",
+    "fr": "La position de [[subject]] a changé",
+    "nl": "Positie van [[subject]] is gewijzigd",
+    "de": "Position von [[subject]] wurde geändert"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Triggers every time GeoZones stores a new position for the selected subject. Use this for diagnostics, distance calculations or follow-up evaluations. previous zone is the zone that was active before the current zone after the new position was processed.",
+    "fr": "Se déclenche chaque fois que GeoZones enregistre une nouvelle position pour le sujet sélectionné. Utilisez-le pour le diagnostic, les calculs de distance ou des évaluations supplémentaires. zone précédente correspond à la zone qui était active avant la zone courante une fois la nouvelle position traitée.",
+    "nl": "Wordt geactiveerd telkens wanneer GeoZones een nieuwe positie voor het geselecteerde onderwerp opslaat. Gebruik dit voor diagnose, afstandsberekeningen of vervolg-evaluaties. previous zone is de zone die actief was vóór de huidige zone nadat de nieuwe positie was verwerkt.",
+    "de": "Wird jedes Mal ausgelöst, wenn GeoZones eine neue Position für das ausgewählte Subjekt speichert. Nutzen Sie dies für Diagnose, Distanzberechnungen oder Folgeauswertungen. Vorherige Zone ist die Zone, die vor der aktuellen Zone aktiv war, nachdem die neue Position verarbeitet wurde."
+  }
+}

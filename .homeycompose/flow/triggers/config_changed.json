@@ -1,0 +1,33 @@
+{
+  "title": {
+    "en": "GeoZones configuration changed",
+    "fr": "La configuration GeoZones a changé",
+    "nl": "GeoZones-configuratie is gewijzigd",
+    "de": "GeoZones-Konfiguration wurde geändert"
+  },
+  "titleFormatted": {
+    "en": "GeoZones configuration changed",
+    "fr": "La configuration GeoZones a changé",
+    "nl": "GeoZones-configuratie is gewijzigd",
+    "de": "GeoZones-Konfiguration wurde geändert"
+  },
+  "args": [],
+  "tokens": [
+    {
+      "name": "change_scope",
+      "type": "string",
+      "title": {
+        "en": "Change scope",
+        "fr": "Portée du changement",
+        "nl": "Wijzigingsscope",
+        "de": "Änderungsbereich"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Triggers when the GeoZones configuration changes. Use this after importing, editing zones, changing subject metadata, adding or removing device sources, or resetting a subject. change scope describes the origin of the modification when available.",
+    "fr": "Se déclenche lorsque la configuration GeoZones change. Utilisez-le après un import, une modification de zones, un changement de métadonnées de sujet, l’ajout ou la suppression d’une source device, ou la réinitialisation d’un sujet. portée du changement décrit l’origine de la modification lorsque disponible.",
+    "nl": "Wordt geactiveerd wanneer de GeoZones-configuratie wijzigt. Gebruik dit na import, wijzigen van zones, aanpassen van onderwerpmetadata, toevoegen of verwijderen van apparaatbronnen of het resetten van een onderwerp. change scope beschrijft de herkomst van de wijziging indien beschikbaar.",
+    "de": "Wird ausgelöst, wenn sich die GeoZones-Konfiguration ändert. Verwenden Sie dies nach Import, Bearbeitung von Zonen, Änderung von Subjektmetadaten, Hinzufügen oder Entfernen von Gerätequellen oder Zurücksetzen eines Subjekts. Änderungsbereich beschreibt den Ursprung der Änderung, sofern verfügbar."
+  }
+}

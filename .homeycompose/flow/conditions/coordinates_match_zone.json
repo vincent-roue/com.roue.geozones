@@ -1,0 +1,55 @@
+{
+  "title": {
+    "en": "Coordinates match one zone",
+    "fr": "Les coordonnées correspondent à une zone",
+    "nl": "Coördinaten komen overeen met één zone",
+    "de": "Koordinaten entsprechen einer Zone"
+  },
+  "titleFormatted": {
+    "en": "[[lat]], [[long]] !{{match|do not match}} [[zone]]",
+    "fr": "[[lat]], [[long]] !{{correspondent|ne correspondent pas}} à [[zone]]",
+    "nl": "[[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[zone]]",
+    "de": "[[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[zone]]"
+  },
+  "args": [
+    {
+      "name": "lat",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Latitude",
+        "fr": "Latitude",
+        "nl": "Breedtegraad",
+        "de": "Breitengrad"
+      }
+    },
+    {
+      "name": "long",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Longitude",
+        "fr": "Longitude",
+        "nl": "Lengtegraad",
+        "de": "Längengrad"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns true when the coordinates are inside the selected zone. This card is invertible.",
+    "fr": "Renvoie vrai lorsque les coordonnées sont dans la zone sélectionnée. Cette carte est inversible.",
+    "nl": "Geeft waar terug wanneer de coördinaten zich in de geselecteerde zone bevinden. Deze kaart is omkeerbaar.",
+    "de": "Gibt wahr zurück, wenn sich die Koordinaten in der ausgewählten Zone befinden. Diese Karte ist invertierbar."
+  }
+}

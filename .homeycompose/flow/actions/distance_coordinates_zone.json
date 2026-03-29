@@ -1,0 +1,67 @@
+{
+  "title": {
+    "en": "Calculate distance between coordinates and a zone",
+    "fr": "Calculer la distance entre des coordonnées et une zone",
+    "nl": "Afstand tussen coördinaten en een zone berekenen",
+    "de": "Abstand zwischen Koordinaten und einer Zone berechnen"
+  },
+  "titleFormatted": {
+    "en": "Calculate distance from [[lat]], [[long]] to [[zone]]",
+    "fr": "Calculer la distance de [[lat]], [[long]] à [[zone]]",
+    "nl": "Bereken afstand van [[lat]], [[long]] tot [[zone]]",
+    "de": "Berechne Abstand von [[lat]], [[long]] zu [[zone]]"
+  },
+  "args": [
+    {
+      "name": "lat",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Latitude",
+        "fr": "Latitude",
+        "nl": "Breedtegraad",
+        "de": "Breitengrad"
+      }
+    },
+    {
+      "name": "long",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Longitude",
+        "fr": "Longitude",
+        "nl": "Lengtegraad",
+        "de": "Längengrad"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "distance_m",
+      "type": "number",
+      "title": {
+        "en": "Distance (m)",
+        "fr": "Distance (m)",
+        "nl": "Afstand (m)",
+        "de": "Abstand (m)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns 0 when the coordinates are inside the zone, otherwise the distance in meters to the zone boundary.",
+    "fr": "Renvoie 0 lorsque les coordonnées sont dans la zone, sinon la distance en mètres jusqu’à la limite de la zone.",
+    "nl": "Geeft 0 terug wanneer de coördinaten in de zone zitten, anders de afstand in meters tot de zonegrens.",
+    "de": "Gibt 0 zurück, wenn sich die Koordinaten in der Zone befinden, sonst den Abstand in Metern bis zur Zonengrenze."
+  }
+}

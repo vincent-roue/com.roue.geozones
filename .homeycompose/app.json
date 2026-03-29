@@ -1,0 +1,138 @@
+{
+  "id": "com.roue.geozones",
+  "version": "1.0.0",
+  "sdk": 3,
+  "compatibility": ">=12.5.0",
+  "platforms": [
+    "local"
+  ],
+  "brandColor": "#2F6FED",
+  "name": {
+    "en": "GeoZones",
+    "fr": "GeoZones",
+    "nl": "GeoZones",
+    "de": "GeoZones"
+  },
+  "description": {
+    "en": "Create geofencing zones, evaluate coordinates and subjects, and use them in Homey flows.",
+    "fr": "Créez des zones de geofencing, évaluez des coordonnées et des sujets, et utilisez-les dans les flows Homey.",
+    "nl": "Maak geofencing-zones, evalueer coördinaten en onderwerpen, en gebruik ze in Homey-flows.",
+    "de": "Erstelle Geofencing-Zonen, werte Koordinaten und Subjekte aus und nutze sie in Homey-Flows."
+  },
+  "category": "tools",
+  "author": {
+    "name": "Vincent Roué"
+  },
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "api": {
+    "getConfig": {
+      "method": "GET",
+      "path": "/config"
+    },
+    "setConfig": {
+      "method": "PUT",
+      "path": "/config"
+    },
+    "mergeConfig": {
+      "method": "POST",
+      "path": "/config/merge"
+    },
+    "evaluateCoordinates": {
+      "method": "POST",
+      "path": "/evaluate/coordinates"
+    },
+    "updateSubjectPosition": {
+      "method": "POST",
+      "path": "/evaluate/subject/update"
+    },
+    "evaluateSubjectPosition": {
+      "method": "POST",
+      "path": "/evaluate/subject"
+    },
+    "deleteSubject": {
+      "method": "DELETE",
+      "path": "/subjects/:id"
+    },
+    "resetSubject": {
+      "method": "POST",
+      "path": "/subjects/:id/reset"
+    },
+    "purgeSubjects": {
+      "method": "POST",
+      "path": "/subjects/purge"
+    },
+    "getHistory": {
+      "method": "GET",
+      "path": "/history"
+    },
+    "restoreHistory": {
+      "method": "POST",
+      "path": "/history/:id/restore"
+    },
+    "deleteHistory": {
+      "method": "DELETE",
+      "path": "/history/:id"
+    },
+    "listLocationDevices": {
+      "method": "GET",
+      "path": "/sources/devices"
+    },
+    "addLocationDevice": {
+      "method": "POST",
+      "path": "/sources/devices/:id"
+    },
+    "removeLocationDevice": {
+      "method": "DELETE",
+      "path": "/sources/devices/:id"
+    },
+    "exportFile": {
+      "method": "POST",
+      "path": "/export/file"
+    }
+  },
+  "homepage": "https://github.com/vincent-roue/com.roue.geozones",
+  "source": "https://github.com/vincent-roue/com.roue.geozones",
+  "homeyCommunityTopicId": 153017,
+  "support": "https://community.homey.app/t/app-pro-geozones/153017",
+  "bugs": {
+    "url": "https://community.homey.app/t/app-pro-geozones/153017"
+  },
+  "tags": {
+    "en": [
+      "geofencing",
+      "location",
+      "zones",
+      "presence",
+      "gps"
+    ],
+    "fr": [
+      "géolocalisation",
+      "localisation",
+      "zones",
+      "présence",
+      "gps"
+    ],
+    "nl": [
+      "geofencing",
+      "locatie",
+      "zones",
+      "aanwezigheid",
+      "gps"
+    ],
+    "de": [
+      "geofencing",
+      "standort",
+      "zonen",
+      "anwesenheit",
+      "gps"
+    ]
+  },
+  "runtime": "nodejs",
+  "permissions": [
+    "homey:manager:api"
+  ]
+}

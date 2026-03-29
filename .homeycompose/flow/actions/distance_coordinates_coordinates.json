@@ -1,0 +1,78 @@
+{
+  "title": {
+    "en": "Calculate distance between coordinates",
+    "fr": "Calculer la distance entre des coordonnées",
+    "nl": "Afstand tussen coördinaten berekenen",
+    "de": "Abstand zwischen Koordinaten berechnen"
+  },
+  "titleFormatted": {
+    "en": "Calculate distance from [[lat1]], [[long1]] to [[lat2]], [[long2]]",
+    "fr": "Calculer la distance de [[lat1]], [[long1]] à [[lat2]], [[long2]]",
+    "nl": "Bereken afstand van [[lat1]], [[long1]] tot [[lat2]], [[long2]]",
+    "de": "Berechne Abstand von [[lat1]], [[long1]] zu [[lat2]], [[long2]]"
+  },
+  "args": [
+    {
+      "name": "lat1",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Latitude A",
+        "fr": "Latitude A",
+        "nl": "Breedtegraad A",
+        "de": "Breitengrad A"
+      }
+    },
+    {
+      "name": "long1",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Longitude A",
+        "fr": "Longitude A",
+        "nl": "Lengtegraad A",
+        "de": "Längengrad A"
+      }
+    },
+    {
+      "name": "lat2",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Latitude B",
+        "fr": "Latitude B",
+        "nl": "Breedtegraad B",
+        "de": "Breitengrad B"
+      }
+    },
+    {
+      "name": "long2",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Longitude B",
+        "fr": "Longitude B",
+        "nl": "Lengtegraad B",
+        "de": "Längengrad B"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "distance_m",
+      "type": "number",
+      "title": {
+        "en": "Distance (m)",
+        "fr": "Distance (m)",
+        "nl": "Afstand (m)",
+        "de": "Abstand (m)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns the straight-line distance in meters between two latitude/longitude pairs.",
+    "fr": "Renvoie la distance à vol d’oiseau en mètres entre deux paires latitude/longitude.",
+    "nl": "Geeft de hemelsbrede afstand in meters terug tussen twee breedte-/lengtegraadparen.",
+    "de": "Gibt die Luftlinienentfernung in Metern zwischen zwei Breiten-/Längengrad-Paaren zurück."
+  }
+}

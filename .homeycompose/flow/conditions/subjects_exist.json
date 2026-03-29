@@ -1,0 +1,39 @@
+{
+  "title": {
+    "en": "Subjects exist",
+    "fr": "Les sujets existent",
+    "nl": "Onderwerpen bestaan",
+    "de": "Subjekte existieren"
+  },
+  "titleFormatted": {
+    "en": "[[subjects]] !{{exist|do not exist}}",
+    "fr": "[[subjects]] !{{existent|n’existent pas}}",
+    "nl": "[[subjects]] !{{bestaan|bestaan niet}}",
+    "de": "[[subjects]] !{{existieren|existieren nicht}}"
+  },
+  "args": [
+    {
+      "name": "subjects",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Subjects (comma-separated names)",
+        "fr": "Sujets (noms séparés par des virgules)",
+        "nl": "Onderwerpen (namen gescheiden door komma's)",
+        "de": "Subjekte (durch Kommas getrennte Namen)"
+      },
+      "hint": {
+        "en": "Use exact subject names separated by commas. Leave empty only if the card hint explicitly says an empty list is allowed.",
+        "fr": "Utilisez des noms de sujet exacts séparés par des virgules. Laissez vide uniquement si l’aide de la carte indique explicitement qu’une liste vide est autorisée.",
+        "nl": "Gebruik exacte onderwerpnamen gescheiden door komma's. Laat dit alleen leeg als de kaarthulp expliciet aangeeft dat een lege lijst is toegestaan.",
+        "de": "Verwenden Sie exakte Subjektnamen durch Kommas getrennt. Lassen Sie das Feld nur leer, wenn die Kartenhilfe ausdrücklich angibt, dass eine leere Liste erlaubt ist."
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more subject names separated by commas. Returns true only when all listed subjects exist.",
+    "fr": "Saisissez un ou plusieurs noms de sujet séparés par des virgules. Renvoie vrai uniquement si tous les sujets listés existent.",
+    "nl": "Voer één of meer onderwerp-ID's of namen in, gescheiden door komma's. Geeft alleen waar terug wanneer alle vermelde onderwerpen bestaan.",
+    "de": "Geben Sie eine oder mehrere Subjekt-Namen durch Kommas getrennt ein. Gibt nur dann wahr zurück, wenn alle aufgeführten Subjekte existieren."
+  }
+}

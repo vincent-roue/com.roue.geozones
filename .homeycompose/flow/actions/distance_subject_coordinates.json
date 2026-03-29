@@ -1,0 +1,67 @@
+{
+  "title": {
+    "en": "Calculate distance between a subject and coordinates",
+    "fr": "Calculer la distance entre un sujet et des coordonnées",
+    "nl": "Afstand tussen een onderwerp en coördinaten berekenen",
+    "de": "Abstand zwischen einem Subjekt und Koordinaten berechnen"
+  },
+  "titleFormatted": {
+    "en": "Calculate distance from [[subject]] to [[lat]], [[long]]",
+    "fr": "Calculer la distance de [[subject]] à [[lat]], [[long]]",
+    "nl": "Bereken afstand van [[subject]] tot [[lat]], [[long]]",
+    "de": "Berechne Abstand von [[subject]] zu [[lat]], [[long]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "lat",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Latitude",
+        "fr": "Latitude",
+        "nl": "Breedtegraad",
+        "de": "Breitengrad"
+      }
+    },
+    {
+      "name": "long",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Longitude",
+        "fr": "Longitude",
+        "nl": "Lengtegraad",
+        "de": "Längengrad"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "distance_m",
+      "type": "number",
+      "title": {
+        "en": "Distance (m)",
+        "fr": "Distance (m)",
+        "nl": "Afstand (m)",
+        "de": "Abstand (m)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns the distance in meters between a stored subject and raw coordinates.",
+    "fr": "Renvoie la distance en mètres entre un sujet enregistré et des coordonnées brutes.",
+    "nl": "Geeft de afstand in meters terug tussen een opgeslagen onderwerp en ruwe coördinaten.",
+    "de": "Gibt den Abstand in Metern zwischen einem gespeicherten Subjekt und rohen Koordinaten zurück."
+  }
+}

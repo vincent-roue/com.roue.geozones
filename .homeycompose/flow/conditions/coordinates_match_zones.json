@@ -1,0 +1,61 @@
+{
+  "title": {
+    "en": "Coordinates match several zones",
+    "fr": "Les coordonnées correspondent à plusieurs zones",
+    "nl": "Coördinaten komen overeen met meerdere zones",
+    "de": "Koordinaten entsprechen mehreren Zonen"
+  },
+  "titleFormatted": {
+    "en": "[[lat]], [[long]] !{{match|do not match}} one of [[zones]]",
+    "fr": "[[lat]], [[long]] !{{correspondent|ne correspondent pas}} à l’une des zones [[zones]]",
+    "nl": "[[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} een van [[zones]]",
+    "de": "[[lat]], [[long]] !{{entsprechen|entsprechen nicht}} einer von [[zones]]"
+  },
+  "args": [
+    {
+      "name": "lat",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Latitude",
+        "fr": "Latitude",
+        "nl": "Breedtegraad",
+        "de": "Breitengrad"
+      }
+    },
+    {
+      "name": "long",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Longitude",
+        "fr": "Longitude",
+        "nl": "Lengtegraad",
+        "de": "Längengrad"
+      }
+    },
+    {
+      "name": "zones",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Zones (comma-separated names)",
+        "fr": "Zones (noms séparés par des virgules)",
+        "nl": "Zones (namen gescheiden door komma's)",
+        "de": "Zonen (durch Kommas getrennte Namen)"
+      },
+      "hint": {
+        "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+        "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+        "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+        "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more zone names separated by commas. Returns true when the coordinates are inside at least one listed zone. This card is invertible.",
+    "fr": "Saisissez un ou plusieurs noms de zone séparés par des virgules. Renvoie vrai lorsque les coordonnées sont dans au moins une zone listée. Cette carte est inversible.",
+    "nl": "Voer één of meer zone-ID's of namen in, gescheiden door komma's. Geeft waar terug wanneer de coördinaten in minstens één vermelde zone liggen. Deze kaart is omkeerbaar.",
+    "de": "Geben Sie eine oder mehrere Zonen-Namen durch Kommas getrennt ein. Gibt wahr zurück, wenn sich die Koordinaten in mindestens einer aufgeführten Zone befinden. Diese Karte ist invertierbar."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "title": {
+    "en": "Reset a subject",
+    "fr": "Réinitialiser un sujet",
+    "nl": "Een onderwerp resetten",
+    "de": "Ein Subjekt zurücksetzen"
+  },
+  "titleFormatted": {
+    "en": "Reset [[subject]]",
+    "fr": "Réinitialiser [[subject]]",
+    "nl": "Reset [[subject]]",
+    "de": "Setze [[subject]] zurück"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    }
+  ],
+  "tokens": [],
+  "hint": {
+    "en": "Clears the runtime state of the subject such as current zone, tags, pending state and movement state.",
+    "fr": "Efface l’état d’exécution du sujet, comme la zone courante, les tags, l’état en attente et l’état de mouvement.",
+    "nl": "Wist de runtime-status van het onderwerp, zoals huidige zone, tags, pending-status en bewegingsstatus.",
+    "de": "Löscht den Laufzeitzustand des Subjekts, zum Beispiel aktuelle Zone, Tags, Pending-Status und Bewegungsstatus."
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "title": {
+    "en": "Subject entered one of several zones",
+    "fr": "Un sujet est entré dans l’une des zones",
+    "nl": "Onderwerp is een van de zones binnengekomen",
+    "de": "Subjekt hat eine der Zonen betreten"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] entered one of [[zones]]",
+    "fr": "[[subject]] est entré dans l’une des zones [[zones]]",
+    "nl": "[[subject]] kwam een van [[zones]] binnen",
+    "de": "[[subject]] hat eine von [[zones]] betreten"
+  },
+  "hint": {
+    "en": "Enter one or more zone names separated by commas. Use exact zone names as shown in GeoZones settings. This trigger fires when the selected subject enters at least one listed zone after entry delays and filters are applied.",
+    "fr": "Saisissez un ou plusieurs noms de zone séparés par des virgules. Utilisez les noms exacts tels qu’affichés dans les réglages GeoZones. Ce trigger se déclenche lorsque le sujet sélectionné entre dans au moins l’une des zones listées après application des délais d’entrée et des filtres.",
+    "nl": "Voer één of meer zonenamen in, gescheiden door komma’s. Gebruik de exacte namen zoals in de GeoZones-instellingen. Deze trigger gaat af wanneer het geselecteerde onderwerp minstens één van de opgegeven zones binnenkomt nadat toegangsvertragingen en filters zijn toegepast.",
+    "de": "Geben Sie einen oder mehrere Zonennamen durch Kommas getrennt ein. Verwenden Sie die exakten Namen wie in den GeoZones-Einstellungen. Dieser Trigger wird ausgelöst, wenn das ausgewählte Subjekt mindestens eine der aufgeführten Zonen betritt, nachdem Eintrittsverzögerungen und Filter angewendet wurden."
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "zones",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Zones (comma-separated names)",
+        "fr": "Zones (noms séparés par des virgules)",
+        "nl": "Zones (namen gescheiden door komma's)",
+        "de": "Zonen (durch Kommas getrennte Namen)"
+      },
+      "hint": {
+        "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+        "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+        "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+        "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "title": {
+    "en": "Any subject entered one of several zones",
+    "fr": "N’importe quel sujet est entré dans l’une des zones",
+    "nl": "Eender welk onderwerp is een van de zones binnengekomen",
+    "de": "Beliebiges Subjekt hat eine der Zonen betreten"
+  },
+  "titleFormatted": {
+    "en": "Any subject entered one of [[zones]]",
+    "fr": "N’importe quel sujet est entré dans l’une des zones [[zones]]",
+    "nl": "Eender welk onderwerp kwam een van [[zones]] binnen",
+    "de": "Beliebiges Subjekt hat eine von [[zones]] betreten"
+  },
+  "args": [
+    {
+      "name": "zones",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Zones (comma-separated names)",
+        "fr": "Zones (noms séparés par des virgules)",
+        "nl": "Zones (namen gescheiden door komma's)",
+        "de": "Zonen (durch Kommas getrennte Namen)"
+      },
+      "hint": {
+        "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+        "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+        "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+        "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "subject_name",
+      "type": "string",
+      "title": {
+        "en": "Subject name",
+        "fr": "Nom du sujet",
+        "nl": "Naam van onderwerp",
+        "de": "Subjektname"
+      }
+    },
+    {
+      "name": "subject_type",
+      "type": "string",
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more exact zone names separated by commas. Triggers when any subject enters at least one listed zone. Use subject name and subject type to identify the matched subject.",
+    "fr": "Saisissez un ou plusieurs noms exacts de zone séparés par des virgules. Se déclenche lorsqu’un sujet quelconque entre dans au moins l’une des zones listées. Utilisez nom du sujet et type de sujet pour identifier le sujet correspondant.",
+    "nl": "Voer één of meer exacte zonenamen in, gescheiden door komma’s. Wordt geactiveerd wanneer een willekeurig onderwerp minstens één opgegeven zone binnenkomt. Gebruik subject name en subject type om het overeenkomende onderwerp te identificeren.",
+    "de": "Geben Sie einen oder mehrere exakte Zonennamen durch Kommas getrennt ein. Wird ausgelöst, wenn ein beliebiges Subjekt mindestens eine aufgeführte Zone betritt. Verwenden Sie Subject name und Subject type, um das passende Subjekt zu identifizieren."
+  }
+}

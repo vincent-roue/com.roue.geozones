@@ -1,0 +1,45 @@
+{
+  "title": {
+    "en": "Purge subjects",
+    "fr": "Purger les sujets",
+    "nl": "Onderwerpen opschonen",
+    "de": "Subjekte bereinigen"
+  },
+  "titleFormatted": {
+    "en": "Purge subjects inactive for at least [[days]] days",
+    "fr": "Purger les sujets inactifs depuis au moins [[days]] jours",
+    "nl": "Schoon onderwerpen op die minstens [[days]] dagen inactief zijn",
+    "de": "Bereinige Subjekte, die mindestens [[days]] Tage inaktiv sind"
+  },
+  "args": [
+    {
+      "name": "days",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Days",
+        "fr": "Jours",
+        "nl": "Dagen",
+        "de": "Tage"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "remaining_subjects_count",
+      "type": "number",
+      "title": {
+        "en": "Remaining subjects count",
+        "fr": "Nombre de sujets restants",
+        "nl": "Aantal resterende onderwerpen",
+        "de": "Anzahl verbleibender Subjekte"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Removes subjects that have not been updated for the given number of days. The token returns the remaining subject count.",
+    "fr": "Supprime les sujets qui n’ont pas été mis à jour depuis le nombre de jours indiqué. Le token renvoie le nombre de sujets restants.",
+    "nl": "Verwijdert onderwerpen die gedurende het opgegeven aantal dagen niet zijn bijgewerkt. De token geeft het aantal resterende onderwerpen terug.",
+    "de": "Entfernt Subjekte, die seit der angegebenen Anzahl Tage nicht aktualisiert wurden. Das Token gibt die verbleibende Anzahl Subjekte zurück."
+  }
+}

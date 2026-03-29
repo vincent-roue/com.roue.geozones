@@ -1,0 +1,50 @@
+{
+  "title": {
+    "en": "Zone contains subject types",
+    "fr": "La zone contient des types de sujet",
+    "nl": "Zone bevat onderwerptypen",
+    "de": "Zone enthält Subjekttypen"
+  },
+  "titleFormatted": {
+    "en": "[[zone]] !{{contains|does not contain}} [[subjectTypes]]",
+    "fr": "[[zone]] !{{contient|ne contient pas}} [[subjectTypes]]",
+    "nl": "[[zone]] !{{bevat|bevat niet}} [[subjectTypes]]",
+    "de": "[[zone]] !{{enthält|enthält nicht}} [[subjectTypes]]"
+  },
+  "args": [
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "subjectTypes",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Subject types (comma-separated)",
+        "fr": "Types de sujet (séparés par des virgules)",
+        "nl": "Onderwerptypen (kommagescheiden)",
+        "de": "Subjekttypen (kommagetrennt)"
+      },
+      "hint": {
+        "en": "Use subject types separated by commas, for example: person, vehicle",
+        "fr": "Utilisez des types de sujet séparés par des virgules, par exemple : person, vehicle",
+        "nl": "Gebruik onderwerpstypen gescheiden door komma's, bijvoorbeeld: person, vehicle",
+        "de": "Verwenden Sie Subjekttypen durch Kommas getrennt, zum Beispiel: person, vehicle"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more subject types separated by commas. Returns true when the zone contains at least one subject matching at least one listed type. This card is invertible.",
+    "fr": "Saisissez un ou plusieurs types de sujet séparés par des virgules. Renvoie vrai lorsque la zone contient au moins un sujet correspondant à au moins un type listé. Cette carte est inversible.",
+    "nl": "Voer één of meer onderwerpstypen in, gescheiden door komma's. Geeft waar terug wanneer de zone minstens één onderwerp bevat dat overeenkomt met minstens één vermeld type. Deze kaart is omkeerbaar.",
+    "de": "Geben Sie einen oder mehrere Subjekttypen durch Kommas getrennt ein. Gibt wahr zurück, wenn die Zone mindestens ein Subjekt enthält, das mindestens einem aufgeführten Typ entspricht. Diese Karte ist invertierbar."
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": {
+    "en": "Zone contains one subject",
+    "fr": "La zone contient un sujet",
+    "nl": "Zone bevat één onderwerp",
+    "de": "Zone enthält ein Subjekt"
+  },
+  "titleFormatted": {
+    "en": "[[zone]] !{{contains|does not contain}} [[subject]]",
+    "fr": "[[zone]] !{{contient|ne contient pas}} [[subject]]",
+    "nl": "[[zone]] !{{bevat|bevat niet}} [[subject]]",
+    "de": "[[zone]] !{{enthält|enthält nicht}} [[subject]]"
+  },
+  "args": [
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns true when the selected zone currently contains the selected subject. This card is invertible.",
+    "fr": "Renvoie vrai lorsque la zone sélectionnée contient actuellement le sujet sélectionné. Cette carte est inversible.",
+    "nl": "Geeft waar terug wanneer de geselecteerde zone momenteel het geselecteerde onderwerp bevat. Deze kaart is omkeerbaar.",
+    "de": "Gibt wahr zurück, wenn die ausgewählte Zone aktuell das ausgewählte Subjekt enthält. Diese Karte ist invertierbar."
+  }
+}

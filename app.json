@@ -1,0 +1,3997 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.roue.geozones",
+  "version": "1.0.0",
+  "sdk": 3,
+  "compatibility": ">=12.5.0",
+  "platforms": [
+    "local"
+  ],
+  "brandColor": "#2F6FED",
+  "name": {
+    "en": "GeoZones",
+    "fr": "GeoZones",
+    "nl": "GeoZones",
+    "de": "GeoZones"
+  },
+  "description": {
+    "en": "Create geofencing zones, evaluate coordinates and subjects, and use them in Homey flows.",
+    "fr": "Créez des zones de geofencing, évaluez des coordonnées et des sujets, et utilisez-les dans les flows Homey.",
+    "nl": "Maak geofencing-zones, evalueer coördinaten en onderwerpen, en gebruik ze in Homey-flows.",
+    "de": "Erstelle Geofencing-Zonen, werte Koordinaten und Subjekte aus und nutze sie in Homey-Flows."
+  },
+  "category": "tools",
+  "author": {
+    "name": "Vincent Roué"
+  },
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "api": {
+    "getConfig": {
+      "method": "GET",
+      "path": "/config"
+    },
+    "setConfig": {
+      "method": "PUT",
+      "path": "/config"
+    },
+    "mergeConfig": {
+      "method": "POST",
+      "path": "/config/merge"
+    },
+    "evaluateCoordinates": {
+      "method": "POST",
+      "path": "/evaluate/coordinates"
+    },
+    "updateSubjectPosition": {
+      "method": "POST",
+      "path": "/evaluate/subject/update"
+    },
+    "evaluateSubjectPosition": {
+      "method": "POST",
+      "path": "/evaluate/subject"
+    },
+    "deleteSubject": {
+      "method": "DELETE",
+      "path": "/subjects/:id"
+    },
+    "resetSubject": {
+      "method": "POST",
+      "path": "/subjects/:id/reset"
+    },
+    "purgeSubjects": {
+      "method": "POST",
+      "path": "/subjects/purge"
+    },
+    "getHistory": {
+      "method": "GET",
+      "path": "/history"
+    },
+    "restoreHistory": {
+      "method": "POST",
+      "path": "/history/:id/restore"
+    },
+    "deleteHistory": {
+      "method": "DELETE",
+      "path": "/history/:id"
+    },
+    "listLocationDevices": {
+      "method": "GET",
+      "path": "/sources/devices"
+    },
+    "addLocationDevice": {
+      "method": "POST",
+      "path": "/sources/devices/:id"
+    },
+    "removeLocationDevice": {
+      "method": "DELETE",
+      "path": "/sources/devices/:id"
+    },
+    "exportFile": {
+      "method": "POST",
+      "path": "/export/file"
+    }
+  },
+  "homepage": "https://github.com/vincent-roue/com.roue.geozones",
+  "source": "https://github.com/vincent-roue/com.roue.geozones",
+  "homeyCommunityTopicId": 153017,
+  "support": "https://community.homey.app/t/app-pro-geozones/153017",
+  "bugs": {
+    "url": "https://community.homey.app/t/app-pro-geozones/153017"
+  },
+  "tags": {
+    "en": [
+      "geofencing",
+      "location",
+      "zones",
+      "presence",
+      "gps"
+    ],
+    "fr": [
+      "géolocalisation",
+      "localisation",
+      "zones",
+      "présence",
+      "gps"
+    ],
+    "nl": [
+      "geofencing",
+      "locatie",
+      "zones",
+      "aanwezigheid",
+      "gps"
+    ],
+    "de": [
+      "geofencing",
+      "standort",
+      "zonen",
+      "anwesenheit",
+      "gps"
+    ]
+  },
+  "runtime": "nodejs",
+  "permissions": [
+    "homey:manager:api"
+  ],
+  "flow": {
+    "triggers": [
+      {
+        "title": {
+          "en": "Any subject changed zone",
+          "fr": "N’importe quel sujet a changé de zone",
+          "nl": "Willekeurig onderwerp veranderde van zone",
+          "de": "Beliebiges Subjekt hat die Zone gewechselt"
+        },
+        "titleFormatted": {
+          "en": "Any subject changed to [[zone]]",
+          "fr": "N’importe quel sujet a changé vers [[zone]]",
+          "nl": "Willekeurig onderwerp veranderde naar [[zone]]",
+          "de": "Beliebiges Subjekt wechselte zu [[zone]]"
+        },
+        "hint": {
+          "en": "Triggers when any subject moves from one found zone to another found zone. subject name identifies the real subject. zone is the new current zone. previous zone is the last found zone before the current zone.",
+          "fr": "Se déclenche lorsqu’un sujet passe d’une zone trouvée à une autre zone trouvée. nom du sujet identifie le vrai sujet. zone est la nouvelle zone actuelle. zone précédente est la dernière zone trouvée avant la zone actuelle.",
+          "nl": "Wordt geactiveerd wanneer een onderwerp van de ene gevonden zone naar een andere gevonden zone gaat. subject name identificeert het echte onderwerp. zone is de nieuwe huidige zone. previous zone is de laatst gevonden zone vóór de huidige zone.",
+          "de": "Wird ausgelöst, wenn ein Subjekt von einer gefundenen Zone in eine andere gefundene Zone wechselt. Subject name identifiziert das echte Subjekt. Zone ist die neue aktuelle Zone. Vorherige Zone ist die zuletzt gefundene Zone vor der aktuellen Zone."
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "id": "any_subject_changed_zone"
+      },
+      {
+        "title": {
+          "en": "Any subject entered a zone",
+          "fr": "N’importe quel sujet est entré dans une zone",
+          "nl": "Eender welk onderwerp is een zone binnengekomen",
+          "de": "Beliebiges Subjekt hat eine Zone betreten"
+        },
+        "titleFormatted": {
+          "en": "Any subject entered [[zone]]",
+          "fr": "N’importe quel sujet est entré dans [[zone]]",
+          "nl": "Eender welk onderwerp kwam binnen in [[zone]]",
+          "de": "Beliebiges Subjekt hat [[zone]] betreten"
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Triggers when any subject enters the selected zone. Use subject name and subject type to identify what matched. previous zone contains the zone held before the current entry.",
+          "fr": "Se déclenche lorsqu’un sujet quelconque entre dans la zone sélectionnée. Utilisez nom du sujet et type de sujet pour identifier ce qui a correspondu. zone précédente contient la zone tenue avant l’entrée actuelle.",
+          "nl": "Wordt geactiveerd wanneer een willekeurig onderwerp de geselecteerde zone binnenkomt. Gebruik subject name en subject type om te zien wat overeenkwam. previous zone bevat de zone die actief was vóór de huidige binnenkomst.",
+          "de": "Wird ausgelöst, wenn ein beliebiges Subjekt die ausgewählte Zone betritt. Verwenden Sie Subject name und Subject type, um den Treffer zu identifizieren. Vorherige Zone enthält die Zone vor dem aktuellen Eintritt."
+        },
+        "id": "any_subject_entered_zone"
+      },
+      {
+        "title": {
+          "en": "Any subject entered one of several zones",
+          "fr": "N’importe quel sujet est entré dans l’une des zones",
+          "nl": "Eender welk onderwerp is een van de zones binnengekomen",
+          "de": "Beliebiges Subjekt hat eine der Zonen betreten"
+        },
+        "titleFormatted": {
+          "en": "Any subject entered one of [[zones]]",
+          "fr": "N’importe quel sujet est entré dans l’une des zones [[zones]]",
+          "nl": "Eender welk onderwerp kwam een van [[zones]] binnen",
+          "de": "Beliebiges Subjekt hat eine von [[zones]] betreten"
+        },
+        "args": [
+          {
+            "name": "zones",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Zones (comma-separated names)",
+              "fr": "Zones (noms séparés par des virgules)",
+              "nl": "Zones (namen gescheiden door komma's)",
+              "de": "Zonen (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+              "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+              "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+              "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more exact zone names separated by commas. Triggers when any subject enters at least one listed zone. Use subject name and subject type to identify the matched subject.",
+          "fr": "Saisissez un ou plusieurs noms exacts de zone séparés par des virgules. Se déclenche lorsqu’un sujet quelconque entre dans au moins l’une des zones listées. Utilisez nom du sujet et type de sujet pour identifier le sujet correspondant.",
+          "nl": "Voer één of meer exacte zonenamen in, gescheiden door komma’s. Wordt geactiveerd wanneer een willekeurig onderwerp minstens één opgegeven zone binnenkomt. Gebruik subject name en subject type om het overeenkomende onderwerp te identificeren.",
+          "de": "Geben Sie einen oder mehrere exakte Zonennamen durch Kommas getrennt ein. Wird ausgelöst, wenn ein beliebiges Subjekt mindestens eine aufgeführte Zone betritt. Verwenden Sie Subject name und Subject type, um das passende Subjekt zu identifizieren."
+        },
+        "id": "any_subject_entered_zones"
+      },
+      {
+        "title": {
+          "en": "Any subject left a zone",
+          "fr": "N’importe quel sujet a quitté une zone",
+          "nl": "Eender welk onderwerp heeft een zone verlaten",
+          "de": "Beliebiges Subjekt hat eine Zone verlassen"
+        },
+        "titleFormatted": {
+          "en": "Any subject left [[zone]]",
+          "fr": "N’importe quel sujet a quitté [[zone]]",
+          "nl": "Eender welk onderwerp verliet [[zone]]",
+          "de": "Beliebiges Subjekt hat [[zone]] verlassen"
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Triggers when any subject leaves the selected zone. The zone token contains the zone that was left. Use subject name and subject type to know which subject matched.",
+          "fr": "Se déclenche lorsqu’un sujet quelconque quitte la zone sélectionnée. Le token zone contient la zone quittée. Utilisez nom du sujet et type de sujet pour savoir quel sujet a correspondu.",
+          "nl": "Wordt geactiveerd wanneer een willekeurig onderwerp de geselecteerde zone verlaat. De token zone bevat de verlaten zone. Gebruik subject name en subject type om te zien welk onderwerp overeenkwam.",
+          "de": "Wird ausgelöst, wenn ein beliebiges Subjekt die ausgewählte Zone verlässt. Das Token Zone enthält die verlassene Zone. Verwenden Sie Subject name und Subject type, um zu sehen, welches Subjekt gepasst hat."
+        },
+        "id": "any_subject_left_zone"
+      },
+      {
+        "title": {
+          "en": "Any subject left one of several zones",
+          "fr": "N’importe quel sujet a quitté l’une des zones",
+          "nl": "Eender welk onderwerp heeft een van de zones verlaten",
+          "de": "Beliebiges Subjekt hat eine der Zonen verlassen"
+        },
+        "titleFormatted": {
+          "en": "Any subject left one of [[zones]]",
+          "fr": "N’importe quel sujet a quitté l’une des zones [[zones]]",
+          "nl": "Eender welk onderwerp verliet een van [[zones]]",
+          "de": "Beliebiges Subjekt hat eine von [[zones]] verlassen"
+        },
+        "args": [
+          {
+            "name": "zones",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Zones (comma-separated names)",
+              "fr": "Zones (noms séparés par des virgules)",
+              "nl": "Zones (namen gescheiden door komma's)",
+              "de": "Zonen (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+              "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+              "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+              "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more exact zone names separated by commas. Triggers when any subject leaves at least one listed zone. Use subject name and subject type to identify the matched subject.",
+          "fr": "Saisissez un ou plusieurs noms exacts de zone séparés par des virgules. Se déclenche lorsqu’un sujet quelconque quitte au moins l’une des zones listées. Utilisez nom du sujet et type de sujet pour identifier le sujet correspondant.",
+          "nl": "Voer één of meer exacte zonenamen in, gescheiden door komma’s. Wordt geactiveerd wanneer een willekeurig onderwerp minstens één opgegeven zone verlaat. Gebruik subject name en subject type om het overeenkomende onderwerp te identificeren.",
+          "de": "Geben Sie einen oder mehrere exakte Zonennamen durch Kommas getrennt ein. Wird ausgelöst, wenn ein beliebiges Subjekt mindestens eine aufgeführte Zone verlässt. Verwenden Sie Subject name und Subject type, um das passende Subjekt zu identifizieren."
+        },
+        "id": "any_subject_left_zones"
+      },
+      {
+        "title": {
+          "en": "Any subject was recalculated",
+          "fr": "N’importe quel sujet a été recalculé",
+          "nl": "Eender welk onderwerp is opnieuw berekend",
+          "de": "Beliebiges Subjekt wurde neu berechnet"
+        },
+        "titleFormatted": {
+          "en": "Any subject was recalculated",
+          "fr": "N’importe quel sujet a été recalculé",
+          "nl": "Eender welk onderwerp is opnieuw berekend",
+          "de": "Beliebiges Subjekt wurde neu berechnet"
+        },
+        "args": [],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "movement_state",
+            "type": "string",
+            "title": {
+              "en": "Movement state",
+              "fr": "État de mouvement",
+              "nl": "Bewegingsstatus",
+              "de": "Bewegungsstatus"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Triggers when any subject is recalculated. Use this card when you want one global automation reacting to all GeoZones recalculations. subject name and subject type identify the matched subject.",
+          "fr": "Se déclenche lorsqu’un sujet quelconque est recalculé. Utilisez cette carte lorsque vous voulez une automatisation globale réagissant à tous les recalculs GeoZones. nom du sujet et type de sujet identifient le sujet correspondant.",
+          "nl": "Wordt geactiveerd wanneer een willekeurig onderwerp opnieuw wordt berekend. Gebruik deze kaart voor één globale automatisering die reageert op alle GeoZones-herberekeningen. subject name en subject type identificeren het overeenkomende onderwerp.",
+          "de": "Wird ausgelöst, wenn ein beliebiges Subjekt neu berechnet wird. Verwenden Sie diese Karte für eine globale Automatisierung, die auf alle GeoZones-Neuberechnungen reagiert. Subject name und Subject type identifizieren das passende Subjekt."
+        },
+        "id": "any_subject_recalculated"
+      },
+      {
+        "title": {
+          "en": "GeoZones configuration changed",
+          "fr": "La configuration GeoZones a changé",
+          "nl": "GeoZones-configuratie is gewijzigd",
+          "de": "GeoZones-Konfiguration wurde geändert"
+        },
+        "titleFormatted": {
+          "en": "GeoZones configuration changed",
+          "fr": "La configuration GeoZones a changé",
+          "nl": "GeoZones-configuratie is gewijzigd",
+          "de": "GeoZones-Konfiguration wurde geändert"
+        },
+        "args": [],
+        "tokens": [
+          {
+            "name": "change_scope",
+            "type": "string",
+            "title": {
+              "en": "Change scope",
+              "fr": "Portée du changement",
+              "nl": "Wijzigingsscope",
+              "de": "Änderungsbereich"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Triggers when the GeoZones configuration changes. Use this after importing, editing zones, changing subject metadata, adding or removing device sources, or resetting a subject. change scope describes the origin of the modification when available.",
+          "fr": "Se déclenche lorsque la configuration GeoZones change. Utilisez-le après un import, une modification de zones, un changement de métadonnées de sujet, l’ajout ou la suppression d’une source device, ou la réinitialisation d’un sujet. portée du changement décrit l’origine de la modification lorsque disponible.",
+          "nl": "Wordt geactiveerd wanneer de GeoZones-configuratie wijzigt. Gebruik dit na import, wijzigen van zones, aanpassen van onderwerpmetadata, toevoegen of verwijderen van apparaatbronnen of het resetten van een onderwerp. change scope beschrijft de herkomst van de wijziging indien beschikbaar.",
+          "de": "Wird ausgelöst, wenn sich die GeoZones-Konfiguration ändert. Verwenden Sie dies nach Import, Bearbeitung von Zonen, Änderung von Subjektmetadaten, Hinzufügen oder Entfernen von Gerätequellen oder Zurücksetzen eines Subjekts. Änderungsbereich beschreibt den Ursprung der Änderung, sofern verfügbar."
+        },
+        "id": "config_changed"
+      },
+      {
+        "title": {
+          "en": "Subject changed zone",
+          "fr": "Un sujet a changé de zone",
+          "nl": "Onderwerp veranderde van zone",
+          "de": "Subjekt hat die Zone gewechselt"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] changed to [[zone]]",
+          "fr": "[[subject]] a changé vers [[zone]]",
+          "nl": "[[subject]] veranderde naar [[zone]]",
+          "de": "[[subject]] wechselte zu [[zone]]"
+        },
+        "hint": {
+          "en": "Triggers when the selected subject moves from one found zone to another found zone. zone is the new current zone. previous zone is the last found zone before the current zone and never repeats the current zone.",
+          "fr": "Se déclenche lorsque le sujet sélectionné passe d’une zone trouvée à une autre zone trouvée. zone est la nouvelle zone actuelle. zone précédente est la dernière zone trouvée avant la zone actuelle et ne répète jamais la zone actuelle.",
+          "nl": "Wordt geactiveerd wanneer het geselecteerde onderwerp van de ene gevonden zone naar een andere gevonden zone gaat. zone is de nieuwe huidige zone. previous zone is de laatst gevonden zone vóór de huidige zone en herhaalt nooit de huidige zone.",
+          "de": "Wird ausgelöst, wenn das ausgewählte Subjekt von einer gefundenen Zone in eine andere gefundene Zone wechselt. Zone ist die neue aktuelle Zone. Vorherige Zone ist die zuletzt gefundene Zone vor der aktuellen Zone und wiederholt niemals die aktuelle Zone."
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "id": "subject_changed_zone"
+      },
+      {
+        "title": {
+          "en": "Subject entered a zone",
+          "fr": "Un sujet est entré dans une zone",
+          "nl": "Onderwerp is een zone binnengekomen",
+          "de": "Subjekt hat eine Zone betreten"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] entered [[zone]]",
+          "fr": "[[subject]] est entré dans [[zone]]",
+          "nl": "[[subject]] kwam binnen in [[zone]]",
+          "de": "[[subject]] hat [[zone]] betreten"
+        },
+        "hint": {
+          "en": "Triggers when the selected subject enters the selected zone. The zone result already includes zone priority, subject filters, subject type filters, hysteresis and entry delay handling. Use the zone token for the current zone and previous zone for the zone held before the new entry.",
+          "fr": "Se déclenche lorsque le sujet sélectionné entre dans la zone sélectionnée. Le résultat tient déjà compte de la priorité de zone, des filtres sujet, des filtres de type, de l’hystérésis et du délai d’entrée. Utilisez le token zone pour la zone actuelle et zone précédente pour la zone tenue avant la nouvelle entrée.",
+          "nl": "Wordt geactiveerd wanneer het geselecteerde onderwerp de geselecteerde zone binnenkomt. Het resultaat houdt al rekening met zoneprioriteit, onderwerpfilters, typefilters, hysterese en toegangsvertraging. Gebruik de token zone voor de huidige zone en previous zone voor de zone die vóór de nieuwe binnenkomst actief was.",
+          "de": "Wird ausgelöst, wenn das ausgewählte Subjekt die ausgewählte Zone betritt. Das Ergebnis berücksichtigt bereits Zonenpriorität, Subjektfilter, Typfilter, Hysterese und Eintrittsverzögerung. Verwenden Sie das Token Zone für die aktuelle Zone und Vorherige Zone für die Zone, die vor dem neuen Eintritt aktiv war."
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "id": "subject_entered_zone"
+      },
+      {
+        "title": {
+          "en": "Subject entered one of several zones",
+          "fr": "Un sujet est entré dans l’une des zones",
+          "nl": "Onderwerp is een van de zones binnengekomen",
+          "de": "Subjekt hat eine der Zonen betreten"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] entered one of [[zones]]",
+          "fr": "[[subject]] est entré dans l’une des zones [[zones]]",
+          "nl": "[[subject]] kwam een van [[zones]] binnen",
+          "de": "[[subject]] hat eine von [[zones]] betreten"
+        },
+        "hint": {
+          "en": "Enter one or more zone names separated by commas. Use exact zone names as shown in GeoZones settings. This trigger fires when the selected subject enters at least one listed zone after entry delays and filters are applied.",
+          "fr": "Saisissez un ou plusieurs noms de zone séparés par des virgules. Utilisez les noms exacts tels qu’affichés dans les réglages GeoZones. Ce trigger se déclenche lorsque le sujet sélectionné entre dans au moins l’une des zones listées après application des délais d’entrée et des filtres.",
+          "nl": "Voer één of meer zonenamen in, gescheiden door komma’s. Gebruik de exacte namen zoals in de GeoZones-instellingen. Deze trigger gaat af wanneer het geselecteerde onderwerp minstens één van de opgegeven zones binnenkomt nadat toegangsvertragingen en filters zijn toegepast.",
+          "de": "Geben Sie einen oder mehrere Zonennamen durch Kommas getrennt ein. Verwenden Sie die exakten Namen wie in den GeoZones-Einstellungen. Dieser Trigger wird ausgelöst, wenn das ausgewählte Subjekt mindestens eine der aufgeführten Zonen betritt, nachdem Eintrittsverzögerungen und Filter angewendet wurden."
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "zones",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Zones (comma-separated names)",
+              "fr": "Zones (noms séparés par des virgules)",
+              "nl": "Zones (namen gescheiden door komma's)",
+              "de": "Zonen (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+              "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+              "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+              "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "id": "subject_entered_zones"
+      },
+      {
+        "title": {
+          "en": "Subject left a zone",
+          "fr": "Un sujet a quitté une zone",
+          "nl": "Onderwerp heeft een zone verlaten",
+          "de": "Subjekt hat eine Zone verlassen"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] left [[zone]]",
+          "fr": "[[subject]] a quitté [[zone]]",
+          "nl": "[[subject]] verliet [[zone]]",
+          "de": "[[subject]] hat [[zone]] verlassen"
+        },
+        "hint": {
+          "en": "Triggers when the selected subject leaves the selected zone after exit delay handling. The zone token contains the zone that was left. The previous zone token is kept for consistency and may be empty when no earlier zone exists.",
+          "fr": "Se déclenche lorsque le sujet sélectionné quitte la zone sélectionnée après gestion du délai de sortie. Le token zone contient la zone quittée. Le token zone précédente est conservé pour cohérence et peut être vide lorsqu’aucune zone antérieure n’existe.",
+          "nl": "Wordt geactiveerd wanneer het geselecteerde onderwerp de geselecteerde zone verlaat na verwerking van de vertrekvertraging. De token zone bevat de verlaten zone. De token previous zone blijft voor consistentie behouden en kan leeg zijn wanneer er geen eerdere zone bestaat.",
+          "de": "Wird ausgelöst, wenn das ausgewählte Subjekt die ausgewählte Zone nach Verarbeitung der Austrittsverzögerung verlässt. Das Token Zone enthält die verlassene Zone. Das Token Vorherige Zone bleibt aus Konsistenzgründen erhalten und kann leer sein, wenn keine frühere Zone existiert."
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "id": "subject_left_zone"
+      },
+      {
+        "title": {
+          "en": "Subject left one of several zones",
+          "fr": "Un sujet a quitté l’une des zones",
+          "nl": "Onderwerp heeft een van de zones verlaten",
+          "de": "Subjekt hat eine der Zonen verlassen"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] left one of [[zones]]",
+          "fr": "[[subject]] a quitté l’une des zones [[zones]]",
+          "nl": "[[subject]] verliet een van [[zones]]",
+          "de": "[[subject]] hat eine von [[zones]] verlassen"
+        },
+        "hint": {
+          "en": "Enter one or more zone names separated by commas. Use exact zone names as shown in GeoZones settings. This trigger fires when the selected subject leaves at least one listed zone after exit delays and filters are applied.",
+          "fr": "Saisissez un ou plusieurs noms de zone séparés par des virgules. Utilisez les noms exacts tels qu’affichés dans les réglages GeoZones. Ce trigger se déclenche lorsque le sujet sélectionné quitte au moins l’une des zones listées après application des délais de sortie et des filtres.",
+          "nl": "Voer één of meer zonenamen in, gescheiden door komma’s. Gebruik de exacte namen zoals in de GeoZones-instellingen. Deze trigger gaat af wanneer het geselecteerde onderwerp minstens één van de opgegeven zones verlaat nadat vertrekvertragingen en filters zijn toegepast.",
+          "de": "Geben Sie einen oder mehrere Zonennamen durch Kommas getrennt ein. Verwenden Sie die exakten Namen wie in den GeoZones-Einstellungen. Dieser Trigger wird ausgelöst, wenn das ausgewählte Subjekt mindestens eine der aufgeführten Zonen verlässt, nachdem Austrittsverzögerungen und Filter angewendet wurden."
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "zones",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Zones (comma-separated names)",
+              "fr": "Zones (noms séparés par des virgules)",
+              "nl": "Zones (namen gescheiden door komma's)",
+              "de": "Zonen (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+              "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+              "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+              "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "id": "subject_left_zones"
+      },
+      {
+        "title": {
+          "en": "Subject position changed",
+          "fr": "La position du sujet a changé",
+          "nl": "Positie van onderwerp is gewijzigd",
+          "de": "Position des Subjekts wurde geändert"
+        },
+        "titleFormatted": {
+          "en": "Position of [[subject]] changed",
+          "fr": "La position de [[subject]] a changé",
+          "nl": "Positie van [[subject]] is gewijzigd",
+          "de": "Position von [[subject]] wurde geändert"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "movement_state",
+            "type": "string",
+            "title": {
+              "en": "Movement state",
+              "fr": "État de mouvement",
+              "nl": "Bewegingsstatus",
+              "de": "Bewegungsstatus"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Triggers every time GeoZones stores a new position for the selected subject. Use this for diagnostics, distance calculations or follow-up evaluations. previous zone is the zone that was active before the current zone after the new position was processed.",
+          "fr": "Se déclenche chaque fois que GeoZones enregistre une nouvelle position pour le sujet sélectionné. Utilisez-le pour le diagnostic, les calculs de distance ou des évaluations supplémentaires. zone précédente correspond à la zone qui était active avant la zone courante une fois la nouvelle position traitée.",
+          "nl": "Wordt geactiveerd telkens wanneer GeoZones een nieuwe positie voor het geselecteerde onderwerp opslaat. Gebruik dit voor diagnose, afstandsberekeningen of vervolg-evaluaties. previous zone is de zone die actief was vóór de huidige zone nadat de nieuwe positie was verwerkt.",
+          "de": "Wird jedes Mal ausgelöst, wenn GeoZones eine neue Position für das ausgewählte Subjekt speichert. Nutzen Sie dies für Diagnose, Distanzberechnungen oder Folgeauswertungen. Vorherige Zone ist die Zone, die vor der aktuellen Zone aktiv war, nachdem die neue Position verarbeitet wurde."
+        },
+        "id": "subject_position_changed"
+      },
+      {
+        "title": {
+          "en": "Subject was recalculated",
+          "fr": "Le sujet a été recalculé",
+          "nl": "Onderwerp is opnieuw berekend",
+          "de": "Subjekt wurde neu berechnet"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] was recalculated",
+          "fr": "[[subject]] a été recalculé",
+          "nl": "[[subject]] is opnieuw berekend",
+          "de": "[[subject]] wurde neu berechnet"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "movement_state",
+            "type": "string",
+            "title": {
+              "en": "Movement state",
+              "fr": "État de mouvement",
+              "nl": "Bewegingsstatus",
+              "de": "Bewegungsstatus"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Triggers when GeoZones recalculates the selected subject. This can happen after a direct evaluation, after a stored position is re-evaluated, or after a source update. zone is the current winning zone and previous zone is the zone held before entering the current one.",
+          "fr": "Se déclenche lorsque GeoZones recalcule le sujet sélectionné. Cela peut arriver après une évaluation directe, après une réévaluation d’une position stockée ou après une mise à jour de source. zone correspond à la zone gagnante actuelle et zone précédente à la zone tenue avant d’entrer dans la zone courante.",
+          "nl": "Wordt geactiveerd wanneer GeoZones het geselecteerde onderwerp opnieuw berekent. Dit kan gebeuren na een directe evaluatie, na een her-evaluatie van een opgeslagen positie of na een bronupdate. zone is de huidige winnende zone en previous zone is de zone die actief was vóór binnenkomst in de huidige zone.",
+          "de": "Wird ausgelöst, wenn GeoZones das ausgewählte Subjekt neu berechnet. Dies kann nach einer direkten Auswertung, nach erneuter Auswertung einer gespeicherten Position oder nach einem Quellen-Update passieren. Zone ist die aktuelle Gewinnerzone und Vorherige Zone ist die Zone, die vor dem Eintritt in die aktuelle Zone aktiv war."
+        },
+        "id": "subject_recalculated"
+      },
+      {
+        "title": {
+          "en": "Subject type changed zone",
+          "fr": "Un type de sujet a changé de zone",
+          "nl": "Onderwerptype veranderde van zone",
+          "de": "Subjekttyp hat die Zone gewechselt"
+        },
+        "titleFormatted": {
+          "en": "[[subjectType]] changed to [[zone]]",
+          "fr": "[[subjectType]] a changé vers [[zone]]",
+          "nl": "[[subjectType]] veranderde naar [[zone]]",
+          "de": "[[subjectType]] wechselte zu [[zone]]"
+        },
+        "hint": {
+          "en": "Triggers when any subject of the selected subject type moves from one found zone to another found zone. subject name identifies the real subject. zone is the new current zone. previous zone is the last found zone before the current zone.",
+          "fr": "Se déclenche lorsqu’un sujet du type sélectionné passe d’une zone trouvée à une autre zone trouvée. nom du sujet identifie le vrai sujet. zone est la nouvelle zone actuelle. zone précédente est la dernière zone trouvée avant la zone actuelle.",
+          "nl": "Wordt geactiveerd wanneer een onderwerp van het geselecteerde type van de ene gevonden zone naar een andere gevonden zone gaat. subject name identificeert het echte onderwerp. zone is de nieuwe huidige zone. previous zone is de laatst gevonden zone vóór de huidige zone.",
+          "de": "Wird ausgelöst, wenn ein Subjekt des ausgewählten Typs von einer gefundenen Zone in eine andere gefundene Zone wechselt. Subject name identifiziert das echte Subjekt. Zone ist die neue aktuelle Zone. Vorherige Zone ist die zuletzt gefundene Zone vor der aktuellen Zone."
+        },
+        "args": [
+          {
+            "name": "subjectType",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "id": "subject_type_changed_zone"
+      },
+      {
+        "title": {
+          "en": "Subject type entered a zone",
+          "fr": "Un type de sujet est entré dans une zone",
+          "nl": "Onderwerptype is een zone binnengekomen",
+          "de": "Subjekttyp hat eine Zone betreten"
+        },
+        "titleFormatted": {
+          "en": "[[subjectType]] entered [[zone]]",
+          "fr": "[[subjectType]] est entré dans [[zone]]",
+          "nl": "[[subjectType]] kwam binnen in [[zone]]",
+          "de": "[[subjectType]] hat [[zone]] betreten"
+        },
+        "args": [
+          {
+            "name": "subjectType",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Triggers when any subject of the selected subject type enters the selected zone. subject name identifies the real subject that caused the trigger. previous zone contains the zone held before entering the current zone.",
+          "fr": "Se déclenche lorsqu’un sujet du type sélectionné entre dans la zone sélectionnée. nom du sujet identifie le vrai sujet à l’origine du trigger. zone précédente contient la zone tenue avant d’entrer dans la zone actuelle.",
+          "nl": "Wordt geactiveerd wanneer een onderwerp van het geselecteerde type de gekozen zone binnenkomt. subject name identificeert het echte onderwerp dat de trigger veroorzaakte. previous zone bevat de zone die actief was vóór binnenkomst in de huidige zone.",
+          "de": "Wird ausgelöst, wenn ein Subjekt des ausgewählten Typs die ausgewählte Zone betritt. Subject name identifiziert das echte Subjekt, das den Trigger ausgelöst hat. Vorherige Zone enthält die Zone, die vor dem Eintritt in die aktuelle Zone aktiv war."
+        },
+        "id": "subject_type_entered_zone"
+      },
+      {
+        "title": {
+          "en": "Subject type entered one of several zones",
+          "fr": "Un type de sujet est entré dans l’une des zones",
+          "nl": "Onderwerptype is een van de zones binnengekomen",
+          "de": "Subjekttyp hat eine der Zonen betreten"
+        },
+        "titleFormatted": {
+          "en": "[[subjectType]] entered one of [[zones]]",
+          "fr": "[[subjectType]] est entré dans l’une des zones [[zones]]",
+          "nl": "[[subjectType]] kwam een van [[zones]] binnen",
+          "de": "[[subjectType]] hat eine von [[zones]] betreten"
+        },
+        "args": [
+          {
+            "name": "subjectType",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zones",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Zones (comma-separated names)",
+              "fr": "Zones (noms séparés par des virgules)",
+              "nl": "Zones (namen gescheiden door komma's)",
+              "de": "Zonen (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+              "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+              "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+              "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more exact zone names separated by commas. Triggers when any subject of the selected subject type enters at least one listed zone. subject name identifies the subject that matched.",
+          "fr": "Saisissez un ou plusieurs noms exacts de zone séparés par des virgules. Se déclenche lorsqu’un sujet du type sélectionné entre dans au moins l’une des zones listées. nom du sujet identifie le sujet correspondant.",
+          "nl": "Voer één of meer exacte zonenamen in, gescheiden door komma’s. Wordt geactiveerd wanneer een onderwerp van het geselecteerde type minstens één opgegeven zone binnenkomt. subject name identificeert het overeenkomende onderwerp.",
+          "de": "Geben Sie einen oder mehrere exakte Zonennamen durch Kommas getrennt ein. Wird ausgelöst, wenn ein Subjekt des ausgewählten Typs mindestens eine aufgeführte Zone betritt. Subject name identifiziert das passende Subjekt."
+        },
+        "id": "subject_type_entered_zones"
+      },
+      {
+        "title": {
+          "en": "Subject type left a zone",
+          "fr": "Un type de sujet a quitté une zone",
+          "nl": "Onderwerptype heeft een zone verlaten",
+          "de": "Subjekttyp hat eine Zone verlassen"
+        },
+        "titleFormatted": {
+          "en": "[[subjectType]] left [[zone]]",
+          "fr": "[[subjectType]] a quitté [[zone]]",
+          "nl": "[[subjectType]] verliet [[zone]]",
+          "de": "[[subjectType]] hat [[zone]] verlassen"
+        },
+        "args": [
+          {
+            "name": "subjectType",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Triggers when any subject of the selected subject type leaves the selected zone. The zone token contains the zone that was left. subject name identifies the subject that caused the trigger.",
+          "fr": "Se déclenche lorsqu’un sujet du type sélectionné quitte la zone sélectionnée. Le token zone contient la zone quittée. nom du sujet identifie le sujet qui a causé le trigger.",
+          "nl": "Wordt geactiveerd wanneer een onderwerp van het geselecteerde type de gekozen zone verlaat. De token zone bevat de verlaten zone. subject name identificeert het onderwerp dat de trigger veroorzaakte.",
+          "de": "Wird ausgelöst, wenn ein Subjekt des ausgewählten Typs die ausgewählte Zone verlässt. Das Token Zone enthält die verlassene Zone. Subject name identifiziert das Subjekt, das den Trigger ausgelöst hat."
+        },
+        "id": "subject_type_left_zone"
+      },
+      {
+        "title": {
+          "en": "Subject type left one of several zones",
+          "fr": "Un type de sujet a quitté l’une des zones",
+          "nl": "Onderwerptype heeft een van de zones verlaten",
+          "de": "Subjekttyp hat eine der Zonen verlassen"
+        },
+        "titleFormatted": {
+          "en": "[[subjectType]] left one of [[zones]]",
+          "fr": "[[subjectType]] a quitté l’une des zones [[zones]]",
+          "nl": "[[subjectType]] verliet een van [[zones]]",
+          "de": "[[subjectType]] hat eine von [[zones]] verlassen"
+        },
+        "args": [
+          {
+            "name": "subjectType",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zones",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Zones (comma-separated names)",
+              "fr": "Zones (noms séparés par des virgules)",
+              "nl": "Zones (namen gescheiden door komma's)",
+              "de": "Zonen (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+              "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+              "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+              "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more exact zone names separated by commas. Triggers when any subject of the selected subject type leaves at least one listed zone. subject name identifies the subject that matched.",
+          "fr": "Saisissez un ou plusieurs noms exacts de zone séparés par des virgules. Se déclenche lorsqu’un sujet du type sélectionné quitte au moins l’une des zones listées. nom du sujet identifie le sujet correspondant.",
+          "nl": "Voer één of meer exacte zonenamen in, gescheiden door komma’s. Wordt geactiveerd wanneer een onderwerp van het geselecteerde type minstens één opgegeven zone verlaat. subject name identificeert het overeenkomende onderwerp.",
+          "de": "Geben Sie einen oder mehrere exakte Zonennamen durch Kommas getrennt ein. Wird ausgelöst, wenn ein Subjekt des ausgewählten Typs mindestens eine aufgeführte Zone verlässt. Subject name identifiziert das passende Subjekt."
+        },
+        "id": "subject_type_left_zones"
+      },
+      {
+        "title": {
+          "en": "Subject type was recalculated",
+          "fr": "Le type de sujet a été recalculé",
+          "nl": "Onderwerptype is opnieuw berekend",
+          "de": "Subjekttyp wurde neu berechnet"
+        },
+        "titleFormatted": {
+          "en": "[[subjectType]] was recalculated",
+          "fr": "[[subjectType]] a été recalculé",
+          "nl": "[[subjectType]] is opnieuw berekend",
+          "de": "[[subjectType]] wurde neu berechnet"
+        },
+        "args": [
+          {
+            "name": "subjectType",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "subject_name",
+            "type": "string",
+            "title": {
+              "en": "Subject name",
+              "fr": "Nom du sujet",
+              "nl": "Naam van onderwerp",
+              "de": "Subjektname"
+            }
+          },
+          {
+            "name": "subject_type",
+            "type": "string",
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "movement_state",
+            "type": "string",
+            "title": {
+              "en": "Movement state",
+              "fr": "État de mouvement",
+              "nl": "Bewegingsstatus",
+              "de": "Bewegungsstatus"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Triggers when any subject of the selected subject type is recalculated. Use subject name to know which subject matched and previous zone to know which zone was held before the current one.",
+          "fr": "Se déclenche lorsqu’un sujet du type sélectionné est recalculé. Utilisez nom du sujet pour savoir quel sujet a correspondu et zone précédente pour connaître la zone tenue avant la zone actuelle.",
+          "nl": "Wordt geactiveerd wanneer een onderwerp van het geselecteerde type opnieuw wordt berekend. Gebruik subject name om te zien welk onderwerp overeenkwam en previous zone om te weten welke zone vóór de huidige actief was.",
+          "de": "Wird ausgelöst, wenn ein Subjekt des ausgewählten Typs neu berechnet wird. Verwenden Sie Subject name, um zu sehen, welches Subjekt gepasst hat, und Vorherige Zone, um die Zone vor der aktuellen zu kennen."
+        },
+        "id": "subject_type_recalculated"
+      }
+    ],
+    "conditions": [
+      {
+        "title": {
+          "en": "Coordinates match one tag",
+          "fr": "Les coordonnées correspondent à un tag",
+          "nl": "Coördinaten komen overeen met één tag",
+          "de": "Koordinaten entsprechen einem Tag"
+        },
+        "titleFormatted": {
+          "en": "[[lat]], [[long]] !{{match|do not match}} [[tag]]",
+          "fr": "[[lat]], [[long]] !{{correspondent|ne correspondent pas}} à [[tag]]",
+          "nl": "[[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[tag]]",
+          "de": "[[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[tag]]"
+        },
+        "args": [
+          {
+            "name": "lat",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Breedtegraad",
+              "de": "Breitengrad"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Lengtegraad",
+              "de": "Längengrad"
+            }
+          },
+          {
+            "name": "tag",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Tag",
+              "fr": "Tag",
+              "nl": "Tag",
+              "de": "Tag"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns true when the coordinates match at least one zone carrying the selected tag. This card is invertible.",
+          "fr": "Renvoie vrai lorsque les coordonnées correspondent à au moins une zone portant le tag sélectionné. Cette carte est inversible.",
+          "nl": "Geeft waar terug wanneer de coördinaten overeenkomen met minstens één zone met de geselecteerde tag. Deze kaart is omkeerbaar.",
+          "de": "Gibt wahr zurück, wenn die Koordinaten mindestens einer Zone mit dem ausgewählten Tag entsprechen. Diese Karte ist invertierbar."
+        },
+        "id": "coordinates_match_tag"
+      },
+      {
+        "title": {
+          "en": "Coordinates match several tags",
+          "fr": "Les coordonnées correspondent à plusieurs tags",
+          "nl": "Coördinaten komen overeen met meerdere tags",
+          "de": "Koordinaten entsprechen mehreren Tags"
+        },
+        "titleFormatted": {
+          "en": "[[lat]], [[long]] !{{match|do not match}} one of [[tags]]",
+          "fr": "[[lat]], [[long]] !{{correspondent|ne correspondent pas}} à l’un des tags [[tags]]",
+          "nl": "[[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} een van [[tags]]",
+          "de": "[[lat]], [[long]] !{{entsprechen|entsprechen nicht}} einem von [[tags]]"
+        },
+        "args": [
+          {
+            "name": "lat",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Breedtegraad",
+              "de": "Breitengrad"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Lengtegraad",
+              "de": "Längengrad"
+            }
+          },
+          {
+            "name": "tags",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Tags (comma-separated)",
+              "fr": "Tags (séparés par des virgules)",
+              "nl": "Tags (kommagescheiden)",
+              "de": "Tags (kommagetrennt)"
+            },
+            "hint": {
+              "en": "Use tags separated by commas, for example: home, work, charging",
+              "fr": "Utilisez des tags séparés par des virgules, par exemple : home, work, charging",
+              "nl": "Gebruik tags gescheiden door komma's, bijvoorbeeld: home, work, charging",
+              "de": "Verwenden Sie Tags durch Kommas getrennt, zum Beispiel: home, work, charging"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more tags separated by commas. Returns true when the coordinates match at least one zone carrying at least one listed tag. This card is invertible.",
+          "fr": "Saisissez un ou plusieurs tags séparés par des virgules. Renvoie vrai lorsque les coordonnées correspondent à au moins une zone portant au moins un tag listé. Cette carte est inversible.",
+          "nl": "Voer één of meer tags in, gescheiden door komma's. Geeft waar terug wanneer de coördinaten overeenkomen met minstens één zone die minstens één vermelde tag draagt. Deze kaart is omkeerbaar.",
+          "de": "Geben Sie einen oder mehrere Tags durch Kommas getrennt ein. Gibt wahr zurück, wenn die Koordinaten mindestens einer Zone entsprechen, die mindestens einen der aufgeführten Tags trägt. Diese Karte ist invertierbar."
+        },
+        "id": "coordinates_match_tags"
+      },
+      {
+        "title": {
+          "en": "Coordinates match one zone",
+          "fr": "Les coordonnées correspondent à une zone",
+          "nl": "Coördinaten komen overeen met één zone",
+          "de": "Koordinaten entsprechen einer Zone"
+        },
+        "titleFormatted": {
+          "en": "[[lat]], [[long]] !{{match|do not match}} [[zone]]",
+          "fr": "[[lat]], [[long]] !{{correspondent|ne correspondent pas}} à [[zone]]",
+          "nl": "[[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[zone]]",
+          "de": "[[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[zone]]"
+        },
+        "args": [
+          {
+            "name": "lat",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Breedtegraad",
+              "de": "Breitengrad"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Lengtegraad",
+              "de": "Längengrad"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns true when the coordinates are inside the selected zone. This card is invertible.",
+          "fr": "Renvoie vrai lorsque les coordonnées sont dans la zone sélectionnée. Cette carte est inversible.",
+          "nl": "Geeft waar terug wanneer de coördinaten zich in de geselecteerde zone bevinden. Deze kaart is omkeerbaar.",
+          "de": "Gibt wahr zurück, wenn sich die Koordinaten in der ausgewählten Zone befinden. Diese Karte ist invertierbar."
+        },
+        "id": "coordinates_match_zone"
+      },
+      {
+        "title": {
+          "en": "Coordinates match several zones",
+          "fr": "Les coordonnées correspondent à plusieurs zones",
+          "nl": "Coördinaten komen overeen met meerdere zones",
+          "de": "Koordinaten entsprechen mehreren Zonen"
+        },
+        "titleFormatted": {
+          "en": "[[lat]], [[long]] !{{match|do not match}} one of [[zones]]",
+          "fr": "[[lat]], [[long]] !{{correspondent|ne correspondent pas}} à l’une des zones [[zones]]",
+          "nl": "[[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} een van [[zones]]",
+          "de": "[[lat]], [[long]] !{{entsprechen|entsprechen nicht}} einer von [[zones]]"
+        },
+        "args": [
+          {
+            "name": "lat",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Breedtegraad",
+              "de": "Breitengrad"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Lengtegraad",
+              "de": "Längengrad"
+            }
+          },
+          {
+            "name": "zones",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Zones (comma-separated names)",
+              "fr": "Zones (noms séparés par des virgules)",
+              "nl": "Zones (namen gescheiden door komma's)",
+              "de": "Zonen (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+              "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+              "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+              "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more zone names separated by commas. Returns true when the coordinates are inside at least one listed zone. This card is invertible.",
+          "fr": "Saisissez un ou plusieurs noms de zone séparés par des virgules. Renvoie vrai lorsque les coordonnées sont dans au moins une zone listée. Cette carte est inversible.",
+          "nl": "Voer één of meer zone-ID's of namen in, gescheiden door komma's. Geeft waar terug wanneer de coördinaten in minstens één vermelde zone liggen. Deze kaart is omkeerbaar.",
+          "de": "Geben Sie eine oder mehrere Zonen-Namen durch Kommas getrennt ein. Gibt wahr zurück, wenn sich die Koordinaten in mindestens einer aufgeführten Zone befinden. Diese Karte ist invertierbar."
+        },
+        "id": "coordinates_match_zones"
+      },
+      {
+        "title": {
+          "en": "Subject exists",
+          "fr": "Le sujet existe",
+          "nl": "Onderwerp bestaat",
+          "de": "Subjekt existiert"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] !{{exists|does not exist}}",
+          "fr": "[[subject]] !{{existe|n’existe pas}}",
+          "nl": "[[subject]] !{{bestaat|bestaat niet}}",
+          "de": "[[subject]] !{{existiert|existiert nicht}}"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Checks whether the selected subject currently exists in GeoZones.",
+          "fr": "Vérifie si le sujet sélectionné existe actuellement dans GeoZones.",
+          "nl": "Controleert of het geselecteerde onderwerp momenteel in GeoZones bestaat.",
+          "de": "Prüft, ob das ausgewählte Subjekt aktuell in GeoZones existiert."
+        },
+        "id": "subject_exists"
+      },
+      {
+        "title": {
+          "en": "Subject is in a zone",
+          "fr": "Le sujet est dans une zone",
+          "nl": "Onderwerp is in een zone",
+          "de": "Subjekt ist in einer Zone"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] !{{is|is not}} in [[zone]]",
+          "fr": "[[subject]] !{{est|n’est pas}} dans [[zone]]",
+          "nl": "[[subject]] !{{is|is niet}} in [[zone]]",
+          "de": "[[subject]] !{{ist|ist nicht}} in [[zone]]"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns true when the selected subject is currently inside the selected zone. This card is invertible.",
+          "fr": "Renvoie vrai lorsque le sujet sélectionné est actuellement dans la zone sélectionnée. Cette carte est inversible.",
+          "nl": "Geeft waar terug wanneer het geselecteerde onderwerp momenteel in de geselecteerde zone zit. Deze kaart is omkeerbaar.",
+          "de": "Gibt wahr zurück, wenn sich das ausgewählte Subjekt aktuell in der ausgewählten Zone befindet. Diese Karte ist invertierbar."
+        },
+        "id": "subject_is_in_zone"
+      },
+      {
+        "title": {
+          "en": "Subject is in one of several zones",
+          "fr": "Le sujet est dans l’une des zones",
+          "nl": "Onderwerp is in een van de zones",
+          "de": "Subjekt ist in einer der Zonen"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] !{{is|is not}} in one of [[zones]]",
+          "fr": "[[subject]] !{{est|n’est pas}} dans l’une des zones [[zones]]",
+          "nl": "[[subject]] !{{is|is niet}} in een van [[zones]]",
+          "de": "[[subject]] !{{ist|ist nicht}} in einer von [[zones]]"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "zones",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Zones (comma-separated names)",
+              "fr": "Zones (noms séparés par des virgules)",
+              "nl": "Zones (namen gescheiden door komma's)",
+              "de": "Zonen (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+              "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+              "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+              "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more zone names separated by commas. Returns true when the subject is inside at least one listed zone. This card is invertible.",
+          "fr": "Saisissez un ou plusieurs noms de zone séparés par des virgules. Renvoie vrai lorsque le sujet est dans au moins une zone listée. Cette carte est inversible.",
+          "nl": "Voer één of meer zone-ID's of namen in, gescheiden door komma's. Geeft waar terug wanneer het onderwerp in minstens één vermelde zone zit. Deze kaart is omkeerbaar.",
+          "de": "Geben Sie eine oder mehrere Zonen-Namen durch Kommas getrennt ein. Gibt wahr zurück, wenn sich das Subjekt in mindestens einer aufgeführten Zone befindet. Diese Karte ist invertierbar."
+        },
+        "id": "subject_is_in_zones"
+      },
+      {
+        "title": {
+          "en": "Subject has one of the movement states",
+          "fr": "Le sujet a l’un des états de mouvement",
+          "nl": "Onderwerp heeft een van de bewegingsstatussen",
+          "de": "Subjekt hat einen der Bewegungszustände"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] !{{is|is not}} in [[movementStates]]",
+          "fr": "[[subject]] !{{est|n’est pas}} dans [[movementStates]]",
+          "nl": "[[subject]] !{{is|is niet}} in [[movementStates]]",
+          "de": "[[subject]] !{{ist|ist nicht}} in [[movementStates]]"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "movementStates",
+            "type": "multiselect",
+            "required": true,
+            "conjunction": "or",
+            "title": {
+              "en": "Movement states",
+              "fr": "États de mouvement",
+              "nl": "Bewegingsstatussen",
+              "de": "Bewegungszustände"
+            },
+            "values": [
+              {
+                "id": "unknown",
+                "title": {
+                  "en": "Unknown",
+                  "fr": "Inconnu",
+                  "nl": "Onbekend",
+                  "de": "Unbekannt"
+                }
+              },
+              {
+                "id": "stable",
+                "title": {
+                  "en": "Stable",
+                  "fr": "Stable",
+                  "nl": "Stabiel",
+                  "de": "Stabil"
+                }
+              },
+              {
+                "id": "moving",
+                "title": {
+                  "en": "Moving",
+                  "fr": "En mouvement",
+                  "nl": "In beweging",
+                  "de": "In Bewegung"
+                }
+              }
+            ]
+          }
+        ],
+        "hint": {
+          "en": "Select one or more movement states. Returns true when the current subject movement state matches at least one selected state. This card is invertible.",
+          "fr": "Sélectionnez un ou plusieurs états de mouvement. Renvoie vrai lorsque l’état de mouvement courant du sujet correspond à au moins un état sélectionné. Cette carte est inversible.",
+          "nl": "Selecteer één of meer bewegingsstatussen. Geeft waar terug wanneer de huidige bewegingsstatus van het onderwerp overeenkomt met minstens één geselecteerde status. Deze kaart is omkeerbaar.",
+          "de": "Wählen Sie einen oder mehrere Bewegungszustände. Gibt wahr zurück, wenn der aktuelle Bewegungszustand des Subjekts mindestens einem ausgewählten Zustand entspricht. Diese Karte ist invertierbar."
+        },
+        "id": "subject_is_movement_state"
+      },
+      {
+        "title": {
+          "en": "Subject is of one type",
+          "fr": "Le sujet est d’un type",
+          "nl": "Onderwerp is van één type",
+          "de": "Subjekt ist von einem Typ"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] !{{is|is not}} of type [[subjectType]]",
+          "fr": "[[subject]] !{{est|n’est pas}} du type [[subjectType]]",
+          "nl": "[[subject]] !{{is|is niet}} van type [[subjectType]]",
+          "de": "[[subject]] !{{ist|ist nicht}} vom Typ [[subjectType]]"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "subjectType",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns true when the selected subject currently has the selected subject type. This card is invertible.",
+          "fr": "Renvoie vrai lorsque le sujet sélectionné a actuellement le type de sujet sélectionné. Cette carte est inversible.",
+          "nl": "Geeft waar terug wanneer het geselecteerde onderwerp momenteel het geselecteerde onderwerpstype heeft. Deze kaart is omkeerbaar.",
+          "de": "Gibt wahr zurück, wenn das ausgewählte Subjekt aktuell den ausgewählten Subjekttyp hat. Diese Karte ist invertierbar."
+        },
+        "id": "subject_is_of_type"
+      },
+      {
+        "title": {
+          "en": "Subject is one of several types",
+          "fr": "Le sujet est de l’un des types",
+          "nl": "Onderwerp is een van de typen",
+          "de": "Subjekt ist einer der Typen"
+        },
+        "titleFormatted": {
+          "en": "[[subject]] !{{is|is not}} one of [[subjectTypes]]",
+          "fr": "[[subject]] !{{est|n’est pas}} de l’un des types [[subjectTypes]]",
+          "nl": "[[subject]] !{{is|is niet}} een van [[subjectTypes]]",
+          "de": "[[subject]] !{{ist|ist nicht}} einer von [[subjectTypes]]"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "subjectTypes",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Subject types (comma-separated)",
+              "fr": "Types de sujet (séparés par des virgules)",
+              "nl": "Onderwerptypen (kommagescheiden)",
+              "de": "Subjekttypen (kommagetrennt)"
+            },
+            "hint": {
+              "en": "Use subject types separated by commas, for example: person, vehicle",
+              "fr": "Utilisez des types de sujet séparés par des virgules, par exemple : person, vehicle",
+              "nl": "Gebruik onderwerpstypen gescheiden door komma's, bijvoorbeeld: person, vehicle",
+              "de": "Verwenden Sie Subjekttypen durch Kommas getrennt, zum Beispiel: person, vehicle"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more subject types separated by commas. Returns true when the subject type matches at least one listed type. This card is invertible.",
+          "fr": "Saisissez un ou plusieurs types de sujet séparés par des virgules. Renvoie vrai lorsque le type du sujet correspond à au moins un type listé. Cette carte est inversible.",
+          "nl": "Voer één of meer onderwerpstypen in, gescheiden door komma's. Geeft waar terug wanneer het onderwerpstype overeenkomt met minstens één vermeld type. Deze kaart is omkeerbaar.",
+          "de": "Geben Sie einen oder mehrere Subjekttypen durch Kommas getrennt ein. Gibt wahr zurück, wenn der Subjekttyp mindestens einem aufgeführten Typ entspricht. Diese Karte ist invertierbar."
+        },
+        "id": "subject_is_of_types"
+      },
+      {
+        "title": {
+          "en": "Subject type exists",
+          "fr": "Le type de sujet existe",
+          "nl": "Onderwerptype bestaat",
+          "de": "Subjekttyp existiert"
+        },
+        "titleFormatted": {
+          "en": "[[subjectType]] !{{exists|does not exist}}",
+          "fr": "[[subjectType]] !{{existe|n’existe pas}}",
+          "nl": "[[subjectType]] !{{bestaat|bestaat niet}}",
+          "de": "[[subjectType]] !{{existiert|existiert nicht}}"
+        },
+        "args": [
+          {
+            "name": "subjectType",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Checks whether the selected subject type is currently used by at least one subject.",
+          "fr": "Vérifie si le type de sujet sélectionné est actuellement utilisé par au moins un sujet.",
+          "nl": "Controleert of het geselecteerde onderwerpstype momenteel door minstens één onderwerp wordt gebruikt.",
+          "de": "Prüft, ob der ausgewählte Subjekttyp aktuell von mindestens einem Subjekt verwendet wird."
+        },
+        "id": "subject_type_exists"
+      },
+      {
+        "title": {
+          "en": "Subject types exist",
+          "fr": "Les types de sujet existent",
+          "nl": "Onderwerptypen bestaan",
+          "de": "Subjekttypen existieren"
+        },
+        "titleFormatted": {
+          "en": "[[subjectTypes]] !{{exist|do not exist}}",
+          "fr": "[[subjectTypes]] !{{existent|n’existent pas}}",
+          "nl": "[[subjectTypes]] !{{bestaan|bestaan niet}}",
+          "de": "[[subjectTypes]] !{{existieren|existieren nicht}}"
+        },
+        "args": [
+          {
+            "name": "subjectTypes",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Subject types (comma-separated)",
+              "fr": "Types de sujet (séparés par des virgules)",
+              "nl": "Onderwerptypen (kommagescheiden)",
+              "de": "Subjekttypen (kommagetrennt)"
+            },
+            "hint": {
+              "en": "Use subject types separated by commas, for example: person, vehicle",
+              "fr": "Utilisez des types de sujet séparés par des virgules, par exemple : person, vehicle",
+              "nl": "Gebruik onderwerpstypen gescheiden door komma's, bijvoorbeeld: person, vehicle",
+              "de": "Verwenden Sie Subjekttypen durch Kommas getrennt, zum Beispiel: person, vehicle"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more subject types separated by commas. Returns true only when all listed types exist.",
+          "fr": "Saisissez un ou plusieurs types de sujet séparés par des virgules. Renvoie vrai uniquement si tous les types listés existent.",
+          "nl": "Voer één of meer onderwerpstypen in, gescheiden door komma's. Geeft alleen waar terug wanneer alle vermelde typen bestaan.",
+          "de": "Geben Sie einen oder mehrere Subjekttypen durch Kommas getrennt ein. Gibt nur dann wahr zurück, wenn alle aufgeführten Typen existieren."
+        },
+        "id": "subject_types_exist"
+      },
+      {
+        "title": {
+          "en": "Subjects exist",
+          "fr": "Les sujets existent",
+          "nl": "Onderwerpen bestaan",
+          "de": "Subjekte existieren"
+        },
+        "titleFormatted": {
+          "en": "[[subjects]] !{{exist|do not exist}}",
+          "fr": "[[subjects]] !{{existent|n’existent pas}}",
+          "nl": "[[subjects]] !{{bestaan|bestaan niet}}",
+          "de": "[[subjects]] !{{existieren|existieren nicht}}"
+        },
+        "args": [
+          {
+            "name": "subjects",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Subjects (comma-separated names)",
+              "fr": "Sujets (noms séparés par des virgules)",
+              "nl": "Onderwerpen (namen gescheiden door komma's)",
+              "de": "Subjekte (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact subject names separated by commas. Leave empty only if the card hint explicitly says an empty list is allowed.",
+              "fr": "Utilisez des noms de sujet exacts séparés par des virgules. Laissez vide uniquement si l’aide de la carte indique explicitement qu’une liste vide est autorisée.",
+              "nl": "Gebruik exacte onderwerpnamen gescheiden door komma's. Laat dit alleen leeg als de kaarthulp expliciet aangeeft dat een lege lijst is toegestaan.",
+              "de": "Verwenden Sie exakte Subjektnamen durch Kommas getrennt. Lassen Sie das Feld nur leer, wenn die Kartenhilfe ausdrücklich angibt, dass eine leere Liste erlaubt ist."
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more subject names separated by commas. Returns true only when all listed subjects exist.",
+          "fr": "Saisissez un ou plusieurs noms de sujet séparés par des virgules. Renvoie vrai uniquement si tous les sujets listés existent.",
+          "nl": "Voer één of meer onderwerp-ID's of namen in, gescheiden door komma's. Geeft alleen waar terug wanneer alle vermelde onderwerpen bestaan.",
+          "de": "Geben Sie eine oder mehrere Subjekt-Namen durch Kommas getrennt ein. Gibt nur dann wahr zurück, wenn alle aufgeführten Subjekte existieren."
+        },
+        "id": "subjects_exist"
+      },
+      {
+        "title": {
+          "en": "Tag exists",
+          "fr": "Le tag existe",
+          "nl": "Tag bestaat",
+          "de": "Tag existiert"
+        },
+        "titleFormatted": {
+          "en": "[[tag]] !{{exists|does not exist}}",
+          "fr": "[[tag]] !{{existe|n’existe pas}}",
+          "nl": "[[tag]] !{{bestaat|bestaat niet}}",
+          "de": "[[tag]] !{{existiert|existiert nicht}}"
+        },
+        "args": [
+          {
+            "name": "tag",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Tag",
+              "fr": "Tag",
+              "nl": "Tag",
+              "de": "Tag"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Checks whether the selected tag is currently used by at least one zone.",
+          "fr": "Vérifie si le tag sélectionné est actuellement utilisé par au moins une zone.",
+          "nl": "Controleert of de geselecteerde tag momenteel door minstens één zone wordt gebruikt.",
+          "de": "Prüft, ob der ausgewählte Tag aktuell von mindestens einer Zone verwendet wird."
+        },
+        "id": "tag_exists"
+      },
+      {
+        "title": {
+          "en": "Tags exist",
+          "fr": "Les tags existent",
+          "nl": "Tags bestaan",
+          "de": "Tags existieren"
+        },
+        "titleFormatted": {
+          "en": "[[tags]] !{{exist|do not exist}}",
+          "fr": "[[tags]] !{{existent|n’existent pas}}",
+          "nl": "[[tags]] !{{bestaan|bestaan niet}}",
+          "de": "[[tags]] !{{existieren|existieren nicht}}"
+        },
+        "args": [
+          {
+            "name": "tags",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Tags (comma-separated)",
+              "fr": "Tags (séparés par des virgules)",
+              "nl": "Tags (kommagescheiden)",
+              "de": "Tags (kommagetrennt)"
+            },
+            "hint": {
+              "en": "Use tags separated by commas, for example: home, work, charging",
+              "fr": "Utilisez des tags séparés par des virgules, par exemple : home, work, charging",
+              "nl": "Gebruik tags gescheiden door komma's, bijvoorbeeld: home, work, charging",
+              "de": "Verwenden Sie Tags durch Kommas getrennt, zum Beispiel: home, work, charging"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more tags separated by commas. Returns true only when all listed tags exist.",
+          "fr": "Saisissez un ou plusieurs tags séparés par des virgules. Renvoie vrai uniquement si tous les tags listés existent.",
+          "nl": "Voer één of meer tags in, gescheiden door komma's. Geeft alleen waar terug wanneer alle vermelde tags bestaan.",
+          "de": "Geben Sie einen oder mehrere Tags durch Kommas getrennt ein. Gibt nur dann wahr zurück, wenn alle aufgeführten Tags existieren."
+        },
+        "id": "tags_exist"
+      },
+      {
+        "title": {
+          "en": "Zone contains only one subject type",
+          "fr": "La zone contient uniquement un type de sujet",
+          "nl": "Zone bevat alleen één onderwerptype",
+          "de": "Zone enthält nur einen Subjekttyp"
+        },
+        "titleFormatted": {
+          "en": "[[zone]] !{{contains only|does not contain only}} [[subjectType]]",
+          "fr": "[[zone]] !{{contient uniquement|ne contient pas uniquement}} [[subjectType]]",
+          "nl": "[[zone]] !{{bevat alleen|bevat niet alleen}} [[subjectType]]",
+          "de": "[[zone]] !{{enthält nur|enthält nicht nur}} [[subjectType]]"
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "subjectType",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns true when every subject currently inside the zone has the selected subject type. This card is invertible.",
+          "fr": "Renvoie vrai lorsque tous les sujets actuellement présents dans la zone ont le type sélectionné. Cette carte est inversible.",
+          "nl": "Geeft waar terug wanneer elk onderwerp dat zich momenteel in de zone bevindt het geselecteerde onderwerpstype heeft. Deze kaart is omkeerbaar.",
+          "de": "Gibt wahr zurück, wenn jedes aktuell in der Zone befindliche Subjekt den ausgewählten Subjekttyp hat. Diese Karte ist invertierbar."
+        },
+        "id": "zone_contains_only_subject_type"
+      },
+      {
+        "title": {
+          "en": "Zone contains only selected subject types",
+          "fr": "La zone contient uniquement les types de sujet sélectionnés",
+          "nl": "Zone bevat alleen geselecteerde onderwerptypen",
+          "de": "Zone enthält nur ausgewählte Subjekttypen"
+        },
+        "titleFormatted": {
+          "en": "[[zone]] !{{contains only|does not contain only}} [[subjectTypes]]",
+          "fr": "[[zone]] !{{contient uniquement|ne contient pas uniquement}} [[subjectTypes]]",
+          "nl": "[[zone]] !{{bevat alleen|bevat niet alleen}} [[subjectTypes]]",
+          "de": "[[zone]] !{{enthält nur|enthält nicht nur}} [[subjectTypes]]"
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "subjectTypes",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Subject types (comma-separated)",
+              "fr": "Types de sujet (séparés par des virgules)",
+              "nl": "Onderwerptypen (kommagescheiden)",
+              "de": "Subjekttypen (kommagetrennt)"
+            },
+            "hint": {
+              "en": "Use subject types separated by commas, for example: person, vehicle",
+              "fr": "Utilisez des types de sujet séparés par des virgules, par exemple : person, vehicle",
+              "nl": "Gebruik onderwerpstypen gescheiden door komma's, bijvoorbeeld: person, vehicle",
+              "de": "Verwenden Sie Subjekttypen durch Kommas getrennt, zum Beispiel: person, vehicle"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more subject types separated by commas. Returns true when every subject in the zone belongs to the listed set of subject types. This card is invertible.",
+          "fr": "Saisissez un ou plusieurs types de sujet séparés par des virgules. Renvoie vrai lorsque tous les sujets de la zone appartiennent à l’ensemble de types listés. Cette carte est inversible.",
+          "nl": "Voer één of meer onderwerpstypen in, gescheiden door komma's. Geeft waar terug wanneer elk onderwerp in de zone behoort tot de vermelde set onderwerpstypen. Deze kaart is omkeerbaar.",
+          "de": "Geben Sie einen oder mehrere Subjekttypen durch Kommas getrennt ein. Gibt wahr zurück, wenn jedes Subjekt in der Zone zur angegebenen Menge von Subjekttypen gehört. Diese Karte ist invertierbar."
+        },
+        "id": "zone_contains_only_subject_types"
+      },
+      {
+        "title": {
+          "en": "Zone contains one subject",
+          "fr": "La zone contient un sujet",
+          "nl": "Zone bevat één onderwerp",
+          "de": "Zone enthält ein Subjekt"
+        },
+        "titleFormatted": {
+          "en": "[[zone]] !{{contains|does not contain}} [[subject]]",
+          "fr": "[[zone]] !{{contient|ne contient pas}} [[subject]]",
+          "nl": "[[zone]] !{{bevat|bevat niet}} [[subject]]",
+          "de": "[[zone]] !{{enthält|enthält nicht}} [[subject]]"
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns true when the selected zone currently contains the selected subject. This card is invertible.",
+          "fr": "Renvoie vrai lorsque la zone sélectionnée contient actuellement le sujet sélectionné. Cette carte est inversible.",
+          "nl": "Geeft waar terug wanneer de geselecteerde zone momenteel het geselecteerde onderwerp bevat. Deze kaart is omkeerbaar.",
+          "de": "Gibt wahr zurück, wenn die ausgewählte Zone aktuell das ausgewählte Subjekt enthält. Diese Karte ist invertierbar."
+        },
+        "id": "zone_contains_subject"
+      },
+      {
+        "title": {
+          "en": "Zone contains one subject type",
+          "fr": "La zone contient un type de sujet",
+          "nl": "Zone bevat één onderwerptype",
+          "de": "Zone enthält einen Subjekttyp"
+        },
+        "titleFormatted": {
+          "en": "[[zone]] !{{contains|does not contain}} type [[subjectType]]",
+          "fr": "[[zone]] !{{contient|ne contient pas}} le type [[subjectType]]",
+          "nl": "[[zone]] !{{bevat|bevat niet}} type [[subjectType]]",
+          "de": "[[zone]] !{{enthält|enthält nicht}} Typ [[subjectType]]"
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "subjectType",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns true when the selected zone contains at least one subject with the selected subject type. This card is invertible.",
+          "fr": "Renvoie vrai lorsque la zone sélectionnée contient au moins un sujet du type sélectionné. Cette carte est inversible.",
+          "nl": "Geeft waar terug wanneer de geselecteerde zone minstens één onderwerp met het geselecteerde onderwerpstype bevat. Deze kaart is omkeerbaar.",
+          "de": "Gibt wahr zurück, wenn die ausgewählte Zone mindestens ein Subjekt mit dem ausgewählten Subjekttyp enthält. Diese Karte ist invertierbar."
+        },
+        "id": "zone_contains_subject_type"
+      },
+      {
+        "title": {
+          "en": "Zone contains subject types",
+          "fr": "La zone contient des types de sujet",
+          "nl": "Zone bevat onderwerptypen",
+          "de": "Zone enthält Subjekttypen"
+        },
+        "titleFormatted": {
+          "en": "[[zone]] !{{contains|does not contain}} [[subjectTypes]]",
+          "fr": "[[zone]] !{{contient|ne contient pas}} [[subjectTypes]]",
+          "nl": "[[zone]] !{{bevat|bevat niet}} [[subjectTypes]]",
+          "de": "[[zone]] !{{enthält|enthält nicht}} [[subjectTypes]]"
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "subjectTypes",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Subject types (comma-separated)",
+              "fr": "Types de sujet (séparés par des virgules)",
+              "nl": "Onderwerptypen (kommagescheiden)",
+              "de": "Subjekttypen (kommagetrennt)"
+            },
+            "hint": {
+              "en": "Use subject types separated by commas, for example: person, vehicle",
+              "fr": "Utilisez des types de sujet séparés par des virgules, par exemple : person, vehicle",
+              "nl": "Gebruik onderwerpstypen gescheiden door komma's, bijvoorbeeld: person, vehicle",
+              "de": "Verwenden Sie Subjekttypen durch Kommas getrennt, zum Beispiel: person, vehicle"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more subject types separated by commas. Returns true when the zone contains at least one subject matching at least one listed type. This card is invertible.",
+          "fr": "Saisissez un ou plusieurs types de sujet séparés par des virgules. Renvoie vrai lorsque la zone contient au moins un sujet correspondant à au moins un type listé. Cette carte est inversible.",
+          "nl": "Voer één of meer onderwerpstypen in, gescheiden door komma's. Geeft waar terug wanneer de zone minstens één onderwerp bevat dat overeenkomt met minstens één vermeld type. Deze kaart is omkeerbaar.",
+          "de": "Geben Sie einen oder mehrere Subjekttypen durch Kommas getrennt ein. Gibt wahr zurück, wenn die Zone mindestens ein Subjekt enthält, das mindestens einem aufgeführten Typ entspricht. Diese Karte ist invertierbar."
+        },
+        "id": "zone_contains_subject_types"
+      },
+      {
+        "title": {
+          "en": "Zone contains subjects",
+          "fr": "La zone contient des sujets",
+          "nl": "Zone bevat onderwerpen",
+          "de": "Zone enthält Subjekte"
+        },
+        "titleFormatted": {
+          "en": "[[zone]] !{{contains|does not contain}} [[subjects]]",
+          "fr": "[[zone]] !{{contient|ne contient pas}} [[subjects]]",
+          "nl": "[[zone]] !{{bevat|bevat niet}} [[subjects]]",
+          "de": "[[zone]] !{{enthält|enthält nicht}} [[subjects]]"
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "subjects",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Subjects (comma-separated names)",
+              "fr": "Sujets (noms séparés par des virgules)",
+              "nl": "Onderwerpen (namen gescheiden door komma's)",
+              "de": "Subjekte (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact subject names separated by commas. Leave empty only if the card hint explicitly says an empty list is allowed.",
+              "fr": "Utilisez des noms de sujet exacts séparés par des virgules. Laissez vide uniquement si l’aide de la carte indique explicitement qu’une liste vide est autorisée.",
+              "nl": "Gebruik exacte onderwerpnamen gescheiden door komma's. Laat dit alleen leeg als de kaarthulp expliciet aangeeft dat een lege lijst is toegestaan.",
+              "de": "Verwenden Sie exakte Subjektnamen durch Kommas getrennt. Lassen Sie das Feld nur leer, wenn die Kartenhilfe ausdrücklich angibt, dass eine leere Liste erlaubt ist."
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more subject names separated by commas. Leave the field empty to simply check whether the zone contains at least one subject. This card is invertible.",
+          "fr": "Saisissez un ou plusieurs noms de sujet séparés par des virgules. Laissez le champ vide pour vérifier simplement si la zone contient au moins un sujet. Cette carte est inversible.",
+          "nl": "Voer één of meer onderwerp-ID's of namen in, gescheiden door komma's. Laat het veld leeg om gewoon te controleren of de zone minstens één onderwerp bevat. Deze kaart is omkeerbaar.",
+          "de": "Geben Sie eine oder mehrere Subjekt-Namen durch Kommas getrennt ein. Lassen Sie das Feld leer, um nur zu prüfen, ob die Zone mindestens ein Subjekt enthält. Diese Karte ist invertierbar."
+        },
+        "id": "zone_contains_subjects"
+      },
+      {
+        "title": {
+          "en": "Zone exists",
+          "fr": "La zone existe",
+          "nl": "Zone bestaat",
+          "de": "Zone existiert"
+        },
+        "titleFormatted": {
+          "en": "[[zone]] !{{exists|does not exist}}",
+          "fr": "[[zone]] !{{existe|n’existe pas}}",
+          "nl": "[[zone]] !{{bestaat|bestaat niet}}",
+          "de": "[[zone]] !{{existiert|existiert nicht}}"
+        },
+        "args": [
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Checks whether the selected zone currently exists in GeoZones.",
+          "fr": "Vérifie si la zone sélectionnée existe actuellement dans GeoZones.",
+          "nl": "Controleert of de geselecteerde zone momenteel in GeoZones bestaat.",
+          "de": "Prüft, ob die ausgewählte Zone aktuell in GeoZones existiert."
+        },
+        "id": "zone_exists"
+      },
+      {
+        "title": {
+          "en": "Zones exist",
+          "fr": "Les zones existent",
+          "nl": "Zones bestaan",
+          "de": "Zonen existieren"
+        },
+        "titleFormatted": {
+          "en": "[[zones]] !{{exist|do not exist}}",
+          "fr": "[[zones]] !{{existent|n’existent pas}}",
+          "nl": "[[zones]] !{{bestaan|bestaan niet}}",
+          "de": "[[zones]] !{{existieren|existieren nicht}}"
+        },
+        "args": [
+          {
+            "name": "zones",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Zones (comma-separated names)",
+              "fr": "Zones (noms séparés par des virgules)",
+              "nl": "Zones (namen gescheiden door komma's)",
+              "de": "Zonen (durch Kommas getrennte Namen)"
+            },
+            "hint": {
+              "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+              "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+              "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+              "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Enter one or more zone names separated by commas. Returns true only when all listed zones exist.",
+          "fr": "Saisissez un ou plusieurs noms de zone séparés par des virgules. Renvoie vrai uniquement si toutes les zones listées existent.",
+          "nl": "Voer één of meer zone-ID's of namen in, gescheiden door komma's. Geeft alleen waar terug wanneer alle vermelde zones bestaan.",
+          "de": "Geben Sie eine oder mehrere Zonen-Namen durch Kommas getrennt ein. Gibt nur dann wahr zurück, wenn alle aufgeführten Zonen existieren."
+        },
+        "id": "zones_exist"
+      }
+    ],
+    "actions": [
+      {
+        "title": {
+          "en": "Calculate distance between coordinates",
+          "fr": "Calculer la distance entre des coordonnées",
+          "nl": "Afstand tussen coördinaten berekenen",
+          "de": "Abstand zwischen Koordinaten berechnen"
+        },
+        "titleFormatted": {
+          "en": "Calculate distance from [[lat1]], [[long1]] to [[lat2]], [[long2]]",
+          "fr": "Calculer la distance de [[lat1]], [[long1]] à [[lat2]], [[long2]]",
+          "nl": "Bereken afstand van [[lat1]], [[long1]] tot [[lat2]], [[long2]]",
+          "de": "Berechne Abstand von [[lat1]], [[long1]] zu [[lat2]], [[long2]]"
+        },
+        "args": [
+          {
+            "name": "lat1",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Latitude A",
+              "fr": "Latitude A",
+              "nl": "Breedtegraad A",
+              "de": "Breitengrad A"
+            }
+          },
+          {
+            "name": "long1",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Longitude A",
+              "fr": "Longitude A",
+              "nl": "Lengtegraad A",
+              "de": "Längengrad A"
+            }
+          },
+          {
+            "name": "lat2",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Latitude B",
+              "fr": "Latitude B",
+              "nl": "Breedtegraad B",
+              "de": "Breitengrad B"
+            }
+          },
+          {
+            "name": "long2",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Longitude B",
+              "fr": "Longitude B",
+              "nl": "Lengtegraad B",
+              "de": "Längengrad B"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "distance_m",
+            "type": "number",
+            "title": {
+              "en": "Distance (m)",
+              "fr": "Distance (m)",
+              "nl": "Afstand (m)",
+              "de": "Abstand (m)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns the straight-line distance in meters between two latitude/longitude pairs.",
+          "fr": "Renvoie la distance à vol d’oiseau en mètres entre deux paires latitude/longitude.",
+          "nl": "Geeft de hemelsbrede afstand in meters terug tussen twee breedte-/lengtegraadparen.",
+          "de": "Gibt die Luftlinienentfernung in Metern zwischen zwei Breiten-/Längengrad-Paaren zurück."
+        },
+        "id": "distance_coordinates_coordinates"
+      },
+      {
+        "title": {
+          "en": "Calculate distance between coordinates and a zone",
+          "fr": "Calculer la distance entre des coordonnées et une zone",
+          "nl": "Afstand tussen coördinaten en een zone berekenen",
+          "de": "Abstand zwischen Koordinaten und einer Zone berechnen"
+        },
+        "titleFormatted": {
+          "en": "Calculate distance from [[lat]], [[long]] to [[zone]]",
+          "fr": "Calculer la distance de [[lat]], [[long]] à [[zone]]",
+          "nl": "Bereken afstand van [[lat]], [[long]] tot [[zone]]",
+          "de": "Berechne Abstand von [[lat]], [[long]] zu [[zone]]"
+        },
+        "args": [
+          {
+            "name": "lat",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Breedtegraad",
+              "de": "Breitengrad"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Lengtegraad",
+              "de": "Längengrad"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "distance_m",
+            "type": "number",
+            "title": {
+              "en": "Distance (m)",
+              "fr": "Distance (m)",
+              "nl": "Afstand (m)",
+              "de": "Abstand (m)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns 0 when the coordinates are inside the zone, otherwise the distance in meters to the zone boundary.",
+          "fr": "Renvoie 0 lorsque les coordonnées sont dans la zone, sinon la distance en mètres jusqu’à la limite de la zone.",
+          "nl": "Geeft 0 terug wanneer de coördinaten in de zone zitten, anders de afstand in meters tot de zonegrens.",
+          "de": "Gibt 0 zurück, wenn sich die Koordinaten in der Zone befinden, sonst den Abstand in Metern bis zur Zonengrenze."
+        },
+        "id": "distance_coordinates_zone"
+      },
+      {
+        "title": {
+          "en": "Calculate distance between a subject and coordinates",
+          "fr": "Calculer la distance entre un sujet et des coordonnées",
+          "nl": "Afstand tussen een onderwerp en coördinaten berekenen",
+          "de": "Abstand zwischen einem Subjekt und Koordinaten berechnen"
+        },
+        "titleFormatted": {
+          "en": "Calculate distance from [[subject]] to [[lat]], [[long]]",
+          "fr": "Calculer la distance de [[subject]] à [[lat]], [[long]]",
+          "nl": "Bereken afstand van [[subject]] tot [[lat]], [[long]]",
+          "de": "Berechne Abstand von [[subject]] zu [[lat]], [[long]]"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Breedtegraad",
+              "de": "Breitengrad"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Lengtegraad",
+              "de": "Längengrad"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "distance_m",
+            "type": "number",
+            "title": {
+              "en": "Distance (m)",
+              "fr": "Distance (m)",
+              "nl": "Afstand (m)",
+              "de": "Abstand (m)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns the distance in meters between a stored subject and raw coordinates.",
+          "fr": "Renvoie la distance en mètres entre un sujet enregistré et des coordonnées brutes.",
+          "nl": "Geeft de afstand in meters terug tussen een opgeslagen onderwerp en ruwe coördinaten.",
+          "de": "Gibt den Abstand in Metern zwischen einem gespeicherten Subjekt und rohen Koordinaten zurück."
+        },
+        "id": "distance_subject_coordinates"
+      },
+      {
+        "title": {
+          "en": "Calculate distance between two subjects",
+          "fr": "Calculer la distance entre deux sujets",
+          "nl": "Afstand tussen twee onderwerpen berekenen",
+          "de": "Abstand zwischen zwei Subjekten berechnen"
+        },
+        "titleFormatted": {
+          "en": "Calculate distance from [[subjectA]] to [[subjectB]]",
+          "fr": "Calculer la distance de [[subjectA]] à [[subjectB]]",
+          "nl": "Bereken afstand van [[subjectA]] tot [[subjectB]]",
+          "de": "Berechne Abstand von [[subjectA]] zu [[subjectB]]"
+        },
+        "args": [
+          {
+            "name": "subjectA",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject A",
+              "fr": "Sujet A",
+              "nl": "Onderwerp A",
+              "de": "Subjekt A"
+            }
+          },
+          {
+            "name": "subjectB",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject B",
+              "fr": "Sujet B",
+              "nl": "Onderwerp B",
+              "de": "Subjekt B"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "distance_m",
+            "type": "number",
+            "title": {
+              "en": "Distance (m)",
+              "fr": "Distance (m)",
+              "nl": "Afstand (m)",
+              "de": "Abstand (m)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns the current distance in meters between two stored subjects.",
+          "fr": "Renvoie la distance actuelle en mètres entre deux sujets enregistrés.",
+          "nl": "Geeft de huidige afstand in meters tussen twee opgeslagen onderwerpen terug.",
+          "de": "Gibt den aktuellen Abstand in Metern zwischen zwei gespeicherten Subjekten zurück."
+        },
+        "id": "distance_subject_subject"
+      },
+      {
+        "title": {
+          "en": "Calculate distance between a subject and a zone",
+          "fr": "Calculer la distance entre un sujet et une zone",
+          "nl": "Afstand tussen een onderwerp en een zone berekenen",
+          "de": "Abstand zwischen einem Subjekt und einer Zone berechnen"
+        },
+        "titleFormatted": {
+          "en": "Calculate distance from [[subject]] to [[zone]]",
+          "fr": "Calculer la distance de [[subject]] à [[zone]]",
+          "nl": "Bereken afstand van [[subject]] tot [[zone]]",
+          "de": "Berechne Abstand von [[subject]] zu [[zone]]"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "zone",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "distance_m",
+            "type": "number",
+            "title": {
+              "en": "Distance (m)",
+              "fr": "Distance (m)",
+              "nl": "Afstand (m)",
+              "de": "Abstand (m)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Returns 0 when the subject is inside the zone, otherwise the distance in meters to the zone boundary.",
+          "fr": "Renvoie 0 lorsque le sujet est dans la zone, sinon la distance en mètres jusqu’à la limite de la zone.",
+          "nl": "Geeft 0 terug wanneer het onderwerp in de zone zit, anders de afstand in meters tot de zonegrens.",
+          "de": "Gibt 0 zurück, wenn sich das Subjekt in der Zone befindet, sonst den Abstand in Metern bis zur Zonengrenze."
+        },
+        "id": "distance_subject_zone"
+      },
+      {
+        "title": {
+          "en": "Evaluate coordinates",
+          "fr": "Évaluer des coordonnées",
+          "nl": "Coördinaten evalueren",
+          "de": "Koordinaten auswerten"
+        },
+        "titleFormatted": {
+          "en": "Evaluate [[lat]], [[long]]",
+          "fr": "Évaluer [[lat]], [[long]]",
+          "nl": "Evalueer [[lat]], [[long]]",
+          "de": "Werte [[lat]], [[long]] aus"
+        },
+        "args": [
+          {
+            "name": "lat",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Breedtegraad",
+              "de": "Breitengrad"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Lengtegraad",
+              "de": "Längengrad"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "found",
+            "type": "boolean",
+            "title": {
+              "en": "Zone found",
+              "fr": "Zone trouvée",
+              "nl": "Zone gevonden",
+              "de": "Zone gefunden"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Evaluates raw coordinates and returns the winning zone, its tags and whether a matching zone was found.",
+          "fr": "Évalue des coordonnées brutes et renvoie la zone gagnante, ses tags et si une zone correspondante a été trouvée.",
+          "nl": "Evalueert ruwe coördinaten en geeft de winnende zone, de tags en aan of er een passende zone gevonden werd.",
+          "de": "Wertet rohe Koordinaten aus und gibt die Gewinnerzone, ihre Tags und an, ob eine passende Zone gefunden wurde."
+        },
+        "id": "evaluate_coordinates"
+      },
+      {
+        "title": {
+          "en": "Evaluate a subject position",
+          "fr": "Évaluer la position d’un sujet",
+          "nl": "Positie van een onderwerp evalueren",
+          "de": "Position eines Subjekts auswerten"
+        },
+        "titleFormatted": {
+          "en": "Evaluate [[subject]]",
+          "fr": "Évaluer [[subject]]",
+          "nl": "Evalueer [[subject]]",
+          "de": "Werte [[subject]] aus"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "movement_state",
+            "type": "string",
+            "title": {
+              "en": "Movement state",
+              "fr": "État de mouvement",
+              "nl": "Bewegingsstatus",
+              "de": "Bewegungsstatus"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Re-evaluates the stored coordinates of the selected subject without writing new coordinates.",
+          "fr": "Réévalue les coordonnées déjà enregistrées du sujet sélectionné sans écrire de nouvelles coordonnées.",
+          "nl": "Evalueert de al opgeslagen coördinaten van het geselecteerde onderwerp opnieuw zonder nieuwe coördinaten te schrijven.",
+          "de": "Wertet die bereits gespeicherten Koordinaten des ausgewählten Subjekts erneut aus, ohne neue Koordinaten zu schreiben."
+        },
+        "id": "evaluate_subject_position"
+      },
+      {
+        "title": {
+          "en": "Force a subject recalculation",
+          "fr": "Forcer le recalcul d’un sujet",
+          "nl": "Herberekening van een onderwerp forceren",
+          "de": "Neuberechnung eines Subjekts erzwingen"
+        },
+        "titleFormatted": {
+          "en": "Force recalculation of [[subject]]",
+          "fr": "Forcer le recalcul de [[subject]]",
+          "nl": "Forceer herberekening van [[subject]]",
+          "de": "Erzwinge Neuberechnung von [[subject]]"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "movement_state",
+            "type": "string",
+            "title": {
+              "en": "Movement state",
+              "fr": "État de mouvement",
+              "nl": "Bewegingsstatus",
+              "de": "Bewegungsstatus"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Forces a recalculation of the selected subject. Useful after changing zones, filters, delays or subject type.",
+          "fr": "Force un recalcul du sujet sélectionné. Utile après modification des zones, filtres, délais ou du type de sujet.",
+          "nl": "Forceert een herberekening van het geselecteerde onderwerp. Handig na het wijzigen van zones, filters, vertragingen of het onderwerpstype.",
+          "de": "Erzwingt eine Neuberechnung des ausgewählten Subjekts. Nützlich nach Änderungen an Zonen, Filtern, Verzögerungen oder dem Subjekttyp."
+        },
+        "id": "force_recalculate_subject"
+      },
+      {
+        "title": {
+          "en": "Purge subjects",
+          "fr": "Purger les sujets",
+          "nl": "Onderwerpen opschonen",
+          "de": "Subjekte bereinigen"
+        },
+        "titleFormatted": {
+          "en": "Purge subjects inactive for at least [[days]] days",
+          "fr": "Purger les sujets inactifs depuis au moins [[days]] jours",
+          "nl": "Schoon onderwerpen op die minstens [[days]] dagen inactief zijn",
+          "de": "Bereinige Subjekte, die mindestens [[days]] Tage inaktiv sind"
+        },
+        "args": [
+          {
+            "name": "days",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Days",
+              "fr": "Jours",
+              "nl": "Dagen",
+              "de": "Tage"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "remaining_subjects_count",
+            "type": "number",
+            "title": {
+              "en": "Remaining subjects count",
+              "fr": "Nombre de sujets restants",
+              "nl": "Aantal resterende onderwerpen",
+              "de": "Anzahl verbleibender Subjekte"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Removes subjects that have not been updated for the given number of days. The token returns the remaining subject count.",
+          "fr": "Supprime les sujets qui n’ont pas été mis à jour depuis le nombre de jours indiqué. Le token renvoie le nombre de sujets restants.",
+          "nl": "Verwijdert onderwerpen die gedurende het opgegeven aantal dagen niet zijn bijgewerkt. De token geeft het aantal resterende onderwerpen terug.",
+          "de": "Entfernt Subjekte, die seit der angegebenen Anzahl Tage nicht aktualisiert wurden. Das Token gibt die verbleibende Anzahl Subjekte zurück."
+        },
+        "id": "purge_subjects"
+      },
+      {
+        "title": {
+          "en": "Rename a subject",
+          "fr": "Renommer un sujet",
+          "nl": "Een onderwerp hernoemen",
+          "de": "Ein Subjekt umbenennen"
+        },
+        "titleFormatted": {
+          "en": "Rename [[subject]] to [[name]]",
+          "fr": "Renommer [[subject]] en [[name]]",
+          "nl": "Hernoem [[subject]] naar [[name]]",
+          "de": "Benenne [[subject]] in [[name]] um"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Name",
+              "fr": "Nom",
+              "nl": "Naam",
+              "de": "Name"
+            },
+            "hint": {
+              "en": "This changes the display name only. The internal subject ID stays the same.",
+              "fr": "Ceci modifie uniquement le nom affiché. L’ID interne du sujet reste identique.",
+              "nl": "Dit wijzigt alleen de zichtbare naam. De interne onderwerp-ID blijft gelijk.",
+              "de": "Dies ändert nur den Anzeigenamen. Die interne Subjekt-ID bleibt gleich."
+            }
+          }
+        ],
+        "tokens": [],
+        "hint": {
+          "en": "Renames the subject display name without changing its internal ID.",
+          "fr": "Renomme le nom affiché du sujet sans modifier son identifiant interne.",
+          "nl": "Wijzigt de zichtbare naam van het onderwerp zonder de interne ID te veranderen.",
+          "de": "Ändert den Anzeigenamen des Subjekts, ohne die interne ID zu ändern."
+        },
+        "id": "rename_subject"
+      },
+      {
+        "title": {
+          "en": "Reset a subject",
+          "fr": "Réinitialiser un sujet",
+          "nl": "Een onderwerp resetten",
+          "de": "Ein Subjekt zurücksetzen"
+        },
+        "titleFormatted": {
+          "en": "Reset [[subject]]",
+          "fr": "Réinitialiser [[subject]]",
+          "nl": "Reset [[subject]]",
+          "de": "Setze [[subject]] zurück"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          }
+        ],
+        "tokens": [],
+        "hint": {
+          "en": "Clears the runtime state of the subject such as current zone, tags, pending state and movement state.",
+          "fr": "Efface l’état d’exécution du sujet, comme la zone courante, les tags, l’état en attente et l’état de mouvement.",
+          "nl": "Wist de runtime-status van het onderwerp, zoals huidige zone, tags, pending-status en bewegingsstatus.",
+          "de": "Löscht den Laufzeitzustand des Subjekts, zum Beispiel aktuelle Zone, Tags, Pending-Status und Bewegungsstatus."
+        },
+        "id": "reset_subject"
+      },
+      {
+        "title": {
+          "en": "Set subject type",
+          "fr": "Définir le type du sujet",
+          "nl": "Onderwerptype instellen",
+          "de": "Subjekttyp festlegen"
+        },
+        "titleFormatted": {
+          "en": "Set type of [[subject]] to [[subjectType]]",
+          "fr": "Définir le type de [[subject]] sur [[subjectType]]",
+          "nl": "Stel type van [[subject]] in op [[subjectType]]",
+          "de": "Setze den Typ von [[subject]] auf [[subjectType]]"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "subjectType",
+            "type": "text",
+            "required": true,
+            "title": {
+              "en": "Subject type",
+              "fr": "Type de sujet",
+              "nl": "Onderwerptype",
+              "de": "Subjekttyp"
+            },
+            "hint": {
+              "en": "Enter an existing type or create a new one.",
+              "fr": "Saisissez un type existant ou créez-en un nouveau.",
+              "nl": "Voer een bestaand type in of maak een nieuw type aan.",
+              "de": "Geben Sie einen vorhandenen Typ ein oder erstellen Sie einen neuen."
+            }
+          }
+        ],
+        "tokens": [],
+        "hint": {
+          "en": "Changes the subject type. This is useful for zone type filters such as person, vehicle or pet.",
+          "fr": "Modifie le type du sujet. Utile pour les filtres de type de zone comme person, vehicle ou pet.",
+          "nl": "Wijzigt het onderwerpstype. Handig voor typefilters van zones zoals person, vehicle of pet.",
+          "de": "Ändert den Subjekttyp. Nützlich für Typfilter von Zonen wie person, vehicle oder pet."
+        },
+        "id": "set_subject_type"
+      },
+      {
+        "title": {
+          "en": "Update and evaluate a subject position",
+          "fr": "Mettre à jour et évaluer la position d’un sujet",
+          "nl": "Positie van een onderwerp bijwerken en evalueren",
+          "de": "Position eines Subjekts aktualisieren und auswerten"
+        },
+        "titleFormatted": {
+          "en": "Update [[subject]] with [[lat]], [[long]]",
+          "fr": "Mettre à jour [[subject]] avec [[lat]], [[long]]",
+          "nl": "Werk [[subject]] bij met [[lat]], [[long]]",
+          "de": "Aktualisiere [[subject]] mit [[lat]], [[long]]"
+        },
+        "args": [
+          {
+            "name": "subject",
+            "type": "autocomplete",
+            "required": true,
+            "title": {
+              "en": "Subject",
+              "fr": "Sujet",
+              "nl": "Onderwerp",
+              "de": "Subjekt"
+            }
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Latitude",
+              "fr": "Latitude",
+              "nl": "Breedtegraad",
+              "de": "Breitengrad"
+            }
+          },
+          {
+            "name": "long",
+            "type": "number",
+            "required": true,
+            "title": {
+              "en": "Longitude",
+              "fr": "Longitude",
+              "nl": "Lengtegraad",
+              "de": "Längengrad"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "zone",
+            "type": "string",
+            "title": {
+              "en": "Zone",
+              "fr": "Zone",
+              "nl": "Zone",
+              "de": "Zone"
+            }
+          },
+          {
+            "name": "previous_zone",
+            "type": "string",
+            "title": {
+              "en": "Previous zone",
+              "fr": "Zone précédente",
+              "nl": "Vorige zone",
+              "de": "Vorherige Zone"
+            }
+          },
+          {
+            "name": "zone_tags",
+            "type": "string",
+            "title": {
+              "en": "Zone tags",
+              "fr": "Tags de la zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
+            }
+          },
+          {
+            "name": "movement_state",
+            "type": "string",
+            "title": {
+              "en": "Movement state",
+              "fr": "État de mouvement",
+              "nl": "Bewegingsstatus",
+              "de": "Bewegungsstatus"
+            }
+          },
+          {
+            "name": "speed_kmh",
+            "type": "number",
+            "title": {
+              "en": "Speed (km/h)",
+              "fr": "Vitesse (km/h)",
+              "nl": "Snelheid (km/u)",
+              "de": "Geschwindigkeit (km/h)"
+            }
+          }
+        ],
+        "hint": {
+          "en": "Stores new coordinates for the subject, applies movement threshold logic, then evaluates the winning zone and movement state.",
+          "fr": "Enregistre de nouvelles coordonnées pour le sujet, applique le seuil de mouvement, puis évalue la zone gagnante et l’état de mouvement.",
+          "nl": "Slaat nieuwe coördinaten voor het onderwerp op, past de bewegingsdrempel toe en evalueert daarna de winnende zone en bewegingsstatus.",
+          "de": "Speichert neue Koordinaten für das Subjekt, wendet die Bewegungsgrenze an und wertet danach Gewinnerzone und Bewegungsstatus aus."
+        },
+        "id": "update_and_evaluate_subject_position"
+      }
+    ]
+  }
+}

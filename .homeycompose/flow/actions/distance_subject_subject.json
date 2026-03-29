@@ -1,0 +1,56 @@
+{
+  "title": {
+    "en": "Calculate distance between two subjects",
+    "fr": "Calculer la distance entre deux sujets",
+    "nl": "Afstand tussen twee onderwerpen berekenen",
+    "de": "Abstand zwischen zwei Subjekten berechnen"
+  },
+  "titleFormatted": {
+    "en": "Calculate distance from [[subjectA]] to [[subjectB]]",
+    "fr": "Calculer la distance de [[subjectA]] à [[subjectB]]",
+    "nl": "Bereken afstand van [[subjectA]] tot [[subjectB]]",
+    "de": "Berechne Abstand von [[subjectA]] zu [[subjectB]]"
+  },
+  "args": [
+    {
+      "name": "subjectA",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject A",
+        "fr": "Sujet A",
+        "nl": "Onderwerp A",
+        "de": "Subjekt A"
+      }
+    },
+    {
+      "name": "subjectB",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject B",
+        "fr": "Sujet B",
+        "nl": "Onderwerp B",
+        "de": "Subjekt B"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "distance_m",
+      "type": "number",
+      "title": {
+        "en": "Distance (m)",
+        "fr": "Distance (m)",
+        "nl": "Afstand (m)",
+        "de": "Abstand (m)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns the current distance in meters between two stored subjects.",
+    "fr": "Renvoie la distance actuelle en mètres entre deux sujets enregistrés.",
+    "nl": "Geeft de huidige afstand in meters tussen twee opgeslagen onderwerpen terug.",
+    "de": "Gibt den aktuellen Abstand in Metern zwischen zwei gespeicherten Subjekten zurück."
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "title": {
+    "en": "Update and evaluate a subject position",
+    "fr": "Mettre à jour et évaluer la position d’un sujet",
+    "nl": "Positie van een onderwerp bijwerken en evalueren",
+    "de": "Position eines Subjekts aktualisieren und auswerten"
+  },
+  "titleFormatted": {
+    "en": "Update [[subject]] with [[lat]], [[long]]",
+    "fr": "Mettre à jour [[subject]] avec [[lat]], [[long]]",
+    "nl": "Werk [[subject]] bij met [[lat]], [[long]]",
+    "de": "Aktualisiere [[subject]] mit [[lat]], [[long]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "lat",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Latitude",
+        "fr": "Latitude",
+        "nl": "Breedtegraad",
+        "de": "Breitengrad"
+      }
+    },
+    {
+      "name": "long",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Longitude",
+        "fr": "Longitude",
+        "nl": "Lengtegraad",
+        "de": "Längengrad"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Stores new coordinates for the subject, applies movement threshold logic, then evaluates the winning zone and movement state.",
+    "fr": "Enregistre de nouvelles coordonnées pour le sujet, applique le seuil de mouvement, puis évalue la zone gagnante et l’état de mouvement.",
+    "nl": "Slaat nieuwe coördinaten voor het onderwerp op, past de bewegingsdrempel toe en evalueert daarna de winnende zone en bewegingsstatus.",
+    "de": "Speichert neue Koordinaten für das Subjekt, wendet die Bewegungsgrenze an und wertet danach Gewinnerzone und Bewegungsstatus aus."
+  }
+}

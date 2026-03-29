@@ -1,0 +1,50 @@
+{
+  "title": {
+    "en": "Subject is in one of several zones",
+    "fr": "Le sujet est dans l’une des zones",
+    "nl": "Onderwerp is in een van de zones",
+    "de": "Subjekt ist in einer der Zonen"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] !{{is|is not}} in one of [[zones]]",
+    "fr": "[[subject]] !{{est|n’est pas}} dans l’une des zones [[zones]]",
+    "nl": "[[subject]] !{{is|is niet}} in een van [[zones]]",
+    "de": "[[subject]] !{{ist|ist nicht}} in einer von [[zones]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "zones",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Zones (comma-separated names)",
+        "fr": "Zones (noms séparés par des virgules)",
+        "nl": "Zones (namen gescheiden door komma's)",
+        "de": "Zonen (durch Kommas getrennte Namen)"
+      },
+      "hint": {
+        "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+        "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+        "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+        "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more zone names separated by commas. Returns true when the subject is inside at least one listed zone. This card is invertible.",
+    "fr": "Saisissez un ou plusieurs noms de zone séparés par des virgules. Renvoie vrai lorsque le sujet est dans au moins une zone listée. Cette carte est inversible.",
+    "nl": "Voer één of meer zone-ID's of namen in, gescheiden door komma's. Geeft waar terug wanneer het onderwerp in minstens één vermelde zone zit. Deze kaart is omkeerbaar.",
+    "de": "Geben Sie eine oder mehrere Zonen-Namen durch Kommas getrennt ein. Gibt wahr zurück, wenn sich das Subjekt in mindestens einer aufgeführten Zone befindet. Diese Karte ist invertierbar."
+  }
+}

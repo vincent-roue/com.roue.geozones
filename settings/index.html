@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GeoZones</title>
+  <script src="/homey.js" data-origin="settings"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>GeoZones 2.0.0</h1>
+      <div id="status"></div>
+    </div>
+    <div class="toolbar">
+      <button id="btnSave" data-i18n="actions.save"></button>
+      <button id="btnReload" data-i18n="actions.reload"></button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button data-tab="zones" class="active" data-i18n="tabs.zones"></button>
+    <button data-tab="subjects" data-i18n="tabs.subjects"></button>
+    <button data-tab="sources" data-i18n="tabs.sources"></button>
+    <button data-tab="general" data-i18n="tabs.general"></button>
+    <button data-tab="io" data-i18n="tabs.io"></button>
+    <button data-tab="help" data-i18n="tabs.help"></button>
+  </nav>
+
+  <main>
+    <section data-panel="zones" class="panel active">
+      <div class="grid two">
+        <div class="card">
+          <div class="toolbar">
+            <button id="btnAddCircle" data-i18n="actions.addCircle"></button>
+            <button id="btnAddPolygon" data-i18n="actions.addPolygon"></button>
+            <button id="btnFitAll" data-i18n="actions.fitAll"></button>
+          </div>
+          <div id="map"></div>
+          <div id="zoneList" class="list"></div>
+        </div>
+        <div class="card">
+          <h2 data-i18n="zones.editor"></h2>
+          <div id="zoneEmpty" class="empty-state" data-i18n="zones.selectZone"></div>
+          <div id="zoneEditor" class="hidden">
+            <label><span data-i18n="common.name"></span><input id="zoneName" type="text"></label>
+            <label><span data-i18n="common.color"></span><input id="zoneColor" type="color"></label>
+            <label><input id="zoneActive" type="checkbox"> <span data-i18n="common.active"></span></label>
+            <label><span data-i18n="common.priority"></span><input id="zonePriority" type="number" step="1"></label>
+            <div class="tag-block">
+              <label><span data-i18n="common.tags"></span></label>
+              <div id="zoneTagsList" class="tags-list"></div>
+              <div class="tag-editor">
+                <input id="zoneTagInput" type="text" data-i18n-placeholder="zones.tagPlaceholder">
+                <button id="btnAddZoneTag" type="button" data-i18n="zones.addTag"></button>
+              </div>
+              <p class="hint" data-i18n="zones.tagsHelp"></p>
+            </div>
+
+            <div id="circleFields">
+              <h3 data-i18n="zones.circle"></h3>
+              <label><span data-i18n="zones.centerLat"></span><input id="zoneCenterLat" type="number" step="any"></label>
+              <label><span data-i18n="zones.centerLng"></span><input id="zoneCenterLng" type="number" step="any"></label>
+              <label><span data-i18n="zones.radius"></span><input id="zoneRadius" type="number" min="1" step="1"></label>
+            </div>
+
+            <div id="polygonFields" class="hidden">
+              <h3 data-i18n="zones.polygon"></h3>
+              <label><span data-i18n="zones.points"></span><textarea id="zonePaths" rows="10"></textarea></label>
+            </div>
+
+            <details>
+              <summary data-i18n="zones.advanced"></summary>
+              <div class="advanced-grid">
+                <label class="field-with-help">
+                  <span data-i18n="zones.entryDelay"></span>
+                  <button type="button" class="info" data-help="zones.entryDelayHelp">?</button>
+                  <input id="zoneEntryDelay" type="number" min="0" step="1">
+                </label>
+                <label class="field-with-help">
+                  <span data-i18n="zones.exitDelay"></span>
+                  <button type="button" class="info" data-help="zones.exitDelayHelp">?</button>
+                  <input id="zoneExitDelay" type="number" min="0" step="1">
+                </label>
+                <label id="zoneHysteresisRow" class="field-with-help">
+                  <span data-i18n="zones.hysteresis"></span>
+                  <button type="button" class="info" data-help="zones.hysteresisHelp">?</button>
+                  <input id="zoneHysteresis" type="number" min="0" step="1">
+                </label>
+                <label class="field-with-help checkbox-row">
+                  <span><input id="zoneWithoutSubject" type="checkbox"> <span data-i18n="zones.appliesWithoutSubject"></span></span>
+                  <button type="button" class="info" data-help="zones.appliesWithoutSubjectHelp">?</button>
+                </label>
+                <label class="field-with-help">
+                  <span data-i18n="zones.subjectFilterMode"></span>
+                  <button type="button" class="info" data-help="zones.subjectFilterHelp">?</button>
+                  <select id="zoneSubjectFilterMode">
+                    <option value="all" data-i18n="zones.filterAll"></option>
+                    <option value="include" data-i18n="zones.filterInclude"></option>
+                    <option value="exclude" data-i18n="zones.filterExclude"></option>
+                  </select>
+                </label>
+                <label><span data-i18n="zones.subjectFilterValues"></span><input id="zoneSubjectFilterValues" type="text"></label>
+                <label class="field-with-help">
+                  <span data-i18n="zones.subjectTypeMode"></span>
+                  <button type="button" class="info" data-help="zones.subjectTypeFilterHelp">?</button>
+                  <select id="zoneSubjectTypeMode">
+                    <option value="all" data-i18n="zones.filterAll"></option>
+                    <option value="include" data-i18n="zones.filterInclude"></option>
+                    <option value="exclude" data-i18n="zones.filterExclude"></option>
+                  </select>
+                </label>
+                <label><span data-i18n="zones.subjectTypeValues"></span><input id="zoneSubjectTypeValues" type="text"></label>
+                <p class="hint" data-i18n="zones.filterPriority"></p>
+              </div>
+            </details>
+
+            <button id="btnDeleteZone" class="danger" data-i18n="actions.deleteZone"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-panel="subjects" class="panel">
+      <div class="card">
+        <h2 data-i18n="subjects.title"></h2>
+        <div id="subjectList" class="list"></div>
+      </div>
+    </section>
+
+    <section data-panel="sources" class="panel">
+      <div class="card">
+        <div class="toolbar space-between">
+          <div>
+            <h2 data-i18n="sources.title"></h2>
+            <p class="hint" data-i18n="sources.intro"></p>
+          </div>
+          <button id="btnRefreshSources" type="button" data-i18n="sources.refresh"></button>
+        </div>
+        <div id="sourceDiagnostics" class="hint diagnostics"></div>
+        <div id="sourceList" class="list"></div>
+      </div>
+    </section>
+
+    <section data-panel="general" class="panel">
+      <div class="grid three">
+        <div class="card section-card">
+          <h2 data-i18n="general.subjectPurgeTitle"></h2>
+          <p class="hint" data-i18n="general.subjectPurgeHelp"></p>
+          <label><input id="generalAutopurgeEnabled" type="checkbox"> <span data-i18n="general.subjectPurgeEnabled"></span></label>
+          <label><span data-i18n="general.subjectPurgeDays"></span><input id="generalAutopurgeDays" type="number" min="0" step="1"></label>
+        </div>
+        <div class="card section-card">
+          <h2 data-i18n="general.historyTitle"></h2>
+          <p class="hint" data-i18n="general.historyHelp"></p>
+          <label><span data-i18n="general.historyDays"></span><input id="generalHistoryRetentionDays" type="number" min="1" step="1"></label>
+        </div>
+        <div class="card section-card">
+          <h2 data-i18n="general.debugTitle"></h2>
+          <p class="hint warning" data-i18n="general.heavyDebugHelp"></p>
+          <label><input id="generalHeavyDebug" type="checkbox"> <span data-i18n="general.heavyDebug"></span></label>
+        </div>
+      </div>
+    </section>
+
+    <section data-panel="io" class="panel">
+      <div class="grid two">
+        <div class="card">
+          <h2 data-i18n="io.exportTitle"></h2>
+          <div class="toolbar">
+            <button id="btnCopyExport" data-i18n="io.copy"></button>
+            <button id="btnDownloadExport" data-i18n="io.download"></button>
+          </div>
+          <textarea id="exportBox" rows="18" readonly></textarea>
+        </div>
+        <div class="card">
+          <h2 data-i18n="io.importTitle"></h2>
+          <div class="toolbar">
+            <button id="btnCopyCurrent" data-i18n="io.copyCurrent"></button>
+            <button id="btnLoadFile" data-i18n="io.loadFile"></button>
+            <input id="importFile" type="file" class="hidden" accept="application/json,.json">
+          </div>
+          <textarea id="importBox" rows="12"></textarea>
+          <div class="toolbar">
+            <button id="btnImportReplace" data-i18n="io.importReplace"></button>
+            <button id="btnImportMerge" data-i18n="io.importMerge"></button>
+          </div>
+          <h3 data-i18n="io.history"></h3>
+          <div id="historyList" class="list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-panel="help" class="panel">
+      <div class="card help-card">
+        <h2 data-i18n="help.title"></h2>
+        <p class="hint" data-i18n="help.intro"></p>
+        <div id="helpContent" class="help-sections"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

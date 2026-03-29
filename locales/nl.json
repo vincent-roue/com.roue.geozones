@@ -1,0 +1,222 @@
+{
+  "app": {
+    "title": "GeoZones"
+  },
+  "settings": {
+    "tabs": {
+      "zones": "Zones",
+      "groups": "Groepen",
+      "categories": "Categorieën",
+      "test": "Test",
+      "import_export": "Import / Export",
+      "help": "Hulp",
+      "subjects": "Onderwerpen"
+    },
+    "status": {
+      "loading": "Laden…",
+      "ready": "Klaar",
+      "saved": "Opgeslagen",
+      "error": "Fout",
+      "unsaved": "Niet-opgeslagen wijzigingen"
+    },
+    "actions": {
+      "add_circle": "Cirkel toevoegen",
+      "add_polygon": "Polygoon toevoegen",
+      "save": "Opslaan",
+      "delete": "Verwijderen",
+      "duplicate": "Dupliceren",
+      "fit_all": "Alle zones tonen",
+      "use_map_center": "Kaartmiddelpunt gebruiken",
+      "run_test": "Test uitvoeren",
+      "export_json": "Config exporteren",
+      "import_replace": "Importeren en vervangen",
+      "import_merge": "Importeren en samenvoegen",
+      "add_field": "Toevoegen",
+      "apply": "Wijzigingen toepassen",
+      "cancel": "Annuleren",
+      "purge_subjects": "Purge inactive subjects now"
+    },
+    "labels": {
+      "search": "Zones zoeken",
+      "map": "Map",
+      "properties": "Zone-eigenschappen",
+      "name": "Naam",
+      "type": "Type",
+      "color": "Kleur",
+      "active": "Actief",
+      "groups": "Groepen",
+      "categories": "Categorieën",
+      "center_lat": "Breedtegraad middelpunt",
+      "center_lng": "Lengtegraad middelpunt",
+      "radius": "Straal (m)",
+      "hysteresis": "Hysterese (m)",
+      "polygon_points": "Polygoonpunten",
+      "latitude": "Breedtegraad",
+      "longitude": "Lengtegraad",
+      "subject_id": "Subject ID (optioneel)",
+      "json": "JSON",
+      "test_summary": "Resultaat",
+      "zone_list": "Zones",
+      "group_list": "Groepen",
+      "category_list": "Categorieën",
+      "standard_zone": "zone",
+      "new_group": "Nieuwe groep — druk op Enter",
+      "new_category": "Nieuwe categorie — druk op Enter",
+      "inactive": "inactief",
+      "zone": "Zone",
+      "subjects": "Subjects",
+      "diagnostics": "Diagnostics",
+      "autopurge_enabled": "Autopurge inactive subjects",
+      "autopurge_days": "Autopurge days (0 = disabled)",
+      "heavy_debug": "Enable heavy debug logging"
+    },
+    "placeholders": {
+      "search_zone": "Zoeken op zonenaam",
+      "zone_name": "Thuis",
+      "group": "Familie",
+      "category": "Thuis",
+      "subject_id": "subject_1",
+      "new_group": "Typ een groep en druk op Enter",
+      "new_category": "Typ een categorie en druk op Enter"
+    },
+    "help": {
+      "title": "Hoe GeoZones werkt",
+      "intro": "GeoZones slaat herbruikbare geografische zones op in de instellingen van Homey Pro. Je maakt zones één keer op de instellingenpagina en hergebruikt die daarna in Flow-kaarten zonder een virtueel apparaat aan te maken.",
+      "rules_title": "Regels",
+      "tips_title": "Aanbevolen gebruik",
+      "create_title": "Zones op de kaart maken en bewerken",
+      "create_circle_title": "Een cirkel maken",
+      "create_polygon_title": "Een polygoon maken",
+      "rules": [
+        "Alleen actieve zones worden geëvalueerd in Flows en op het tabblad Test.",
+        "Een punt op de grens telt als binnen de zone.",
+        "Zonenamen moeten uniek blijven. De gereserveerde waarden not_defined, unknown en error mogen niet worden gebruikt als naam voor een zone, groep of categorie.",
+        "Een zone kan meerdere groepen en categorieën hebben. Lege waarden en onzichtbare tekens worden automatisch genegeerd.",
+        "Als meerdere zones tegelijk overeenkomen, kiest GeoZones eerst de hoogste prioriteit, daarna de kleinste areaM2 en daarna de zonenaam voor een stabiele tie-break.",
+        "Een zichzelf kruisende polygoon wordt geweigerd om dubbelzinnige geometrie te voorkomen."
+      ],
+      "tips": [
+        "Begin met de kaart: teken de vorm en verfijn daarna de eigenschappen in het zonepaneel.",
+        "Gebruik groepen en categorieën als herbruikbare labels zodat één zone in meerdere automatiseringen kan worden gebruikt.",
+        "Gebruik het tabblad Test voordat je een Flow bouwt om de winnende zone, vorige waarden en overgang van onderwerpstatus te controleren.",
+        "Gebruik alleen een onderwerp-ID als GeoZones de status moet onthouden en onderwerptriggers moet activeren.",
+        "Sla belangrijke wijzigingen op zodat de configuratie op Homey Pro synchroon blijft met de kaart."
+      ],
+      "create_circle_steps": [
+        "Open het tabblad Zones en klik op “Cirkel toevoegen”.",
+        "Klik op de kaart om het middelpunt te plaatsen en sleep daarna om de straal te bepalen.",
+        "Selecteer daarna de zone in de lijst om naam, kleur, groepen, categorieën en hysterese aan te passen.",
+        "Sla de configuratie op wanneer alles goed staat."
+      ],
+      "create_polygon_steps": [
+        "Open het tabblad Zones en klik op “Polygoon toevoegen”.",
+        "Klik op de kaart om elk hoekpunt te plaatsen.",
+        "Dubbelklik om de vorm te voltooien.",
+        "Als de polygoon zichzelf kruist, weigert GeoZones die vorm om dubbelzinnige resultaten te voorkomen."
+      ],
+      "example_circle_title": "Cirkelvoorbeeld: Eiffeltoren",
+      "example_circle_body": "Een eenvoudig voorbeeld van een cirkel rond de Eiffeltoren. Dit is de juiste keuze voor een snelle zone rond één centraal punt.",
+      "example_circle_meta": "Middelpunt: 48.85837, 2.294481 · Straal: 250 m · Hysterese: 35 m",
+      "example_polygon_title": "Polygoonvoorbeeld: Parijs",
+      "example_polygon_body": "Een eenvoudig voorbeeld van een polygoon rond Parijs. Het laat het verschil zien tussen een cirkel en een vrije vorm wanneer de echte vorm telt.",
+      "example_polygon_meta": "Vereenvoudigde polygoon rond Parijs om een vrije vorm te tonen.",
+      "load_example_circle": "Voeg dit voorbeeld toe op de kaart",
+      "load_example_polygon": "Voeg dit voorbeeld toe op de kaart",
+      "store_pitch": "GeoZones vult een gat op Homey Pro met herbruikbare geografische zones, groepen en categorieën, zonder apparaten te maken.",
+      "how_it_works_more_a": "Op het tabblad Zones is elke zone een cirkel of een polygoon. Een cirkel is ideaal rond één bekend punt zoals thuis, werk, een parkeerplaats of een winkel. Een polygoon is beter wanneer de echte vorm belangrijk is, bijvoorbeeld een stad, campus, industrieterrein, wijk of onregelmatig perceel. Elke zone heeft ook een kleur, een actieve status, optionele groepen, optionele categorieën, een prioriteit en een vooraf berekende areaM2-waarde die wordt gebruikt voor tie-breaks.",
+      "how_it_works_more_b": "Wanneer GeoZones coördinaten evalueert, controleert de app alleen actieve zones. Ze test of het punt binnen elke cirkel of polygoon ligt. Als meerdere zones tegelijk overeenkomen, kiest GeoZones eerst de hoogste prioriteit en daarna de kleinste areaM2, zodat een kleine nauwkeurige zone wint van een grotere zone. Voor cirkels vergroot hysterese de uittrekradius voor het laatst bekende onderwerp, zodat Homey niet te snel wisselt wanneer coördinaten dicht bij de grens bewegen.",
+      "create_intro": "Het tabblad Zones is de hoofdwerkplek. De grote kaart is waar je geometrie tekent en bewerkt. In de kaart Zones onder de kaart kun je bestaande zones zoeken, bekijken en selecteren. In Zone-eigenschappen kun je de naam wijzigen, de kleur aanpassen, de zone activeren of deactiveren, groepen en categorieën koppelen en voor cirkels het middelpunt, de straal en hysterese bewerken.",
+      "create_more": "Klik op Cirkel toevoegen om een nieuwe cirkel direct op de kaart te tekenen. Klik op Polygoon toevoegen om punt voor punt een vrije vorm te maken. Zodra de zone bestaat kun je haar in de lijst of op de kaart selecteren om de details te bewerken. Met de ingebouwde Leaflet-bewerking kun je cirkels verplaatsen of vergroten, polygonen aanpassen en vormen verwijderen.",
+      "flow_title": "GeoZones in Flow-kaarten gebruiken",
+      "flow_intro": "GeoZones is bedoeld voor Homey Flows. De instellingenpagina definieert herbruikbare gegevens en de Flow-kaarten gebruiken die later met live coördinaten van een andere app, een telefoon, een webhook of je eigen logica.",
+      "flow_more": "Typisch gebruik: een andere Flow levert breedtegraad en lengtegraad, een EN-kaart controleert of die coördinaten overeenkomen met een zone, groep of categorie, en de DAN-kaart bepaalt daarna de winnende zone en geeft tags terug zoals zone, groepen, categorieën, type en vorige waarden voor de rest van de automatisering. De EN-kaart kan ook de opgeslagen onderwerpstatus bijwerken.",
+      "flow_and_title": "EN-kaarten",
+      "flow_then_title": "DAN-kaart",
+      "flow_and_cards": [
+        "Coördinaten zijn in een zone: waar als het punt overeenkomt met de gekozen zone.",
+        "Coördinaten zijn in een groep: waar als de winnende zone tot de gekozen groep behoort.",
+        "Coördinaten zijn in een categorie: waar als de winnende zone tot de gekozen categorie behoort.",
+        "Coördinaten zijn in een willekeurige zone: handig wanneer minstens één match voldoende is.",
+        "Coördinaten zijn in geen enkele zone: handig voor automatiseringen buiten alle gedefinieerde gebieden."
+      ],
+      "flow_then_cards": [
+        "Evalueer geografische positie: bepaalt de beste overeenkomende zone met dezelfde regels als de voorwaardekaarten.",
+        "De actie geeft tags terug zoals zone, groepen, categorieën, vorige waarden, zonetype en bewegingsstatistieken.",
+        "Gebruik een onderwerp-ID als statusgeheugen, hysterese-continuïteit en onderwerptriggers per persoon of apparaat gescheiden moeten blijven."
+      ],
+      "flow_when_title": "Triggers",
+      "flow_when_cards": [
+        "Opgeslagen onderwerpwaarde gewijzigd: wordt geactiveerd wanneer de opgeslagen zone, groepen of categorieën veranderen, inclusief overgangen van of naar unknown, not_defined of error.",
+        "Opgeslagen onderwerp is een waarde binnengekomen: wordt geactiveerd wanneer een onderwerp een zone, groep of categorie binnenkomt.",
+        "Opgeslagen onderwerp heeft een waarde verlaten: wordt geactiveerd wanneer een onderwerp een zone, groep of categorie verlaat."
+      ],
+      "subjects_title": "Subjects and memory",
+      "subjects_body": "GeoZones kan één opgeslagen status per onderwerp bewaren. Een onderwerp bevat de huidige zone, groepen, categorieën, laatste coördinaten en tijdstempel.",
+      "subjects_rules": [
+        "Gebruik een onderwerp-ID in de evaluatie-actie of in de coördinatenvoorwaarde met statusupdate ingeschakeld om de opgeslagen status te schrijven.",
+        "unknown betekent dat het onderwerp nog geen opgeslagen status heeft. not_defined betekent dat een evaluatie gelukt is maar geen zone overeenkwam. error betekent dat een persistente evaluatie is mislukt.",
+        "Het tabblad Onderwerpen toont opgeslagen onderwerpen en laat je ze handmatig verwijderen.",
+        "Automatische opschoning kan inactieve onderwerpen verwijderen na een instelbaar aantal dagen."
+      ],
+      "debug_title": "Debug logging",
+      "debug_body": "Minimal logs are always written. Heavy debug logging adds detailed internal traces and should only be enabled when troubleshooting.",
+      "debug_rules": [
+        "Heavy debug logging increases CPU and memory usage.",
+        "Disable it again after debugging to keep normal overhead low."
+      ],
+      "debug_warning": "Heavy debug logging increases CPU and memory usage and should only be enabled for debugging.",
+      "json_title": "Add a zone from JSON",
+      "json_body": "De JSON-actie accepteert één strikt zone-object voor een cirkel of een polygoon. Onbekende velden worden genegeerd, maar ongeldige bruikbare velden veroorzaken een expliciete fout.",
+      "json_rules": [
+        "De naam moet uniek zijn en mag niet not_defined, unknown of error zijn.",
+        "Cirkelvelden: name, type=circle, center.lat, center.lng, radius, optionele hysteresis, active, priority, color, groups en categories.",
+        "Polygoonvelden: name, type=polygon, paths, optionele active, priority, color, groups en categories.",
+        "areaM2 wordt door GeoZones opnieuw berekend en mag niet als betrouwbare importinvoer worden gebruikt."
+      ]
+    },
+    "messages": {
+      "confirm_delete_zone": "Deze zone verwijderen?",
+      "confirm_delete_item": "Dit item verwijderen?",
+      "invalid_json": "Ongeldige JSON",
+      "zone_name_required": "Zonenaam is verplicht",
+      "zone_name_duplicate": "Zonenamen moeten uniek zijn",
+      "polygon_self_intersection": "Deze polygoon kruist zichzelf en kan niet worden opgeslagen",
+      "zone_saved": "Zone opgeslagen",
+      "config_saved": "Configuratie opgeslagen",
+      "group_removed": "Groep uit alle zones verwijderd",
+      "category_removed": "Categorie uit alle zones verwijderd",
+      "import_done": "Import voltooid",
+      "test_empty": "Nog geen test uitgevoerd",
+      "no_zone_selected": "Selecteer een zone op de kaart of in de lijst",
+      "map_note": "Teken direct op de kaart en sla daarna je wijzigingen op.",
+      "zone_deleted": "Zone verwijderd",
+      "changes_cancelled": "Niet-opgeslagen wijzigingen geannuleerd",
+      "import_loaded": "JSON lokaal toegepast. Klik op Opslaan om de wijzigingen te bewaren.",
+      "invalid_root_object": "De JSON-root moet een object zijn.",
+      "zones_must_be_array": "zones moet een array zijn.",
+      "groups_must_be_array": "groups moet een array zijn.",
+      "categories_must_be_array": "categories moet een array zijn.",
+      "invalid_circle_center": "Ongeldig middelpunt voor cirkel",
+      "invalid_radius": "Ongeldige straal",
+      "invalid_hysteresis": "Ongeldige hysterese",
+      "invalid_polygon_points": "Een polygoon moet minstens 3 punten hebben",
+      "invalid_polygon_coordinates": "Ongeldige polygooncoördinaten",
+      "zone_groups_must_be_array": "Zonegroepen moeten een array zijn",
+      "zone_categories_must_be_array": "Zonecategorieën moeten een array zijn",
+      "invalid_color": "Ongeldige kleur",
+      "test_no_match": "Geen overeenkomende zone",
+      "no_subjects": "No subjects stored yet",
+      "subjects_purged": "Subjects purged",
+      "reserved_name": "Deze naam is gereserveerd",
+      "reserved_group_or_category": "Gereserveerde waarden mogen niet worden gebruikt voor groepen of categorieën"
+    },
+    "defaults": {
+      "circle_name": "Cirkel",
+      "polygon_name": "Polygoon"
+    },
+    "import": {
+      "note_title": "Hoe dit tabblad werkt",
+      "note_body": "De JSON die hier wordt getoond is een live voorbeeld van het huidige concept. Het bewerken ervan werkt de andere tabbladen niet bij totdat je op Importeren en vervangen of Importeren en samenvoegen klikt. Opslaan bewaart het huidige concept in Homey. Annuleren laadt de laatst opgeslagen configuratie opnieuw."
+    }
+  }
+}

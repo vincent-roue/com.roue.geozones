@@ -1,0 +1,56 @@
+{
+  "title": {
+    "en": "Calculate distance between a subject and a zone",
+    "fr": "Calculer la distance entre un sujet et une zone",
+    "nl": "Afstand tussen een onderwerp en een zone berekenen",
+    "de": "Abstand zwischen einem Subjekt und einer Zone berechnen"
+  },
+  "titleFormatted": {
+    "en": "Calculate distance from [[subject]] to [[zone]]",
+    "fr": "Calculer la distance de [[subject]] à [[zone]]",
+    "nl": "Bereken afstand van [[subject]] tot [[zone]]",
+    "de": "Berechne Abstand von [[subject]] zu [[zone]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "distance_m",
+      "type": "number",
+      "title": {
+        "en": "Distance (m)",
+        "fr": "Distance (m)",
+        "nl": "Afstand (m)",
+        "de": "Abstand (m)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns 0 when the subject is inside the zone, otherwise the distance in meters to the zone boundary.",
+    "fr": "Renvoie 0 lorsque le sujet est dans la zone, sinon la distance en mètres jusqu’à la limite de la zone.",
+    "nl": "Geeft 0 terug wanneer het onderwerp in de zone zit, anders de afstand in meters tot de zonegrens.",
+    "de": "Gibt 0 zurück, wenn sich das Subjekt in der Zone befindet, sonst den Abstand in Metern bis zur Zonengrenze."
+  }
+}

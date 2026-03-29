@@ -1,0 +1,50 @@
+{
+  "title": {
+    "en": "Subject is one of several types",
+    "fr": "Le sujet est de l’un des types",
+    "nl": "Onderwerp is een van de typen",
+    "de": "Subjekt ist einer der Typen"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] !{{is|is not}} one of [[subjectTypes]]",
+    "fr": "[[subject]] !{{est|n’est pas}} de l’un des types [[subjectTypes]]",
+    "nl": "[[subject]] !{{is|is niet}} een van [[subjectTypes]]",
+    "de": "[[subject]] !{{ist|ist nicht}} einer von [[subjectTypes]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subjectTypes",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Subject types (comma-separated)",
+        "fr": "Types de sujet (séparés par des virgules)",
+        "nl": "Onderwerptypen (kommagescheiden)",
+        "de": "Subjekttypen (kommagetrennt)"
+      },
+      "hint": {
+        "en": "Use subject types separated by commas, for example: person, vehicle",
+        "fr": "Utilisez des types de sujet séparés par des virgules, par exemple : person, vehicle",
+        "nl": "Gebruik onderwerpstypen gescheiden door komma's, bijvoorbeeld: person, vehicle",
+        "de": "Verwenden Sie Subjekttypen durch Kommas getrennt, zum Beispiel: person, vehicle"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more subject types separated by commas. Returns true when the subject type matches at least one listed type. This card is invertible.",
+    "fr": "Saisissez un ou plusieurs types de sujet séparés par des virgules. Renvoie vrai lorsque le type du sujet correspond à au moins un type listé. Cette carte est inversible.",
+    "nl": "Voer één of meer onderwerpstypen in, gescheiden door komma's. Geeft waar terug wanneer het onderwerpstype overeenkomt met minstens één vermeld type. Deze kaart is omkeerbaar.",
+    "de": "Geben Sie einen oder mehrere Subjekttypen durch Kommas getrennt ein. Gibt wahr zurück, wenn der Subjekttyp mindestens einem aufgeführten Typ entspricht. Diese Karte ist invertierbar."
+  }
+}

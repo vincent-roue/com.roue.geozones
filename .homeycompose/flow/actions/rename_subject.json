@@ -1,0 +1,51 @@
+{
+  "title": {
+    "en": "Rename a subject",
+    "fr": "Renommer un sujet",
+    "nl": "Een onderwerp hernoemen",
+    "de": "Ein Subjekt umbenennen"
+  },
+  "titleFormatted": {
+    "en": "Rename [[subject]] to [[name]]",
+    "fr": "Renommer [[subject]] en [[name]]",
+    "nl": "Hernoem [[subject]] naar [[name]]",
+    "de": "Benenne [[subject]] in [[name]] um"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Name",
+        "fr": "Nom",
+        "nl": "Naam",
+        "de": "Name"
+      },
+      "hint": {
+        "en": "This changes the display name only. The internal subject ID stays the same.",
+        "fr": "Ceci modifie uniquement le nom affiché. L’ID interne du sujet reste identique.",
+        "nl": "Dit wijzigt alleen de zichtbare naam. De interne onderwerp-ID blijft gelijk.",
+        "de": "Dies ändert nur den Anzeigenamen. Die interne Subjekt-ID bleibt gleich."
+      }
+    }
+  ],
+  "tokens": [],
+  "hint": {
+    "en": "Renames the subject display name without changing its internal ID.",
+    "fr": "Renomme le nom affiché du sujet sans modifier son identifiant interne.",
+    "nl": "Wijzigt de zichtbare naam van het onderwerp zonder de interne ID te veranderen.",
+    "de": "Ändert den Anzeigenamen des Subjekts, ohne die interne ID zu ändern."
+  }
+}

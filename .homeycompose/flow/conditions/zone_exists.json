@@ -1,0 +1,33 @@
+{
+  "title": {
+    "en": "Zone exists",
+    "fr": "La zone existe",
+    "nl": "Zone bestaat",
+    "de": "Zone existiert"
+  },
+  "titleFormatted": {
+    "en": "[[zone]] !{{exists|does not exist}}",
+    "fr": "[[zone]] !{{existe|n’existe pas}}",
+    "nl": "[[zone]] !{{bestaat|bestaat niet}}",
+    "de": "[[zone]] !{{existiert|existiert nicht}}"
+  },
+  "args": [
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Checks whether the selected zone currently exists in GeoZones.",
+    "fr": "Vérifie si la zone sélectionnée existe actuellement dans GeoZones.",
+    "nl": "Controleert of de geselecteerde zone momenteel in GeoZones bestaat.",
+    "de": "Prüft, ob die ausgewählte Zone aktuell in GeoZones existiert."
+  }
+}

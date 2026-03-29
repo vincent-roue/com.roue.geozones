@@ -1,0 +1,74 @@
+{
+  "title": {
+    "en": "Subject has one of the movement states",
+    "fr": "Le sujet a l’un des états de mouvement",
+    "nl": "Onderwerp heeft een van de bewegingsstatussen",
+    "de": "Subjekt hat einen der Bewegungszustände"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] !{{is|is not}} in [[movementStates]]",
+    "fr": "[[subject]] !{{est|n’est pas}} dans [[movementStates]]",
+    "nl": "[[subject]] !{{is|is niet}} in [[movementStates]]",
+    "de": "[[subject]] !{{ist|ist nicht}} in [[movementStates]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "movementStates",
+      "type": "multiselect",
+      "required": true,
+      "conjunction": "or",
+      "title": {
+        "en": "Movement states",
+        "fr": "États de mouvement",
+        "nl": "Bewegingsstatussen",
+        "de": "Bewegungszustände"
+      },
+      "values": [
+        {
+          "id": "unknown",
+          "title": {
+            "en": "Unknown",
+            "fr": "Inconnu",
+            "nl": "Onbekend",
+            "de": "Unbekannt"
+          }
+        },
+        {
+          "id": "stable",
+          "title": {
+            "en": "Stable",
+            "fr": "Stable",
+            "nl": "Stabiel",
+            "de": "Stabil"
+          }
+        },
+        {
+          "id": "moving",
+          "title": {
+            "en": "Moving",
+            "fr": "En mouvement",
+            "nl": "In beweging",
+            "de": "In Bewegung"
+          }
+        }
+      ]
+    }
+  ],
+  "hint": {
+    "en": "Select one or more movement states. Returns true when the current subject movement state matches at least one selected state. This card is invertible.",
+    "fr": "Sélectionnez un ou plusieurs états de mouvement. Renvoie vrai lorsque l’état de mouvement courant du sujet correspond à au moins un état sélectionné. Cette carte est inversible.",
+    "nl": "Selecteer één of meer bewegingsstatussen. Geeft waar terug wanneer de huidige bewegingsstatus van het onderwerp overeenkomt met minstens één geselecteerde status. Deze kaart is omkeerbaar.",
+    "de": "Wählen Sie einen oder mehrere Bewegungszustände. Gibt wahr zurück, wenn der aktuelle Bewegungszustand des Subjekts mindestens einem ausgewählten Zustand entspricht. Diese Karte ist invertierbar."
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "title": {
+    "en": "Set subject type",
+    "fr": "Définir le type du sujet",
+    "nl": "Onderwerptype instellen",
+    "de": "Subjekttyp festlegen"
+  },
+  "titleFormatted": {
+    "en": "Set type of [[subject]] to [[subjectType]]",
+    "fr": "Définir le type de [[subject]] sur [[subjectType]]",
+    "nl": "Stel type van [[subject]] in op [[subjectType]]",
+    "de": "Setze den Typ von [[subject]] auf [[subjectType]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subjectType",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      },
+      "hint": {
+        "en": "Enter an existing type or create a new one.",
+        "fr": "Saisissez un type existant ou créez-en un nouveau.",
+        "nl": "Voer een bestaand type in of maak een nieuw type aan.",
+        "de": "Geben Sie einen vorhandenen Typ ein oder erstellen Sie einen neuen."
+      }
+    }
+  ],
+  "tokens": [],
+  "hint": {
+    "en": "Changes the subject type. This is useful for zone type filters such as person, vehicle or pet.",
+    "fr": "Modifie le type du sujet. Utile pour les filtres de type de zone comme person, vehicle ou pet.",
+    "nl": "Wijzigt het onderwerpstype. Handig voor typefilters van zones zoals person, vehicle of pet.",
+    "de": "Ändert den Subjekttyp. Nützlich für Typfilter von Zonen wie person, vehicle oder pet."
+  }
+}

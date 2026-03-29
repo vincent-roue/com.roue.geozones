@@ -1,0 +1,86 @@
+{
+  "title": {
+    "en": "Subject entered a zone",
+    "fr": "Un sujet est entré dans une zone",
+    "nl": "Onderwerp is een zone binnengekomen",
+    "de": "Subjekt hat eine Zone betreten"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] entered [[zone]]",
+    "fr": "[[subject]] est entré dans [[zone]]",
+    "nl": "[[subject]] kwam binnen in [[zone]]",
+    "de": "[[subject]] hat [[zone]] betreten"
+  },
+  "hint": {
+    "en": "Triggers when the selected subject enters the selected zone. The zone result already includes zone priority, subject filters, subject type filters, hysteresis and entry delay handling. Use the zone token for the current zone and previous zone for the zone held before the new entry.",
+    "fr": "Se déclenche lorsque le sujet sélectionné entre dans la zone sélectionnée. Le résultat tient déjà compte de la priorité de zone, des filtres sujet, des filtres de type, de l’hystérésis et du délai d’entrée. Utilisez le token zone pour la zone actuelle et zone précédente pour la zone tenue avant la nouvelle entrée.",
+    "nl": "Wordt geactiveerd wanneer het geselecteerde onderwerp de geselecteerde zone binnenkomt. Het resultaat houdt al rekening met zoneprioriteit, onderwerpfilters, typefilters, hysterese en toegangsvertraging. Gebruik de token zone voor de huidige zone en previous zone voor de zone die vóór de nieuwe binnenkomst actief was.",
+    "de": "Wird ausgelöst, wenn das ausgewählte Subjekt die ausgewählte Zone betritt. Das Ergebnis berücksichtigt bereits Zonenpriorität, Subjektfilter, Typfilter, Hysterese und Eintrittsverzögerung. Verwenden Sie das Token Zone für die aktuelle Zone und Vorherige Zone für die Zone, die vor dem neuen Eintritt aktiv war."
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    }
+  ]
+}

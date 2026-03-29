@@ -1,0 +1,44 @@
+{
+  "title": {
+    "en": "Zone contains one subject type",
+    "fr": "La zone contient un type de sujet",
+    "nl": "Zone bevat één onderwerptype",
+    "de": "Zone enthält einen Subjekttyp"
+  },
+  "titleFormatted": {
+    "en": "[[zone]] !{{contains|does not contain}} type [[subjectType]]",
+    "fr": "[[zone]] !{{contient|ne contient pas}} le type [[subjectType]]",
+    "nl": "[[zone]] !{{bevat|bevat niet}} type [[subjectType]]",
+    "de": "[[zone]] !{{enthält|enthält nicht}} Typ [[subjectType]]"
+  },
+  "args": [
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "subjectType",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns true when the selected zone contains at least one subject with the selected subject type. This card is invertible.",
+    "fr": "Renvoie vrai lorsque la zone sélectionnée contient au moins un sujet du type sélectionné. Cette carte est inversible.",
+    "nl": "Geeft waar terug wanneer de geselecteerde zone minstens één onderwerp met het geselecteerde onderwerpstype bevat. Deze kaart is omkeerbaar.",
+    "de": "Gibt wahr zurück, wenn die ausgewählte Zone mindestens ein Subjekt mit dem ausgewählten Subjekttyp enthält. Diese Karte ist invertierbar."
+  }
+}

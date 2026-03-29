@@ -1,0 +1,93 @@
+{
+  "title": {
+    "en": "Any subject was recalculated",
+    "fr": "N’importe quel sujet a été recalculé",
+    "nl": "Eender welk onderwerp is opnieuw berekend",
+    "de": "Beliebiges Subjekt wurde neu berechnet"
+  },
+  "titleFormatted": {
+    "en": "Any subject was recalculated",
+    "fr": "N’importe quel sujet a été recalculé",
+    "nl": "Eender welk onderwerp is opnieuw berekend",
+    "de": "Beliebiges Subjekt wurde neu berechnet"
+  },
+  "args": [],
+  "tokens": [
+    {
+      "name": "subject_name",
+      "type": "string",
+      "title": {
+        "en": "Subject name",
+        "fr": "Nom du sujet",
+        "nl": "Naam van onderwerp",
+        "de": "Subjektname"
+      }
+    },
+    {
+      "name": "subject_type",
+      "type": "string",
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Triggers when any subject is recalculated. Use this card when you want one global automation reacting to all GeoZones recalculations. subject name and subject type identify the matched subject.",
+    "fr": "Se déclenche lorsqu’un sujet quelconque est recalculé. Utilisez cette carte lorsque vous voulez une automatisation globale réagissant à tous les recalculs GeoZones. nom du sujet et type de sujet identifient le sujet correspondant.",
+    "nl": "Wordt geactiveerd wanneer een willekeurig onderwerp opnieuw wordt berekend. Gebruik deze kaart voor één globale automatisering die reageert op alle GeoZones-herberekeningen. subject name en subject type identificeren het overeenkomende onderwerp.",
+    "de": "Wird ausgelöst, wenn ein beliebiges Subjekt neu berechnet wird. Verwenden Sie diese Karte für eine globale Automatisierung, die auf alle GeoZones-Neuberechnungen reagiert. Subject name und Subject type identifizieren das passende Subjekt."
+  }
+}

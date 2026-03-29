@@ -1,0 +1,61 @@
+{
+  "title": {
+    "en": "Coordinates match several tags",
+    "fr": "Les coordonnées correspondent à plusieurs tags",
+    "nl": "Coördinaten komen overeen met meerdere tags",
+    "de": "Koordinaten entsprechen mehreren Tags"
+  },
+  "titleFormatted": {
+    "en": "[[lat]], [[long]] !{{match|do not match}} one of [[tags]]",
+    "fr": "[[lat]], [[long]] !{{correspondent|ne correspondent pas}} à l’un des tags [[tags]]",
+    "nl": "[[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} een van [[tags]]",
+    "de": "[[lat]], [[long]] !{{entsprechen|entsprechen nicht}} einem von [[tags]]"
+  },
+  "args": [
+    {
+      "name": "lat",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Latitude",
+        "fr": "Latitude",
+        "nl": "Breedtegraad",
+        "de": "Breitengrad"
+      }
+    },
+    {
+      "name": "long",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Longitude",
+        "fr": "Longitude",
+        "nl": "Lengtegraad",
+        "de": "Längengrad"
+      }
+    },
+    {
+      "name": "tags",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Tags (comma-separated)",
+        "fr": "Tags (séparés par des virgules)",
+        "nl": "Tags (kommagescheiden)",
+        "de": "Tags (kommagetrennt)"
+      },
+      "hint": {
+        "en": "Use tags separated by commas, for example: home, work, charging",
+        "fr": "Utilisez des tags séparés par des virgules, par exemple : home, work, charging",
+        "nl": "Gebruik tags gescheiden door komma's, bijvoorbeeld: home, work, charging",
+        "de": "Verwenden Sie Tags durch Kommas getrennt, zum Beispiel: home, work, charging"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more tags separated by commas. Returns true when the coordinates match at least one zone carrying at least one listed tag. This card is invertible.",
+    "fr": "Saisissez un ou plusieurs tags séparés par des virgules. Renvoie vrai lorsque les coordonnées correspondent à au moins une zone portant au moins un tag listé. Cette carte est inversible.",
+    "nl": "Voer één of meer tags in, gescheiden door komma's. Geeft waar terug wanneer de coördinaten overeenkomen met minstens één zone die minstens één vermelde tag draagt. Deze kaart is omkeerbaar.",
+    "de": "Geben Sie einen oder mehrere Tags durch Kommas getrennt ein. Gibt wahr zurück, wenn die Koordinaten mindestens einer Zone entsprechen, die mindestens einen der aufgeführten Tags trägt. Diese Karte ist invertierbar."
+  }
+}

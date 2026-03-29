@@ -1,0 +1,33 @@
+{
+  "title": {
+    "en": "Subject exists",
+    "fr": "Le sujet existe",
+    "nl": "Onderwerp bestaat",
+    "de": "Subjekt existiert"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] !{{exists|does not exist}}",
+    "fr": "[[subject]] !{{existe|n’existe pas}}",
+    "nl": "[[subject]] !{{bestaat|bestaat niet}}",
+    "de": "[[subject]] !{{existiert|existiert nicht}}"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Checks whether the selected subject currently exists in GeoZones.",
+    "fr": "Vérifie si le sujet sélectionné existe actuellement dans GeoZones.",
+    "nl": "Controleert of het geselecteerde onderwerp momenteel in GeoZones bestaat.",
+    "de": "Prüft, ob das ausgewählte Subjekt aktuell in GeoZones existiert."
+  }
+}

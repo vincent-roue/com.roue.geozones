@@ -1,0 +1,39 @@
+{
+  "title": {
+    "en": "Subject types exist",
+    "fr": "Les types de sujet existent",
+    "nl": "Onderwerptypen bestaan",
+    "de": "Subjekttypen existieren"
+  },
+  "titleFormatted": {
+    "en": "[[subjectTypes]] !{{exist|do not exist}}",
+    "fr": "[[subjectTypes]] !{{existent|n’existent pas}}",
+    "nl": "[[subjectTypes]] !{{bestaan|bestaan niet}}",
+    "de": "[[subjectTypes]] !{{existieren|existieren nicht}}"
+  },
+  "args": [
+    {
+      "name": "subjectTypes",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Subject types (comma-separated)",
+        "fr": "Types de sujet (séparés par des virgules)",
+        "nl": "Onderwerptypen (kommagescheiden)",
+        "de": "Subjekttypen (kommagetrennt)"
+      },
+      "hint": {
+        "en": "Use subject types separated by commas, for example: person, vehicle",
+        "fr": "Utilisez des types de sujet séparés par des virgules, par exemple : person, vehicle",
+        "nl": "Gebruik onderwerpstypen gescheiden door komma's, bijvoorbeeld: person, vehicle",
+        "de": "Verwenden Sie Subjekttypen durch Kommas getrennt, zum Beispiel: person, vehicle"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more subject types separated by commas. Returns true only when all listed types exist.",
+    "fr": "Saisissez un ou plusieurs types de sujet séparés par des virgules. Renvoie vrai uniquement si tous les types listés existent.",
+    "nl": "Voer één of meer onderwerpstypen in, gescheiden door komma's. Geeft alleen waar terug wanneer alle vermelde typen bestaan.",
+    "de": "Geben Sie einen oder mehrere Subjekttypen durch Kommas getrennt ein. Gibt nur dann wahr zurück, wenn alle aufgeführten Typen existieren."
+  }
+}

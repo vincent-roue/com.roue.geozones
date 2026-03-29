@@ -1,0 +1,33 @@
+{
+  "title": {
+    "en": "Subject type exists",
+    "fr": "Le type de sujet existe",
+    "nl": "Onderwerptype bestaat",
+    "de": "Subjekttyp existiert"
+  },
+  "titleFormatted": {
+    "en": "[[subjectType]] !{{exists|does not exist}}",
+    "fr": "[[subjectType]] !{{existe|n’existe pas}}",
+    "nl": "[[subjectType]] !{{bestaat|bestaat niet}}",
+    "de": "[[subjectType]] !{{existiert|existiert nicht}}"
+  },
+  "args": [
+    {
+      "name": "subjectType",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Checks whether the selected subject type is currently used by at least one subject.",
+    "fr": "Vérifie si le type de sujet sélectionné est actuellement utilisé par au moins un sujet.",
+    "nl": "Controleert of het geselecteerde onderwerpstype momenteel door minstens één onderwerp wordt gebruikt.",
+    "de": "Prüft, ob der ausgewählte Subjekttyp aktuell von mindestens einem Subjekt verwendet wird."
+  }
+}

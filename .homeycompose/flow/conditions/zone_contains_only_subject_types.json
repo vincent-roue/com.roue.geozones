@@ -1,0 +1,50 @@
+{
+  "title": {
+    "en": "Zone contains only selected subject types",
+    "fr": "La zone contient uniquement les types de sujet sélectionnés",
+    "nl": "Zone bevat alleen geselecteerde onderwerptypen",
+    "de": "Zone enthält nur ausgewählte Subjekttypen"
+  },
+  "titleFormatted": {
+    "en": "[[zone]] !{{contains only|does not contain only}} [[subjectTypes]]",
+    "fr": "[[zone]] !{{contient uniquement|ne contient pas uniquement}} [[subjectTypes]]",
+    "nl": "[[zone]] !{{bevat alleen|bevat niet alleen}} [[subjectTypes]]",
+    "de": "[[zone]] !{{enthält nur|enthält nicht nur}} [[subjectTypes]]"
+  },
+  "args": [
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "subjectTypes",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Subject types (comma-separated)",
+        "fr": "Types de sujet (séparés par des virgules)",
+        "nl": "Onderwerptypen (kommagescheiden)",
+        "de": "Subjekttypen (kommagetrennt)"
+      },
+      "hint": {
+        "en": "Use subject types separated by commas, for example: person, vehicle",
+        "fr": "Utilisez des types de sujet séparés par des virgules, par exemple : person, vehicle",
+        "nl": "Gebruik onderwerpstypen gescheiden door komma's, bijvoorbeeld: person, vehicle",
+        "de": "Verwenden Sie Subjekttypen durch Kommas getrennt, zum Beispiel: person, vehicle"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more subject types separated by commas. Returns true when every subject in the zone belongs to the listed set of subject types. This card is invertible.",
+    "fr": "Saisissez un ou plusieurs types de sujet séparés par des virgules. Renvoie vrai lorsque tous les sujets de la zone appartiennent à l’ensemble de types listés. Cette carte est inversible.",
+    "nl": "Voer één of meer onderwerpstypen in, gescheiden door komma's. Geeft waar terug wanneer elk onderwerp in de zone behoort tot de vermelde set onderwerpstypen. Deze kaart is omkeerbaar.",
+    "de": "Geben Sie einen oder mehrere Subjekttypen durch Kommas getrennt ein. Gibt wahr zurück, wenn jedes Subjekt in der Zone zur angegebenen Menge von Subjekttypen gehört. Diese Karte ist invertierbar."
+  }
+}

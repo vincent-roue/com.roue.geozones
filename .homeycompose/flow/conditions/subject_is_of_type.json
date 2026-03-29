@@ -1,0 +1,44 @@
+{
+  "title": {
+    "en": "Subject is of one type",
+    "fr": "Le sujet est d’un type",
+    "nl": "Onderwerp is van één type",
+    "de": "Subjekt ist von einem Typ"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] !{{is|is not}} of type [[subjectType]]",
+    "fr": "[[subject]] !{{est|n’est pas}} du type [[subjectType]]",
+    "nl": "[[subject]] !{{is|is niet}} van type [[subjectType]]",
+    "de": "[[subject]] !{{ist|ist nicht}} vom Typ [[subjectType]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subjectType",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns true when the selected subject currently has the selected subject type. This card is invertible.",
+    "fr": "Renvoie vrai lorsque le sujet sélectionné a actuellement le type de sujet sélectionné. Cette carte est inversible.",
+    "nl": "Geeft waar terug wanneer het geselecteerde onderwerp momenteel het geselecteerde onderwerpstype heeft. Deze kaart is omkeerbaar.",
+    "de": "Gibt wahr zurück, wenn das ausgewählte Subjekt aktuell den ausgewählten Subjekttyp hat. Diese Karte ist invertierbar."
+  }
+}

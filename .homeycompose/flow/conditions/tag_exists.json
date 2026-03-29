@@ -1,0 +1,33 @@
+{
+  "title": {
+    "en": "Tag exists",
+    "fr": "Le tag existe",
+    "nl": "Tag bestaat",
+    "de": "Tag existiert"
+  },
+  "titleFormatted": {
+    "en": "[[tag]] !{{exists|does not exist}}",
+    "fr": "[[tag]] !{{existe|n’existe pas}}",
+    "nl": "[[tag]] !{{bestaat|bestaat niet}}",
+    "de": "[[tag]] !{{existiert|existiert nicht}}"
+  },
+  "args": [
+    {
+      "name": "tag",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Tag",
+        "fr": "Tag",
+        "nl": "Tag",
+        "de": "Tag"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Checks whether the selected tag is currently used by at least one zone.",
+    "fr": "Vérifie si le tag sélectionné est actuellement utilisé par au moins une zone.",
+    "nl": "Controleert of de geselecteerde tag momenteel door minstens één zone wordt gebruikt.",
+    "de": "Prüft, ob der ausgewählte Tag aktuell von mindestens einer Zone verwendet wird."
+  }
+}

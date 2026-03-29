@@ -1,0 +1,85 @@
+{
+  "title": {
+    "en": "Force a subject recalculation",
+    "fr": "Forcer le recalcul d’un sujet",
+    "nl": "Herberekening van een onderwerp forceren",
+    "de": "Neuberechnung eines Subjekts erzwingen"
+  },
+  "titleFormatted": {
+    "en": "Force recalculation of [[subject]]",
+    "fr": "Forcer le recalcul de [[subject]]",
+    "nl": "Forceer herberekening van [[subject]]",
+    "de": "Erzwinge Neuberechnung von [[subject]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Forces a recalculation of the selected subject. Useful after changing zones, filters, delays or subject type.",
+    "fr": "Force un recalcul du sujet sélectionné. Utile après modification des zones, filtres, délais ou du type de sujet.",
+    "nl": "Forceert een herberekening van het geselecteerde onderwerp. Handig na het wijzigen van zones, filters, vertragingen of het onderwerpstype.",
+    "de": "Erzwingt eine Neuberechnung des ausgewählten Subjekts. Nützlich nach Änderungen an Zonen, Filtern, Verzögerungen oder dem Subjekttyp."
+  }
+}

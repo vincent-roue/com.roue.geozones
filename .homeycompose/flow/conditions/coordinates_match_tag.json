@@ -1,0 +1,55 @@
+{
+  "title": {
+    "en": "Coordinates match one tag",
+    "fr": "Les coordonnées correspondent à un tag",
+    "nl": "Coördinaten komen overeen met één tag",
+    "de": "Koordinaten entsprechen einem Tag"
+  },
+  "titleFormatted": {
+    "en": "[[lat]], [[long]] !{{match|do not match}} [[tag]]",
+    "fr": "[[lat]], [[long]] !{{correspondent|ne correspondent pas}} à [[tag]]",
+    "nl": "[[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[tag]]",
+    "de": "[[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[tag]]"
+  },
+  "args": [
+    {
+      "name": "lat",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Latitude",
+        "fr": "Latitude",
+        "nl": "Breedtegraad",
+        "de": "Breitengrad"
+      }
+    },
+    {
+      "name": "long",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Longitude",
+        "fr": "Longitude",
+        "nl": "Lengtegraad",
+        "de": "Längengrad"
+      }
+    },
+    {
+      "name": "tag",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Tag",
+        "fr": "Tag",
+        "nl": "Tag",
+        "de": "Tag"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns true when the coordinates match at least one zone carrying the selected tag. This card is invertible.",
+    "fr": "Renvoie vrai lorsque les coordonnées correspondent à au moins une zone portant le tag sélectionné. Cette carte est inversible.",
+    "nl": "Geeft waar terug wanneer de coördinaten overeenkomen met minstens één zone met de geselecteerde tag. Deze kaart is omkeerbaar.",
+    "de": "Gibt wahr zurück, wenn die Koordinaten mindestens einer Zone mit dem ausgewählten Tag entsprechen. Diese Karte ist invertierbar."
+  }
+}

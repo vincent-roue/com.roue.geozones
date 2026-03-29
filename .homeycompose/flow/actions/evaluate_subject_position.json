@@ -1,0 +1,85 @@
+{
+  "title": {
+    "en": "Evaluate a subject position",
+    "fr": "Évaluer la position d’un sujet",
+    "nl": "Positie van een onderwerp evalueren",
+    "de": "Position eines Subjekts auswerten"
+  },
+  "titleFormatted": {
+    "en": "Evaluate [[subject]]",
+    "fr": "Évaluer [[subject]]",
+    "nl": "Evalueer [[subject]]",
+    "de": "Werte [[subject]] aus"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Re-evaluates the stored coordinates of the selected subject without writing new coordinates.",
+    "fr": "Réévalue les coordonnées déjà enregistrées du sujet sélectionné sans écrire de nouvelles coordonnées.",
+    "nl": "Evalueert de al opgeslagen coördinaten van het geselecteerde onderwerp opnieuw zonder nieuwe coördinaten te schrijven.",
+    "de": "Wertet die bereits gespeicherten Koordinaten des ausgewählten Subjekts erneut aus, ohne neue Koordinaten zu schreiben."
+  }
+}

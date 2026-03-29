@@ -1,0 +1,39 @@
+{
+  "title": {
+    "en": "Tags exist",
+    "fr": "Les tags existent",
+    "nl": "Tags bestaan",
+    "de": "Tags existieren"
+  },
+  "titleFormatted": {
+    "en": "[[tags]] !{{exist|do not exist}}",
+    "fr": "[[tags]] !{{existent|n’existent pas}}",
+    "nl": "[[tags]] !{{bestaan|bestaan niet}}",
+    "de": "[[tags]] !{{existieren|existieren nicht}}"
+  },
+  "args": [
+    {
+      "name": "tags",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Tags (comma-separated)",
+        "fr": "Tags (séparés par des virgules)",
+        "nl": "Tags (kommagescheiden)",
+        "de": "Tags (kommagetrennt)"
+      },
+      "hint": {
+        "en": "Use tags separated by commas, for example: home, work, charging",
+        "fr": "Utilisez des tags séparés par des virgules, par exemple : home, work, charging",
+        "nl": "Gebruik tags gescheiden door komma's, bijvoorbeeld: home, work, charging",
+        "de": "Verwenden Sie Tags durch Kommas getrennt, zum Beispiel: home, work, charging"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more tags separated by commas. Returns true only when all listed tags exist.",
+    "fr": "Saisissez un ou plusieurs tags séparés par des virgules. Renvoie vrai uniquement si tous les tags listés existent.",
+    "nl": "Voer één of meer tags in, gescheiden door komma's. Geeft alleen waar terug wanneer alle vermelde tags bestaan.",
+    "de": "Geben Sie einen oder mehrere Tags durch Kommas getrennt ein. Gibt nur dann wahr zurück, wenn alle aufgeführten Tags existieren."
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "title": {
+    "en": "Evaluate coordinates",
+    "fr": "Évaluer des coordonnées",
+    "nl": "Coördinaten evalueren",
+    "de": "Koordinaten auswerten"
+  },
+  "titleFormatted": {
+    "en": "Evaluate [[lat]], [[long]]",
+    "fr": "Évaluer [[lat]], [[long]]",
+    "nl": "Evalueer [[lat]], [[long]]",
+    "de": "Werte [[lat]], [[long]] aus"
+  },
+  "args": [
+    {
+      "name": "lat",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Latitude",
+        "fr": "Latitude",
+        "nl": "Breedtegraad",
+        "de": "Breitengrad"
+      }
+    },
+    {
+      "name": "long",
+      "type": "number",
+      "required": true,
+      "title": {
+        "en": "Longitude",
+        "fr": "Longitude",
+        "nl": "Lengtegraad",
+        "de": "Längengrad"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "found",
+      "type": "boolean",
+      "title": {
+        "en": "Zone found",
+        "fr": "Zone trouvée",
+        "nl": "Zone gevonden",
+        "de": "Zone gefunden"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Evaluates raw coordinates and returns the winning zone, its tags and whether a matching zone was found.",
+    "fr": "Évalue des coordonnées brutes et renvoie la zone gagnante, ses tags et si une zone correspondante a été trouvée.",
+    "nl": "Evalueert ruwe coördinaten en geeft de winnende zone, de tags en aan of er een passende zone gevonden werd.",
+    "de": "Wertet rohe Koordinaten aus und gibt die Gewinnerzone, ihre Tags und an, ob eine passende Zone gefunden wurde."
+  }
+}

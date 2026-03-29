@@ -1,0 +1,44 @@
+{
+  "title": {
+    "en": "Zone contains only one subject type",
+    "fr": "La zone contient uniquement un type de sujet",
+    "nl": "Zone bevat alleen één onderwerptype",
+    "de": "Zone enthält nur einen Subjekttyp"
+  },
+  "titleFormatted": {
+    "en": "[[zone]] !{{contains only|does not contain only}} [[subjectType]]",
+    "fr": "[[zone]] !{{contient uniquement|ne contient pas uniquement}} [[subjectType]]",
+    "nl": "[[zone]] !{{bevat alleen|bevat niet alleen}} [[subjectType]]",
+    "de": "[[zone]] !{{enthält nur|enthält nicht nur}} [[subjectType]]"
+  },
+  "args": [
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "subjectType",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns true when every subject currently inside the zone has the selected subject type. This card is invertible.",
+    "fr": "Renvoie vrai lorsque tous les sujets actuellement présents dans la zone ont le type sélectionné. Cette carte est inversible.",
+    "nl": "Geeft waar terug wanneer elk onderwerp dat zich momenteel in de zone bevindt het geselecteerde onderwerpstype heeft. Deze kaart is omkeerbaar.",
+    "de": "Gibt wahr zurück, wenn jedes aktuell in der Zone befindliche Subjekt den ausgewählten Subjekttyp hat. Diese Karte ist invertierbar."
+  }
+}

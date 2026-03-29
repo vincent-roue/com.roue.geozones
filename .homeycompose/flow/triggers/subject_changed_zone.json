@@ -1,0 +1,86 @@
+{
+  "title": {
+    "en": "Subject changed zone",
+    "fr": "Un sujet a changé de zone",
+    "nl": "Onderwerp veranderde van zone",
+    "de": "Subjekt hat die Zone gewechselt"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] changed to [[zone]]",
+    "fr": "[[subject]] a changé vers [[zone]]",
+    "nl": "[[subject]] veranderde naar [[zone]]",
+    "de": "[[subject]] wechselte zu [[zone]]"
+  },
+  "hint": {
+    "en": "Triggers when the selected subject moves from one found zone to another found zone. zone is the new current zone. previous zone is the last found zone before the current zone and never repeats the current zone.",
+    "fr": "Se déclenche lorsque le sujet sélectionné passe d’une zone trouvée à une autre zone trouvée. zone est la nouvelle zone actuelle. zone précédente est la dernière zone trouvée avant la zone actuelle et ne répète jamais la zone actuelle.",
+    "nl": "Wordt geactiveerd wanneer het geselecteerde onderwerp van de ene gevonden zone naar een andere gevonden zone gaat. zone is de nieuwe huidige zone. previous zone is de laatst gevonden zone vóór de huidige zone en herhaalt nooit de huidige zone.",
+    "de": "Wird ausgelöst, wenn das ausgewählte Subjekt von einer gefundenen Zone in eine andere gefundene Zone wechselt. Zone ist die neue aktuelle Zone. Vorherige Zone ist die zuletzt gefundene Zone vor der aktuellen Zone und wiederholt niemals die aktuelle Zone."
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    }
+  ]
+}

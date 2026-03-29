@@ -1,0 +1,86 @@
+{
+  "title": {
+    "en": "Subject left a zone",
+    "fr": "Un sujet a quitté une zone",
+    "nl": "Onderwerp heeft een zone verlaten",
+    "de": "Subjekt hat eine Zone verlassen"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] left [[zone]]",
+    "fr": "[[subject]] a quitté [[zone]]",
+    "nl": "[[subject]] verliet [[zone]]",
+    "de": "[[subject]] hat [[zone]] verlassen"
+  },
+  "hint": {
+    "en": "Triggers when the selected subject leaves the selected zone after exit delay handling. The zone token contains the zone that was left. The previous zone token is kept for consistency and may be empty when no earlier zone exists.",
+    "fr": "Se déclenche lorsque le sujet sélectionné quitte la zone sélectionnée après gestion du délai de sortie. Le token zone contient la zone quittée. Le token zone précédente est conservé pour cohérence et peut être vide lorsqu’aucune zone antérieure n’existe.",
+    "nl": "Wordt geactiveerd wanneer het geselecteerde onderwerp de geselecteerde zone verlaat na verwerking van de vertrekvertraging. De token zone bevat de verlaten zone. De token previous zone blijft voor consistentie behouden en kan leeg zijn wanneer er geen eerdere zone bestaat.",
+    "de": "Wird ausgelöst, wenn das ausgewählte Subjekt die ausgewählte Zone nach Verarbeitung der Austrittsverzögerung verlässt. Das Token Zone enthält die verlassene Zone. Das Token Vorherige Zone bleibt aus Konsistenzgründen erhalten und kann leer sein, wenn keine frühere Zone existiert."
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de la zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    }
+  ]
+}

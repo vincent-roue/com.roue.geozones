@@ -1,0 +1,44 @@
+{
+  "title": {
+    "en": "Subject is in a zone",
+    "fr": "Le sujet est dans une zone",
+    "nl": "Onderwerp is in een zone",
+    "de": "Subjekt ist in einer Zone"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] !{{is|is not}} in [[zone]]",
+    "fr": "[[subject]] !{{est|n’est pas}} dans [[zone]]",
+    "nl": "[[subject]] !{{is|is niet}} in [[zone]]",
+    "de": "[[subject]] !{{ist|ist nicht}} in [[zone]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns true when the selected subject is currently inside the selected zone. This card is invertible.",
+    "fr": "Renvoie vrai lorsque le sujet sélectionné est actuellement dans la zone sélectionnée. Cette carte est inversible.",
+    "nl": "Geeft waar terug wanneer het geselecteerde onderwerp momenteel in de geselecteerde zone zit. Deze kaart is omkeerbaar.",
+    "de": "Gibt wahr zurück, wenn sich das ausgewählte Subjekt aktuell in der ausgewählten Zone befindet. Diese Karte ist invertierbar."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "title": {
+    "en": "Zones exist",
+    "fr": "Les zones existent",
+    "nl": "Zones bestaan",
+    "de": "Zonen existieren"
+  },
+  "titleFormatted": {
+    "en": "[[zones]] !{{exist|do not exist}}",
+    "fr": "[[zones]] !{{existent|n’existent pas}}",
+    "nl": "[[zones]] !{{bestaan|bestaan niet}}",
+    "de": "[[zones]] !{{existieren|existieren nicht}}"
+  },
+  "args": [
+    {
+      "name": "zones",
+      "type": "text",
+      "required": true,
+      "title": {
+        "en": "Zones (comma-separated names)",
+        "fr": "Zones (noms séparés par des virgules)",
+        "nl": "Zones (namen gescheiden door komma's)",
+        "de": "Zonen (durch Kommas getrennte Namen)"
+      },
+      "hint": {
+        "en": "Use exact zone names separated by commas, for example: Home, Work, Gym",
+        "fr": "Utilisez des noms de zone exacts séparés par des virgules, par exemple : Maison, Travail, Salle",
+        "nl": "Gebruik exacte zonenamen gescheiden door komma's, bijvoorbeeld: Thuis, Werk, Fitness",
+        "de": "Verwenden Sie exakte Zonennamen durch Kommas getrennt, zum Beispiel: Zuhause, Arbeit, Fitness"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Enter one or more zone names separated by commas. Returns true only when all listed zones exist.",
+    "fr": "Saisissez un ou plusieurs noms de zone séparés par des virgules. Renvoie vrai uniquement si toutes les zones listées existent.",
+    "nl": "Voer één of meer zone-ID's of namen in, gescheiden door komma's. Geeft alleen waar terug wanneer alle vermelde zones bestaan.",
+    "de": "Geben Sie eine oder mehrere Zonen-Namen durch Kommas getrennt ein. Gibt nur dann wahr zurück, wenn alle aufgeführten Zonen existieren."
+  }
+}
