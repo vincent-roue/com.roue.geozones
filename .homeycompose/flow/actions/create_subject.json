@@ -6,10 +6,10 @@
     "de": "Ein Subjekt erstellen"
   },
   "titleFormatted": {
-    "en": "Create subject [[subject]]",
-    "fr": "Créer le sujet [[subject]]",
-    "nl": "Maak onderwerp [[subject]]",
-    "de": "Erstelle Subjekt [[subject]]"
+    "en": "Create subject [[subject]] with name [[name]], type [[subjectType]] and minimum movement [[minMoveDistanceM]] m",
+    "fr": "Créer le sujet [[subject]] avec le nom [[name]], le type [[subjectType]] et le déplacement minimal de [[minMoveDistanceM]] m",
+    "nl": "Maak onderwerp [[subject]] met naam [[name]], type [[subjectType]] en minimale beweging van [[minMoveDistanceM]] m",
+    "de": "Erstelle Subjekt [[subject]] mit Name [[name]], Typ [[subjectType]] und minimaler Bewegung von [[minMoveDistanceM]] m"
   },
   "args": [
     {
