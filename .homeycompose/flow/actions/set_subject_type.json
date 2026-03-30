@@ -25,7 +25,7 @@
     },
     {
       "name": "subjectType",
-      "type": "text",
+      "type": "autocomplete",
       "required": true,
       "title": {
         "en": "Subject type",

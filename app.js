@@ -21,6 +21,8 @@ const { cleanText, normalizeKey } = require('./lib/utils');
 const { log, logError, isHeavyDebugEnabled } = require('./lib/logger');
 const { listLocationDevices, getDeviceCoordinates } = require('./lib/sources');
 
+const CREATE_PREFIX = '__create__:';
+
 class GeoZonesApp extends Homey.App {
   async onInit() {
 	this.homeyApi = await HomeyAPI.createAppAPI({ homey: this.homey });
@@ -202,13 +204,34 @@ class GeoZonesApp extends Homey.App {
     this.registerZoneAutocomplete(this.triggerAnySubjectLeftZone, 'zone');
     this.registerZoneAutocomplete(this.triggerAnySubjectChangedZone, 'zone');
 
-    this.triggerEnteredZone.registerRunListener(async (args, state) => this.matchStateArg(args.subject, state.subject_name) && this.matchStateArg(args.zone, state.zone));
-    this.triggerEnteredZones.registerRunListener(async (args, state) => this.matchStateArg(args.subject, state.subject_name) && this.matchAnyCsvArg(args.zones, [state.zone]));
-    this.triggerLeftZone.registerRunListener(async (args, state) => this.matchStateArg(args.subject, state.subject_name) && this.matchStateArg(args.zone, state.zone));
-    this.triggerLeftZones.registerRunListener(async (args, state) => this.matchStateArg(args.subject, state.subject_name) && this.matchAnyCsvArg(args.zones, [state.zone]));
-    this.triggerPositionChanged.registerRunListener(async (args, state) => this.matchStateArg(args.subject, state.subject_name));
-    this.triggerRecalculated.registerRunListener(async (args, state) => this.matchStateArg(args.subject, state.subject_name));
-    this.triggerChangedZone.registerRunListener(async (args, state) => this.matchStateArg(args.subject, state.subject_name) && this.matchStateArg(args.zone, state.zone));
+    this.triggerEnteredZone.registerRunListener(async (args, state) => {
+      await this.resolveOrCreateSubject(args.subject);
+      return this.matchStateArg(args.subject, state.subject_name) && this.matchStateArg(args.zone, state.zone);
+    });
+    this.triggerEnteredZones.registerRunListener(async (args, state) => {
+      await this.resolveOrCreateSubject(args.subject);
+      return this.matchStateArg(args.subject, state.subject_name) && this.matchAnyCsvArg(args.zones, [state.zone]);
+    });
+    this.triggerLeftZone.registerRunListener(async (args, state) => {
+      await this.resolveOrCreateSubject(args.subject);
+      return this.matchStateArg(args.subject, state.subject_name) && this.matchStateArg(args.zone, state.zone);
+    });
+    this.triggerLeftZones.registerRunListener(async (args, state) => {
+      await this.resolveOrCreateSubject(args.subject);
+      return this.matchStateArg(args.subject, state.subject_name) && this.matchAnyCsvArg(args.zones, [state.zone]);
+    });
+    this.triggerPositionChanged.registerRunListener(async (args, state) => {
+      await this.resolveOrCreateSubject(args.subject);
+      return this.matchStateArg(args.subject, state.subject_name);
+    });
+    this.triggerRecalculated.registerRunListener(async (args, state) => {
+      await this.resolveOrCreateSubject(args.subject);
+      return this.matchStateArg(args.subject, state.subject_name);
+    });
+    this.triggerChangedZone.registerRunListener(async (args, state) => {
+      await this.resolveOrCreateSubject(args.subject);
+      return this.matchStateArg(args.subject, state.subject_name) && this.matchStateArg(args.zone, state.zone);
+    });
 
     this.triggerSubjectTypeEnteredZone.registerRunListener(async (args, state) => this.matchStateArg(args.subjectType, state.subject_type) && this.matchStateArg(args.zone, state.zone));
     this.triggerSubjectTypeEnteredZones.registerRunListener(async (args, state) => this.matchStateArg(args.subjectType, state.subject_type) && this.matchAnyCsvArg(args.zones, [state.zone]));
@@ -228,7 +251,7 @@ class GeoZonesApp extends Homey.App {
     this.registerSubjectAutocomplete(subjectIsInZoneCard, 'subject');
     this.registerZoneAutocomplete(subjectIsInZoneCard, 'zone');
     subjectIsInZoneCard.registerRunListener(async (args) => {
-      const subject = this.requireSubjectArg(args.subject);
+      const subject = await this.resolveOrCreateSubject(args.subject);
       const state = getSubjectState(this.homey, subject.id);
       return this.zoneStateMatchesOne(state, [args.zone?.name || args.zone?.id || args.zone]);
     });
@@ -236,7 +259,7 @@ class GeoZonesApp extends Homey.App {
     const subjectIsInZonesCard = this.homey.flow.getConditionCard('subject_is_in_zones');
     this.registerSubjectAutocomplete(subjectIsInZonesCard, 'subject');
     subjectIsInZonesCard.registerRunListener(async (args) => {
-      const subject = this.requireSubjectArg(args.subject);
+      const subject = await this.resolveOrCreateSubject(args.subject);
       const state = getSubjectState(this.homey, subject.id);
       const zones = this.parseMultiValueArg(args.zones);
       if (!zones.length) throw new Error('At least one zone name is required');
@@ -247,15 +270,15 @@ class GeoZonesApp extends Homey.App {
     this.registerSubjectAutocomplete(subjectIsOfTypeCard, 'subject');
     this.registerSubjectTypeAutocomplete(subjectIsOfTypeCard, 'subjectType');
     subjectIsOfTypeCard.registerRunListener(async (args) => {
-      const subject = this.requireSubjectArg(args.subject);
+      const subject = await this.resolveOrCreateSubject(args.subject);
       const state = getSubjectState(this.homey, subject.id);
-      return normalizeKey(state?.subjectType) === normalizeKey(args.subjectType?.name || args.subjectType?.id || args.subjectType);
+      return normalizeKey(state?.subjectType) === normalizeKey(this.resolveSubjectType(args.subjectType));
     });
 
     const subjectIsOfTypesCard = this.homey.flow.getConditionCard('subject_is_of_types');
     this.registerSubjectAutocomplete(subjectIsOfTypesCard, 'subject');
     subjectIsOfTypesCard.registerRunListener(async (args) => {
-      const subject = this.requireSubjectArg(args.subject);
+      const subject = await this.resolveOrCreateSubject(args.subject);
       const state = getSubjectState(this.homey, subject.id);
       const subjectTypes = this.parseMultiValueArg(args.subjectTypes).map(normalizeKey);
       if (!subjectTypes.length) throw new Error('At least one subject type is required');
@@ -265,7 +288,7 @@ class GeoZonesApp extends Homey.App {
     const subjectIsMovementStateCard = this.homey.flow.getConditionCard('subject_is_movement_state');
     this.registerSubjectAutocomplete(subjectIsMovementStateCard, 'subject');
     subjectIsMovementStateCard.registerRunListener(async (args) => {
-      const subject = this.requireSubjectArg(args.subject);
+      const subject = await this.resolveOrCreateSubject(args.subject);
       const state = getSubjectState(this.homey, subject.id);
       const expectedStates = this.parseMultiValueArg(args.movementStates).map(normalizeKey);
       if (!expectedStates.length) return false;
@@ -277,7 +300,7 @@ class GeoZonesApp extends Homey.App {
     this.registerSubjectAutocomplete(zoneContainsSubjectCard, 'subject');
     zoneContainsSubjectCard.registerRunListener(async (args) => {
       const zone = this.requireZoneArg(args.zone);
-      const subjectName = this.requireSubjectArg(args.subject).subject.name;
+      const subjectName = (await this.resolveOrCreateSubject(args.subject)).subject.name;
       return this.getSubjectsInZone(zone.id).some((subject) => normalizeKey(subject.name) === normalizeKey(subjectName));
     });
 
@@ -295,7 +318,7 @@ class GeoZonesApp extends Homey.App {
     this.registerSubjectTypeAutocomplete(zoneContainsSubjectTypeCard, 'subjectType');
     zoneContainsSubjectTypeCard.registerRunListener(async (args) => {
       const zone = this.requireZoneArg(args.zone);
-      const subjectType = normalizeKey(args.subjectType?.name || args.subjectType?.id || args.subjectType);
+      const subjectType = normalizeKey(this.resolveSubjectType(args.subjectType));
       if (!subjectType) throw new Error('Subject type is required');
       return this.countSubjectsInZone(zone.id, { subjectTypes: [subjectType] }) > 0;
     });
@@ -314,7 +337,7 @@ class GeoZonesApp extends Homey.App {
     this.registerSubjectTypeAutocomplete(zoneContainsOnlySubjectTypeCard, 'subjectType');
     zoneContainsOnlySubjectTypeCard.registerRunListener(async (args) => {
       const zone = this.requireZoneArg(args.zone);
-      const subjectType = normalizeKey(args.subjectType?.name || args.subjectType?.id || args.subjectType);
+      const subjectType = normalizeKey(this.resolveSubjectType(args.subjectType));
       const subjects = this.getSubjectsInZone(zone.id);
       if (!subjects.length || !subjectType) return false;
       return subjects.every((subject) => normalizeKey(subject.subjectType) === subjectType);
@@ -377,7 +400,7 @@ class GeoZonesApp extends Homey.App {
     this.registerTagAutocomplete(coordinatesMatchTagCard, 'tag');
     coordinatesMatchTagCard.registerRunListener(async (args) => {
       const result = await this.evaluateCoordinatesOnly({ lat: args.lat, long: args.long });
-      const expectedTags = this.parseMultiValueArg(args.tag).map(normalizeKey);
+      const expectedTags = [this.resolveTag(args.tag)].map(normalizeKey).filter(Boolean);
       const actualTags = (result.tagsArray || []).map(normalizeKey);
       return expectedTags.some((tag) => actualTags.includes(tag));
     });
@@ -400,7 +423,7 @@ class GeoZonesApp extends Homey.App {
     const updateAndEvaluateSubjectPositionCard = this.homey.flow.getActionCard('update_and_evaluate_subject_position');
     this.registerSubjectAutocomplete(updateAndEvaluateSubjectPositionCard, 'subject');
     updateAndEvaluateSubjectPositionCard.registerRunListener(async (args) => {
-      const subjectId = this.requireSubjectArg(args.subject).id;
+      const subjectId = (await this.resolveOrCreateSubject(args.subject)).id;
       const result = await this.updateAndEvaluateSubjectPosition(subjectId, Number(args.lat), Number(args.long), 'flow:action:update_and_evaluate_subject_position');
       return this.toFlowTokens(result, null);
     });
@@ -408,7 +431,7 @@ class GeoZonesApp extends Homey.App {
     const evaluateSubjectPositionCard = this.homey.flow.getActionCard('evaluate_subject_position');
     this.registerSubjectAutocomplete(evaluateSubjectPositionCard, 'subject');
     evaluateSubjectPositionCard.registerRunListener(async (args) => {
-      const subjectId = this.requireSubjectArg(args.subject).id;
+      const subjectId = (await this.resolveOrCreateSubject(args.subject)).id;
       const result = await this.evaluateStoredSubjectPosition(subjectId, 'flow:action:evaluate_subject_position');
       return this.toFlowTokens(result, null);
     });
@@ -417,15 +440,15 @@ class GeoZonesApp extends Homey.App {
     this.registerSubjectAutocomplete(distanceSubjectSubjectCard, 'subjectA');
     this.registerSubjectAutocomplete(distanceSubjectSubjectCard, 'subjectB');
     distanceSubjectSubjectCard.registerRunListener(async (args) => {
-      const subjectA = this.getRequiredSubjectState(this.requireSubjectArg(args.subjectA).id);
-      const subjectB = this.getRequiredSubjectState(this.requireSubjectArg(args.subjectB).id);
+      const subjectA = this.getRequiredSubjectState((await this.resolveOrCreateSubject(args.subjectA)).id);
+      const subjectB = this.getRequiredSubjectState((await this.resolveOrCreateSubject(args.subjectB)).id);
       return { distance_m: haversineMeters(subjectA.lastLat, subjectA.lastLng, subjectB.lastLat, subjectB.lastLng) };
     });
 
     const distanceSubjectCoordinatesCard = this.homey.flow.getActionCard('distance_subject_coordinates');
     this.registerSubjectAutocomplete(distanceSubjectCoordinatesCard, 'subject');
     distanceSubjectCoordinatesCard.registerRunListener(async (args) => {
-      const subject = this.getRequiredSubjectState(this.requireSubjectArg(args.subject).id);
+      const subject = this.getRequiredSubjectState((await this.resolveOrCreateSubject(args.subject)).id);
       return { distance_m: haversineMeters(subject.lastLat, subject.lastLng, Number(args.lat), Number(args.long)) };
     });
 
@@ -438,7 +461,7 @@ class GeoZonesApp extends Homey.App {
     this.registerSubjectAutocomplete(distanceSubjectZoneCard, 'subject');
     this.registerZoneAutocomplete(distanceSubjectZoneCard, 'zone');
     distanceSubjectZoneCard.registerRunListener(async (args) => {
-      const subject = this.getRequiredSubjectState(this.requireSubjectArg(args.subject).id);
+      const subject = this.getRequiredSubjectState((await this.resolveOrCreateSubject(args.subject)).id);
       const zone = this.requireZoneArg(args.zone);
       return { distance_m: this.getDistanceToZone(subject.lastLat, subject.lastLng, zone) };
     });
@@ -452,19 +475,31 @@ class GeoZonesApp extends Homey.App {
 
     const setSubjectTypeCard = this.homey.flow.getActionCard('set_subject_type');
     this.registerSubjectAutocomplete(setSubjectTypeCard, 'subject');
+    this.registerSubjectTypeAutocomplete(setSubjectTypeCard, 'subjectType');
     setSubjectTypeCard.registerRunListener(async (args) => {
-      const subjectId = this.requireSubjectArg(args.subject).id;
-      const subjectType = cleanText(args.subjectType);
+      const subjectId = (await this.resolveOrCreateSubject(args.subject)).id;
+      const subjectType = this.resolveSubjectType(args.subjectType);
       if (!subjectType) throw new Error('Subject type is required');
-      await setSubjectState(this.homey, subjectId, { subjectType });
+      await setSubjectState(this.homey, subjectId, { subjectType }, { pushHistory: true });
       await this.triggerConfigChangedEvent('subject_type_changed');
+      return {};
+    });
+
+    const createSubjectCard = this.homey.flow.getActionCard('create_subject');
+    this.registerSubjectAutocomplete(createSubjectCard, 'subject');
+    this.registerSubjectTypeAutocomplete(createSubjectCard, 'subjectType');
+    createSubjectCard.registerRunListener(async (args) => {
+      const name = cleanText(args.name);
+      const subjectType = this.resolveSubjectType(args.subjectType);
+      const minMoveDistanceM = Number.isFinite(Number(args.minMoveDistanceM)) ? Math.max(0, Number(args.minMoveDistanceM)) : 0;
+      await this.resolveOrCreateSubject(args.subject, { name, subjectType, minMoveDistanceM });
       return {};
     });
 
     const renameSubjectCard = this.homey.flow.getActionCard('rename_subject');
     this.registerSubjectAutocomplete(renameSubjectCard, 'subject');
     renameSubjectCard.registerRunListener(async (args) => {
-      const subjectId = this.requireSubjectArg(args.subject).id;
+      const subjectId = (await this.resolveOrCreateSubject(args.subject)).id;
       const name = cleanText(args.name);
       if (!name) throw new Error('Name is required');
       await setSubjectState(this.homey, subjectId, { name });
@@ -475,7 +510,7 @@ class GeoZonesApp extends Homey.App {
     const resetSubjectCard = this.homey.flow.getActionCard('reset_subject');
     this.registerSubjectAutocomplete(resetSubjectCard, 'subject');
     resetSubjectCard.registerRunListener(async (args) => {
-      const subjectId = this.requireSubjectArg(args.subject).id;
+      const subjectId = (await this.resolveOrCreateSubject(args.subject)).id;
       await resetSubjectState(this.homey, subjectId);
       await this.triggerConfigChangedEvent('subject_reset');
       return {};
@@ -493,7 +528,7 @@ class GeoZonesApp extends Homey.App {
     const forceRecalculateSubjectCard = this.homey.flow.getActionCard('force_recalculate_subject');
     this.registerSubjectAutocomplete(forceRecalculateSubjectCard, 'subject');
     forceRecalculateSubjectCard.registerRunListener(async (args) => {
-      const subjectId = this.requireSubjectArg(args.subject).id;
+      const subjectId = (await this.resolveOrCreateSubject(args.subject)).id;
       const result = await this.evaluateStoredSubjectPosition(subjectId, 'flow:action:force_recalculate_subject');
       return this.toFlowTokens(result, null);
     });
@@ -514,22 +549,52 @@ class GeoZonesApp extends Homey.App {
     card.registerArgumentAutocompleteListener(argName, async (query) => this.autocompleteSubjectTypes(query));
   }
 
+  getCreateAutocompleteOption(value) {
+    const cleanValue = cleanText(value);
+    if (!cleanValue) return null;
+    return { id: `${CREATE_PREFIX}${cleanValue}`, name: `Create "${cleanValue}"` };
+  }
+
+  isCreateAutocompleteValue(value) {
+    return cleanText(value).startsWith(CREATE_PREFIX);
+  }
+
+  unwrapFlowValue(arg) {
+    const rawValue = cleanText(arg?.id || arg?.name || arg);
+    if (!rawValue) return '';
+    return this.isCreateAutocompleteValue(rawValue) ? cleanText(rawValue.slice(CREATE_PREFIX.length)) : rawValue;
+  }
+
+  isCreateSelection(arg) {
+    return this.isCreateAutocompleteValue(arg?.id || arg);
+  }
+
   parseMultiValueArg(arg) {
     if (Array.isArray(arg)) {
-      return [...new Set(arg.map((item) => cleanText(item?.id || item?.name || item)).filter(Boolean))];
+      return [...new Set(arg.map((item) => this.unwrapFlowValue(item)).filter(Boolean))];
     }
     if (arg && typeof arg === 'object') {
-      const value = cleanText(arg.id || arg.name);
+      const value = this.unwrapFlowValue(arg);
       return value ? [value] : [];
     }
     return [...new Set(String(arg || '').split(',').map((part) => cleanText(part)).filter(Boolean))];
   }
 
+  appendCreateOption(items, query) {
+    const value = cleanText(query);
+    if (!value) return items;
+    const exactMatch = items.some((item) => normalizeKey(item?.name || item?.id) === normalizeKey(value));
+    if (exactMatch) return items;
+    const createOption = this.getCreateAutocompleteOption(value);
+    return createOption ? [...items, createOption] : items;
+  }
+
   async autocompleteSubjects(query) {
     const q = normalizeKey(query);
-    return Object.values(getConfig(this.homey).subjects || {})
+    const items = Object.values(getConfig(this.homey).subjects || {})
       .filter((subject) => !q || normalizeKey(subject.name).includes(q) || normalizeKey(subject.id).includes(q))
       .map((subject) => ({ id: subject.id, name: subject.name }));
+    return this.appendCreateOption(items, query);
   }
 
   async autocompleteZones(query) {
@@ -541,16 +606,18 @@ class GeoZonesApp extends Homey.App {
 
   async autocompleteTags(query) {
     const q = normalizeKey(query);
-    return getDerivedTags(getConfig(this.homey))
+    const items = getDerivedTags(getConfig(this.homey))
       .filter((tag) => !q || normalizeKey(tag).includes(q))
       .map((tag) => ({ id: tag, name: tag }));
+    return this.appendCreateOption(items, query);
   }
 
   async autocompleteSubjectTypes(query) {
     const q = normalizeKey(query);
-    return getDerivedSubjectTypes(getConfig(this.homey))
+    const items = getDerivedSubjectTypes(getConfig(this.homey))
       .filter((type) => !q || normalizeKey(type).includes(q))
       .map((type) => ({ id: type, name: type }));
+    return this.appendCreateOption(items, query);
   }
 
 
@@ -578,10 +645,10 @@ class GeoZonesApp extends Homey.App {
   matchStateArg(arg, value) {
     const candidates = [];
     if (arg && typeof arg === 'object') {
-      if (cleanText(arg.name)) candidates.push(cleanText(arg.name));
-      if (cleanText(arg.id)) candidates.push(cleanText(arg.id));
+      const value = this.unwrapFlowValue(arg);
+      if (value) candidates.push(value);
     } else if (cleanText(arg)) {
-      candidates.push(cleanText(arg));
+      candidates.push(this.unwrapFlowValue(arg));
     }
     if (!candidates.length) return true;
     const actual = normalizeKey(value);
@@ -594,12 +661,48 @@ class GeoZonesApp extends Homey.App {
     return Object.values(getConfig(this.homey).subjects || {}).find((subject) => normalizeKey(subject.name) === expected || normalizeKey(subject.id) === expected) || null;
   }
 
+  async resolveOrCreateSubject(arg, patch = {}) {
+    const rawValue = this.unwrapFlowValue(arg);
+    if (!rawValue) throw new Error('Subject is required');
+
+    const existingSubject = this.findSubjectByFlowValue(rawValue);
+    if (existingSubject) return { id: existingSubject.id, subject: existingSubject, created: false };
+
+    const subjectId = cleanText(rawValue);
+    const nextPatch = {
+      name: cleanText(patch.name || rawValue) || rawValue,
+      subjectType: cleanText(patch.subjectType || ''),
+      source: null,
+      minMoveDistanceM: Number.isFinite(Number(patch.minMoveDistanceM)) ? Math.max(0, Number(patch.minMoveDistanceM)) : 0,
+      lastLat: null,
+      lastLng: null,
+      lastTimestamp: null,
+      currentZoneId: '',
+      previousZoneId: '',
+      movementState: 'unknown',
+      speedKmh: 0,
+    };
+
+    await setSubjectState(this.homey, subjectId, nextPatch, { pushHistory: true });
+    await this.triggerConfigChangedEvent('subject_created');
+    const subject = getSubjectState(this.homey, subjectId);
+    return { id: subjectId, subject, created: true };
+  }
+
   requireSubjectArg(arg) {
-    const rawValue = cleanText(arg?.id || arg?.name || arg);
+    const rawValue = this.unwrapFlowValue(arg);
     if (!rawValue) throw new Error('Subject is required');
     const subject = this.findSubjectByFlowValue(rawValue);
     if (!subject) throw new Error(`Unknown subject: ${rawValue}. Check that the subject name exists in GeoZones settings.`);
     return { id: subject.id, subject };
+  }
+
+  resolveSubjectType(arg) {
+    return cleanText(this.unwrapFlowValue(arg));
+  }
+
+  resolveTag(arg) {
+    return cleanText(this.unwrapFlowValue(arg));
   }
 
   getRequiredSubjectState(subjectId) {
@@ -624,9 +727,13 @@ class GeoZonesApp extends Homey.App {
     return zone;
   }
 
-  subjectExists(arg) {
+  async subjectExists(arg) {
     const values = this.parseMultiValueArg(arg);
     if (!values.length) return false;
+    if (arg && typeof arg === 'object' && this.isCreateSelection(arg)) {
+      await this.resolveOrCreateSubject(arg);
+      return true;
+    }
     return values.every((value) => Boolean(this.findSubjectByFlowValue(value)));
   }
 
@@ -639,6 +746,7 @@ class GeoZonesApp extends Homey.App {
   tagExists(arg) {
     const tags = this.parseMultiValueArg(arg).map(normalizeKey);
     if (!tags.length) return false;
+    if (arg && typeof arg === 'object' && this.isCreateSelection(arg)) return true;
     const derived = getDerivedTags(getConfig(this.homey)).map(normalizeKey);
     return tags.every((tag) => derived.includes(tag));
   }
@@ -646,6 +754,7 @@ class GeoZonesApp extends Homey.App {
   subjectTypeExists(arg) {
     const subjectTypes = this.parseMultiValueArg(arg).map(normalizeKey);
     if (!subjectTypes.length) return false;
+    if (arg && typeof arg === 'object' && this.isCreateSelection(arg)) return true;
     const derived = getDerivedSubjectTypes(getConfig(this.homey)).map(normalizeKey);
     return subjectTypes.every((subjectType) => derived.includes(subjectType));
   }

@@ -1,0 +1,85 @@
+{
+  "title": {
+    "en": "Create a subject",
+    "fr": "Créer un sujet",
+    "nl": "Een onderwerp maken",
+    "de": "Ein Subjekt erstellen"
+  },
+  "titleFormatted": {
+    "en": "Create subject [[subject]]",
+    "fr": "Créer le sujet [[subject]]",
+    "nl": "Maak onderwerp [[subject]]",
+    "de": "Erstelle Subjekt [[subject]]"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "required": false,
+      "title": {
+        "en": "Name",
+        "fr": "Nom",
+        "nl": "Naam",
+        "de": "Name"
+      },
+      "hint": {
+        "en": "Optional display name. If empty, the subject value is used.",
+        "fr": "Nom affiché optionnel. Si vide, la valeur du sujet est utilisée.",
+        "nl": "Optionele weergavenaam. Indien leeg wordt de onderwerpwaarde gebruikt.",
+        "de": "Optionaler Anzeigename. Wenn leer, wird der Subjektwert verwendet."
+      }
+    },
+    {
+      "name": "subjectType",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      },
+      "hint": {
+        "en": "Optional. Choose an existing type or create a new one.",
+        "fr": "Optionnel. Choisissez un type existant ou créez-en un nouveau.",
+        "nl": "Optioneel. Kies een bestaand type of maak een nieuw type aan.",
+        "de": "Optional. Wählen Sie einen vorhandenen Typ oder erstellen Sie einen neuen."
+      }
+    },
+    {
+      "name": "minMoveDistanceM",
+      "type": "number",
+      "required": false,
+      "title": {
+        "en": "Minimum movement distance (m)",
+        "fr": "Distance minimale de mouvement (m)",
+        "nl": "Minimale bewegingsafstand (m)",
+        "de": "Minimale Bewegungsdistanz (m)"
+      },
+      "hint": {
+        "en": "Optional threshold used to ignore very small movements.",
+        "fr": "Seuil optionnel utilisé pour ignorer les très petits déplacements.",
+        "nl": "Optionele drempel om zeer kleine bewegingen te negeren.",
+        "de": "Optionaler Schwellenwert, um sehr kleine Bewegungen zu ignorieren."
+      }
+    }
+  ],
+  "tokens": [],
+  "hint": {
+    "en": "Creates the subject if it does not exist yet. If it already exists, nothing changes.",
+    "fr": "Crée le sujet s’il n’existe pas encore. S’il existe déjà, rien ne change.",
+    "nl": "Maakt het onderwerp aan als het nog niet bestaat. Bestaat het al, dan verandert er niets.",
+    "de": "Erstellt das Subjekt, wenn es noch nicht existiert. Wenn es bereits existiert, ändert sich nichts."
+  }
+}
