@@ -1,6 +1,6 @@
 {
   "id": "com.roue.geozones",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "sdk": 3,
   "compatibility": ">=12.5.0",
   "platforms": [
