@@ -1,0 +1,14 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Enabled",
+    "fr": "Activé",
+    "nl": "Ingeschakeld",
+    "de": "Aktiviert"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "toggle",
+  "icon": "/assets/capability-icons/enabled.svg"
+}

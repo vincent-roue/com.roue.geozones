@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GeoZones v1.0.2</title>
+  <title id="htmlTitle">GeoZones</title>
   <script src="/homey.js" data-origin="settings"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+  <link rel="stylesheet" href="./vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="./vendor/leaflet-draw/leaflet.draw.css" />
   <link rel="stylesheet" href="./app.css">
 </head>
 <body>
   <header class="topbar">
     <div>
-      <h1>GeoZones v1.0.2</h1>
+      <h1 id="appTitle">GeoZones</h1>
       <div id="status"></div>
     </div>
     <div class="toolbar">
@@ -23,9 +23,7 @@
 
   <nav class="tabs">
     <button data-tab="zones" class="active" data-i18n="tabs.zones"></button>
-    <button data-tab="subjects" data-i18n="tabs.subjects"></button>
-    <button data-tab="sources" data-i18n="tabs.sources"></button>
-    <button data-tab="general" data-i18n="tabs.general"></button>
+        <button data-tab="general" data-i18n="tabs.general"></button>
     <button data-tab="io" data-i18n="tabs.io"></button>
     <button data-tab="help" data-i18n="tabs.help"></button>
   </nav>
@@ -39,6 +37,7 @@
             <button id="btnAddPolygon" data-i18n="actions.addPolygon"></button>
             <button id="btnFitAll" data-i18n="actions.fitAll"></button>
           </div>
+          <p id="mapWarning" class="hint warning hidden" role="status"></p>
           <div id="map"></div>
           <div id="zoneList" class="list"></div>
         </div>
@@ -46,6 +45,7 @@
           <h2 data-i18n="zones.editor"></h2>
           <div id="zoneEmpty" class="empty-state" data-i18n="zones.selectZone"></div>
           <div id="zoneEditor" class="hidden">
+            <p id="zoneEditorError" class="hint warning hidden" role="alert"></p>
             <label><span data-i18n="common.name"></span><input id="zoneName" type="text"></label>
             <label><span data-i18n="common.color"></span><input id="zoneColor" type="color"></label>
             <label><input id="zoneActive" type="checkbox"> <span data-i18n="common.active"></span></label>
@@ -70,6 +70,7 @@
             <div id="polygonFields" class="hidden">
               <h3 data-i18n="zones.polygon"></h3>
               <label><span data-i18n="zones.points"></span><textarea id="zonePaths" rows="10"></textarea></label>
+              <p id="zonePathsError" class="hint warning hidden"></p>
             </div>
 
             <details>
@@ -124,35 +125,17 @@
       </div>
     </section>
 
-    <section data-panel="subjects" class="panel">
-      <div class="card">
-        <h2 data-i18n="subjects.title"></h2>
-        <div id="subjectList" class="list"></div>
-      </div>
-    </section>
-
-    <section data-panel="sources" class="panel">
-      <div class="card">
-        <div class="toolbar space-between">
-          <div>
-            <h2 data-i18n="sources.title"></h2>
-            <p class="hint" data-i18n="sources.intro"></p>
-          </div>
-          <button id="btnRefreshSources" type="button" data-i18n="sources.refresh"></button>
-        </div>
-        <div id="sourceDiagnostics" class="hint diagnostics"></div>
-        <div id="sourceList" class="list"></div>
-      </div>
-    </section>
-
     <section data-panel="general" class="panel">
-      <div class="grid three">
-        <div class="card section-card">
-          <h2 data-i18n="general.subjectPurgeTitle"></h2>
-          <p class="hint" data-i18n="general.subjectPurgeHelp"></p>
-          <label><input id="generalAutopurgeEnabled" type="checkbox"> <span data-i18n="general.subjectPurgeEnabled"></span></label>
-          <label><span data-i18n="general.subjectPurgeDays"></span><input id="generalAutopurgeDays" type="number" min="0" step="1"></label>
+      <div id="migrationPanel" class="card section-card hidden">
+        <h2 data-i18n="migration.title"></h2>
+        <p id="migrationStatus" role="status"></p>
+        <p class="hint warning" data-i18n="migration.instructions"></p>
+        <div class="toolbar">
+          <button id="btnMigrationBackup" type="button" data-i18n="migration.downloadBackup"></button>
         </div>
+        <p class="hint" data-i18n="migration.backupPrivacy"></p>
+      </div>
+      <div class="grid three">
         <div class="card section-card">
           <h2 data-i18n="general.historyTitle"></h2>
           <p class="hint" data-i18n="general.historyHelp"></p>
@@ -184,6 +167,7 @@
             <input id="importFile" type="file" class="hidden" accept="application/json,.json">
           </div>
           <textarea id="importBox" rows="12"></textarea>
+          <p class="hint warning" data-i18n="io.importWarning"></p>
           <div class="toolbar">
             <button id="btnImportReplace" data-i18n="io.importReplace"></button>
             <button id="btnImportMerge" data-i18n="io.importMerge"></button>
@@ -203,8 +187,8 @@
     </section>
   </main>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+  <script src="./vendor/leaflet/leaflet.js"></script>
+  <script src="./vendor/leaflet-draw/leaflet.draw.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>

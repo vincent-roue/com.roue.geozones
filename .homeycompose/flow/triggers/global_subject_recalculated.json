@@ -1,0 +1,77 @@
+{
+  "id": "global_subject_recalculated",
+  "title": {
+    "en": "[[subject]] / [[subjectType]] was recalculated",
+    "fr": "[[subject]] / [[subjectType]] a été recalculé",
+    "nl": "[[subject]] / [[subjectType]] is opnieuw berekend",
+    "de": "[[subject]] / [[subjectType]] wurde neu berechnet"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] / [[subjectType]] was recalculated",
+    "fr": "[[subject]] / [[subjectType]] a été recalculé",
+    "nl": "[[subject]] / [[subjectType]] is opnieuw berekend",
+    "de": "[[subject]] / [[subjectType]] wurde neu berechnet"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subjectType",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Type onderwerp",
+        "de": "Subjekttyp"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "subject",
+      "type": "string",
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subject_type",
+      "type": "string",
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Triggers when the selected subject or subject type is recalculated, even if the position and current zone stay the same.",
+    "fr": "Déclenche quand le sujet ou le type de sujet sélectionné est recalculé, même si la position et la zone courante restent identiques.",
+    "nl": "Wordt geactiveerd wanneer het geselecteerde onderwerp of onderwerptype opnieuw wordt berekend, zelfs als positie en huidige zone gelijk blijven.",
+    "de": "Wird ausgelöst, wenn das ausgewählte Subjekt oder der ausgewählte Subjekttyp neu berechnet wird, auch wenn Position und aktuelle Zone gleich bleiben."
+  }
+}

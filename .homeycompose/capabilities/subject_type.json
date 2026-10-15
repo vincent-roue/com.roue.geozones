@@ -1,0 +1,14 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Subject type",
+    "fr": "Type de sujet",
+    "nl": "Type onderwerp",
+    "de": "Subjekttyp"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capability-icons/subject_type.svg"
+}

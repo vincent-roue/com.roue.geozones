@@ -1,12 +1,14 @@
 {
   "name": "com.roue.geozones",
-  "version": "1.0.2",
+  "version": "2.0.5",
   "private": true,
-  "description": "GeoZones for Homey Pro 2023",
+  "description": "GeoZones for Homey Pro 2023 (manual subjects edition)",
   "scripts": {
-    "start:remote": "homey app run --remote"
+    "start:remote": "homey app run --remote",
+    "test": "node tests/all.js",
+    "test:unit": "node tests/run.js",
+    "test:i18n": "node tests/locales.js",
+    "ci": "npm test"
   },
-  "dependencies": {
-    "homey-api": "^3.17.12"
-  }
+  "dependencies": {}
 }

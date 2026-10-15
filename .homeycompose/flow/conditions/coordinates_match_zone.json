@@ -1,15 +1,16 @@
 {
+  "id": "coordinates_match_zone",
   "title": {
-    "en": "Coordinates match one zone",
-    "fr": "Les coordonnées correspondent à une zone",
-    "nl": "Coördinaten komen overeen met één zone",
-    "de": "Koordinaten entsprechen einer Zone"
+    "en": "Coordinates [[lat]], [[long]] !{{match|do not match}} [[zone]] / [[zones]]",
+    "fr": "Les coordonnées [[lat]], [[long]] !{{correspondent à|ne correspondent pas à}} [[zone]] / [[zones]]",
+    "nl": "Coördinaten [[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[zone]] / [[zones]]",
+    "de": "Koordinaten [[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[zone]] / [[zones]]"
   },
   "titleFormatted": {
-    "en": "[[lat]], [[long]] !{{match|do not match}} [[zone]]",
-    "fr": "[[lat]], [[long]] !{{correspondent|ne correspondent pas}} à [[zone]]",
-    "nl": "[[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[zone]]",
-    "de": "[[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[zone]]"
+    "en": "Coordinates [[lat]], [[long]] !{{match|do not match}} [[zone]] / [[zones]]",
+    "fr": "Les coordonnées [[lat]], [[long]] !{{correspondent à|ne correspondent pas à}} [[zone]] / [[zones]]",
+    "nl": "Coördinaten [[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[zone]] / [[zones]]",
+    "de": "Koordinaten [[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[zone]] / [[zones]]"
   },
   "args": [
     {
@@ -37,19 +38,30 @@
     {
       "name": "zone",
       "type": "autocomplete",
-      "required": true,
+      "required": false,
       "title": {
         "en": "Zone",
         "fr": "Zone",
         "nl": "Zone",
         "de": "Zone"
       }
+    },
+    {
+      "name": "zones",
+      "type": "text",
+      "required": false,
+      "title": {
+        "en": "Zones (comma-separated names)",
+        "fr": "Zones (noms séparés par des virgules)",
+        "nl": "Zones (door komma’s gescheiden namen)",
+        "de": "Zonen (durch Kommas getrennte Namen)"
+      }
     }
   ],
   "hint": {
-    "en": "Returns true when the coordinates are inside the selected zone. This card is invertible.",
-    "fr": "Renvoie vrai lorsque les coordonnées sont dans la zone sélectionnée. Cette carte est inversible.",
-    "nl": "Geeft waar terug wanneer de coördinaten zich in de geselecteerde zone bevinden. Deze kaart is omkeerbaar.",
-    "de": "Gibt wahr zurück, wenn sich die Koordinaten in der ausgewählten Zone befinden. Diese Karte ist invertierbar."
+    "en": "Checks whether the coordinates are inside the selected zone or one of the listed zones.",
+    "fr": "Vérifie si les coordonnées sont dans la zone sélectionnée ou dans l’une des zones listées.",
+    "nl": "Controleert of de coördinaten zich in de geselecteerde zone of in een van de opgegeven zones bevinden.",
+    "de": "Prüft, ob sich die Koordinaten in der ausgewählten Zone oder in einer der aufgelisteten Zonen befinden."
   }
 }

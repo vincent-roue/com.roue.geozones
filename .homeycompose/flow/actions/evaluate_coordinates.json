@@ -1,15 +1,16 @@
 {
+  "id": "evaluate_coordinates",
   "title": {
-    "en": "Evaluate coordinates",
-    "fr": "Évaluer des coordonnées",
-    "nl": "Coördinaten evalueren",
-    "de": "Koordinaten auswerten"
+    "en": "Evaluate [[lat]], [[long]]",
+    "fr": "Évaluer [[lat]], [[long]]",
+    "nl": "Evalueer [[lat]], [[long]]",
+    "de": "[[lat]], [[long]] auswerten"
   },
   "titleFormatted": {
     "en": "Evaluate [[lat]], [[long]]",
     "fr": "Évaluer [[lat]], [[long]]",
     "nl": "Evalueer [[lat]], [[long]]",
-    "de": "Werte [[lat]], [[long]] aus"
+    "de": "[[lat]], [[long]] auswerten"
   },
   "args": [
     {
@@ -51,26 +52,16 @@
       "type": "string",
       "title": {
         "en": "Zone tags",
-        "fr": "Tags de la zone",
+        "fr": "Tags de zone",
         "nl": "Zone-tags",
         "de": "Zonen-Tags"
-      }
-    },
-    {
-      "name": "found",
-      "type": "boolean",
-      "title": {
-        "en": "Zone found",
-        "fr": "Zone trouvée",
-        "nl": "Zone gevonden",
-        "de": "Zone gefunden"
       }
     }
   ],
   "hint": {
-    "en": "Evaluates raw coordinates and returns the winning zone, its tags and whether a matching zone was found.",
-    "fr": "Évalue des coordonnées brutes et renvoie la zone gagnante, ses tags et si une zone correspondante a été trouvée.",
-    "nl": "Evalueert ruwe coördinaten en geeft de winnende zone, de tags en aan of er een passende zone gevonden werd.",
-    "de": "Wertet rohe Koordinaten aus und gibt die Gewinnerzone, ihre Tags und an, ob eine passende Zone gefunden wurde."
+    "en": "Evaluates the coordinates against all active zones and returns the winning zone together with the tags of that zone. This card does not maintain subject state and therefore does not return previous zone, movement state or speed.",
+    "fr": "Évalue les coordonnées par rapport à toutes les zones actives et retourne la zone gagnante ainsi que les tags de cette zone. Cette carte ne maintient pas d’état de sujet et ne retourne donc ni zone précédente, ni état de mouvement, ni vitesse.",
+    "nl": "Evalueert de coördinaten ten opzichte van alle actieve zones en geeft de winnende zone terug samen met de tags van die zone. Deze kaart houdt geen onderwerpstatus bij en retourneert daarom geen vorige zone, bewegingsstatus of snelheid.",
+    "de": "Wertet die Koordinaten gegen alle aktiven Zonen aus und gibt die Gewinnerzone zusammen mit den Tags dieser Zone zurück. Diese Karte verwaltet keinen Subjektstatus und liefert daher weder vorherige Zone noch Bewegungsstatus oder Geschwindigkeit."
   }
 }

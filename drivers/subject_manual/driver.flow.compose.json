@@ -1,0 +1,886 @@
+{
+  "triggers": [
+    {
+      "id": "subject_transition",
+      "title": {
+        "en": "Zone transition — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "fr": "Transition de zone — [[transition]] : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "nl": "Zoneovergang — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "de": "[[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+      },
+      "titleFormatted": {
+        "en": "Zone transition — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "fr": "Transition de zone — [[transition]] : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "nl": "Zoneovergang — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "de": "[[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+      },
+      "args": [
+        {
+          "name": "transition",
+          "type": "dropdown",
+          "required": true,
+          "title": {
+            "en": "Transition",
+            "fr": "Transition",
+            "nl": "Overgang",
+            "de": "Übergang"
+          },
+          "values": [
+            {
+              "id": "entered",
+              "title": {
+                "en": "entry",
+                "fr": "entrée",
+                "nl": "binnenkomst",
+                "de": "Zone betreten"
+              }
+            },
+            {
+              "id": "left",
+              "title": {
+                "en": "exit",
+                "fr": "sortie",
+                "nl": "vertrek",
+                "de": "Zone verlassen"
+              }
+            }
+          ]
+        },
+        {
+          "name": "zone",
+          "type": "autocomplete",
+          "required": false,
+          "title": {
+            "en": "Zone",
+            "fr": "Zone",
+            "nl": "Zone",
+            "de": "Zone"
+          }
+        },
+        {
+          "name": "zones",
+          "type": "text",
+          "required": false,
+          "title": {
+            "en": "Zones (comma-separated names)",
+            "fr": "Zones (noms séparés par des virgules)",
+            "nl": "Zones (door komma’s gescheiden namen)",
+            "de": "Zonen (durch Kommas getrennte Namen)"
+          }
+        },
+        {
+          "name": "tag",
+          "type": "autocomplete",
+          "required": false,
+          "title": {
+            "en": "Tag",
+            "fr": "Tag",
+            "nl": "Tag",
+            "de": "Tag"
+          }
+        },
+        {
+          "name": "tags",
+          "type": "text",
+          "required": false,
+          "title": {
+            "en": "Tags (comma-separated names)",
+            "fr": "Tags (noms séparés par des virgules)",
+            "nl": "Tags (door komma’s gescheiden namen)",
+            "de": "Tags (durch Kommas getrennte Namen)"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "zone",
+          "type": "string",
+          "title": {
+            "en": "Zone",
+            "fr": "Zone",
+            "nl": "Zone",
+            "de": "Zone"
+          }
+        },
+        {
+          "name": "previous_zone",
+          "type": "string",
+          "title": {
+            "en": "Previous zone",
+            "fr": "Zone précédente",
+            "nl": "Vorige zone",
+            "de": "Vorherige Zone"
+          }
+        },
+        {
+          "name": "zone_tags",
+          "type": "string",
+          "title": {
+            "en": "Zone tags",
+            "fr": "Tags de zone",
+            "nl": "Zone-tags",
+            "de": "Zonen-Tags"
+          }
+        },
+        {
+          "name": "speed_kmh",
+          "type": "number",
+          "title": {
+            "en": "Speed (km/h)",
+            "fr": "Vitesse (km/h)",
+            "nl": "Snelheid (km/u)",
+            "de": "Geschwindigkeit (km/h)"
+          }
+        },
+        {
+          "name": "movement_state",
+          "type": "string",
+          "title": {
+            "en": "Movement state",
+            "fr": "État de mouvement",
+            "nl": "Bewegingsstatus",
+            "de": "Bewegungsstatus"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Triggers when this subject enters or leaves a zone. Optional filters can restrict the transition, zone or tag. The exposed zone tokens always describe the zone involved in the transition.",
+        "fr": "Déclenche quand ce sujet entre ou sort d’une zone. Les filtres optionnels permettent de limiter la transition, la zone ou le tag. Les jetons de zone décrivent toujours la zone concernée par la transition.",
+        "nl": "Wordt geactiveerd wanneer dit onderwerp een zone binnengaat of verlaat. Optionele filters kunnen de overgang, zone of tag beperken. De getoonde zone-tags beschrijven altijd de zone die bij de overgang hoort.",
+        "de": "Wird ausgelöst, wenn dieses Subjekt eine Zone betritt oder verlässt. Optionale Filter können den Übergang, die Zone oder das Tag einschränken. Die ausgegebenen Zonen-Tokens beschreiben immer die von der Transition betroffene Zone."
+      }
+    },
+    {
+      "id": "subject_zone_changed",
+      "title": {
+        "en": "Changed zone",
+        "fr": "A changé de zone",
+        "nl": "Van zone veranderd",
+        "de": "Zone gewechselt"
+      },
+      "titleFormatted": {
+        "en": "Changed zone",
+        "fr": "A changé de zone",
+        "nl": "Van zone veranderd",
+        "de": "Zone gewechselt"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "zone",
+          "type": "string",
+          "title": {
+            "en": "Zone",
+            "fr": "Zone",
+            "nl": "Zone",
+            "de": "Zone"
+          }
+        },
+        {
+          "name": "previous_zone",
+          "type": "string",
+          "title": {
+            "en": "Previous zone",
+            "fr": "Zone précédente",
+            "nl": "Vorige zone",
+            "de": "Vorherige Zone"
+          }
+        },
+        {
+          "name": "zone_tags",
+          "type": "string",
+          "title": {
+            "en": "Zone tags",
+            "fr": "Tags de zone",
+            "nl": "Zone-tags",
+            "de": "Zonen-Tags"
+          }
+        },
+        {
+          "name": "speed_kmh",
+          "type": "number",
+          "title": {
+            "en": "Speed (km/h)",
+            "fr": "Vitesse (km/h)",
+            "nl": "Snelheid (km/u)",
+            "de": "Geschwindigkeit (km/h)"
+          }
+        },
+        {
+          "name": "movement_state",
+          "type": "string",
+          "title": {
+            "en": "Movement state",
+            "fr": "État de mouvement",
+            "nl": "Bewegingsstatus",
+            "de": "Bewegungsstatus"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Triggers when the current zone of this subject changes, including transitions between a real zone and not_defined.",
+        "fr": "Déclenche quand la zone courante de ce sujet change, y compris entre une vraie zone et not_defined.",
+        "nl": "Wordt geactiveerd wanneer de huidige zone van dit onderwerp verandert, ook tussen een echte zone en not_defined.",
+        "de": "Wird ausgelöst, wenn sich die aktuelle Zone dieses Subjekts ändert, auch zwischen einer echten Zone und not_defined."
+      }
+    },
+    {
+      "id": "subject_position_changed",
+      "title": {
+        "en": "Position changed",
+        "fr": "La position a changé",
+        "nl": "Positie gewijzigd",
+        "de": "Position geändert"
+      },
+      "titleFormatted": {
+        "en": "Position changed",
+        "fr": "La position a changé",
+        "nl": "Positie gewijzigd",
+        "de": "Position geändert"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "zone",
+          "type": "string",
+          "title": {
+            "en": "Zone",
+            "fr": "Zone",
+            "nl": "Zone",
+            "de": "Zone"
+          }
+        },
+        {
+          "name": "speed_kmh",
+          "type": "number",
+          "title": {
+            "en": "Speed (km/h)",
+            "fr": "Vitesse (km/h)",
+            "nl": "Snelheid (km/u)",
+            "de": "Geschwindigkeit (km/h)"
+          }
+        },
+        {
+          "name": "movement_state",
+          "type": "string",
+          "title": {
+            "en": "Movement state",
+            "fr": "État de mouvement",
+            "nl": "Bewegingsstatus",
+            "de": "Bewegungsstatus"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Triggers when the stored latitude and/or longitude of this subject really changes.",
+        "fr": "Déclenche quand les coordonnées enregistrées de ce sujet changent réellement.",
+        "nl": "Wordt geactiveerd wanneer de opgeslagen breedtegraad en/of lengtegraad van dit onderwerp echt verandert.",
+        "de": "Wird ausgelöst, wenn sich der gespeicherte Breitengrad und/oder Längengrad dieses Subjekts tatsächlich ändert."
+      }
+    },
+    {
+      "id": "subject_recalculated",
+      "title": {
+        "en": "Was recalculated",
+        "fr": "A été recalculé",
+        "nl": "Werd opnieuw berekend",
+        "de": "Wurde neu berechnet"
+      },
+      "titleFormatted": {
+        "en": "Was recalculated",
+        "fr": "A été recalculé",
+        "nl": "Werd opnieuw berekend",
+        "de": "Wurde neu berechnet"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "zone",
+          "type": "string",
+          "title": {
+            "en": "Zone",
+            "fr": "Zone",
+            "nl": "Zone",
+            "de": "Zone"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Triggers whenever this subject is recalculated, even if the position and current zone stay the same.",
+        "fr": "Déclenche chaque fois que ce sujet est recalculé, même si la position et la zone courante restent identiques.",
+        "nl": "Wordt geactiveerd telkens wanneer dit onderwerp opnieuw wordt berekend, zelfs als positie en huidige zone gelijk blijven.",
+        "de": "Wird ausgelöst, wenn dieses Subjekt neu berechnet wird, auch wenn Position und aktuelle Zone gleich bleiben."
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "id": "device_is_in_zone",
+      "title": {
+        "en": "Is in zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "fr": "Est dans une zone : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "nl": "Is in zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "de": "Ist in einer Zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+      },
+      "titleFormatted": {
+        "en": "Is in zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "fr": "Est dans une zone : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "nl": "Is in zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "de": "Ist in einer Zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+      },
+      "args": [
+        {
+          "name": "zone",
+          "type": "autocomplete",
+          "required": false,
+          "title": {
+            "en": "Zone",
+            "fr": "Zone",
+            "nl": "Zone",
+            "de": "Zone"
+          }
+        },
+        {
+          "name": "zones",
+          "type": "text",
+          "required": false,
+          "title": {
+            "en": "Zones (comma-separated names)",
+            "fr": "Zones (noms séparés par des virgules)",
+            "nl": "Zones (door komma’s gescheiden namen)",
+            "de": "Zonen (durch Kommas getrennte Namen)"
+          }
+        },
+        {
+          "name": "tag",
+          "type": "autocomplete",
+          "required": false,
+          "title": {
+            "en": "Tag",
+            "fr": "Tag",
+            "nl": "Tag",
+            "de": "Tag"
+          }
+        },
+        {
+          "name": "tags",
+          "type": "text",
+          "required": false,
+          "title": {
+            "en": "Tags (comma-separated names)",
+            "fr": "Tags (noms séparés par des virgules)",
+            "nl": "Tags (door komma’s gescheiden namen)",
+            "de": "Tags (durch Kommas getrennte Namen)"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Checks whether this subject is currently inside the selected zone or a zone with one of the selected tags.",
+        "fr": "Vérifie si ce sujet est actuellement dans la zone sélectionnée ou dans une zone portant l’un des tags sélectionnés.",
+        "nl": "Controleert of dit onderwerp zich momenteel in de geselecteerde zone of in een zone met een van de geselecteerde tags bevindt.",
+        "de": "Prüft, ob sich dieses Subjekt aktuell in der ausgewählten Zone oder in einer Zone mit einem der ausgewählten Tags befindet."
+      }
+    },
+    {
+      "id": "device_is_movement_state",
+      "title": {
+        "en": "Is [[state]]",
+        "fr": "Est [[state]]",
+        "nl": "Is [[state]]",
+        "de": "Ist [[state]]"
+      },
+      "titleFormatted": {
+        "en": "Is [[state]]",
+        "fr": "Est [[state]]",
+        "nl": "Is [[state]]",
+        "de": "Ist [[state]]"
+      },
+      "args": [
+        {
+          "name": "state",
+          "type": "autocomplete",
+          "required": true,
+          "title": {
+            "en": "Movement state",
+            "fr": "État de mouvement",
+            "nl": "Bewegingsstatus",
+            "de": "Bewegungsstatus"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Checks the current movement state of this subject.",
+        "fr": "Vérifie l’état de mouvement courant de ce sujet.",
+        "nl": "Controleert de huidige bewegingsstatus van dit onderwerp.",
+        "de": "Prüft den aktuellen Bewegungsstatus dieses Subjekts."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "device_evaluate_subject",
+      "title": {
+        "en": "Evaluate subject",
+        "fr": "Évaluer le sujet",
+        "nl": "Onderwerp evalueren",
+        "de": "Subjekt auswerten"
+      },
+      "titleFormatted": {
+        "en": "Evaluate subject",
+        "fr": "Évaluer le sujet",
+        "nl": "Onderwerp evalueren",
+        "de": "Subjekt auswerten"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "zone",
+          "type": "string",
+          "title": {
+            "en": "Zone",
+            "fr": "Zone",
+            "nl": "Zone",
+            "de": "Zone"
+          }
+        },
+        {
+          "name": "previous_zone",
+          "type": "string",
+          "title": {
+            "en": "Previous zone",
+            "fr": "Zone précédente",
+            "nl": "Vorige zone",
+            "de": "Vorherige Zone"
+          }
+        },
+        {
+          "name": "zone_tags",
+          "type": "string",
+          "title": {
+            "en": "Zone tags",
+            "fr": "Tags de zone",
+            "nl": "Zone-tags",
+            "de": "Zonen-Tags"
+          }
+        },
+        {
+          "name": "movement_state",
+          "type": "string",
+          "title": {
+            "en": "Movement state",
+            "fr": "État de mouvement",
+            "nl": "Bewegingsstatus",
+            "de": "Bewegungsstatus"
+          }
+        },
+        {
+          "name": "speed_kmh",
+          "type": "number",
+          "title": {
+            "en": "Speed (km/h)",
+            "fr": "Vitesse (km/h)",
+            "nl": "Snelheid (km/u)",
+            "de": "Geschwindigkeit (km/h)"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Re-evaluates the stored coordinates of this subject against the configured zones.",
+        "fr": "Réévalue les coordonnées stockées de ce sujet par rapport aux zones configurées.",
+        "nl": "Evalueert de opgeslagen coördinaten van dit onderwerp opnieuw ten opzichte van de geconfigureerde zones.",
+        "de": "Wertet die gespeicherten Koordinaten dieses Subjekts erneut gegen die konfigurierten Zonen aus."
+      }
+    },
+    {
+      "id": "device_set_enabled_state",
+      "title": {
+        "en": "Set subject to [[enabled_state]]",
+        "fr": "Définir l’état du sujet sur [[enabled_state]]",
+        "nl": "Onderwerp op [[enabled_state]] zetten",
+        "de": "Subjekt auf [[enabled_state]] setzen"
+      },
+      "titleFormatted": {
+        "en": "Set subject to [[enabled_state]]",
+        "fr": "Définir l’état du sujet sur [[enabled_state]]",
+        "nl": "Onderwerp op [[enabled_state]] zetten",
+        "de": "Subjekt auf [[enabled_state]] setzen"
+      },
+      "args": [
+        {
+          "name": "enabled_state",
+          "type": "dropdown",
+          "required": true,
+          "title": {
+            "en": "State",
+            "fr": "État",
+            "nl": "Status",
+            "de": "Status"
+          },
+          "values": [
+            {
+              "id": "enabled",
+              "title": {
+                "en": "enabled",
+                "fr": "activé",
+                "nl": "ingeschakeld",
+                "de": "aktiviert"
+              }
+            },
+            {
+              "id": "disabled",
+              "title": {
+                "en": "disabled",
+                "fr": "désactivé",
+                "nl": "uitgeschakeld",
+                "de": "deaktiviert"
+              }
+            }
+          ]
+        }
+      ],
+      "hint": {
+        "en": "Enables or disables this subject without deleting it.",
+        "fr": "Active ou désactive ce sujet sans le supprimer.",
+        "nl": "Schakelt dit onderwerp in of uit zonder het te verwijderen.",
+        "de": "Aktiviert oder deaktiviert dieses Subjekt, ohne es zu löschen."
+      }
+    },
+    {
+      "id": "device_set_min_move_distance",
+      "title": {
+        "en": "Set minimum move distance to [[minMoveDistanceM]] m",
+        "fr": "Définir la distance minimale de mouvement à [[minMoveDistanceM]] m",
+        "nl": "Minimale bewegingsafstand instellen op [[minMoveDistanceM]] m",
+        "de": "Minimale Bewegungsdistanz auf [[minMoveDistanceM]] m setzen"
+      },
+      "titleFormatted": {
+        "en": "Set minimum move distance to [[minMoveDistanceM]] m",
+        "fr": "Définir la distance minimale de mouvement à [[minMoveDistanceM]] m",
+        "nl": "Minimale bewegingsafstand instellen op [[minMoveDistanceM]] m",
+        "de": "Minimale Bewegungsdistanz auf [[minMoveDistanceM]] m setzen"
+      },
+      "args": [
+        {
+          "name": "minMoveDistanceM",
+          "type": "number",
+          "required": true,
+          "title": {
+            "en": "Minimum move distance (m)",
+            "fr": "Distance minimale de mouvement (m)",
+            "nl": "Minimale bewegingsafstand (m)",
+            "de": "Minimale Bewegungsdistanz (m)"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Changes the minimum movement threshold used to filter GPS noise for this subject.",
+        "fr": "Modifie le seuil minimal de déplacement utilisé pour filtrer le bruit GPS de ce sujet.",
+        "nl": "Wijzigt de minimale bewegingsdrempel die wordt gebruikt om GPS-ruis voor dit onderwerp te filteren.",
+        "de": "Ändert die minimale Bewegungsschwelle, die verwendet wird, um GPS-Rauschen für dieses Subjekt zu filtern."
+      }
+    },
+    {
+      "id": "device_distance_to_coordinates",
+      "title": {
+        "en": "Calculate distance to [[lat]], [[long]]",
+        "fr": "Calculer la distance jusqu’à [[lat]], [[long]]",
+        "nl": "Afstand berekenen tot [[lat]], [[long]]",
+        "de": "Entfernung bis [[lat]], [[long]] berechnen"
+      },
+      "titleFormatted": {
+        "en": "Calculate distance to [[lat]], [[long]]",
+        "fr": "Calculer la distance jusqu’à [[lat]], [[long]]",
+        "nl": "Afstand berekenen tot [[lat]], [[long]]",
+        "de": "Entfernung bis [[lat]], [[long]] berechnen"
+      },
+      "args": [
+        {
+          "name": "lat",
+          "type": "number",
+          "required": true,
+          "title": {
+            "en": "Latitude",
+            "fr": "Latitude",
+            "nl": "Breedtegraad",
+            "de": "Breitengrad"
+          }
+        },
+        {
+          "name": "long",
+          "type": "number",
+          "required": true,
+          "title": {
+            "en": "Longitude",
+            "fr": "Longitude",
+            "nl": "Lengtegraad",
+            "de": "Längengrad"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "distance_m",
+          "type": "number",
+          "title": {
+            "en": "Distance (m)",
+            "fr": "Distance (m)",
+            "nl": "Afstand (m)",
+            "de": "Entfernung (m)"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Calculates the straight-line distance in meters from this subject to the provided coordinates.",
+        "fr": "Calcule la distance en ligne droite, en mètres, entre ce sujet et les coordonnées fournies.",
+        "nl": "Berekent de hemelsbrede afstand in meters van dit onderwerp naar de opgegeven coördinaten.",
+        "de": "Berechnet die Luftlinienentfernung in Metern von diesem Subjekt zu den angegebenen Koordinaten."
+      }
+    },
+    {
+      "id": "device_distance_to_subject",
+      "title": {
+        "en": "Calculate distance to [[subject]]",
+        "fr": "Calculer la distance jusqu’à [[subject]]",
+        "nl": "Afstand berekenen tot [[subject]]",
+        "de": "Entfernung bis [[subject]] berechnen"
+      },
+      "titleFormatted": {
+        "en": "Calculate distance to [[subject]]",
+        "fr": "Calculer la distance jusqu’à [[subject]]",
+        "nl": "Afstand berekenen tot [[subject]]",
+        "de": "Entfernung bis [[subject]] berechnen"
+      },
+      "args": [
+        {
+          "name": "subject",
+          "type": "autocomplete",
+          "required": true,
+          "title": {
+            "en": "Subject",
+            "fr": "Sujet",
+            "nl": "Onderwerp",
+            "de": "Subjekt"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "distance_m",
+          "type": "number",
+          "title": {
+            "en": "Distance (m)",
+            "fr": "Distance (m)",
+            "nl": "Afstand (m)",
+            "de": "Entfernung (m)"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Calculates the straight-line distance in meters from this subject to another GeoZones subject.",
+        "fr": "Calcule la distance en ligne droite, en mètres, entre ce sujet et un autre sujet GeoZones.",
+        "nl": "Berekent de hemelsbrede afstand in meters van dit onderwerp naar een ander GeoZones-onderwerp.",
+        "de": "Berechnet die Luftlinienentfernung in Metern von diesem Subjekt zu einem anderen GeoZones-Subjekt."
+      }
+    },
+    {
+      "id": "device_distance_to_zone",
+      "title": {
+        "en": "Calculate distance to [[zone]]",
+        "fr": "Calculer la distance jusqu’à [[zone]]",
+        "nl": "Afstand berekenen tot [[zone]]",
+        "de": "Entfernung bis [[zone]] berechnen"
+      },
+      "titleFormatted": {
+        "en": "Calculate distance to [[zone]]",
+        "fr": "Calculer la distance jusqu’à [[zone]]",
+        "nl": "Afstand berekenen tot [[zone]]",
+        "de": "Entfernung bis [[zone]] berechnen"
+      },
+      "args": [
+        {
+          "name": "zone",
+          "type": "autocomplete",
+          "required": true,
+          "title": {
+            "en": "Zone",
+            "fr": "Zone",
+            "nl": "Zone",
+            "de": "Zone"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "distance_m",
+          "type": "number",
+          "title": {
+            "en": "Distance (m)",
+            "fr": "Distance (m)",
+            "nl": "Afstand (m)",
+            "de": "Entfernung (m)"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Calculates the shortest distance in meters from this subject to the selected zone. Returns 0 when it is inside the zone.",
+        "fr": "Calcule la distance la plus courte, en mètres, entre ce sujet et la zone sélectionnée. Retourne 0 s’il est dans la zone.",
+        "nl": "Berekent de kortste afstand in meters van dit onderwerp tot de geselecteerde zone. Geeft 0 terug als het zich in de zone bevindt.",
+        "de": "Berechnet die kürzeste Entfernung in Metern von diesem Subjekt zur ausgewählten Zone. Gibt 0 zurück, wenn es sich in der Zone befindet."
+      }
+    },
+    {
+      "id": "device_distance_to_tag",
+      "title": {
+        "en": "Calculate distance to tag [[tag]] / [[tags]]",
+        "fr": "Calculer la distance jusqu’au tag [[tag]] / [[tags]]",
+        "nl": "Afstand berekenen tot tag [[tag]] / [[tags]]",
+        "de": "Entfernung bis zum Tag [[tag]] / [[tags]] berechnen"
+      },
+      "titleFormatted": {
+        "en": "Calculate distance to tag [[tag]] / [[tags]]",
+        "fr": "Calculer la distance jusqu’au tag [[tag]] / [[tags]]",
+        "nl": "Afstand berekenen tot tag [[tag]] / [[tags]]",
+        "de": "Entfernung bis zum Tag [[tag]] / [[tags]] berechnen"
+      },
+      "args": [
+        {
+          "name": "tag",
+          "type": "autocomplete",
+          "required": false,
+          "title": {
+            "en": "Tag",
+            "fr": "Tag",
+            "nl": "Tag",
+            "de": "Tag"
+          }
+        },
+        {
+          "name": "tags",
+          "type": "text",
+          "required": false,
+          "title": {
+            "en": "Tags (comma-separated names)",
+            "fr": "Tags (noms séparés par des virgules)",
+            "nl": "Tags (door komma’s gescheiden namen)",
+            "de": "Tags (durch Kommas getrennte Namen)"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "distance_m",
+          "type": "number",
+          "title": {
+            "en": "Distance (m)",
+            "fr": "Distance (m)",
+            "nl": "Afstand (m)",
+            "de": "Entfernung (m)"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Calculates the shortest distance in meters from this subject to the nearest zone matching the selected tag or one of the listed tags.",
+        "fr": "Calcule la distance la plus courte, en mètres, entre ce sujet et la zone la plus proche correspondant au tag sélectionné ou à l’un des tags listés.",
+        "nl": "Berekent de kortste afstand in meters van dit onderwerp tot de dichtstbijzijnde zone die overeenkomt met de geselecteerde tag of een van de opgegeven tags.",
+        "de": "Berechnet die kürzeste Entfernung in Metern von diesem Subjekt zur nächstgelegenen Zone, die dem ausgewählten Tag oder einem der aufgelisteten Tags entspricht."
+      }
+    },
+    {
+      "id": "device_set_position_and_evaluate",
+      "title": {
+        "en": "Set position to [[lat]], [[long]] and evaluate",
+        "fr": "Mettre la position à [[lat]], [[long]] et évaluer",
+        "nl": "Positie instellen op [[lat]], [[long]] en evalueren",
+        "de": "Position auf [[lat]], [[long]] setzen und auswerten"
+      },
+      "titleFormatted": {
+        "en": "Set position to [[lat]], [[long]] and evaluate",
+        "fr": "Mettre la position à [[lat]], [[long]] et évaluer",
+        "nl": "Positie instellen op [[lat]], [[long]] en evalueren",
+        "de": "Position auf [[lat]], [[long]] setzen und auswerten"
+      },
+      "args": [
+        {
+          "name": "lat",
+          "type": "number",
+          "required": true,
+          "title": {
+            "en": "Latitude",
+            "fr": "Latitude",
+            "nl": "Breedtegraad",
+            "de": "Breitengrad"
+          }
+        },
+        {
+          "name": "long",
+          "type": "number",
+          "required": true,
+          "title": {
+            "en": "Longitude",
+            "fr": "Longitude",
+            "nl": "Lengtegraad",
+            "de": "Längengrad"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "zone",
+          "type": "string",
+          "title": {
+            "en": "Zone",
+            "fr": "Zone",
+            "nl": "Zone",
+            "de": "Zone"
+          }
+        },
+        {
+          "name": "previous_zone",
+          "type": "string",
+          "title": {
+            "en": "Previous zone",
+            "fr": "Zone précédente",
+            "nl": "Vorige zone",
+            "de": "Vorherige Zone"
+          }
+        },
+        {
+          "name": "zone_tags",
+          "type": "string",
+          "title": {
+            "en": "Zone tags",
+            "fr": "Tags de zone",
+            "nl": "Zone-tags",
+            "de": "Zonen-Tags"
+          }
+        },
+        {
+          "name": "movement_state",
+          "type": "string",
+          "title": {
+            "en": "Movement state",
+            "fr": "État de mouvement",
+            "nl": "Bewegingsstatus",
+            "de": "Bewegungsstatus"
+          }
+        },
+        {
+          "name": "speed_kmh",
+          "type": "number",
+          "title": {
+            "en": "Speed (km/h)",
+            "fr": "Vitesse (km/h)",
+            "nl": "Snelheid (km/u)",
+            "de": "Geschwindigkeit (km/h)"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Stores the provided coordinates on this manual subject and immediately evaluates the resulting zone.",
+        "fr": "Enregistre les coordonnées fournies sur ce sujet manuel et évalue immédiatement la zone résultante.",
+        "nl": "Slaat de opgegeven coördinaten op voor dit handmatige onderwerp en evalueert direct de resulterende zone.",
+        "de": "Speichert die angegebenen Koordinaten auf diesem manuellen Subjekt und wertet die resultierende Zone sofort aus."
+      }
+    }
+  ]
+}

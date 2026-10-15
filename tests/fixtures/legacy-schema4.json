@@ -1,0 +1,24 @@
+{
+  "config": {
+    "schemaVersion": 4,
+    "zones": [
+      {
+        "name": "Home", "id": "Home", "type": "circle", "active": true,
+        "color": "#3388ff", "priority": 0, "groups": ["Family"], "categories": ["house"],
+        "center": {"lat": 48, "lng": 2}, "radius": 100, "hysteresis": 0, "paths": [], "areaM2": 31415.926535897932
+      },
+      {
+        "name": "home", "id": "home", "type": "circle", "active": true,
+        "color": "#ff8833", "priority": 0, "groups": ["Family"], "categories": ["office"],
+        "center": {"lat": 49, "lng": 3}, "radius": 100, "hysteresis": 0, "paths": [], "areaM2": 31415.926535897932
+      }
+    ],
+    "groups": ["Family"], "categories": ["house", "office"],
+    "ui": {"mapCenter": {"lat": 48, "lng": 2}, "mapZoom": 6, "selectedZoneName": "home", "activeTab": "zones"},
+    "subjectSettings": {"autopurgeEnabled": true, "autopurgeDays": 5, "heavyDebug": false},
+    "subjects": {
+      "Alice": {"currentZone": "home", "currentGroups": ["Family"], "currentCategories": ["office"], "lastLat": 49, "lastLng": 3, "lastTimestamp": "2026-10-14T10:00:00Z", "updatedAt": "2026-10-14T10:00:00Z"},
+      "Bob": {"currentZone": "Home", "currentGroups": ["Family"], "currentCategories": ["house"], "lastLat": 48, "lastLng": 2, "lastTimestamp": "2026-10-14T10:00:00Z", "updatedAt": "2026-10-14T10:00:00Z"}
+    }
+  }
+}

@@ -1,4 +1,8 @@
 node_modules
-.homeycompose
-.homeybuild
-*.zip
+.git
+.gitignore
+.github
+docs
+tests
+README.md
+GeoZones_v2_test_homeyscript.js

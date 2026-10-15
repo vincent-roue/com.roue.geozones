@@ -1,0 +1,20 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Speed",
+    "fr": "Vitesse",
+    "nl": "Snelheid",
+    "de": "Geschwindigkeit"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor",
+  "units": {
+    "en": "km/h",
+    "fr": "km/h",
+    "nl": "km/h",
+    "de": "km/h"
+  },
+  "icon": "/assets/capability-icons/speed_kmh.svg"
+}

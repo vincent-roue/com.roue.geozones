@@ -1,15 +1,16 @@
 {
+  "id": "distance_coordinates_zone",
   "title": {
-    "en": "Calculate distance between coordinates and a zone",
-    "fr": "Calculer la distance entre des coordonnées et une zone",
-    "nl": "Afstand tussen coördinaten en een zone berekenen",
-    "de": "Abstand zwischen Koordinaten und einer Zone berechnen"
+    "en": "Calculate distance from [[lat]], [[long]] to [[zone]]",
+    "fr": "Calculer la distance de [[lat]], [[long]] à [[zone]]",
+    "nl": "Afstand berekenen van [[lat]], [[long]] naar [[zone]]",
+    "de": "Entfernung von [[lat]], [[long]] zu [[zone]] berechnen"
   },
   "titleFormatted": {
     "en": "Calculate distance from [[lat]], [[long]] to [[zone]]",
     "fr": "Calculer la distance de [[lat]], [[long]] à [[zone]]",
-    "nl": "Bereken afstand van [[lat]], [[long]] tot [[zone]]",
-    "de": "Berechne Abstand von [[lat]], [[long]] zu [[zone]]"
+    "nl": "Afstand berekenen van [[lat]], [[long]] naar [[zone]]",
+    "de": "Entfernung von [[lat]], [[long]] zu [[zone]] berechnen"
   },
   "args": [
     {
@@ -54,14 +55,14 @@
         "en": "Distance (m)",
         "fr": "Distance (m)",
         "nl": "Afstand (m)",
-        "de": "Abstand (m)"
+        "de": "Entfernung (m)"
       }
     }
   ],
   "hint": {
-    "en": "Returns 0 when the coordinates are inside the zone, otherwise the distance in meters to the zone boundary.",
-    "fr": "Renvoie 0 lorsque les coordonnées sont dans la zone, sinon la distance en mètres jusqu’à la limite de la zone.",
-    "nl": "Geeft 0 terug wanneer de coördinaten in de zone zitten, anders de afstand in meters tot de zonegrens.",
-    "de": "Gibt 0 zurück, wenn sich die Koordinaten in der Zone befinden, sonst den Abstand in Metern bis zur Zonengrenze."
+    "en": "Calculates the shortest distance in meters from the coordinates to the selected zone. Returns 0 when the point is inside the zone.",
+    "fr": "Calcule la distance la plus courte en mètres entre les coordonnées et la zone sélectionnée. Retourne 0 si le point est dans la zone.",
+    "nl": "Berekent de kortste afstand in meters van de coördinaten tot de geselecteerde zone. Geeft 0 terug als het punt in de zone ligt.",
+    "de": "Berechnet die kürzeste Entfernung in Metern von den Koordinaten zur ausgewählten Zone. Gibt 0 zurück, wenn der Punkt in der Zone liegt."
   }
 }

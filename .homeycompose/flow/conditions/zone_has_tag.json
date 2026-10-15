@@ -1,0 +1,56 @@
+{
+  "id": "zone_has_tag",
+  "title": {
+    "en": "[[zone]] !{{has|does not have}} [[tag]] / [[tags]]",
+    "fr": "[[zone]] !{{a|n’a pas}} [[tag]] / [[tags]]",
+    "nl": "[[zone]] !{{heeft|heeft geen}} [[tag]] / [[tags]]",
+    "de": "[[zone]] !{{hat|hat nicht}} [[tag]] / [[tags]]"
+  },
+  "titleFormatted": {
+    "en": "[[zone]] !{{has|does not have}} [[tag]] / [[tags]]",
+    "fr": "[[zone]] !{{a|n’a pas}} [[tag]] / [[tags]]",
+    "nl": "[[zone]] !{{heeft|heeft geen}} [[tag]] / [[tags]]",
+    "de": "[[zone]] !{{hat|hat nicht}} [[tag]] / [[tags]]"
+  },
+  "args": [
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "tag",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Tag",
+        "fr": "Tag",
+        "nl": "Tag",
+        "de": "Tag"
+      }
+    },
+    {
+      "name": "tags",
+      "type": "text",
+      "required": false,
+      "title": {
+        "en": "Tags (comma-separated names)",
+        "fr": "Tags (noms séparés par des virgules)",
+        "nl": "Tags (door komma’s gescheiden namen)",
+        "de": "Tags (durch Kommas getrennte Namen)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Checks whether the selected zone has the selected tag or one of the listed tags.",
+    "fr": "Vérifie si la zone sélectionnée possède le tag sélectionné ou l’un des tags listés.",
+    "nl": "Controleert of de geselecteerde zone de geselecteerde tag of een van de opgegeven tags heeft.",
+    "de": "Prüft, ob die ausgewählte Zone das ausgewählte Tag oder eines der aufgelisteten Tags besitzt."
+  }
+}
