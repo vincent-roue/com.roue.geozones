@@ -10,8 +10,9 @@ Version 2.0.4 prepares the tested 2.0.3 runtime for publication. Uploading a dra
 - [x] Confirm the runtime matches 2.0.3 and no retired Flow cards or broad `homey:manager:api` permission returned.
 - [x] Review staged files; exclude credentials, private coordinates, exports, runtime snapshots, dependencies and generated build directories.
 - [x] Verify PNG dimensions, SVG icons, bundled map libraries and third-party notices.
-- [ ] Push the preparation branch and open a draft pull request with validation results.
+- [x] Push the preparation branch and open [draft pull request 1](https://github.com/vincent-roue/com.roue.geozones/pull/1) with validation results.
 - [x] Upload the Homey draft and record build ID 14 and archive SHA256 in [validation evidence](publication/VALIDATION.json).
+- [x] Verify the portal shows Draft, all 76 uploaded files match the publication checkout, and GitHub tests on Node 20/24 plus publication validation pass.
 
 ## Documentation and communication
 
