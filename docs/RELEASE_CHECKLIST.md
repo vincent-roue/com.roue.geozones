@@ -12,7 +12,7 @@ Version 2.0.4 prepares the tested manual-subject model for publication, with com
 - [x] Verify PNG dimensions, SVG icons, bundled map libraries and third-party notices.
 - [x] Push the final localized candidate to [draft pull request 1](https://github.com/vincent-roue/com.roue.geozones/pull/1) with validation results.
 - [x] Upload the final Homey draft and record its build ID and archive SHA256 in [validation evidence](publication/VALIDATION.json).
-- [ ] Verify the latest portal build shows Draft, uploaded files match the publication checkout, and GitHub tests on Node 20/24 plus publication validation pass.
+- [x] Verify the latest portal build shows Draft, uploaded files match the publication checkout, and GitHub tests on Node 20/24 plus publication validation pass.
 
 ## Documentation and communication
 
