@@ -1,0 +1,109 @@
+{
+  "id": "zone_contains_match",
+  "title": {
+    "en": "[[zone]] !{{contains|does not contain}} [[matchMode]] [[subject]] / [[subjects]] / [[subjectType]] / [[subjectTypes]]",
+    "fr": "[[zone]] !{{contient|ne contient pas}} [[matchMode]] [[subject]] / [[subjects]] / [[subjectType]] / [[subjectTypes]]",
+    "nl": "[[zone]] !{{bevat|bevat niet}} [[matchMode]] [[subject]] / [[subjects]] / [[subjectType]] / [[subjectTypes]]",
+    "de": "[[zone]] !{{enthält|enthält nicht}} [[matchMode]] [[subject]] / [[subjects]] / [[subjectType]] / [[subjectTypes]]"
+  },
+  "titleFormatted": {
+    "en": "[[zone]] !{{contains|does not contain}} [[matchMode]] [[subject]] / [[subjects]] / [[subjectType]] / [[subjectTypes]]",
+    "fr": "[[zone]] !{{contient|ne contient pas}} [[matchMode]] [[subject]] / [[subjects]] / [[subjectType]] / [[subjectTypes]]",
+    "nl": "[[zone]] !{{bevat|bevat niet}} [[matchMode]] [[subject]] / [[subjects]] / [[subjectType]] / [[subjectTypes]]",
+    "de": "[[zone]] !{{enthält|enthält nicht}} [[matchMode]] [[subject]] / [[subjects]] / [[subjectType]] / [[subjectTypes]]"
+  },
+  "args": [
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "matchMode",
+      "type": "dropdown",
+      "required": true,
+      "title": {
+        "en": "Match mode",
+        "fr": "Mode de correspondance",
+        "nl": "Overeenkomstmodus",
+        "de": "Abgleichmodus"
+      },
+      "values": [
+        {
+          "id": "at_least",
+          "title": {
+            "en": "at least",
+            "fr": "au moins",
+            "nl": "ten minste",
+            "de": "mindestens"
+          }
+        },
+        {
+          "id": "only",
+          "title": {
+            "en": "only",
+            "fr": "seulement",
+            "nl": "alleen",
+            "de": "nur"
+          }
+        }
+      ]
+    },
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subjects",
+      "type": "text",
+      "required": false,
+      "title": {
+        "en": "Subjects (comma-separated names)",
+        "fr": "Sujets (noms séparés par des virgules)",
+        "nl": "Onderwerpen (door komma’s gescheiden namen)",
+        "de": "Subjekte (durch Kommas getrennte Namen)"
+      }
+    },
+    {
+      "name": "subjectType",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Type onderwerp",
+        "de": "Subjekttyp"
+      }
+    },
+    {
+      "name": "subjectTypes",
+      "type": "text",
+      "required": false,
+      "title": {
+        "en": "Subject types (comma-separated names)",
+        "fr": "Types de sujet (noms séparés par des virgules)",
+        "nl": "Onderwerptypen (door komma’s gescheiden namen)",
+        "de": "Subjekttypen (durch Kommas getrennte Namen)"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Checks whether the selected zone contains at least or only the selected subjects and/or subject types.",
+    "fr": "Vérifie si la zone sélectionnée contient au moins ou seulement les sujets et/ou types de sujet sélectionnés.",
+    "nl": "Controleert of de geselecteerde zone ten minste of alleen de geselecteerde onderwerpen en/of onderwerptypen bevat.",
+    "de": "Prüft, ob die ausgewählte Zone mindestens oder nur die ausgewählten Subjekte und/oder Subjekttypen enthält."
+  }
+}

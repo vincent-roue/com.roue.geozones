@@ -1,0 +1,20 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Minimum move distance",
+    "fr": "Distance minimale de mouvement",
+    "nl": "Minimale bewegingsafstand",
+    "de": "Minimale Bewegungsdistanz"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor",
+  "units": {
+    "en": "m",
+    "fr": "m",
+    "nl": "m",
+    "de": "m"
+  },
+  "icon": "/assets/capability-icons/min_move_distance_m.svg"
+}

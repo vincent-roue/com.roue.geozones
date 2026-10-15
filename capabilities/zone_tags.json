@@ -1,0 +1,14 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Zone tags",
+    "fr": "Tags de la zone",
+    "nl": "Zonetags",
+    "de": "Zonen-Tags"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capability-icons/zone_tags.svg"
+}

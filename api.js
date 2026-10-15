@@ -4,151 +4,94 @@ const {
   getConfig,
   setConfig,
   updateConfig,
-  deleteSubject,
-  resetSubjectState,
-  purgeSubjects,
   getHistory,
   restoreHistoryEntry,
   deleteHistoryEntry,
-  getDerivedSubjectTypes,
-  getDerivedTags,
-  sanitizeSubject,
 } = require('./lib/store');
 const { determineBestZone } = require('./lib/zone-engine');
-const { cleanText, clone, makeIdFromName, normalizeKey } = require('./lib/utils');
-const { listLocationDevices } = require('./lib/sources');
-const fs = require('fs').promises;
-const path = require('path');
+const { getMigrationStatus, getLegacyBackup } = require('./lib/migration');
+const { log } = require('./lib/logger');
 
+const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const owns = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 
-function makeUniqueSubjectId(baseId, existingIds) {
-  const cleanBase = cleanText(baseId) || 'subject';
-  const ids = Array.isArray(existingIds) ? existingIds : Array.from(existingIds || []);
-  const used = new Set(ids.map(normalizeKey));
-  if (!used.has(normalizeKey(cleanBase))) return cleanBase;
-  let index = 2;
-  while (used.has(normalizeKey(`${cleanBase}_${index}`))) index += 1;
-  return `${cleanBase}_${index}`;
+function inspectConfigPayload(body, mode) {
+  const invalid = () => { throw new Error('Invalid configuration import: provide an exported configuration object with recognized sections. Replacing requires zones or legacy subject data.'); };
+  if (!isObject(body)) invalid();
+  let settings = body;
+  if (owns(body, 'payload')) {
+    if (!isObject(body.payload) || !isObject(body.payload.settings)) invalid();
+    settings = body.payload.settings;
+  }
+  if (owns(settings, 'config') && !isObject(settings.config)) invalid();
+  const config = owns(settings, 'config') ? settings.config : settings;
+  const sections = ['zones', 'general', 'ui', 'subjects', 'sources'];
+  if (!sections.some(key => owns(config, key)) && !owns(settings, 'subjects_state')) invalid();
+  for (const key of ['zones', 'sources']) if (owns(config, key) && !Array.isArray(config[key])) invalid();
+  for (const key of ['general', 'ui', 'subjects']) if (owns(config, key) && !isObject(config[key])) invalid();
+  if (owns(settings, 'subjects_state') && !isObject(settings.subjects_state)) invalid();
+  if (mode === 'replace' && !['zones', 'subjects', 'sources'].some(key => owns(config, key)) && !owns(settings, 'subjects_state')) invalid();
+  return { config, settings };
 }
 
-function mergeSubjectsWithRename(current = {}, incoming = {}, references = {}) {
-  const merged = clone(current || {});
-  const idMap = new Map();
-  const existingIds = new Set(Object.keys(merged));
-
-  for (const [rawId, rawSubject] of Object.entries(incoming || {})) {
-    const subject = sanitizeSubject(rawSubject, rawId);
-    const desiredId = cleanText(subject.id || rawId);
-    const finalId = makeUniqueSubjectId(desiredId, existingIds);
-    existingIds.add(finalId);
-    idMap.set(desiredId, finalId);
-    merged[finalId] = sanitizeSubject({ ...subject, id: finalId }, finalId);
-  }
-
-  if (Array.isArray(references.sources)) {
-    references.sources = references.sources.map(source => {
-      const nextId = idMap.get(cleanText(source.subjectId));
-      return nextId ? { ...source, subjectId: nextId } : source;
-    });
-  }
-
-  if (Array.isArray(references.zones)) {
-    references.zones = references.zones.map(zone => {
-      const subjects = Array.isArray(zone?.options?.subjectFilter?.subjects) ? zone.options.subjectFilter.subjects : [];
-      if (!subjects.length) return zone;
-      return {
-        ...zone,
-        options: {
-          ...(zone.options || {}),
-          subjectFilter: {
-            ...(zone.options?.subjectFilter || {}),
-            subjects: subjects.map(subjectId => idMap.get(cleanText(subjectId)) || subjectId),
-          },
-        },
-      };
-    });
-  }
-
-  return { subjects: merged, references, idMap };
-}
-
-async function cleanupPreviousExports() {
-  const dir = '/userdata';
-  const files = await fs.readdir(dir).catch(() => []);
-  await Promise.all(
-    (files || [])
-      .filter(filename => /^geozones-export-.*\.json$/i.test(filename))
-      .map(filename => fs.unlink(path.join(dir, filename)).catch(() => null))
-  );
+function retainImportWrapper(body, settings, config) {
+  if (owns(body, 'payload')) return { ...body, payload: { ...body.payload, settings: { ...settings, config } } };
+  if (owns(body, 'config') || owns(settings, 'subjects_state')) return { ...settings, config };
+  return config;
 }
 
 module.exports = {
   async getConfig({ homey }) {
-    await homey.app.syncSourcesFromDevices('api:getConfig');
-    const config = getConfig(homey);
+    return getConfig(homey);
+  },
+
+  async getMeta({ homey }) {
     return {
-      ...config,
-      derivedSubjectTypes: getDerivedSubjectTypes(config),
-      derivedTags: getDerivedTags(config),
+      appId: homey.manifest.id,
+      name: homey.manifest.name,
+      version: homey.manifest.version,
     };
   },
 
+  async getMigrationStatus({ homey }) {
+    return getMigrationStatus(homey);
+  },
+
+  async getMigrationBackup({ homey }) {
+    return getLegacyBackup(homey);
+  },
+
   async setConfig({ homey, body }) {
+    inspectConfigPayload(body, 'replace');
     const result = await setConfig(homey, body);
+    log(homey, 'api', 'Configuration replaced', { zones: Array.isArray(result?.zones) ? result.zones.length : 0 });
     await homey.app.triggerConfigChangedEvent('config_set');
+    await homey.app.reevaluateAllSubjects('config_set');
     return result;
   },
 
   async mergeConfig({ homey, body }) {
-    const current = getConfig(homey);
-    const incoming = clone(body || {});
-    const nextSources = Array.isArray(incoming.sources) ? incoming.sources : current.sources;
-    const nextZones = Array.isArray(incoming.zones) ? incoming.zones : current.zones;
-    const subjectMerge = incoming.subjects && typeof incoming.subjects === 'object'
-      ? mergeSubjectsWithRename(current.subjects, incoming.subjects, { sources: clone(nextSources), zones: clone(nextZones) })
-      : { subjects: current.subjects, references: { sources: nextSources, zones: nextZones } };
-
-    const merged = {
+    const { config: incoming, settings } = inspectConfigPayload(body, 'merge');
+    const result = await updateConfig(homey, current => retainImportWrapper(body, settings, {
       ...current,
       ...incoming,
-      zones: subjectMerge.references.zones,
-      subjects: subjectMerge.subjects,
-      sources: subjectMerge.references.sources,
-      general: incoming.general && typeof incoming.general === 'object' ? { ...current.general, ...incoming.general } : current.general,
-      ui: incoming.ui && typeof incoming.ui === 'object' ? { ...current.ui, ...incoming.ui } : current.ui,
-    };
-    const result = await setConfig(homey, merged);
+      general: incoming.general ? { ...current.general, ...incoming.general } : current.general,
+      ui: incoming.ui ? { ...current.ui, ...incoming.ui } : current.ui,
+    }));
+    log(homey, 'api', 'Configuration merged', {
+      replacesZones: Array.isArray(incoming.zones),
+      mergesGeneral: Boolean(incoming.general),
+      mergesUi: Boolean(incoming.ui),
+      zones: Array.isArray(result?.zones) ? result.zones.length : 0,
+    });
     await homey.app.triggerConfigChangedEvent('config_merged');
+    await homey.app.reevaluateAllSubjects('config_merged');
     return result;
   },
 
   async evaluateCoordinates({ homey, body }) {
-    return determineBestZone({ lat: Number(body.lat), long: Number(body.long), zones: getConfig(homey).zones, subjectState: null, useDelays: false });
-  },
-
-  async updateSubjectPosition({ homey, body }) {
-    return homey.app.updateAndEvaluateSubjectPosition(cleanText(body.subjectId), Number(body.lat), Number(body.long), 'api:updateSubjectPosition');
-  },
-
-  async evaluateSubjectPosition({ homey, body }) {
-    return homey.app.evaluateStoredSubjectPosition(cleanText(body.subjectId), 'api:evaluateSubjectPosition');
-  },
-
-  async deleteSubject({ homey, params }) {
-    await deleteSubject(homey, params.id);
-    await homey.app.triggerConfigChangedEvent('subject_deleted');
-    return { ok: true };
-  },
-
-  async resetSubject({ homey, params }) {
-    await resetSubjectState(homey, params.id);
-    await homey.app.triggerConfigChangedEvent('subject_reset');
-    return { ok: true };
-  },
-
-  async purgeSubjects({ homey, body }) {
-    const config = await purgeSubjects(homey, body?.days);
-    return { ok: true, count: Object.keys(config.subjects || {}).length };
+    const coords = homey.app.requireValidCoordinates(body?.lat, body?.long);
+    return determineBestZone({ lat: coords.latitude, long: coords.longitude, zones: getConfig(homey).zones, subjectState: null, useDelays: false });
   },
 
   async getHistory({ homey }) {
@@ -157,6 +100,9 @@ module.exports = {
 
   async restoreHistory({ homey, params }) {
     const config = await restoreHistoryEntry(homey, params.id);
+    log(homey, 'api', 'History restored', { historyId: params.id, zones: Array.isArray(config?.zones) ? config.zones.length : 0 });
+    await homey.app.triggerConfigChangedEvent('history_restored');
+    await homey.app.reevaluateAllSubjects('history_restored');
     return { ok: true, config };
   },
 
@@ -164,64 +110,5 @@ module.exports = {
     await deleteHistoryEntry(homey, params.id);
     return { ok: true };
   },
-
-  async listLocationDevices({ homey }) {
-    const { devices, attempts } = await listLocationDevices(homey, getConfig);
-    return { devices, attempts };
-  },
-
-  async addLocationDevice({ homey, params }) {
-    const { devices } = await listLocationDevices(homey, getConfig);
-    const device = devices.find(item => item.id === params.id);
-    if (!device) throw new Error('Device not found or incompatible');
-    if (device.alreadyAdded) throw new Error('Device already added');
-    const subjectId = makeIdFromName(device.name, 'subject');
-    await updateConfig(homey, config => {
-      let finalId = subjectId;
-      let index = 2;
-      while (config.subjects[finalId]) {
-        finalId = `${subjectId}_${index}`;
-        index += 1;
-      }
-      config.subjects[finalId] = sanitizeSubject({ id: finalId, name: device.name, source: { kind: 'device', deviceId: device.id, deviceName: device.name } }, finalId);
-      config.sources.push({ deviceId: device.id, deviceName: device.name, subjectId: finalId, latCapability: device.latCapability || 'measure_latitude', lngCapability: device.lngCapability || 'measure_longitude', createdAt: new Date().toISOString() });
-      return config;
-    });
-    await homey.app.triggerConfigChangedEvent('source_added');
-    return { ok: true };
-  },
-  async removeLocationDevice({ homey, params }) {
-    const deviceId = cleanText(params.id);
-    await updateConfig(homey, config => {
-      const source = (config.sources || []).find(item => item.deviceId === deviceId);
-      if (source?.subjectId && config.subjects[source.subjectId]) delete config.subjects[source.subjectId];
-      config.sources = (config.sources || []).filter(item => item.deviceId !== deviceId);
-      return config;
-    });
-    await homey.app.triggerConfigChangedEvent('source_removed');
-    return { ok: true };
-  },
-
-
-async exportFile({ homey }) {
-  await cleanupPreviousExports();
-
-  const filename = `geozones-export-${Date.now()}.json`;
-  const filepath = path.join('/userdata', filename);
-
-  await fs.writeFile(
-    filepath,
-    JSON.stringify(getConfig(homey), null, 2),
-    'utf8'
-  );
-
-  const cloudId = await homey.cloud.getHomeyId();
-
-  return {
-    ok: true,
-    filename,
-    url: `https://${cloudId}.connect.athom.com/app/${homey.manifest.id}/userdata/${filename}`,
-  };
-},
 
 };

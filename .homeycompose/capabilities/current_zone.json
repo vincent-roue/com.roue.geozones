@@ -1,0 +1,14 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Current zone",
+    "fr": "Zone actuelle",
+    "nl": "Huidige zone",
+    "de": "Aktuelle Zone"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capability-icons/current_zone.svg"
+}

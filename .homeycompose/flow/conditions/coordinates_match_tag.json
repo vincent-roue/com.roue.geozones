@@ -1,15 +1,16 @@
 {
+  "id": "coordinates_match_tag",
   "title": {
-    "en": "Coordinates match one tag",
-    "fr": "Les coordonnées correspondent à un tag",
-    "nl": "Coördinaten komen overeen met één tag",
-    "de": "Koordinaten entsprechen einem Tag"
+    "en": "[[lat]], [[long]] !{{matches|does not match}} [[tag]] / [[tags]]",
+    "fr": "[[lat]], [[long]] !{{correspond à|ne correspond pas à}} [[tag]] / [[tags]]",
+    "nl": "[[lat]], [[long]] !{{komt overeen met|komt niet overeen met}} [[tag]] / [[tags]]",
+    "de": "[[lat]], [[long]] !{{entspricht|entspricht nicht}} [[tag]] / [[tags]]"
   },
   "titleFormatted": {
-    "en": "[[lat]], [[long]] !{{match|do not match}} [[tag]]",
-    "fr": "[[lat]], [[long]] !{{correspondent|ne correspondent pas}} à [[tag]]",
-    "nl": "[[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[tag]]",
-    "de": "[[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[tag]]"
+    "en": "[[lat]], [[long]] !{{matches|does not match}} [[tag]] / [[tags]]",
+    "fr": "[[lat]], [[long]] !{{correspond à|ne correspond pas à}} [[tag]] / [[tags]]",
+    "nl": "[[lat]], [[long]] !{{komt overeen met|komt niet overeen met}} [[tag]] / [[tags]]",
+    "de": "[[lat]], [[long]] !{{entspricht|entspricht nicht}} [[tag]] / [[tags]]"
   },
   "args": [
     {
@@ -37,19 +38,30 @@
     {
       "name": "tag",
       "type": "autocomplete",
-      "required": true,
+      "required": false,
       "title": {
         "en": "Tag",
         "fr": "Tag",
         "nl": "Tag",
         "de": "Tag"
       }
+    },
+    {
+      "name": "tags",
+      "type": "text",
+      "required": false,
+      "title": {
+        "en": "Tags (comma-separated names)",
+        "fr": "Tags (noms séparés par des virgules)",
+        "nl": "Tags (door komma’s gescheiden namen)",
+        "de": "Tags (durch Kommas getrennte Namen)"
+      }
     }
   ],
   "hint": {
-    "en": "Returns true when the coordinates match at least one zone carrying the selected tag. This card is invertible.",
-    "fr": "Renvoie vrai lorsque les coordonnées correspondent à au moins une zone portant le tag sélectionné. Cette carte est inversible.",
-    "nl": "Geeft waar terug wanneer de coördinaten overeenkomen met minstens één zone met de geselecteerde tag. Deze kaart is omkeerbaar.",
-    "de": "Gibt wahr zurück, wenn die Koordinaten mindestens einer Zone mit dem ausgewählten Tag entsprechen. Diese Karte ist invertierbar."
+    "en": "Checks whether the coordinates match at least one active zone carrying the selected tag or one of the listed tags.",
+    "fr": "Vérifie si les coordonnées correspondent à au moins une zone active portant le tag sélectionné ou l’un des tags listés.",
+    "nl": "Controleert of de coördinaten overeenkomen met ten minste één actieve zone met de geselecteerde tag of een van de opgegeven tags.",
+    "de": "Prüft, ob die Koordinaten mit mindestens einer aktiven Zone übereinstimmen, die das ausgewählte Tag oder eines der aufgelisteten Tags trägt."
   }
 }

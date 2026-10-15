@@ -1,0 +1,160 @@
+{
+  "id": "any_subject_transition",
+  "title": {
+    "en": "Any subject is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "fr": "N’importe quel sujet est [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "nl": "Willekeurig onderwerp is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "de": "Beliebiges Subjekt ist [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+  },
+  "titleFormatted": {
+    "en": "Any subject is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "fr": "N’importe quel sujet est [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "nl": "Willekeurig onderwerp is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "de": "Beliebiges Subjekt ist [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+  },
+  "args": [
+    {
+      "name": "transition",
+      "type": "dropdown",
+      "required": true,
+      "title": {
+        "en": "Transition",
+        "fr": "Transition",
+        "nl": "Overgang",
+        "de": "Übergang"
+      },
+      "values": [
+        {
+          "id": "entered",
+          "title": {
+            "en": "entered",
+            "fr": "entré",
+            "nl": "binnengekomen",
+            "de": "eingetreten"
+          }
+        },
+        {
+          "id": "left",
+          "title": {
+            "en": "left",
+            "fr": "sorti",
+            "nl": "verlaten",
+            "de": "verlassen"
+          }
+        }
+      ]
+    },
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "zones",
+      "type": "text",
+      "required": false,
+      "title": {
+        "en": "Zones (comma-separated names)",
+        "fr": "Zones (noms séparés par des virgules)",
+        "nl": "Zones (door komma’s gescheiden namen)",
+        "de": "Zonen (durch Kommas getrennte Namen)"
+      }
+    },
+    {
+      "name": "tag",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Tag",
+        "fr": "Tag",
+        "nl": "Tag",
+        "de": "Tag"
+      }
+    },
+    {
+      "name": "tags",
+      "type": "text",
+      "required": false,
+      "title": {
+        "en": "Tags (comma-separated names)",
+        "fr": "Tags (noms séparés par des virgules)",
+        "nl": "Tags (door komma’s gescheiden namen)",
+        "de": "Tags (durch Kommas getrennte Namen)"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "subject",
+      "type": "string",
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Triggers when any subject enters or leaves a zone. Optional filters can restrict the transition, zone or tag. The exposed zone tokens always describe the zone involved in the transition.",
+    "fr": "Déclenche quand un sujet entre dans une zone ou la quitte. Des filtres optionnels peuvent limiter la transition, la zone ou le tag. Les tags exposés décrivent toujours la zone concernée par la transition.",
+    "nl": "Wordt geactiveerd wanneer een onderwerp een zone binnengaat of verlaat. Optionele filters kunnen de overgang, zone of tag beperken. De getoonde zone-tags beschrijven altijd de zone die bij de overgang hoort.",
+    "de": "Wird ausgelöst, wenn ein Subjekt eine Zone betritt oder verlässt. Optionale Filter können den Übergang, die Zone oder das Tag einschränken. Die ausgegebenen Zonen-Tokens beschreiben immer die von der Transition betroffene Zone."
+  }
+}

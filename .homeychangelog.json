@@ -10,5 +10,20 @@
   },
   "1.0.3": {
     "en": "fix autocomplete + create, add set subject min move distance flowcard, simplify create subject"
+  },
+  "2.0.2": {
+    "en": "Removed linked subjects and the homey:manager:api permission."
+  },
+  "2.0.3": {
+    "en": "Preserves legacy subject data for recovery as manual devices. Fixes zone editing, missing coordinates, overlapping position updates, movement conditions and transition tags. Improves delayed evaluations, imports and private downloads. Obsolete Flow cards remain removed; affected Flows must be rebuilt. Test release only.",
+    "fr": "Préserve les anciens sujets pour leur récupération en appareils manuels. Corrige l’édition des zones, les coordonnées absentes, les mises à jour simultanées, les conditions de mouvement et les tags de transition. Améliore les évaluations différées, les imports et les téléchargements privés. Les anciennes cartes Flow restent supprimées : les Flows concernés doivent être adaptés. Version de test uniquement.",
+    "nl": "Bewaart oude onderwerpgegevens voor herstel als handmatige apparaten. Verbetert zonebewerking, ontbrekende coördinaten, gelijktijdige updates, bewegingsvoorwaarden, overgangstags, vertraagde evaluaties, import en privédownloads. Verouderde Flow-kaarten blijven verwijderd; betrokken Flows moeten opnieuw worden opgebouwd. Alleen testversie.",
+    "de": "Bewahrt alte Subjektdaten zur Wiederherstellung als manuelle Geräte auf. Korrigiert Zonenbearbeitung, fehlende Koordinaten, gleichzeitige Aktualisierungen, Bewegungsbedingungen und Übergangs-Tags. Verbessert verzögerte Auswertungen, Import und private Downloads. Veraltete Flow-Karten bleiben entfernt; betroffene Flows müssen angepasst werden. Nur Testversion."
+  },
+  "2.0.4": {
+    "en": "Clarifies setup with manual subjects and external location sources. Adds installation, migration and troubleshooting guides. Existing manual-subject Flows keep the same behavior; older linked-subject Flows must be rebuilt. Updates Store images and subject icon.",
+    "fr": "Clarifie la configuration avec des sujets manuels et une source de position externe. Ajoute les guides d’installation, de migration et de dépannage. Les Flows des sujets manuels conservent leur fonctionnement ; les anciens Flows de sujets liés doivent être reconstruits. Actualise les visuels du Store et l’icône des sujets.",
+    "nl": "Verduidelijkt de installatie met handmatige onderwerpen en externe locatiebronnen. Voegt installatie-, migratie- en probleemoplossingsgidsen toe. Bestaande Flows voor handmatige onderwerpen blijven hetzelfde werken; oude Flows voor gekoppelde onderwerpen moeten opnieuw worden opgebouwd. Vernieuwt Store-afbeeldingen en het onderwerppictogram.",
+    "de": "Erklärt die Einrichtung mit manuellen Subjekten und externen Standortquellen. Ergänzt Installations-, Migrations- und Fehlerbehebungsanleitungen. Bestehende Flows manueller Subjekte funktionieren unverändert; alte Flows verknüpfter Subjekte müssen neu erstellt werden. Aktualisiert Store-Bilder und das Subjekt-Symbol."
   }
 }

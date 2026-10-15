@@ -1,0 +1,14 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Distance to Homey",
+    "fr": "Distance jusqu’à Homey",
+    "nl": "Afstand tot Homey",
+    "de": "Entfernung zu Homey"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capability-icons/distance_to_homey.svg"
+}

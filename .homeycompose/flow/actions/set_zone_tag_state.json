@@ -1,0 +1,88 @@
+{
+  "id": "set_zone_tag_state",
+  "title": {
+    "en": "[[operation]] tag [[tag]] on zone [[zone]]",
+    "fr": "[[operation]] le tag [[tag]] sur la zone [[zone]]",
+    "nl": "Tag [[tag]] [[operation]] op zone [[zone]]",
+    "de": "Tag [[tag]] bei Zone [[zone]] [[operation]]"
+  },
+  "titleFormatted": {
+    "en": "[[operation]] tag [[tag]] on zone [[zone]]",
+    "fr": "[[operation]] le tag [[tag]] sur la zone [[zone]]",
+    "nl": "Tag [[tag]] [[operation]] op zone [[zone]]",
+    "de": "Tag [[tag]] bei Zone [[zone]] [[operation]]"
+  },
+  "args": [
+    {
+      "name": "operation",
+      "type": "dropdown",
+      "required": true,
+      "title": {
+        "en": "Operation",
+        "fr": "Opération",
+        "nl": "Bewerking",
+        "de": "Vorgang"
+      },
+      "values": [
+        {
+          "id": "add",
+          "title": {
+            "en": "add",
+            "fr": "ajouter",
+            "nl": "toevoegen",
+            "de": "hinzufügen"
+          }
+        },
+        {
+          "id": "remove",
+          "title": {
+            "en": "remove",
+            "fr": "retirer",
+            "nl": "verwijderen",
+            "de": "entfernen"
+          }
+        }
+      ]
+    },
+    {
+      "name": "tag",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Tag",
+        "fr": "Tag",
+        "nl": "Tag",
+        "de": "Tag"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Zone tags",
+        "nl": "Zone tags",
+        "de": "Zone tags"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Adds or removes one tag on the selected zone in the app configuration.",
+    "fr": "Ajoute ou retire un tag sur la zone sélectionnée dans la configuration de l’app.",
+    "nl": "Voegt één tag toe aan of verwijdert één tag van de geselecteerde zone in de app-configuratie.",
+    "de": "Fügt der ausgewählten Zone in der App-Konfiguration ein Tag hinzu oder entfernt es."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Previous zone",
+    "fr": "Zone précédente",
+    "nl": "Vorige zone",
+    "de": "Vorherige Zone"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capability-icons/previous_zone.svg"
+}

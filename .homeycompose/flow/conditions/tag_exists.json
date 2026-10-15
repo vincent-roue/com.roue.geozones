@@ -1,33 +1,45 @@
 {
+  "id": "tag_exists",
   "title": {
-    "en": "Tag exists",
-    "fr": "Le tag existe",
-    "nl": "Tag bestaat",
-    "de": "Tag existiert"
+    "en": "[[tag]] / [[tags]] !{{exists|does not exist}}",
+    "fr": "[[tag]] / [[tags]] !{{existe|n’existe pas}}",
+    "nl": "[[tag]] / [[tags]] !{{bestaat|bestaat niet}}",
+    "de": "[[tag]] / [[tags]] !{{existiert|existiert nicht}}"
   },
   "titleFormatted": {
-    "en": "[[tag]] !{{exists|does not exist}}",
-    "fr": "[[tag]] !{{existe|n’existe pas}}",
-    "nl": "[[tag]] !{{bestaat|bestaat niet}}",
-    "de": "[[tag]] !{{existiert|existiert nicht}}"
+    "en": "[[tag]] / [[tags]] !{{exists|does not exist}}",
+    "fr": "[[tag]] / [[tags]] !{{existe|n’existe pas}}",
+    "nl": "[[tag]] / [[tags]] !{{bestaat|bestaat niet}}",
+    "de": "[[tag]] / [[tags]] !{{existiert|existiert nicht}}"
   },
   "args": [
     {
       "name": "tag",
       "type": "autocomplete",
-      "required": true,
+      "required": false,
       "title": {
         "en": "Tag",
         "fr": "Tag",
         "nl": "Tag",
         "de": "Tag"
       }
+    },
+    {
+      "name": "tags",
+      "type": "text",
+      "required": false,
+      "title": {
+        "en": "Tags (comma-separated names)",
+        "fr": "Tags (noms séparés par des virgules)",
+        "nl": "Tags (door komma’s gescheiden namen)",
+        "de": "Tags (durch Kommas getrennte Namen)"
+      }
     }
   ],
   "hint": {
-    "en": "Checks whether the selected tag is currently used by at least one zone.",
-    "fr": "Vérifie si le tag sélectionné est actuellement utilisé par au moins une zone.",
-    "nl": "Controleert of de geselecteerde tag momenteel door minstens één zone wordt gebruikt.",
-    "de": "Prüft, ob der ausgewählte Tag aktuell von mindestens einer Zone verwendet wird."
+    "en": "Checks that the selected tag or all listed tags exist on at least one configured zone.",
+    "fr": "Vérifie que le tag sélectionné ou tous les tags listés existent sur au moins une zone configurée.",
+    "nl": "Controleert of de geselecteerde tag of alle opgegeven tags op ten minste één geconfigureerde zone bestaan.",
+    "de": "Prüft, ob das ausgewählte Tag oder alle aufgelisteten Tags auf mindestens einer konfigurierten Zone vorhanden sind."
   }
 }

@@ -1,0 +1,14 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Latitude",
+    "fr": "Latitude",
+    "nl": "Breedtegraad",
+    "de": "Breitengrad"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capability-icons/latitude.svg"
+}

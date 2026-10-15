@@ -1,0 +1,196 @@
+{
+  "id": "get_subject_state",
+  "title": {
+    "en": "Get subject state for [[subject]]",
+    "fr": "Récupérer l’état du sujet [[subject]]",
+    "nl": "Onderwerpstatus ophalen voor [[subject]]",
+    "de": "Status des Subjekts [[subject]] abrufen"
+  },
+  "titleFormatted": {
+    "en": "Get subject state for [[subject]]",
+    "fr": "Récupérer l’état du sujet [[subject]]",
+    "nl": "Onderwerpstatus ophalen voor [[subject]]",
+    "de": "Status des Subjekts [[subject]] abrufen"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": true,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "subject",
+      "type": "string",
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subject_type",
+      "type": "string",
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      }
+    },
+    {
+      "name": "subject_kind",
+      "type": "string",
+      "title": {
+        "en": "Subject kind",
+        "fr": "Type de sujet GeoZones",
+        "nl": "Soort onderwerp",
+        "de": "Subjektart"
+      }
+    },
+    {
+      "name": "current_zone",
+      "type": "string",
+      "title": {
+        "en": "Current zone",
+        "fr": "Zone courante",
+        "nl": "Huidige zone",
+        "de": "Aktuelle Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    },
+    {
+      "name": "latitude",
+      "type": "number",
+      "title": {
+        "en": "Latitude",
+        "fr": "Latitude",
+        "nl": "Breedtegraad",
+        "de": "Breitengrad"
+      }
+    },
+    {
+      "name": "longitude",
+      "type": "number",
+      "title": {
+        "en": "Longitude",
+        "fr": "Longitude",
+        "nl": "Lengtegraad",
+        "de": "Längengrad"
+      }
+    },
+    {
+      "name": "last_update",
+      "type": "string",
+      "title": {
+        "en": "Last update",
+        "fr": "Dernière mise à jour",
+        "nl": "Laatste update",
+        "de": "Letzte Aktualisierung"
+      }
+    },
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "title": {
+        "en": "Enabled",
+        "fr": "Activé",
+        "nl": "Ingeschakeld",
+        "de": "Aktiviert"
+      }
+    },
+    {
+      "name": "distance_to_homey",
+      "type": "string",
+      "title": {
+        "en": "Distance to Homey",
+        "fr": "Distance jusqu’à Homey",
+        "nl": "Afstand tot Homey",
+        "de": "Entfernung zu Homey"
+      }
+    },
+    {
+      "name": "source_status",
+      "type": "string",
+      "title": {
+        "en": "Source status",
+        "fr": "Statut de source",
+        "nl": "Bronstatus",
+        "de": "Quellstatus"
+      }
+    },
+    {
+      "name": "source_device_name",
+      "type": "string",
+      "title": {
+        "en": "Source device",
+        "fr": "Appareil source",
+        "nl": "Bronapparaat",
+        "de": "Quellgerät"
+      }
+    },
+    {
+      "name": "source_stale",
+      "type": "boolean",
+      "title": {
+        "en": "Source stale",
+        "fr": "Source périmée",
+        "nl": "Bron verouderd",
+        "de": "Quelle veraltet"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Returns a complete snapshot of one GeoZones subject, including its current zone, tags, movement state and coordinates.",
+    "fr": "Retourne un instantané complet d’un sujet GeoZones, avec sa zone courante, ses tags, son état de mouvement et ses coordonnées.",
+    "nl": "Geeft een volledige momentopname van één GeoZones-onderwerp terug, inclusief huidige zone, tags, bewegingsstatus en coördinaten.",
+    "de": "Gibt einen vollständigen Schnappschuss eines GeoZones-Subjekts zurück, einschließlich aktueller Zone, Tags, Bewegungsstatus und Koordinaten."
+  }
+}

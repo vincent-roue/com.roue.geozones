@@ -1,0 +1,14 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Movement state",
+    "fr": "État de mouvement",
+    "nl": "Bewegingsstatus",
+    "de": "Bewegungsstatus"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capability-icons/movement_state.svg"
+}

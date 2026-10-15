@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="960" viewBox="0 0 960 960">
+  <g transform="scale(3.75)">
   <path
     fill="currentColor"
     fill-rule="evenodd"
@@ -16,4 +17,5 @@
       a 30,30 0 1,0 -60,0
     "
   />
+  </g>
 </svg>

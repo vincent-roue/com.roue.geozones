@@ -1,3 +1,3 @@
-GeoZones lets you create circles and polygons on a map and use them directly in Homey flows. It helps you detect whether a person or device is at home, at work, at school or in any other place that matters to your automations.
+Reuse geographic zones across your Homey Flows. Draw circles for home or work and polygons when the shape of a place matters. Feed latitude and longitude from your chosen location source into a manual subject device, then use its zone, tags and movement in your automations. GeoZones does not obtain a phone’s location by itself.
 
-Use GeoZones when you want reusable zones without creating a virtual device. The app remembers the last known zone for each subject so your flows can react when someone enters, leaves or moves between the places you define.
+Manage zones in Settings, keep configuration backups and recover subjects from older versions. Your own Flows supply location updates. Check the age of the position in your source: GeoZones shows when coordinates were received, and stored positions do not expire automatically.

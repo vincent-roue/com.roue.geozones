@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <linearGradient id="body" x1="0" x2="1"><stop stop-color="#28333f"/><stop offset="1" stop-color="#101924"/></linearGradient>
+    <linearGradient id="glass" x2="0" y2="1"><stop stop-color="#f4f9ff"/><stop offset="1" stop-color="#dce8f7"/></linearGradient>
+  </defs>
+  <rect width="500" height="500" fill="white"/>
+  <ellipse cx="251" cy="451" rx="107" ry="15" fill="#e7ebf0"/>
+  <g transform="rotate(7 250 245)">
+    <rect x="145" y="38" width="219" height="405" rx="34" fill="#9ba6b3"/>
+    <rect x="137" y="34" width="219" height="405" rx="34" fill="url(#body)"/>
+    <rect x="147" y="46" width="199" height="379" rx="25" fill="url(#glass)"/>
+    <rect x="208" y="49" width="78" height="16" rx="8" fill="#17222e"/>
+    <path d="M149 135L343 206M149 302L344 364M195 72L265 423M334 76L182 425" fill="none" stroke="#fff" stroke-width="16"/>
+    <path d="M150 215C201 184 223 265 272 234S321 199 345 215L345 238C315 220 303 238 278 255S221 282 198 245S168 227 149 239Z" fill="#a8d8f1"/>
+    <path d="M155 329L193 317L207 359L174 372ZM285 108L322 120L309 160L278 145Z" fill="#bcdcc1"/>
+    <circle cx="245" cy="242" r="63" fill="#2f6fed" fill-opacity=".13" stroke="#2f6fed" stroke-width="3"/>
+    <circle cx="245" cy="242" r="12" fill="#2f6fed" stroke="white" stroke-width="4"/>
+    <rect x="166" y="346" width="161" height="55" rx="12" fill="white" stroke="#d3dce8"/>
+    <circle cx="188" cy="373" r="7" fill="#2f6fed"/>
+    <path d="M206 365H301M206 379H273" stroke="#a7b7cc" stroke-width="6" stroke-linecap="round"/>
+    <rect x="213" y="410" width="68" height="4" rx="2" fill="#293440"/>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+GeoZones bundles the following libraries for its settings interface:
+
+Leaflet 1.9.4
+https://github.com/Leaflet/Leaflet
+BSD 2-Clause license: settings/vendor/leaflet/LICENSE
+
+Leaflet.draw 1.0.4
+https://github.com/Leaflet/Leaflet.draw
+MIT license: settings/vendor/leaflet-draw/LICENSE
+
+Map tiles are supplied by OpenStreetMap contributors.
+https://www.openstreetmap.org/copyright
+The map displays the required attribution. Map requests go to the tile provider;
+GeoZones' zone evaluation does not require map tiles or an external service.

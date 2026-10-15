@@ -1,6 +1,6 @@
 {
   "id": "com.roue.geozones",
-  "version": "1.0.3",
+  "version": "2.0.4",
   "sdk": 3,
   "compatibility": ">=12.5.0",
   "platforms": [
@@ -14,10 +14,10 @@
     "de": "GeoZones"
   },
   "description": {
-    "en": "Create geofencing zones, evaluate coordinates and subjects, and use them in Homey flows.",
-    "fr": "Créez des zones de geofencing, évaluez des coordonnées et des sujets, et utilisez-les dans les flows Homey.",
-    "nl": "Maak geofencing-zones, evalueer coördinaten en onderwerpen, en gebruik ze in Homey-flows.",
-    "de": "Erstelle Geofencing-Zonen, werte Koordinaten und Subjekte aus und nutze sie in Homey-Flows."
+    "en": "Use geographic zones in your Flows",
+    "fr": "Utilisez vos zones géographiques dans les Flows",
+    "nl": "Gebruik geografische zones in je Flows",
+    "de": "Geografische Zonen in Flows verwenden"
   },
   "category": "tools",
   "author": {
@@ -29,6 +29,10 @@
     "xlarge": "/assets/images/xlarge.png"
   },
   "api": {
+    "getMeta": {
+      "method": "GET",
+      "path": "/meta"
+    },
     "getConfig": {
       "method": "GET",
       "path": "/config"
@@ -45,26 +49,6 @@
       "method": "POST",
       "path": "/evaluate/coordinates"
     },
-    "updateSubjectPosition": {
-      "method": "POST",
-      "path": "/evaluate/subject/update"
-    },
-    "evaluateSubjectPosition": {
-      "method": "POST",
-      "path": "/evaluate/subject"
-    },
-    "deleteSubject": {
-      "method": "DELETE",
-      "path": "/subjects/:id"
-    },
-    "resetSubject": {
-      "method": "POST",
-      "path": "/subjects/:id/reset"
-    },
-    "purgeSubjects": {
-      "method": "POST",
-      "path": "/subjects/purge"
-    },
     "getHistory": {
       "method": "GET",
       "path": "/history"
@@ -77,21 +61,13 @@
       "method": "DELETE",
       "path": "/history/:id"
     },
-    "listLocationDevices": {
+    "getMigrationStatus": {
       "method": "GET",
-      "path": "/sources/devices"
+      "path": "/migration/status"
     },
-    "addLocationDevice": {
-      "method": "POST",
-      "path": "/sources/devices/:id"
-    },
-    "removeLocationDevice": {
-      "method": "DELETE",
-      "path": "/sources/devices/:id"
-    },
-    "exportFile": {
-      "method": "POST",
-      "path": "/export/file"
+    "getMigrationBackup": {
+      "method": "GET",
+      "path": "/migration/backup"
     }
   },
   "homepage": "https://github.com/vincent-roue/com.roue.geozones",
@@ -133,6 +109,11 @@
   },
   "runtime": "nodejs",
   "permissions": [
-    "homey:manager:api"
+    "homey:manager:geolocation"
+  ],
+  "drivers": [
+    {
+      "id": "subject_manual"
+    }
   ]
 }

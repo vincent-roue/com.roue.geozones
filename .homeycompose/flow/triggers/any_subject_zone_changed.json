@@ -1,0 +1,84 @@
+{
+  "id": "any_subject_zone_changed",
+  "title": {
+    "en": "Any subject changed zone",
+    "fr": "N’importe quel sujet a changé de zone",
+    "nl": "Willekeurig onderwerp veranderde van zone",
+    "de": "Beliebiges Subjekt hat die Zone gewechselt"
+  },
+  "titleFormatted": {
+    "en": "Any subject changed zone",
+    "fr": "N’importe quel sujet a changé de zone",
+    "nl": "Willekeurig onderwerp veranderde van zone",
+    "de": "Beliebiges Subjekt hat die Zone gewechselt"
+  },
+  "args": [],
+  "tokens": [
+    {
+      "name": "subject",
+      "type": "string",
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Triggers when the current zone of any subject changes, including transitions between a real zone and not_defined.",
+    "fr": "Déclenche quand la zone courante d’un sujet change, y compris entre une vraie zone et not_defined.",
+    "nl": "Wordt geactiveerd wanneer de huidige zone van een onderwerp verandert, ook tussen een echte zone en not_defined.",
+    "de": "Wird ausgelöst, wenn sich die aktuelle Zone eines Subjekts ändert, auch zwischen einer echten Zone und not_defined."
+  }
+}

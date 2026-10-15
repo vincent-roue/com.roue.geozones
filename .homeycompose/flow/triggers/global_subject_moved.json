@@ -1,0 +1,97 @@
+{
+  "id": "global_subject_moved",
+  "title": {
+    "en": "[[subject]] / [[subjectType]] moved",
+    "fr": "[[subject]] / [[subjectType]] a bougé",
+    "nl": "[[subject]] / [[subjectType]] is verplaatst",
+    "de": "[[subject]] / [[subjectType]] hat sich bewegt"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] / [[subjectType]] moved",
+    "fr": "[[subject]] / [[subjectType]] a bougé",
+    "nl": "[[subject]] / [[subjectType]] is verplaatst",
+    "de": "[[subject]] / [[subjectType]] hat sich bewegt"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subjectType",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Type onderwerp",
+        "de": "Subjekttyp"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "subject",
+      "type": "string",
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subject_type",
+      "type": "string",
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Triggers when the selected subject or subject type changes to a different stored position.",
+    "fr": "Déclenche quand le sujet ou le type de sujet sélectionné prend une position stockée différente.",
+    "nl": "Wordt geactiveerd wanneer het geselecteerde onderwerp of onderwerptype naar een andere opgeslagen positie verandert.",
+    "de": "Wird ausgelöst, wenn das ausgewählte Subjekt oder der ausgewählte Subjekttyp auf eine andere gespeicherte Position wechselt."
+  }
+}

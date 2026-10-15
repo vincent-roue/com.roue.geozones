@@ -1,0 +1,64 @@
+{
+  "id": "any_subject_moved",
+  "title": {
+    "en": "Any subject moved",
+    "fr": "N’importe quel sujet a bougé",
+    "nl": "Willekeurig onderwerp is verplaatst",
+    "de": "Beliebiges Subjekt hat sich bewegt"
+  },
+  "titleFormatted": {
+    "en": "Any subject moved",
+    "fr": "N’importe quel sujet a bougé",
+    "nl": "Willekeurig onderwerp is verplaatst",
+    "de": "Beliebiges Subjekt hat sich bewegt"
+  },
+  "args": [],
+  "tokens": [
+    {
+      "name": "subject",
+      "type": "string",
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Triggers when any GeoZones subject changes to a different stored position. Exposes the current zone together with the computed speed and movement state.",
+    "fr": "Déclenche quand n’importe quel sujet GeoZones prend une position stockée différente. Expose la zone courante ainsi que la vitesse calculée et l’état de mouvement.",
+    "nl": "Wordt geactiveerd wanneer een GeoZones-onderwerp naar een andere opgeslagen positie verandert. Geeft de huidige zone samen met de berekende snelheid en bewegingsstatus terug.",
+    "de": "Wird ausgelöst, wenn ein GeoZones-Subjekt auf eine andere gespeicherte Position wechselt. Gibt die aktuelle Zone zusammen mit der berechneten Geschwindigkeit und dem Bewegungsstatus zurück."
+  }
+}

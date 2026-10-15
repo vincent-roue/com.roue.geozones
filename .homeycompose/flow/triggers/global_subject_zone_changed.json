@@ -1,0 +1,117 @@
+{
+  "id": "global_subject_zone_changed",
+  "title": {
+    "en": "[[subject]] / [[subjectType]] changed zone",
+    "fr": "[[subject]] / [[subjectType]] a changé de zone",
+    "nl": "[[subject]] / [[subjectType]] veranderde van zone",
+    "de": "[[subject]] / [[subjectType]] wechselte die Zone"
+  },
+  "titleFormatted": {
+    "en": "[[subject]] / [[subjectType]] changed zone",
+    "fr": "[[subject]] / [[subjectType]] a changé de zone",
+    "nl": "[[subject]] / [[subjectType]] veranderde van zone",
+    "de": "[[subject]] / [[subjectType]] wechselte die Zone"
+  },
+  "args": [
+    {
+      "name": "subject",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subjectType",
+      "type": "autocomplete",
+      "required": false,
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Type onderwerp",
+        "de": "Subjekttyp"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "subject",
+      "type": "string",
+      "title": {
+        "en": "Subject",
+        "fr": "Sujet",
+        "nl": "Onderwerp",
+        "de": "Subjekt"
+      }
+    },
+    {
+      "name": "subject_type",
+      "type": "string",
+      "title": {
+        "en": "Subject type",
+        "fr": "Type de sujet",
+        "nl": "Onderwerptype",
+        "de": "Subjekttyp"
+      }
+    },
+    {
+      "name": "zone",
+      "type": "string",
+      "title": {
+        "en": "Zone",
+        "fr": "Zone",
+        "nl": "Zone",
+        "de": "Zone"
+      }
+    },
+    {
+      "name": "previous_zone",
+      "type": "string",
+      "title": {
+        "en": "Previous zone",
+        "fr": "Zone précédente",
+        "nl": "Vorige zone",
+        "de": "Vorherige Zone"
+      }
+    },
+    {
+      "name": "zone_tags",
+      "type": "string",
+      "title": {
+        "en": "Zone tags",
+        "fr": "Tags de zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
+      }
+    },
+    {
+      "name": "speed_kmh",
+      "type": "number",
+      "title": {
+        "en": "Speed (km/h)",
+        "fr": "Vitesse (km/h)",
+        "nl": "Snelheid (km/u)",
+        "de": "Geschwindigkeit (km/h)"
+      }
+    },
+    {
+      "name": "movement_state",
+      "type": "string",
+      "title": {
+        "en": "Movement state",
+        "fr": "État de mouvement",
+        "nl": "Bewegingsstatus",
+        "de": "Bewegungsstatus"
+      }
+    }
+  ],
+  "hint": {
+    "en": "Triggers when the current zone of the selected subject or subject type changes, including transitions between a real zone and not_defined.",
+    "fr": "Déclenche quand la zone courante du sujet ou du type de sujet sélectionné change, y compris entre une vraie zone et not_defined.",
+    "nl": "Wordt geactiveerd wanneer de huidige zone van het geselecteerde onderwerp of onderwerptype verandert, ook tussen een echte zone en not_defined.",
+    "de": "Wird ausgelöst, wenn sich die aktuelle Zone des ausgewählten Subjekts oder Subjekttyps ändert, auch zwischen einer echten Zone und not_defined."
+  }
+}

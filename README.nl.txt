@@ -1,3 +1,3 @@
-Met GeoZones maak je cirkels en polygonen op een kaart en gebruik je die direct in je Homey-flows. Zo herken je of een persoon of apparaat thuis, op het werk, op school of op een andere belangrijke plek voor je automatiseringen is.
+Gebruik dezelfde geografische zones in je Homey Flows. Teken cirkels voor thuis of werk en polygonen wanneer de vorm van een plek belangrijk is. Stuur de breedte- en lengtegraad vanuit je gekozen locatiebron naar een handmatig onderwerp en gebruik de zone, tags en beweging in je automatiseringen. GeoZones haalt niet zelf de locatie van een telefoon op.
 
-Gebruik GeoZones als je herbruikbare zones wilt zonder een virtueel apparaat aan te maken. De app onthoudt de laatst bekende zone per onderwerp, zodat je flows kunnen reageren wanneer iemand een plaats binnenkomt, verlaat of tussen plaatsen beweegt.
+Beheer zones in Instellingen, bewaar configuratieback-ups en herstel onderwerpen uit oudere versies. Je eigen Flows leveren locatie-updates. Controleer hoe oud de positie in je bron is: GeoZones toont wanneer de coördinaten zijn ontvangen en opgeslagen posities verlopen niet automatisch.

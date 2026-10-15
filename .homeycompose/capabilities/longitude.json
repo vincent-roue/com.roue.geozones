@@ -1,0 +1,14 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Longitude",
+    "fr": "Longitude",
+    "nl": "Lengtegraad",
+    "de": "Längengrad"
+  },
+  "getable": true,
+  "setable": false,
+  "insights": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capability-icons/longitude.svg"
+}

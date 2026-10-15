@@ -1,0 +1,66 @@
+{
+  "version": "2.0.4",
+  "checkedAt": "2026-10-15T16:11:59.650Z",
+  "baseline": "2.0.3 test build 13",
+  "runtime": {
+    "comparedFiles": 70,
+    "differences": []
+  },
+  "tests": {
+    "suiteCount": 8,
+    "result": "PASS",
+    "node": "v24.19.0"
+  },
+  "validation": {
+    "level": "publish",
+    "result": "PASS",
+    "homeyCli": "4.6.0"
+  },
+  "manifest": {
+    "platforms": [
+      "local"
+    ],
+    "compatibility": ">=12.5.0",
+    "permissions": [
+      "homey:manager:geolocation"
+    ],
+    "drivers": [
+      "subject_manual"
+    ]
+  },
+  "images": [
+    {
+      "name": "small.png",
+      "width": 250,
+      "height": 175,
+      "sha256": "c259888e25c4744dcfb6ec1c5ea29f01ebe10d5097ec1b722646b1387618a02b"
+    },
+    {
+      "name": "large.png",
+      "width": 500,
+      "height": 350,
+      "sha256": "fd1e30c41ad929c859d2d05758cdbafafb5b6e2fab898c317d83ac9fe52424a1"
+    },
+    {
+      "name": "xlarge.png",
+      "width": 1000,
+      "height": 700,
+      "sha256": "7604f6ccf75b72bb1a71e9504050c6118f95eba4979ca19a5443fd4acd2803c9"
+    }
+  ],
+  "build": {
+    "id": 14,
+    "files": 76,
+    "sha256": "e2200696a1a23ac5a6e660569fe9a92ee0fca02e2204294bc4e78f759e652356",
+    "url": "https://tools.developer.homey.app/apps/app/com.roue.geozones/build/14",
+    "channel": "draft",
+    "certificationRequested": false,
+    "livePublicationRequested": false
+  },
+  "hardware": {
+    "baseline": "Partial Homey Pro 2023 observation of 2.0.3",
+    "legacyHardwareMigration": "not yet verified",
+    "remainingAcceptance": "See RELEASE_CHECKLIST.md"
+  },
+  "privateDataIncluded": false
+}
