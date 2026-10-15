@@ -317,16 +317,16 @@
     {
       "id": "device_is_in_zone",
       "title": {
-        "en": "Is in zone ([[zone]], [[zones]], [[tag]], [[tags]])",
-        "fr": "Est dans une zone ([[zone]], [[zones]], [[tag]], [[tags]])",
-        "nl": "Is in zone ([[zone]], [[zones]], [[tag]], [[tags]])",
-        "de": "Ist in einer Zone ([[zone]], [[zones]], [[tag]], [[tags]])"
+        "en": "Is in zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "fr": "Est dans une zone : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "nl": "Is in zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "de": "Ist in einer Zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
       },
       "titleFormatted": {
-        "en": "Is in zone ([[zone]], [[zones]], [[tag]], [[tags]])",
-        "fr": "Est dans une zone ([[zone]], [[zones]], [[tag]], [[tags]])",
-        "nl": "Is in zone ([[zone]], [[zones]], [[tag]], [[tags]])",
-        "de": "Ist in einer Zone ([[zone]], [[zones]], [[tag]], [[tags]])"
+        "en": "Is in zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "fr": "Est dans une zone : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "nl": "Is in zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+        "de": "Ist in einer Zone: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
       },
       "args": [
         {

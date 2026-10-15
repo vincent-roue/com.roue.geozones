@@ -1,10 +1,10 @@
 # Forum announcement for the Live release
 
-Maintainer instruction: the text below is a prepared draft. Post it only after Athom approval and after verifying that version 2.0.4 is actually available on the Live Store page. Replace preparation-branch documentation links with `main` after merging the source changes. Do not use this text to announce a Draft or Test build as Live.
+Maintainer instruction: the text below is a prepared draft. Post it only after Athom approval and after verifying that version 2.0.5 is actually available on the Live Store page. Replace preparation-branch documentation links with `main` after merging the source changes. Do not use this text to announce a Draft or Test build as Live.
 
 ---
 
-GeoZones 2.0.4 is now available for Homey Pro: [install from the Homey App Store](https://homey.app/a/com.roue.geozones/).
+GeoZones 2.0.5 is now available for Homey Pro: [install from the Homey App Store](https://homey.app/a/com.roue.geozones/).
 
 Define your places once, then reuse them in Flows. GeoZones supports circles and polygons, tags and priorities, and manual subject devices supplied with coordinates by your own Flows. The app calculates the resulting zone, transitions, movement and distances. A separate location source is required; GeoZones does not obtain phone GPS positions itself.
 

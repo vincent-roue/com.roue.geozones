@@ -1,8 +1,10 @@
-# GeoZones 2.0.4 — publication candidate
+# GeoZones 2.0.5 — publication candidate
 
-Version 2.0.4 prepares GeoZones version 2 for review with completed translations, clearer store information and documentation. It is a candidate; these notes do not announce certification or a stable release.
+Version 2.0.5 prepares GeoZones version 2 for review with completed translations, clearer store information and documentation. Build 17 is available in Test and its certification request is under review. These notes do not announce approval or a stable release.
 
-## Changes in 2.0.4
+Version 2.0.4 was released to Test. Version 2.0.5 adds the final Flow-title correction required by the Store guidelines; the remaining preparation below is retained.
+
+## Changes in 2.0.5
 
 - Refresh the store description in English, French, Dutch and German.
 - Review and complete all four languages in settings, pairing, Flow cards and server messages, including map controls and movement-state choices.
@@ -38,7 +40,7 @@ See the [installation guide](../INSTALLATION.md), [troubleshooting](../TROUBLESH
 
 ## Validation and remaining work
 
-The localized 2.0.4 candidate has nine automated suites, covering language completeness, preserved parameters, translated errors, interface interactions and actual help startup in all four languages. Startup checks include regional codes, a conflicting browser language, unsupported-language fallback and unavailable or delayed metadata. Final results, the latest uploaded draft, archive checksum and publication-level package validation are recorded in [validation evidence](VALIDATION.json) and the [release checklist](../RELEASE_CHECKLIST.md).
+The localized 2.0.5 candidate has nine automated suites, covering language completeness, preserved parameters, translated errors, interface interactions and actual help startup in all four languages. Startup checks include regional codes, a conflicting browser language, unsupported-language fallback and unavailable or delayed metadata. Final results, the latest uploaded draft, archive checksum and publication-level package validation are recorded in [validation evidence](VALIDATION.json) and the [release checklist](../RELEASE_CHECKLIST.md).
 
 The 2.0.3 runtime has been observed on Homey Pro 2023 with source-driven position updates. These checks do not constitute complete hardware acceptance: legacy recovery and all iPhone/restart/import/delay scenarios still require confirmation.
 

@@ -1,6 +1,6 @@
 {
-  "version": "2.0.4",
-  "checkedAt": "2026-10-15T16:49:36.476Z",
+  "version": "2.0.5",
+  "checkedAt": "2026-10-15T17:05:13.184Z",
   "baseline": "2.0.3 test build 13",
   "runtime": {
     "comparedFiles": 70,
@@ -95,13 +95,17 @@
     }
   ],
   "build": {
-    "id": 16,
+    "id": 17,
     "files": 76,
-    "sha256": "65c20434e2c638f2b1b5ff734bc3adc0bb7de2d3659e1f7f88027dcfa892b3a9",
-    "url": "https://tools.developer.homey.app/apps/app/com.roue.geozones/build/16",
-    "channel": "draft",
-    "certificationRequested": false,
-    "livePublicationRequested": false
+    "sha256": "1616daa30ec53e4d70e05e050fedb94ce1cf91090a534ee15c861dc04bf3145b",
+    "url": "https://tools.developer.homey.app/apps/app/com.roue.geozones/build/17",
+    "channel": "certification",
+    "certificationRequested": true,
+    "livePublicationRequested": true,
+    "automaticallyPublishAfterApproval": true,
+    "livePublished": false,
+    "portalVerifiedAt": "2026-10-15T17:06:12.369Z",
+    "portalStatus": "Your app is currently under review. This process may take up to two weeks."
   },
   "hardware": {
     "baseline": "Partial Homey Pro 2023 observation of 2.0.3; localization candidate not installed on household Homey",

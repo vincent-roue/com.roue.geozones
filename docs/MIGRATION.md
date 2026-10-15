@@ -2,7 +2,7 @@
 
 Version 2 uses **Manual subject devices** updated by Flow cards. Upgrading from v1 is **not transparent**: automatic links to other apps' location devices and many old Flow cards are removed. Existing Flows are not rewritten into the new model.
 
-This guide covers the v1 → v2 change. Moving from the 2.0.3 Test version to 2.0.4 keeps the same manual-device model and does not restore retired cards or linked sources.
+This guide covers the v1 → v2 change. Moving from the 2.0.3 Test version to 2.0.5 keeps the same manual-device model and does not restore retired cards or linked sources.
 
 ## Before updating
 

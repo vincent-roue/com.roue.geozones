@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.5 — publication submission
+
+- Remove parentheses from the zone-condition Flow titles in all four languages, following Store guidelines.
+- Retain the multilingual help, translations, documentation and presentation from the 2.0.4 Test release.
+
 ## 2.0.4 — publication candidate
 
 - Keep the zone engine, Flow identifiers and permission scope of the tested 2.0.3 release.

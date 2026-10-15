@@ -1,6 +1,6 @@
 # Flow cards removed since version 1.0.3
 
-These card identifiers are retained here as a migration reference. They are not restored by version 2.0.4. Rebuild affected Flows with the current manual-subject cards described in [Migration](MIGRATION.md).
+These card identifiers are retained here as a migration reference. They are not restored by version 2.0.5. Rebuild affected Flows with the current manual-subject cards described in [Migration](MIGRATION.md).
 
 ## triggers
 

@@ -1,18 +1,19 @@
 # GeoZones publication checklist
 
-Version 2.0.4 prepares the tested manual-subject model for publication, with completed translations, clearer documentation and refreshed presentation. The zone engine, Flow identifiers and permissions remain unchanged from 2.0.3. Uploading a draft, requesting certification and publishing to Live are separate actions. This preparation does not request certification or enable Live publication.
+Version 2.0.5 build 17 is available in Test and under Athom review. Automatic Live publication after approval is enabled, as authorized by the user on 15 October 2026. Live publication is not yet confirmed. The additional correction from 2.0.4 removes prohibited parentheses from eight Flow card titles; detailed help, translations, zone calculations, Flow identifiers and permissions retain their reviewed behavior.
 
 ## Package and repository
 
-- [x] Run `npm test` on the final checkout.
-- [x] Run `homey app validate --level publish` after the final language and metadata edits.
+- [x] Run all nine automated suites on the 2.0.5 checkout.
+- [x] Run `homey app validate --level publish` on the 2.0.5 package.
 - [x] Confirm package, compose manifest, generated manifest and changelog versions agree.
 - [x] Confirm the zone engine, Flow identifiers and permissions are unchanged from 2.0.3; retired Flow cards and broad `homey:manager:api` access remain removed.
 - [x] Review staged files; exclude credentials, private coordinates, exports, runtime snapshots, dependencies and generated build directories.
 - [x] Verify PNG dimensions, SVG icons, bundled map libraries and third-party notices.
-- [x] Push the final localized candidate to [draft pull request 1](https://github.com/vincent-roue/com.roue.geozones/pull/1) with validation results.
-- [x] Upload the final Homey draft and record its build ID and archive SHA256 in [validation evidence](publication/VALIDATION.json).
-- [x] Verify the latest portal build shows Draft, uploaded files match the publication checkout, and GitHub tests on Node 20/24 plus publication validation pass.
+- [ ] Finish the final source commit and merge [pull request 1](https://github.com/vincent-roue/com.roue.geozones/pull/1), recording the revision matching the uploaded package.
+- [x] Upload 2.0.4 build 16 and record its archive SHA256 in [validation evidence](publication/VALIDATION.json).
+- [x] Verify 2.0.4 build 16 files match its publication checkout and its GitHub tests on Node 20/24 plus publication validation pass.
+- [x] Re-run the nine suites and publication validation after the eight Flow-title corrections and version change; upload 2.0.5 build 17 and verify all 76 package files match the prepared sources and official SDK shim.
 
 ## Documentation and communication
 
@@ -29,7 +30,7 @@ Version 2.0.4 prepares the tested manual-subject model for publication, with com
 
 Already observed with 2.0.3 on Homey Pro 2023: App Store test installation over 2.0.2; two existing manual subjects; configuration retained; live coordinate updates and zone changes. This does not establish a physical migration from a legacy subject installation.
 
-Before certification, record the remaining checks on a dedicated test setup or with an available tester:
+The following acceptance checks remain open. Review notes disclose these limits; no unperformed check is treated as passed. The user has authorized the platform publication steps with this partial hardware coverage. Record further results on a dedicated test setup or with an available tester:
 
 - [ ] Fresh installation, first manual subject and first coordinate update.
 - [ ] Legacy schema installation, recovery through pairing, source rewiring and restart; no duplicate subjects or loss of the original backup.
@@ -37,11 +38,15 @@ Before certification, record the remaining checks on a dedicated test setup or w
 - [ ] Import replace/merge, history restoration, browser export and recovery of an invalid edit on iPhone.
 - [ ] Real source behavior with the phone locked and the source offline; verify source timestamps independently.
 
-## Final publication sequence
+## Authorized platform publication steps
 
-1. Complete and record the remaining hardware acceptance checks.
-2. Review and merge the prepared pull request; confirm the intended source commit and uploaded archive match.
-3. Request Athom certification with automatic Live publication disabled.
-4. After approval and an explicit release decision, publish to Live, create the matching Git tag/release and publish the prepared forum update.
+- [x] Record the user's authorization for Test, certification and automatic Live publication after approval on 15 October 2026.
+- [x] Release 2.0.4 build 16 to Test.
+- [x] Make 2.0.5 build 17 available in Test.
+- [x] Submit the official Athom certification request with automatic Live publication after approval enabled; the portal confirms the app is under review.
+- [x] Keep the hardware-test limits explicit in the reviewer notes and submission material.
+- [ ] Finish repository synchronization and record the final source revision and archive evidence.
+- [ ] Create the matching Git tag and GitHub pre-release to archive the Test version while Athom review is pending.
+- [ ] Record Live publication only after portal confirmation and update publication documentation. The forum texts remain prepared drafts.
 
 Official references: [Store guidelines](https://apps.developer.homey.app/app-store/guidelines), [publication](https://apps.developer.homey.app/app-store/publishing), [permissions](https://apps.developer.homey.app/the-basics/app/permissions).

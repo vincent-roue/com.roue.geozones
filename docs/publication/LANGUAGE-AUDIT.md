@@ -1,4 +1,4 @@
-# GeoZones 2.0.4 — language review / contrôle des langues
+# GeoZones 2.0.5 — language review / contrôle des langues
 
 Reviewed on 15 October 2026: English, French, Dutch and German. This review covers the current app and Store text; it does not claim a native-speaker review or complete visual testing on a physical Homey and iPhone.
 
@@ -11,7 +11,7 @@ Reviewed on 15 October 2026: English, French, Dutch and German. This review cove
 | Manual-subject pairing and legacy recovery | 16 |
 | Manifest, capabilities, driver and Flow text fields | 311 |
 
-The four Store descriptions, manifest descriptions and current 2.0.4 release notes were also reviewed. Historical release notes that were originally English-only retain their original text. Repository guides remain available in their documented languages; this audit does not claim four-language translations of every guide.
+The four Store descriptions, manifest descriptions and current 2.0.5 release notes were also reviewed. Historical release notes that were originally English-only retain their original text. Repository guides remain available in their documented languages; this audit does not claim four-language translations of every guide.
 
 ## Corrections and checks
 
