@@ -1,6 +1,6 @@
 # Forum announcement for the Live release
 
-Maintainer instruction: the text below is a prepared draft. Post it only after Athom approval and after verifying that version 2.0.5 is actually available on the Live Store page. Replace preparation-branch documentation links with `main` after merging the source changes. Do not use this text to announce a Draft or Test build as Live.
+Maintainer instruction: the text below is a prepared draft. Post it only after Athom approval and after verifying that version 2.0.5 is actually available on the Live Store page. Documentation links use `main`; verify them before posting. Do not use this text to announce a Draft or Test build as Live.
 
 ---
 

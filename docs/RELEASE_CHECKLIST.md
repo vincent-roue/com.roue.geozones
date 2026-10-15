@@ -10,7 +10,7 @@ Version 2.0.5 build 17 is available in Test and under Athom review. Automatic Li
 - [x] Confirm the zone engine, Flow identifiers and permissions are unchanged from 2.0.3; retired Flow cards and broad `homey:manager:api` access remain removed.
 - [x] Review staged files; exclude credentials, private coordinates, exports, runtime snapshots, dependencies and generated build directories.
 - [x] Verify PNG dimensions, SVG icons, bundled map libraries and third-party notices.
-- [ ] Finish the final source commit and merge [pull request 1](https://github.com/vincent-roue/com.roue.geozones/pull/1), recording the revision matching the uploaded package.
+- [x] Merge [pull request 1](https://github.com/vincent-roue/com.roue.geozones/pull/1) and archive the exact candidate `d8f68ae85c3fb01edbf6c913dc6099566e7ccd42` as tag `v2.0.5`.
 - [x] Upload 2.0.4 build 16 and record its archive SHA256 in [validation evidence](publication/VALIDATION.json).
 - [x] Verify 2.0.4 build 16 files match its publication checkout and its GitHub tests on Node 20/24 plus publication validation pass.
 - [x] Re-run the nine suites and publication validation after the eight Flow-title corrections and version change; upload 2.0.5 build 17 and verify all 76 package files match the prepared sources and official SDK shim.
@@ -45,8 +45,8 @@ The following acceptance checks remain open. Review notes disclose these limits;
 - [x] Make 2.0.5 build 17 available in Test.
 - [x] Submit the official Athom certification request with automatic Live publication after approval enabled; the portal confirms the app is under review.
 - [x] Keep the hardware-test limits explicit in the reviewer notes and submission material.
-- [ ] Finish repository synchronization and record the final source revision and archive evidence.
-- [ ] Create the matching Git tag and GitHub pre-release to archive the Test version while Athom review is pending.
+- [x] Finish repository synchronization; record candidate `d8f68ae85c3fb01edbf6c913dc6099566e7ccd42` and merge commit `b2402979035d8cabaf411d50292af5f44f650717` in the completion evidence.
+- [x] Create tag `v2.0.5` on the exact candidate and the [GitHub Test pre-release](https://github.com/vincent-roue/com.roue.geozones/releases/tag/v2.0.5) while Athom review is pending.
 - [ ] Record Live publication only after portal confirmation and update publication documentation. The forum texts remain prepared drafts.
 
 Official references: [Store guidelines](https://apps.developer.homey.app/app-store/guidelines), [publication](https://apps.developer.homey.app/app-store/publishing), [permissions](https://apps.developer.homey.app/the-basics/app/permissions).

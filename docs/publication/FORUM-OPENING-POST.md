@@ -2,7 +2,7 @@
 
 GeoZones lets you define places once and reuse them across your Homey Flows. Create circles or draw polygons, provide a subject's latitude and longitude, then use the resulting zone, tags, movement state and distances in your automations.
 
-**The app is available through the [Homey App Store test channel](https://homey.app/a/com.roue.geozones/test/).** Version 2.0.5 is being prepared for review with completed English, French, Dutch and German translations, updated documentation and store information. Its zone engine, Flow identifiers and permissions are unchanged from the 2.0.3 test release. A stable release has not been announced.
+**GeoZones 2.0.5 build 17 is available through the [Homey App Store Test channel](https://homey.app/a/com.roue.geozones/test/).** Athom certification has been requested and is under review. This version includes completed English, French, Dutch and German translations, updated documentation and store information. Its zone engine, Flow identifiers and permissions are unchanged from the 2.0.3 test release. Live publication has not yet been confirmed.
 
 ## How version 2 works
 
@@ -31,24 +31,24 @@ Zone evaluation runs on Homey. The settings interface includes its map libraries
 4. Use the subject's Flow action that sets latitude and longitude and evaluates the position. Connect the coordinate tags from your location source.
 5. Use that subject's zone-change trigger or a zone/tag condition in another Flow.
 
-The [installation guide](https://github.com/vincent-roue/com.roue.geozones/blob/prepare-publication-2.0.4/docs/INSTALLATION.md) explains the complete setup and source requirements. The embedded Help also provides 15 practical sections and 45 paragraphs in each of the four languages, covering setup, fields, Flows, source age, recovery and troubleshooting. Settings and Help use Homey's language when opened; reopen them after changing that language. The [troubleshooting guide](https://github.com/vincent-roue/com.roue.geozones/blob/prepare-publication-2.0.4/docs/TROUBLESHOOTING.md) covers missing updates and unexpected zone changes.
+The [installation guide](https://github.com/vincent-roue/com.roue.geozones/blob/main/docs/INSTALLATION.md) explains the complete setup and source requirements. The embedded Help also provides 15 practical sections and 45 paragraphs in each of the four languages, covering setup, fields, Flows, source age, recovery and troubleshooting. Settings and Help use Homey's language when opened; reopen them after changing that language. The [troubleshooting guide](https://github.com/vincent-roue/com.roue.geozones/blob/main/docs/TROUBLESHOOTING.md) covers missing updates and unexpected zone changes.
 
 ## Upgrading from an older version
 
 The old automatic linked-subject model and its obsolete Flow cards have been removed. The app no longer requests the broad Homey Web API permission used by that model.
 
-Version 2.0.3 added protected backups and recovery of legacy subjects. Download the backup, recover each subject through **Add device**, then reconnect its coordinate source using the current Flow cards. Affected old Flows require adaptation; their automatic source links are not resumed. Read the [migration guide](https://github.com/vincent-roue/com.roue.geozones/blob/prepare-publication-2.0.4/docs/MIGRATION.md) before upgrading or uninstalling an older installation.
+Version 2.0.3 added protected backups and recovery of legacy subjects. Download the backup, recover each subject through **Add device**, then reconnect its coordinate source using the current Flow cards. Affected old Flows require adaptation; their automatic source links are not resumed. Read the [migration guide](https://github.com/vincent-roue/com.roue.geozones/blob/main/docs/MIGRATION.md) before upgrading or uninstalling an older installation.
 
 ## Position freshness and testing
 
 A subject keeps its last supplied position until another update arrives. Positions do not expire automatically. The subject's `last_update` records the position update supplied to GeoZones and is preserved during a simple recalculation; it does not independently establish the age of your source's GPS measurement. Check your source as well when freshness matters.
 
-The localized 2.0.5 candidate has nine automated test suites, including language completeness, parameter preservation, translated error paths and real help startup in all four languages. Its latest results, draft and package validation are recorded in the publication evidence. Real testing of 2.0.3 on Homey Pro 2023 has confirmed startup, retained configuration, coordinate evaluation and source-driven updates. Testing of the complete legacy migration and all iPhone setup scenarios on hardware is still incomplete.
+GeoZones 2.0.5 passes nine automated test suites, including language completeness, parameter preservation, translated error paths and real help startup in all four languages. Results and publication-level package validation are recorded in the publication evidence. Real testing of 2.0.3 on Homey Pro 2023 has confirmed startup, retained configuration, coordinate evaluation and source-driven updates. Testing of the complete legacy migration and all iPhone setup scenarios on hardware is still incomplete.
 
 Feedback is welcome in this topic. Please include the app and Homey firmware versions, the type of coordinate source, the Flow trigger, the expected result and what happened. Remove exact coordinates, account details and private exports before sharing diagnostics.
 
-[Source code and documentation](https://github.com/vincent-roue/com.roue.geozones) · [Privacy guide](https://github.com/vincent-roue/com.roue.geozones/blob/prepare-publication-2.0.4/docs/PRIVACY.md) · [Test channel](https://homey.app/a/com.roue.geozones/test/)
+[Source code and documentation](https://github.com/vincent-roue/com.roue.geozones) · [Privacy guide](https://github.com/vincent-roue/com.roue.geozones/blob/main/docs/PRIVACY.md) · [Test channel](https://homey.app/a/com.roue.geozones/test/)
 
 ---
 
-Preparation note for the maintainer: this is a complete replacement opening-post draft and has not been posted. Documentation links intentionally use `prepare-publication-2.0.4`. Confirm that branch is accessible before posting. After it is merged, change those links to `main` and verify them. Keep the version/channel paragraph consistent with the actual store state at posting time.
+Preparation note for the maintainer: this is a complete replacement opening-post draft and has not been posted. The source is merged and documentation links use `main`. Verify those links and keep the version, channel and certification paragraph consistent with the actual Homey state at posting time.

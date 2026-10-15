@@ -105,12 +105,25 @@
     "automaticallyPublishAfterApproval": true,
     "livePublished": false,
     "portalVerifiedAt": "2026-10-15T17:06:12.369Z",
-    "portalStatus": "Your app is currently under review. This process may take up to two weeks."
+    "portalStatus": "Your app is currently under review. This process may take up to two weeks.",
+    "certificationNotesSent": true
   },
   "hardware": {
     "baseline": "Partial Homey Pro 2023 observation of 2.0.3; localization candidate not installed on household Homey",
     "legacyHardwareMigration": "not yet verified",
     "remainingAcceptance": "See RELEASE_CHECKLIST.md"
   },
-  "privateDataIncluded": false
+  "privateDataIncluded": false,
+  "source": {
+    "candidateCommit": "d8f68ae85c3fb01edbf6c913dc6099566e7ccd42",
+    "mergeCommit": "b2402979035d8cabaf411d50292af5f44f650717",
+    "tag": "v2.0.5",
+    "releaseUrl": "https://github.com/vincent-roue/com.roue.geozones/releases/tag/v2.0.5",
+    "githubPrerelease": true,
+    "successfulGitHubChecks": 6,
+    "sourceArchive": {
+      "file": "geozones-2.0.5-source.zip",
+      "sha256": "cd69ca9c82c8b2523b3fd3be90f866cb6207f96ffe663e0d33fb48545f00fc43"
+    }
+  }
 }
