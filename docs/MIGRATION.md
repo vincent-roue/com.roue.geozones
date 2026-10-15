@@ -35,7 +35,7 @@ The [retired card reference](RETIRED_FLOW_CARDS.md) lists the removed identifier
 | --- | --- |
 | Automatically linked location source | A Flow supplies coordinates to a Manual subject device |
 | Create/update a subject by an app-level card | Add/recover the device, then use **Set position to [latitude], [longitude] and evaluate** |
-| Subject entered/left one or several zones | Device trigger **Is [entered/left] [zone] / [zones] / [tag] / [tags]**, with the required filter |
+| Subject entered/left one or several zones | Device trigger **Zone transition — [entry/exit]: [zone] / [zones] / [tag] / [tags]**, with the required filter |
 | Subject changed zone | Device trigger **Changed zone**; inspect its **Zone** and **Previous zone** tokens |
 | Check a subject's zone or movement | Device conditions **Is in zone ([zone], [zones], [tag], [tags])** or **Is [state]** |
 | Re-evaluate an existing subject | Device action **Evaluate subject**; this uses saved coordinates |

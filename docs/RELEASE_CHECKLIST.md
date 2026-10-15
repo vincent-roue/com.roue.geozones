@@ -18,6 +18,7 @@ Version 2.0.4 prepares the tested manual-subject model for publication, with com
 
 - [x] Store text is plain text in English, French, Dutch and German; explains external location sources.
 - [x] Review all four languages and check settings, pairing, manifest text, server messages and current release notes; record scope and limits in the [language audit](publication/LANGUAGE-AUDIT.md).
+- [x] Review the 15 help sections and 45 paragraphs in each language against app behavior; check initial rendering follows Homey's language, including regional and fallback cases.
 - [x] Installation guide demonstrates adding a manual subject and feeding both coordinates in one action.
 - [x] Migration guide covers legacy recovery and rebuilding incompatible Flows.
 - [x] Source freshness and reception timestamps are explained without promising automatic expiry.

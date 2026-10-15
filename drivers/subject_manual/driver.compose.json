@@ -74,10 +74,10 @@
         "step": 1
       },
       "hint": {
-        "en": "Small movements below this distance are ignored to reduce GPS noise.",
-        "fr": "Les petits déplacements sous cette distance sont ignorés pour réduire le bruit GPS.",
-        "nl": "Kleine verplaatsingen onder deze afstand worden genegeerd om GPS-ruis te verminderen.",
-        "de": "Kleine Bewegungen unterhalb dieser Distanz werden ignoriert, um GPS-Rauschen zu reduzieren."
+        "en": "A closer update retains the previous stored coordinates to reduce GPS jitter, but still records receipt time and evaluates that retained position. Use 0 m when testing.",
+        "fr": "Une mise à jour plus proche conserve les coordonnées précédentes pour limiter les imprécisions GPS, mais actualise la date de réception et évalue cette position conservée. Utilisez 0 m pendant les essais.",
+        "nl": "Een update dichterbij behoudt de vorige opgeslagen coördinaten om GPS-ruis te beperken, maar werkt de ontvangsttijd wel bij en evalueert die behouden positie. Gebruik 0 m tijdens het testen.",
+        "de": "Eine Positionsaktualisierung unterhalb der Bewegungsschwelle behält die zuvor gespeicherten Koordinaten bei, um GPS-Schwankungen zu reduzieren. Der Empfangszeitpunkt wird dennoch aktualisiert und die beibehaltene Position erneut ausgewertet. Verwenden Sie beim Testen 0 m."
       }
     }
   ],

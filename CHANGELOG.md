@@ -4,7 +4,10 @@
 
 - Keep the zone engine, Flow identifiers and permission scope of the tested 2.0.3 release.
 - Complete and review English, French, Dutch and German text in settings, pairing, Flow cards and server errors; translate map controls and movement choices without changing their identifiers.
+- Expand in-app Help to 15 practical sections and 45 paragraphs in each language, checked against app behavior and the setup, migration and troubleshooting guides.
+- Read Homey's backend language before rendering settings and help, with regional-code normalization and explicit compatibility/unsupported-language fallbacks.
 - Add checks for language completeness, nonempty text, preserved parameters and translated error paths.
+- Add a ninth test suite covering real settings/help startup, conflicting browser languages and missing or delayed language metadata.
 - Clarify that external sources and Flows provide coordinates to manual subject devices.
 - Explain source freshness, position reception times and the absence of automatic position expiry.
 - Add installation, migration, privacy and troubleshooting guides, plus publication drafts.

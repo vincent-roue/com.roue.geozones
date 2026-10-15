@@ -51,6 +51,7 @@ module.exports = {
       appId: homey.manifest.id,
       name: homey.manifest.name,
       version: homey.manifest.version,
+      language: homey.i18n.getLanguage(),
     };
   },
 

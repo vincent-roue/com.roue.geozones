@@ -17,6 +17,8 @@ class MemorySettings {
 (async () => {
   const events = [];
   const homey = {
+    manifest: { id: 'com.roue.geozones', name: { en: 'GeoZones' }, version: 'test' },
+    i18n: { getLanguage: () => 'de' },
     settings: new MemorySettings(),
     log() {}, error() {}, __() { return ''; },
     app: {
@@ -24,6 +26,9 @@ class MemorySettings {
       reevaluateAllSubjects: async () => {},
     },
   };
+  assert.deepStrictEqual(await api.getMeta({ homey }), {
+    appId: 'com.roue.geozones', name: { en: 'GeoZones' }, version: 'test', language: 'de',
+  }, 'Metadata must expose Homey\'s configured language from the backend manager');
   const zone = { id: 'home', name: 'Home', type: 'circle', center: { lat: 48, lng: 2 }, radius: 100 };
   await setConfig(homey, { schemaVersion: 25, zones: [zone], general: { historyRetentionDays: 30, heavyDebug: false }, ui: { mapZoom: 6 } });
   await Promise.all([

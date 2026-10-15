@@ -31,7 +31,7 @@ Zone evaluation runs on Homey. The settings interface includes its map libraries
 4. Use the subject's Flow action that sets latitude and longitude and evaluates the position. Connect the coordinate tags from your location source.
 5. Use that subject's zone-change trigger or a zone/tag condition in another Flow.
 
-The [installation guide](https://github.com/vincent-roue/com.roue.geozones/blob/prepare-publication-2.0.4/docs/INSTALLATION.md) explains the complete setup and source requirements. The [troubleshooting guide](https://github.com/vincent-roue/com.roue.geozones/blob/prepare-publication-2.0.4/docs/TROUBLESHOOTING.md) covers missing updates and unexpected zone changes.
+The [installation guide](https://github.com/vincent-roue/com.roue.geozones/blob/prepare-publication-2.0.4/docs/INSTALLATION.md) explains the complete setup and source requirements. The embedded Help also provides 15 practical sections and 45 paragraphs in each of the four languages, covering setup, fields, Flows, source age, recovery and troubleshooting. Settings and Help use Homey's language when opened; reopen them after changing that language. The [troubleshooting guide](https://github.com/vincent-roue/com.roue.geozones/blob/prepare-publication-2.0.4/docs/TROUBLESHOOTING.md) covers missing updates and unexpected zone changes.
 
 ## Upgrading from an older version
 
@@ -43,7 +43,7 @@ Version 2.0.3 added protected backups and recovery of legacy subjects. Download 
 
 A subject keeps its last supplied position until another update arrives. Positions do not expire automatically. The subject's `last_update` records the position update supplied to GeoZones and is preserved during a simple recalculation; it does not independently establish the age of your source's GPS measurement. Check your source as well when freshness matters.
 
-The localized 2.0.4 candidate passes eight automated test suites, including language completeness, parameter preservation and translated error paths. Its latest draft and package validation are recorded in the publication evidence. Real testing of 2.0.3 on Homey Pro 2023 has confirmed startup, retained configuration, coordinate evaluation and source-driven updates. Testing of the complete legacy migration and all iPhone setup scenarios on hardware is still incomplete.
+The localized 2.0.4 candidate has nine automated test suites, including language completeness, parameter preservation, translated error paths and real help startup in all four languages. Its latest results, draft and package validation are recorded in the publication evidence. Real testing of 2.0.3 on Homey Pro 2023 has confirmed startup, retained configuration, coordinate evaluation and source-driven updates. Testing of the complete legacy migration and all iPhone setup scenarios on hardware is still incomplete.
 
 Feedback is welcome in this topic. Please include the app and Homey firmware versions, the type of coordinate source, the Flow trigger, the expected result and what happened. Remove exact coordinates, account details and private exports before sharing diagnostics.
 

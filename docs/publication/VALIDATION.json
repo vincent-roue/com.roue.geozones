@@ -1,6 +1,6 @@
 {
   "version": "2.0.4",
-  "checkedAt": "2026-10-15T16:31:18.387Z",
+  "checkedAt": "2026-10-15T16:49:36.476Z",
   "baseline": "2.0.3 test build 13",
   "runtime": {
     "comparedFiles": 70,
@@ -31,7 +31,7 @@
       "locales/nl.json",
       "settings/app.js"
     ],
-    "scope": "Localization and display-only corrections reviewed; zone engine and geospatial calculations unchanged",
+    "scope": "Localization, help and Homey-language selection corrections reviewed; zone engine and geospatial calculations unchanged",
     "zoneEngineUnchanged": true
   },
   "localization": {
@@ -42,15 +42,18 @@
       "de"
     ],
     "backendEntriesPerLanguage": 72,
-    "settingsEntriesPerLanguage": 122,
+    "settingsEntriesPerLanguage": 158,
     "pairingEntriesPerLanguage": 16,
     "manifestTextFieldsPerLanguage": 311,
+    "helpSectionsPerLanguage": 15,
+    "helpParagraphsPerLanguage": 45,
+    "languageSelection": "Homey language metadata before rendering; regional and unsupported-language cases tested",
     "coverageChecks": "PASS",
-    "languageReview": "Current app and Store text reviewed, omissions and grammar corrected; see LANGUAGE-AUDIT.md",
+    "languageReview": "Current app, detailed help and Store text reviewed; see LANGUAGE-AUDIT.md",
     "historicalEnglishReleaseNotesPreserved": true
   },
   "tests": {
-    "suiteCount": 8,
+    "suiteCount": 9,
     "result": "PASS",
     "node": "v24.19.0"
   },
@@ -92,10 +95,10 @@
     }
   ],
   "build": {
-    "id": 15,
+    "id": 16,
     "files": 76,
-    "sha256": "73512453df743091c23c8c84f5356d50aff92678d2febac80db2a36964fecd84",
-    "url": "https://tools.developer.homey.app/apps/app/com.roue.geozones/build/15",
+    "sha256": "65c20434e2c638f2b1b5ff734bc3adc0bb7de2d3659e1f7f88027dcfa892b3a9",
+    "url": "https://tools.developer.homey.app/apps/app/com.roue.geozones/build/16",
     "channel": "draft",
     "certificationRequested": false,
     "livePublicationRequested": false

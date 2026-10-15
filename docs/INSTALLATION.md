@@ -44,7 +44,7 @@ Create a second Flow:
 | When | Your GeoZones subject device → **Changed zone** |
 | Then | For example, a notification containing that trigger's **Previous zone** and **Zone** tokens |
 
-Use the tokens supplied by this **Changed zone** trigger when recording the event. A variable or parallel action may still contain another value. For an entry or exit restricted to a place, use the device trigger **Is [entered/left] [zone] / [zones] / [tag] / [tags]** and fill the relevant filter.
+Use the tokens supplied by this **Changed zone** trigger when recording the event. A variable or parallel action may still contain another value. For an entry or exit restricted to a place, use the device trigger **Zone transition — [entry/exit]: [zone] / [zones] / [tag] / [tags]** and fill the relevant filter.
 
 **Changed zone** includes changes to or from `not_defined` when no zone matches. The entry/exit trigger's **Zone** and **Zone tags** describe the place being entered or left; they should not be read as a snapshot of the current zone after every transition.
 
@@ -55,3 +55,5 @@ For a synthetic check, create an active circle named `Demo zone` centered on `0,
 Reconnect your source, check the device's coordinates and **Last update**, and verify one real arrival and departure. Then tune delays, hysteresis and movement filtering for your source's precision and update rate. Delayed evaluation uses the last received coordinates; it does not request a new GPS fix.
 
 **Freshness:** Last update is GeoZones' reception time, not the source's GPS-fix time. Positions never expire automatically. Replaying cached coordinates can refresh Last update, so also check the original source timestamp when available. The app card **Get subject state for [subject]** exposes **Last update** for your own freshness checks; compare it with your chosen age limit in your Flow logic.
+
+The settings **Help** tab contains 15 practical sections in English, French, Dutch and German. It follows Homey's language when opened; reopen settings after changing that language.

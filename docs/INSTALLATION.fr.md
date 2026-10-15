@@ -39,7 +39,7 @@ La carte renvoie notamment **Zone**, **Zone précédente**, **Tags de zone**, **
 
 Créez un autre Flow avec le déclencheur de l'appareil sujet **A changé de zone**, puis une notification utilisant **Zone précédente** et **Zone** provenant de ce déclencheur. Cela comprend les passages vers ou depuis `not_defined`, lorsqu'aucune zone ne correspond.
 
-Pour cibler une entrée ou une sortie précise, utilisez **Est [entré/sorti] [zone] / [zones] / [tag] / [tags]** et renseignez le filtre utile. Les tags de cette carte décrivent la zone concernée par l'entrée ou la sortie ; en sortie, il s'agit donc de la zone quittée.
+Pour cibler une entrée ou une sortie précise, utilisez **Transition de zone — [entrée/sortie] : [zone] / [zones] / [tag] / [tags]** et renseignez le filtre utile. Les tags de cette carte décrivent la zone concernée par l'entrée ou la sortie ; en sortie, il s'agit donc de la zone quittée.
 
 Pour un journal d'événements, utilisez les tags du déclencheur. Si vous les copiez dans des variables, attendez la fin de ces écritures avant de lire les variables dans une autre action. Des branches parallèles peuvent lire leur ancienne valeur.
 
@@ -50,5 +50,7 @@ Pour un essai synthétique, créez une zone `Zone démo`, cercle actif centré s
 Reconnectez votre source et vérifiez une arrivée et un départ réels, puis ajustez les délais et filtres. Les délais utilisent les dernières coordonnées stockées ; ils ne demandent pas une nouvelle position GPS.
 
 **Dernière mise à jour** indique la réception d'une position par GeoZones, pas la date du relevé GPS. Une source qui renvoie des coordonnées en cache peut donc rafraîchir cet indicateur. Vérifiez aussi l'horodatage fourni par la source. Les positions n'expirent pas automatiquement ; la carte **Récupérer l'état du sujet [sujet]** fournit la dernière mise à jour pour ajouter votre propre contrôle d'âge dans les Flows.
+
+L’onglet **Aide** des réglages contient 15 rubriques pratiques en anglais, français, néerlandais et allemand. Il utilise la langue de Homey à l’ouverture ; rouvrez les réglages après un changement de langue.
 
 Voir aussi le [dépannage](TROUBLESHOOTING.md) et les informations de [confidentialité](PRIVACY.md).

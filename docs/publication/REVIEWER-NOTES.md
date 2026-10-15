@@ -12,6 +12,8 @@ The current model consists of manual subject devices. GeoZones does not fetch ph
 
 Version 2.0.4 changes release metadata, store text, presentation assets and documentation, and completes English, French, Dutch and German text across settings, pairing, Flow cards and server messages. Interface and server error paths now select the translated messages, and map controls and movement choices use the selected language. The zone engine, Flow identifiers, technical values, drivers and permissions are unchanged from the 2.0.3 test release. The [release notes](RELEASE-NOTES.md) distinguish this work from the engine and recovery fixes introduced in 2.0.3; the [language audit](LANGUAGE-AUDIT.md) records coverage and review limits.
 
+In-app Help now contains 15 sections and 45 paragraphs per language, from first setup through Flow semantics, source freshness, backups, migration and troubleshooting. Its instructions were checked against the implemented behavior and repository guides. Settings obtain Homey's language through backend metadata before rendering; compatibility helpers and then browser language are fallbacks when Homey's language cannot be determined. Unsupported Homey languages use English. The view must be reopened after changing Homey's language.
+
 ## Permission rationale
 
 The only requested permission is `homey:manager:geolocation`.
@@ -43,7 +45,7 @@ The 2.0.3 base passed eight automated suites:
 7. Configuration storage.
 8. Settings interaction, map fallback, downloads and translations.
 
-The localized 2.0.4 candidate passed the same eight suites on 15 October 2026, with expanded checks for language completeness, nonempty strings, preserved parameters and real translated error paths. The latest draft identifier, publication-level package validation and archive checksum are recorded with the package actually uploaded; see [validation evidence](VALIDATION.json) and the [release checklist](../RELEASE_CHECKLIST.md).
+The localized 2.0.4 candidate adds a ninth suite for actual settings/help startup. It checks all four languages, regional codes, a different browser language, unsupported-language fallback and missing or delayed metadata. The existing suites also cover language completeness, nonempty strings, preserved parameters and real translated error paths. Final results, the latest draft identifier, publication-level package validation and archive checksum are recorded with the package actually uploaded; see [validation evidence](VALIDATION.json) and the [release checklist](../RELEASE_CHECKLIST.md).
 
 Physical Homey Pro 2023 observations of 2.0.3 confirmed startup, preserved configuration, coordinate evaluation and source-driven updates. This is partial hardware acceptance. It does not establish exhaustive iPhone source behavior, full legacy migration on hardware, or every restart/import/delay scenario.
 

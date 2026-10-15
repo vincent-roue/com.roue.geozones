@@ -43,6 +43,8 @@ Import merge works by top-level section, not by individual zone. A supplied `zon
 
 ## Reporting an issue
 
+If settings or Help appear in an unexpected language, check Homey's language and reopen the settings. English, French, Dutch and German are supported; other Homey languages use English. The browser language is only a fallback when Homey's language cannot be determined. Help contains 15 sections covering setup, fields, Flows and recovery without needing to open the repository.
+
 Use [GitHub issues](https://github.com/vincent-roue/com.roue.geozones/issues) or the [Homey Community topic](https://community.homey.app/t/app-pro-geozones/153017). Include app version/channel, Homey model/firmware, exact card title, steps, expected/actual result and a minimal synthetic example. Describe the coordinate source and whether it supplies a GPS-fix timestamp.
 
-Detailed logging is available in **Settings > General > Enable detailed logging (heavy debug)**. Enable it only while reproducing the problem, then turn it off. Both normal and detailed logs may expose names/places; detailed logs can also include coordinates. Remove private names, positions, location history, identifiers and credentials from public reports. Read [Privacy](PRIVACY.md) before sharing exports or diagnostics.
+Detailed logging is available in **Settings > General > Enable detailed logging**. Enable it only while reproducing the problem, then turn it off. Both normal and detailed logs may expose names/places; detailed logs can also include coordinates. Remove private names, positions, location history, identifiers and credentials from public reports. Read [Privacy](PRIVACY.md) before sharing exports or diagnostics.
