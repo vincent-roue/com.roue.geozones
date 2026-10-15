@@ -73,9 +73,9 @@
       "type": "string",
       "title": {
         "en": "Zone tags",
-        "fr": "Zone tags",
-        "nl": "Zone tags",
-        "de": "Zone tags"
+        "fr": "Tags de zone",
+        "nl": "Zone-tags",
+        "de": "Zonen-Tags"
       }
     }
   ],

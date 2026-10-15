@@ -1,17 +1,20 @@
 # GeoZones 2.0.4 — publication candidate
 
-Version 2.0.4 prepares the existing GeoZones version 2 runtime for review with clearer store information and documentation. It is a candidate; these notes do not announce certification or a stable release.
+Version 2.0.4 prepares GeoZones version 2 for review with completed translations, clearer store information and documentation. It is a candidate; these notes do not announce certification or a stable release.
 
 ## Changes in 2.0.4
 
 - Refresh the store description in English, French, Dutch and German.
+- Review and complete all four languages in settings, pairing, Flow cards and server messages, including map controls and movement-state choices.
+- Correct untranslated distance labels, transition grammar and error messages that previously fell back to English.
+- Check language completeness, nonempty text, parameter preservation and translated error paths.
 - Explain the manual-subject model and the requirement for a separate coordinate source connected through Flows.
 - Expand installation, migration, troubleshooting and privacy documentation.
 - Clarify position freshness, retained coordinates and the meaning of the last-update field.
 - Prepare forum text, reviewer notes and release checks.
 - Replace Store artwork with a real demonstration-map capture and provide a distinct manual-subject icon on a 960-pixel canvas.
 
-**The application runtime is unchanged from version 2.0.3.** This candidate introduces no new runtime fixes, drivers or permissions.
+The zone engine, Flow identifiers, technical values, drivers and permission scope are unchanged from version 2.0.3. Interface text and server error handling have changed to select the translated messages. See the [language audit](LANGUAGE-AUDIT.md) for the reviewed scope and limits.
 
 ## Runtime inherited from 2.0.3
 
@@ -33,7 +36,7 @@ See the [installation guide](../INSTALLATION.md), [troubleshooting](../TROUBLESH
 
 ## Validation and remaining work
 
-The 2.0.4 candidate passed eight automated suites and Homey's publication-level package validation. Its 70 application logic and interface source files match the tested 2.0.3 baseline. The candidate is uploaded as Draft build 14; see [validation evidence](VALIDATION.json) and the [release checklist](../RELEASE_CHECKLIST.md).
+The localized 2.0.4 candidate passed eight automated suites, including coverage of language completeness, preserved parameters, translated errors and interface interactions. The latest uploaded draft, archive checksum and publication-level package validation are recorded in [validation evidence](VALIDATION.json) and the [release checklist](../RELEASE_CHECKLIST.md).
 
 The 2.0.3 runtime has been observed on Homey Pro 2023 with source-driven position updates. These checks do not constitute complete hardware acceptance: legacy recovery and all iPhone/restart/import/delay scenarios still require confirmation.
 

@@ -37,9 +37,9 @@
       "value": "",
       "hint": {
         "en": "Free text value used to classify the subject, for example person, car, bike or pet. Reuse the same spelling everywhere.",
-        "fr": "Valeur libre utilisée pour classer le sujet, par exemple person, car, bike ou pet. Réutilisez toujours la même écriture.",
-        "nl": "Vrije tekstwaarde om het onderwerp te classificeren, bijvoorbeeld person, car, bike of pet. Gebruik overal dezelfde schrijfwijze.",
-        "de": "Freier Textwert zur Klassifizierung des Subjekts, zum Beispiel person, car, bike oder pet. Verwenden Sie überall dieselbe Schreibweise."
+        "fr": "Valeur libre utilisée pour classer le sujet, par exemple personne, voiture, vélo ou animal. Réutilisez toujours la même orthographe.",
+        "nl": "Vrije tekstwaarde om het onderwerp te classificeren, bijvoorbeeld persoon, auto, fiets of huisdier. Gebruik overal dezelfde schrijfwijze.",
+        "de": "Freier Textwert zur Klassifizierung des Subjekts, zum Beispiel Person, Auto, Fahrrad oder Haustier. Verwenden Sie überall dieselbe Schreibweise."
       }
     },
     {
@@ -54,7 +54,7 @@
       "value": true,
       "hint": {
         "en": "When disabled, GeoZones keeps the device but ignores location updates and evaluations.",
-        "fr": "Quand désactivé, GeoZones conserve le device mais ignore les mises à jour de position et les évaluations.",
+        "fr": "Lorsque le sujet est désactivé, GeoZones conserve l’appareil mais ignore les mises à jour de position et les évaluations.",
         "nl": "Wanneer uitgeschakeld behoudt GeoZones het apparaat, maar negeert het locatie-updates en evaluaties.",
         "de": "Wenn deaktiviert, behält GeoZones das Gerät bei, ignoriert aber Positionsupdates und Auswertungen."
       }

@@ -325,7 +325,8 @@ class GeoZonesApp extends Homey.App {
 
   async autocompleteMovementStates(query) {
     const q = normalizeKey(query);
-    return MOVEMENT_STATES.filter(state => !q || normalizeKey(state).includes(q)).map(state => ({ id: state, name: state }));
+    return MOVEMENT_STATES.map(state => ({ id: state, name: this.tError(`movementState${state[0].toUpperCase()}${state.slice(1)}`, state) }))
+      .filter(state => !q || normalizeKey(state.name).includes(q) || normalizeKey(state.id).includes(q));
   }
 
   registerAutocomplete(card, argName, fn) {
@@ -504,7 +505,7 @@ class GeoZonesApp extends Homey.App {
     }
   }
 
-  requireValidCoordinates(lat, lng, label = 'Coordinates') {
+  requireValidCoordinates(lat, lng, label = this.tError('coordinatesLabel', 'Coordinates')) {
     if (!isFiniteNumber(lat) || !isFiniteNumber(lng)) throw new Error(this.tError('coordinatesRequired', `${label} are required`, { label }));
     const latitude = Number(lat);
     const longitude = Number(lng);
@@ -513,7 +514,7 @@ class GeoZonesApp extends Homey.App {
     return { latitude, longitude };
   }
 
-  getValidDeviceCoordinates(device, label = 'Device coordinates') {
+  getValidDeviceCoordinates(device, label = this.tError('deviceCoordinatesLabel', 'Device coordinates')) {
     return this.requireValidCoordinates(device?.getCapabilityValue('latitude'), device?.getCapabilityValue('longitude'), label);
   }
 
@@ -639,8 +640,8 @@ class GeoZonesApp extends Homey.App {
 
     const distanceCoordinatesCoordinates = this.homey.flow.getActionCard('distance_coordinates_coordinates');
     distanceCoordinatesCoordinates?.registerRunListener(async args => {
-      const first = this.requireValidCoordinates(args.lat1, args.long1, 'First coordinates');
-      const second = this.requireValidCoordinates(args.lat2, args.long2, 'Second coordinates');
+      const first = this.requireValidCoordinates(args.lat1, args.long1, this.tError('firstCoordinatesLabel', 'First coordinates'));
+      const second = this.requireValidCoordinates(args.lat2, args.long2, this.tError('secondCoordinatesLabel', 'Second coordinates'));
       return { distance_m: haversineMeters(first.latitude, first.longitude, second.latitude, second.longitude) };
     });
 
@@ -650,7 +651,7 @@ class GeoZonesApp extends Homey.App {
       const zoneName = cleanText(args.zone?.name || args.zone?.id || args.zone);
       const zone = this.getZoneByName(zoneName);
       if (!zone) throw new Error(this.tError('zoneRequired', 'Zone is required'));
-      const coords = this.requireValidCoordinates(args.lat, args.long, 'Coordinates');
+      const coords = this.requireValidCoordinates(args.lat, args.long, this.tError('coordinatesLabel', 'Coordinates'));
       return { distance_m: distanceToZoneM(coords.latitude, coords.longitude, zone) };
     });
 
@@ -728,7 +729,7 @@ class GeoZonesApp extends Homey.App {
     ].filter(Boolean);
     for (const card of deviceDistanceToCoordinatesCards) card?.registerRunListener(async args => {
       const source = this.getValidDeviceCoordinates(args.device);
-      const target = this.requireValidCoordinates(args.lat, args.long, 'Target coordinates');
+      const target = this.requireValidCoordinates(args.lat, args.long, this.tError('targetCoordinatesLabel', 'Target coordinates'));
       return { distance_m: haversineMeters(source.latitude, source.longitude, target.latitude, target.longitude) };
     });
 
@@ -741,7 +742,7 @@ class GeoZonesApp extends Homey.App {
         const other = await this.resolveSubjectArg(args.subject);
         if (!other) throw new Error(this.tError('targetSubjectRequired', 'Target subject is required'));
         const source = this.getValidDeviceCoordinates(args.device);
-        const target = this.getValidDeviceCoordinates(other, 'Target subject coordinates');
+        const target = this.getValidDeviceCoordinates(other, this.tError('targetSubjectCoordinatesLabel', 'Target subject coordinates'));
         return {
           distance_m: haversineMeters(source.latitude, source.longitude, target.latitude, target.longitude),
         };

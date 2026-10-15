@@ -1,16 +1,16 @@
 {
   "id": "global_subject_transition",
   "title": {
-    "en": "[[subject]] / [[subjectType]] is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-    "fr": "[[subject]] / [[subjectType]] est [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-    "nl": "[[subject]] / [[subjectType]] is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-    "de": "[[subject]] / [[subjectType]] ist [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+    "en": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "fr": "[[subject]] / [[subjectType]] — [[transition]] : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "nl": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "de": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
   },
   "titleFormatted": {
-    "en": "[[subject]] / [[subjectType]] is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-    "fr": "[[subject]] / [[subjectType]] est [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-    "nl": "[[subject]] / [[subjectType]] is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-    "de": "[[subject]] / [[subjectType]] ist [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+    "en": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "fr": "[[subject]] / [[subjectType]] — [[transition]] : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "nl": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+    "de": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
   },
   "args": [
     {
@@ -49,19 +49,19 @@
         {
           "id": "entered",
           "title": {
-            "en": "entered",
-            "fr": "entré",
-            "nl": "binnengekomen",
-            "de": "eingetreten"
+            "en": "entry",
+            "fr": "entrée",
+            "nl": "binnenkomst",
+            "de": "Zone betreten"
           }
         },
         {
           "id": "left",
           "title": {
-            "en": "left",
-            "fr": "sorti",
-            "nl": "verlaten",
-            "de": "verlassen"
+            "en": "exit",
+            "fr": "sortie",
+            "nl": "vertrek",
+            "de": "Zone verlassen"
           }
         }
       ]

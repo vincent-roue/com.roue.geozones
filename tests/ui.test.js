@@ -48,6 +48,7 @@ const saved = {
   general: { historyRetentionDays: 30 },
 };
 const requests = [];
+const alerts = [];
 let clipboard = '';
 let downloadedBlob;
 let ready = false;
@@ -56,7 +57,7 @@ let confirmations = 0;
 const homey = {
   i18n: { getLanguage: () => 'en' },
   ready: () => { ready = true; },
-  alert: () => {},
+  alert: message => { alerts.push(message); },
   confirm: async () => { confirmations += 1; return confirmAnswer; },
   api: async (method, route, body) => {
     requests.push({ method, route, body });
@@ -174,6 +175,92 @@ const input = (selector, value) => {
   await elements['#btnMigrationBackup'].onclick();
   assert.strictEqual(JSON.parse(await downloadedBlob.text()).payload.settings.old, 'preserved');
 
+  const mapLanguages = {
+    en: {
+      zoomIn: 'Zoom in', zoomOut: 'Zoom out',
+      circleStart: 'Click and drag to draw a circle.', circleEnd: 'Release to finish drawing.', radius: 'Radius',
+      polygonStart: 'Click to start drawing a polygon.', polygonContinue: 'Click to add another point.', polygonEnd: 'Click the first point to close the polygon.',
+      intersectionError: 'Polygon edges cannot cross.', invalidJson: 'Invalid JSON file.',
+    },
+    fr: {
+      zoomIn: 'Zoomer', zoomOut: 'Dézoomer',
+      circleStart: 'Cliquez et faites glisser pour dessiner un cercle.', circleEnd: 'Relâchez pour terminer le dessin.', radius: 'Rayon',
+      polygonStart: 'Cliquez pour commencer un polygone.', polygonContinue: 'Cliquez pour ajouter un point.', polygonEnd: 'Cliquez sur le premier point pour fermer le polygone.',
+      intersectionError: 'Les côtés du polygone ne peuvent pas se croiser.', invalidJson: 'Fichier JSON invalide.',
+    },
+    nl: {
+      zoomIn: 'Inzoomen', zoomOut: 'Uitzoomen',
+      circleStart: 'Klik en sleep om een cirkel te tekenen.', circleEnd: 'Laat los om het tekenen te voltooien.', radius: 'Straal',
+      polygonStart: 'Klik om een polygoon te beginnen.', polygonContinue: 'Klik om een punt toe te voegen.', polygonEnd: 'Klik op het eerste punt om de polygoon te sluiten.',
+      intersectionError: 'De zijden van de polygoon mogen elkaar niet kruisen.', invalidJson: 'Ongeldig JSON-bestand.',
+    },
+    de: {
+      zoomIn: 'Vergrößern', zoomOut: 'Verkleinern',
+      circleStart: 'Klicken und ziehen Sie, um einen Kreis zu zeichnen.', circleEnd: 'Lassen Sie los, um die Zeichnung abzuschließen.', radius: 'Radius',
+      polygonStart: 'Klicken Sie, um ein Polygon zu beginnen.', polygonContinue: 'Klicken Sie, um einen Punkt hinzuzufügen.', polygonEnd: 'Klicken Sie auf den ersten Punkt, um das Polygon zu schließen.',
+      intersectionError: 'Die Seiten des Polygons dürfen sich nicht kreuzen.', invalidJson: 'Ungültige JSON-Datei.',
+    },
+  };
+  context.mapTestConfig = clone(saved);
+  evaluate('config = mapTestConfig');
+  let malformedApiCalls = 0;
+  homey.api = async () => { malformedApiCalls += 1; throw new Error('Malformed JSON must not reach Homey'); };
+  const confirmationsBeforeMalformed = confirmations;
+  for (const [lang, expected] of Object.entries(mapLanguages)) {
+    let zoomOptions;
+    let circleStartAtConstruction;
+    let polygonStartAtConstruction;
+    const leafletMap = { setView() { return this; }, on() {} };
+    context.L = {
+      drawLocal: { draw: { handlers: {
+        circle: { tooltip: { start: 'untranslated circle' }, radius: 'untranslated radius' },
+        simpleshape: { tooltip: { end: 'untranslated end' } },
+        polygon: { tooltip: { start: 'untranslated polygon', cont: 'untranslated continuation', end: 'untranslated closing' } },
+        polyline: { error: 'untranslated error' },
+      } } },
+      map: (id, mapOptions) => {
+        assert.strictEqual(id, 'map');
+        assert.strictEqual(mapOptions.zoomControl, false, 'Disable the default English zoom buttons');
+        return leafletMap;
+      },
+      control: { zoom: options => { zoomOptions = options; return { addTo: target => assert.strictEqual(target, leafletMap) }; } },
+      tileLayer: () => ({ addTo() {} }),
+      FeatureGroup: class {},
+      Draw: {
+        Circle: class { constructor() { circleStartAtConstruction = context.L.drawLocal.draw.handlers.circle.tooltip.start; } },
+        Polygon: class { constructor() { polygonStartAtConstruction = context.L.drawLocal.draw.handlers.polygon.tooltip.start; } },
+        Event: { CREATED: 'draw:created' },
+      },
+    };
+    leafletMap.addLayer = () => {};
+    evaluate(`currentLang = '${lang}'; map = null; ensureMap()`);
+    const handlers = context.L.drawLocal.draw.handlers;
+    for (const [key, actual] of Object.entries({
+      circleStart: handlers.circle.tooltip.start,
+      circleEnd: handlers.simpleshape.tooltip.end,
+      radius: handlers.circle.radius,
+      polygonStart: handlers.polygon.tooltip.start,
+      polygonContinue: handlers.polygon.tooltip.cont,
+      polygonEnd: handlers.polygon.tooltip.end,
+      intersectionError: handlers.polyline.error,
+      zoomIn: zoomOptions.zoomInTitle,
+      zoomOut: zoomOptions.zoomOutTitle,
+    })) assert.strictEqual(actual, expected[key], `${lang}: map must apply ${key}`);
+    assert.strictEqual(circleStartAtConstruction, expected.circleStart, `${lang}: translate before constructing the circle tool`);
+    assert.strictEqual(polygonStartAtConstruction, expected.polygonStart, `${lang}: translate before constructing the polygon tool`);
+
+    for (const mode of ['replace', 'merge']) {
+      elements['#importBox'].value = '{"zones":[';
+      const alertsBefore = alerts.length;
+      await evaluate(`handleImport('${mode}')`);
+      assert.strictEqual(alerts.length, alertsBefore + 1, `${lang}: malformed JSON must show an alert`);
+      assert.strictEqual(alerts[alerts.length - 1], expected.invalidJson, `${lang}: hide the native JSON parser error`);
+      assert.strictEqual(elements['#status'].textContent, `⚠ ${expected.invalidJson}`, `${lang}: show a translated status error`);
+    }
+  }
+  assert.strictEqual(malformedApiCalls, 0, 'Malformed JSON must never reach Homey');
+  assert.strictEqual(confirmations, confirmationsBeforeMalformed, 'Malformed JSON must not ask to replace or merge');
+
   function flatten(value, prefix = '', result = {}) {
     for (const [key, item] of Object.entries(value)) {
       if (item && typeof item === 'object') flatten(item, `${prefix}${key}.`, result);
@@ -193,5 +280,5 @@ const input = (selector, value) => {
   }
   for (const match of html.matchAll(/data-(?:i18n|help)(?:-placeholder)?="([^"]+)"/g)) assert(match[1] in reference, `Missing UI translation: ${match[1]}`);
   assert(!/https:\/\/unpkg/.test(html), 'Map libraries must ship in the app');
-  console.log('Settings interaction, offline fallback, private export and UI translation checks passed');
+  console.log('Settings interaction, offline fallback, private export, translated map controls and import errors passed');
 })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+const { translate } = require('../../lib/i18n');
 const { cleanText } = require('../../lib/utils');
 const { log } = require('../../lib/logger');
 const { migrateLegacySettings, getMigrationStatus, createRecoveredSubject } = require('../../lib/migration');
@@ -18,7 +19,7 @@ log(this.homey, 'manual-driver', 'Subject manual driver initialized');
     });
     session.setHandler('recover_legacy_subject', async data => {
       const id = cleanText(data?.id);
-      if (this.getDevices().some(device => device.getData().id === id)) throw new Error('This legacy subject is already paired. Restart GeoZones to retry restoring its state.');
+      if (this.getDevices().some(device => device.getData().id === id)) throw new Error(translate(this.homey, 'legacySubjectPaired', 'This legacy subject is already paired. Restart GeoZones to retry restoring its state.'));
       return createRecoveredSubject(this.homey, id, cleanText(data?.name));
     });
     session.setHandler('create_manual_subject', async data => {

@@ -1,16 +1,16 @@
 {
   "id": "coordinates_match_zone",
   "title": {
-    "en": "[[lat]], [[long]] !{{matches|does not match}} [[zone]] / [[zones]]",
-    "fr": "[[lat]], [[long]] !{{correspond à|ne correspond pas à}} [[zone]] / [[zones]]",
-    "nl": "[[lat]], [[long]] !{{komt overeen met|komt niet overeen met}} [[zone]] / [[zones]]",
-    "de": "[[lat]], [[long]] !{{entspricht|entspricht nicht}} [[zone]] / [[zones]]"
+    "en": "Coordinates [[lat]], [[long]] !{{match|do not match}} [[zone]] / [[zones]]",
+    "fr": "Les coordonnées [[lat]], [[long]] !{{correspondent à|ne correspondent pas à}} [[zone]] / [[zones]]",
+    "nl": "Coördinaten [[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[zone]] / [[zones]]",
+    "de": "Koordinaten [[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[zone]] / [[zones]]"
   },
   "titleFormatted": {
-    "en": "[[lat]], [[long]] !{{matches|does not match}} [[zone]] / [[zones]]",
-    "fr": "[[lat]], [[long]] !{{correspond à|ne correspond pas à}} [[zone]] / [[zones]]",
-    "nl": "[[lat]], [[long]] !{{komt overeen met|komt niet overeen met}} [[zone]] / [[zones]]",
-    "de": "[[lat]], [[long]] !{{entspricht|entspricht nicht}} [[zone]] / [[zones]]"
+    "en": "Coordinates [[lat]], [[long]] !{{match|do not match}} [[zone]] / [[zones]]",
+    "fr": "Les coordonnées [[lat]], [[long]] !{{correspondent à|ne correspondent pas à}} [[zone]] / [[zones]]",
+    "nl": "Coördinaten [[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[zone]] / [[zones]]",
+    "de": "Koordinaten [[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[zone]] / [[zones]]"
   },
   "args": [
     {

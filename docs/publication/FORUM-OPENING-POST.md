@@ -2,7 +2,7 @@
 
 GeoZones lets you define places once and reuse them across your Homey Flows. Create circles or draw polygons, provide a subject's latitude and longitude, then use the resulting zone, tags, movement state and distances in your automations.
 
-**The app is available through the [Homey App Store test channel](https://homey.app/a/com.roue.geozones/test/).** Version 2.0.4 is being prepared for review with updated documentation and store information. It uses the same application runtime as the 2.0.3 test release. A stable release has not been announced.
+**The app is available through the [Homey App Store test channel](https://homey.app/a/com.roue.geozones/test/).** Version 2.0.4 is being prepared for review with completed English, French, Dutch and German translations, updated documentation and store information. Its zone engine, Flow identifiers and permissions are unchanged from the 2.0.3 test release. A stable release has not been announced.
 
 ## How version 2 works
 
@@ -43,7 +43,7 @@ Version 2.0.3 added protected backups and recovery of legacy subjects. Download 
 
 A subject keeps its last supplied position until another update arrives. Positions do not expire automatically. The subject's `last_update` records the position update supplied to GeoZones and is preserved during a simple recalculation; it does not independently establish the age of your source's GPS measurement. Check your source as well when freshness matters.
 
-The 2.0.3 runtime passed eight automated test suites and Homey's publication-level package validation. Real testing on Homey Pro 2023 has confirmed startup, retained configuration, coordinate evaluation and source-driven updates. Testing of the complete legacy migration and all iPhone setup scenarios on hardware is still incomplete.
+The localized 2.0.4 candidate passes eight automated test suites, including language completeness, parameter preservation and translated error paths. Its latest draft and package validation are recorded in the publication evidence. Real testing of 2.0.3 on Homey Pro 2023 has confirmed startup, retained configuration, coordinate evaluation and source-driven updates. Testing of the complete legacy migration and all iPhone setup scenarios on hardware is still incomplete.
 
 Feedback is welcome in this topic. Please include the app and Homey firmware versions, the type of coordinate source, the Flow trigger, the expected result and what happened. Remove exact coordinates, account details and private exports before sharing diagnostics.
 

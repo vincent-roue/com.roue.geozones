@@ -10,7 +10,7 @@ Define your places once, then reuse them in Flows. GeoZones supports circles and
 
 **Upgrading from an older version:** the automatic linked-subject model and its old Flow cards have been removed. Preserve your backup, recover previous subjects through Add device, and rebuild affected Flows. Read the [migration guide](https://github.com/vincent-roue/com.roue.geozones/blob/main/docs/MIGRATION.md) before updating.
 
-This version clarifies setup, migration and position freshness and updates the presentation of the app. Its zone engine is the same as the 2.0.3 test release. Positions are last known values and do not expire automatically; check freshness at your location source.
+This version completes English, French, Dutch and German text in the app, clarifies setup, migration and position freshness, and updates the presentation. Its zone engine, Flow identifiers and permissions are unchanged from the 2.0.3 test release. Positions are last known values and do not expire automatically; check freshness at your location source.
 
 [Installation guide](https://github.com/vincent-roue/com.roue.geozones/blob/main/docs/INSTALLATION.md) · [Guide en français](https://github.com/vincent-roue/com.roue.geozones/blob/main/docs/INSTALLATION.fr.md) · [Troubleshooting](https://github.com/vincent-roue/com.roue.geozones/blob/main/docs/TROUBLESHOOTING.md)
 

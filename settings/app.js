@@ -38,8 +38,8 @@ const UI = {
     tabs: { zones: 'Zones', general: 'General', io: 'Import / Export', help: 'Help' },
     migration: {
       title: 'Recover previous subjects',
-      pending: '__count__ previous subjects await recovery. __recovered__ already recovered.',
-      complete: '__recovered__ previous subjects recovered.',
+      pending: 'Previous subjects awaiting recovery: __count__. Already recovered: __recovered__.',
+      complete: 'Previous subjects recovered: __recovered__.',
       error: 'Recovery status could not be verified.',
       instructions: 'To recover subjects, add a GeoZones device from Devices and choose the previous subjects in the manual-subject pairing screen. Recovery requires this action. Check and reconnect your Flows afterwards; linked location sources must be replaced by coordinate updates from a Flow.',
       downloadBackup: 'Download previous-data backup',
@@ -47,6 +47,12 @@ const UI = {
       noBackup: 'No verified backup is available.',
     },
     actions: { save: 'Save', reload: 'Reload', addCircle: 'Add circle', addPolygon: 'Add polygon', fitAll: 'Fit all', deleteZone: 'Delete zone' },
+    map: {
+      zoomIn: 'Zoom in', zoomOut: 'Zoom out',
+      circleStart: 'Click and drag to draw a circle.', circleEnd: 'Release to finish drawing.', radius: 'Radius',
+      polygonStart: 'Click to start drawing a polygon.', polygonContinue: 'Click to add another point.', polygonEnd: 'Click the first point to close the polygon.',
+      intersectionError: 'Polygon edges cannot cross.',
+    },
     common: { name: 'Name', color: 'Color', active: 'Active', inactive: 'Inactive', priority: 'Priority', tags: 'Tags', empty: '—' },
     zones: {
       editor: 'Zone',
@@ -67,10 +73,10 @@ const UI = {
       appliesWithoutSubject: 'Apply to coordinates without subject',
       appliesWithoutSubjectHelp: 'Used by cards that evaluate raw coordinates without a subject device.',
       subjectFilterMode: 'Subject filter',
-      subjectFilterHelp: 'Choose whether all subjects are allowed, or only / except the listed subject names. Subject filters are matched by subject name and take priority over subject type filters.',
+      subjectFilterHelp: 'Allow all subjects, only the listed subjects, or all except the listed subjects. Filters match subject names and take priority over subject type filters.',
       subjectFilterValues: 'Subjects (comma-separated names)',
       subjectTypeMode: 'Subject type filter',
-      subjectTypeFilterHelp: 'Choose whether all subject types are allowed, or only / except the listed types. Subject types are free text values such as person, car, bike or pet.',
+      subjectTypeFilterHelp: 'Allow all subject types, only the listed types, or all except the listed types. Subject types are free text values such as person, car, bike or pet.',
       subjectTypeValues: 'Subject types (comma-separated)',
       filterAll: 'All',
       filterInclude: 'Include only',
@@ -85,7 +91,7 @@ const UI = {
       historyHelp: 'Keep previous JSON versions for a limited number of days.',
       historyDays: 'Retention (days)',
       debugTitle: 'Debug',
-      heavyDebug: 'Enable detailed logging (heavy debug)',
+      heavyDebug: 'Enable detailed logging',
       heavyDebugHelp: 'Enable detailed logging only when you need to diagnose a problem. It adds decision logs for zone evaluation and should not stay enabled longer than necessary.',
     },
     io: {
@@ -93,7 +99,7 @@ const UI = {
       copy: 'Copy',
       download: 'Download',
       importTitle: 'Import',
-      copyCurrent: 'Copy from current',
+      copyCurrent: 'Copy current configuration',
       loadFile: 'Load file',
       importReplace: 'Import and replace',
       importMerge: 'Import and merge sections',
@@ -112,7 +118,7 @@ const UI = {
         { title: '4. Manual subjects', body: ['A manual subject is a GeoZones device whose coordinates are updated from a Flow card.', 'Use manual subjects when you want to evaluate a person, vehicle or asset against your saved zones.'] },
         { title: '5. Import, export and history', body: ['Use export before risky changes. Import can replace the whole configuration or merge top-level sections of it.', 'The current merge mode is not a smart zone-by-zone merge: if the imported JSON contains a zones section, it replaces the whole current zones section. The history list lets you restore earlier saved configurations.'] },
         { title: '6. Movement threshold', body: ['The minimum movement distance is stored on each subject device, not on the zone.', 'Small moves under the threshold are ignored to reduce GPS noise.'] },
-        { title: '7. Getting coordinates', body: ['GeoZones calculates zones from coordinates; it does not track phones or provide a built-in location source.', 'For an iPhone, use a compatible location source to supply latitude and longitude to a Homey Flow, then use the GeoZones card to set the subject position and evaluate it. Check last_update and the source update frequency: an old position does not prove the person is still there.'] },
+        { title: '7. Getting coordinates', body: ['GeoZones calculates zones from coordinates; it does not track phones or provide a built-in location source.', 'For an iPhone, use a compatible location source to supply latitude and longitude to a Homey Flow, then use the GeoZones card to set the subject position and evaluate it. Last update (last_update) shows when GeoZones received the coordinates, not when the source measured the position. Check the position age and update frequency in your source: stored positions do not expire automatically, and an old position does not prove the person is still there.'] },
         { title: '8. Maps and privacy', body: ['Map tiles are downloaded from OpenStreetMap. Tile requests reveal the viewed map area and your network address to the map service.', 'Copy and Download export the current JSON draft directly in your browser. Complete geometry validation takes place when saving. Exports can contain sensitive coordinates; store and share them carefully.'] },
       ],
     },
@@ -137,8 +143,8 @@ const UI = {
     tabs: { zones: 'Zones', general: 'Général', io: 'Import / Export', help: 'Aide' },
     migration: {
       title: 'Récupérer les anciens sujets',
-      pending: '__count__ anciens sujets attendent une récupération. __recovered__ déjà récupérés.',
-      complete: '__recovered__ anciens sujets récupérés.',
+      pending: 'Anciens sujets à récupérer : __count__. Déjà récupérés : __recovered__.',
+      complete: 'Anciens sujets récupérés : __recovered__.',
       error: 'L’état de récupération n’a pas pu être vérifié.',
       instructions: 'Pour récupérer les sujets, ajoutez un appareil GeoZones depuis Appareils et choisissez les anciens sujets dans l’écran d’association des sujets manuels. Cette action est nécessaire. Vérifiez et reconnectez ensuite vos Flows ; les anciennes sources liées doivent être remplacées par des mises à jour de coordonnées depuis un Flow.',
       downloadBackup: 'Télécharger la sauvegarde des anciennes données',
@@ -146,7 +152,13 @@ const UI = {
       noBackup: 'Aucune sauvegarde vérifiée n’est disponible.',
     },
     actions: { save: 'Enregistrer', reload: 'Recharger', addCircle: 'Ajouter un cercle', addPolygon: 'Ajouter un polygone', fitAll: 'Ajuster à toutes les zones', deleteZone: 'Supprimer la zone' },
-    common: { name: 'Nom', color: 'Couleur', active: 'Actif', inactive: 'Inactif', priority: 'Priorité', tags: 'Tags', empty: '—' },
+    map: {
+      zoomIn: 'Zoomer', zoomOut: 'Dézoomer',
+      circleStart: 'Cliquez et faites glisser pour dessiner un cercle.', circleEnd: 'Relâchez pour terminer le dessin.', radius: 'Rayon',
+      polygonStart: 'Cliquez pour commencer un polygone.', polygonContinue: 'Cliquez pour ajouter un point.', polygonEnd: 'Cliquez sur le premier point pour fermer le polygone.',
+      intersectionError: 'Les côtés du polygone ne peuvent pas se croiser.',
+    },
+    common: { name: 'Nom', color: 'Couleur', active: 'Active', inactive: 'Inactive', priority: 'Priorité', tags: 'Tags', empty: '—' },
     zones: {
       editor: 'Zone',
       selectZone: 'Sélectionnez une zone',
@@ -164,12 +176,12 @@ const UI = {
       hysteresis: 'Hystérésis (m)',
       hysteresisHelp: 'Pour les cercles uniquement. Agrandit le seuil de sortie du cercle pour limiter les bascules près du bord.',
       appliesWithoutSubject: 'Appliquer aux coordonnées sans sujet',
-      appliesWithoutSubjectHelp: 'Utilisé par les cartes qui évaluent des coordonnées brutes sans device sujet.',
+      appliesWithoutSubjectHelp: 'Utilisé par les cartes qui évaluent des coordonnées brutes sans appareil sujet.',
       subjectFilterMode: 'Filtre des sujets',
-      subjectFilterHelp: 'Choisissez si tous les sujets sont autorisés, ou seulement / sauf les noms de sujet listés. Les filtres de sujet sont prioritaires sur les filtres de type.',
+      subjectFilterHelp: 'Autorisez tous les sujets, uniquement les sujets listés ou tous sauf les sujets listés. Les filtres utilisent les noms des sujets et sont prioritaires sur les filtres de type.',
       subjectFilterValues: 'Sujets (noms séparés par des virgules)',
       subjectTypeMode: 'Filtre des types de sujet',
-      subjectTypeFilterHelp: 'Choisissez si tous les types sont autorisés, ou seulement / sauf les types listés. Les types de sujet sont des valeurs libres, par exemple person, car, bike ou pet.',
+      subjectTypeFilterHelp: 'Autorisez tous les types, uniquement les types listés ou tous sauf les types listés. Les types de sujet sont des valeurs libres, par exemple personne, voiture, vélo ou animal.',
       subjectTypeValues: 'Types de sujet (séparés par des virgules)',
       filterAll: 'Tous',
       filterInclude: 'Inclure seulement',
@@ -177,22 +189,22 @@ const UI = {
       filterPriority: 'Les filtres par sujet sont plus spécifiques que les filtres par type de sujet.',
       addTag: 'Ajouter un tag',
       tagPlaceholder: 'Saisir un tag',
-      tagsHelp: 'Les tags sont des valeurs libres qui décrivent l’usage d’une zone, par exemple home, work, school, charging ou family. Gardez la même orthographe partout où vous les réutilisez.',
+      tagsHelp: 'Les tags sont des valeurs libres qui décrivent l’usage d’une zone, par exemple maison, travail, école, recharge ou famille. Gardez la même orthographe partout où vous les réutilisez.',
     },
     general: {
       historyTitle: 'Historique de configuration',
       historyHelp: 'Conserve les versions JSON précédentes pendant un nombre de jours limité.',
       historyDays: 'Rétention (jours)',
-      debugTitle: 'Debug',
-      heavyDebug: 'Activer la journalisation détaillée (heavy debug)',
-      heavyDebugHelp: 'Activez la journalisation détaillée seulement pour diagnostiquer un problème. Elle ajoute des logs de décision pour l’évaluation des zones et ne doit pas rester activée plus longtemps que nécessaire.',
+      debugTitle: 'Diagnostic',
+      heavyDebug: 'Activer la journalisation détaillée',
+      heavyDebugHelp: 'Activez la journalisation détaillée seulement pour diagnostiquer un problème. Elle ajoute des journaux de décision pour l’évaluation des zones et ne doit pas rester activée plus longtemps que nécessaire.',
     },
     io: {
       exportTitle: 'Export',
       copy: 'Copier',
       download: 'Télécharger',
       importTitle: 'Import',
-      copyCurrent: 'Copier depuis l’actuel',
+      copyCurrent: 'Copier la configuration actuelle',
       loadFile: 'Charger un fichier',
       importReplace: 'Importer et remplacer',
       importMerge: 'Importer et fusionner les sections',
@@ -206,12 +218,12 @@ const UI = {
       intro: 'GeoZones stocke des zones géographiques réutilisables dans les paramètres de l’application et les réutilise dans les Flows Homey.',
       sections: [
         { title: '1. Zones', body: ['Créez des cercles quand un centre et un rayon suffisent. Utilisez des polygones quand la forme réelle compte.', 'Si plusieurs zones correspondent, la priorité la plus élevée gagne. À priorité égale, la plus petite surface gagne.'] },
-        { title: '2. Tags et types', body: ['Les tags sont des valeurs libres qui décrivent l’usage d’une zone. Les types de sujet sont aussi des valeurs libres, par exemple person, car, bike ou pet.', 'Les filtres de sujet fonctionnent sur les noms de sujet et ont priorité sur les filtres de type quand les deux sont configurés.'] },
+        { title: '2. Tags et types', body: ['Les tags sont des valeurs libres qui décrivent l’usage d’une zone. Les types de sujet sont aussi des valeurs libres, par exemple personne, voiture, vélo ou animal.', 'Les filtres de sujet fonctionnent sur les noms de sujet et ont priorité sur les filtres de type quand les deux sont configurés.'] },
         { title: '3. Délais et hystérésis', body: ['Les délais d’entrée et de sortie ralentissent les transitions pour éviter les faux changements de présence.', 'L’hystérésis ne s’applique qu’aux cercles et n’agrandit que le seuil de sortie du cercle.'] },
-        { title: '4. Sujets manuels', body: ['Un sujet manuel est un device GeoZones dont les coordonnées sont mises à jour depuis une carte Flow.', 'Utilisez les sujets manuels pour évaluer une personne, un véhicule ou un équipement par rapport à vos zones enregistrées.'] },
+        { title: '4. Sujets manuels', body: ['Un sujet manuel est un appareil GeoZones dont les coordonnées sont mises à jour depuis une carte Flow.', 'Utilisez les sujets manuels pour évaluer une personne, un véhicule ou un équipement par rapport à vos zones enregistrées.'] },
         { title: '5. Import, export et historique', body: ['Utilisez l’export avant une modification risquée. L’import peut remplacer toute la configuration ou en fusionner des sections de premier niveau.', 'Le mode de fusion actuel n’est pas une fusion intelligente zone par zone : si le JSON importé contient une section zones, elle remplace toute la section zones actuelle. La liste d’historique permet de restaurer des configurations enregistrées plus anciennes.'] },
-        { title: '6. Seuil de mouvement', body: ['La distance minimale de mouvement est stockée sur chaque device sujet, pas sur la zone.', 'Les petits déplacements sous ce seuil sont ignorés pour réduire le bruit GPS.'] },
-        { title: '7. Obtenir les coordonnées', body: ['GeoZones calcule les zones à partir de coordonnées ; il ne suit pas les téléphones et ne fournit pas de source de position intégrée.', 'Pour un iPhone, utilisez une source de position compatible qui fournit latitude et longitude à un Flow Homey, puis la carte GeoZones de mise à jour de position et d’évaluation du sujet. Surveillez last_update et la fréquence de la source : une ancienne position ne prouve pas que la personne est encore sur place.'] },
+        { title: '6. Seuil de mouvement', body: ['La distance minimale de mouvement est stockée sur chaque appareil sujet, pas sur la zone.', 'Les petits déplacements sous ce seuil sont ignorés pour réduire le bruit GPS.'] },
+        { title: '7. Obtenir les coordonnées', body: ['GeoZones calcule les zones à partir de coordonnées ; il ne suit pas les téléphones et ne fournit pas de source de position intégrée.', 'Pour un iPhone, utilisez une source de position compatible qui fournit latitude et longitude à un Flow Homey, puis la carte GeoZones de mise à jour de position et d’évaluation du sujet. Dernière mise à jour (last_update) indique quand GeoZones a reçu les coordonnées, pas quand la source a mesuré la position. Vérifiez l’ancienneté de la position et la fréquence de mise à jour dans votre source : les positions enregistrées n’expirent pas automatiquement, et une ancienne position ne prouve pas que la personne est encore sur place.'] },
         { title: '8. Carte et confidentialité', body: ['Les tuiles de la carte proviennent d’OpenStreetMap. Ces requêtes communiquent la région consultée et votre adresse réseau au service cartographique.', 'Copier et Télécharger exportent le brouillon JSON actuel directement dans votre navigateur. La géométrie complète est vérifiée à l’enregistrement. Ces exports peuvent contenir des coordonnées sensibles ; conservez-les et partagez-les avec précaution.'] },
       ],
     },
@@ -236,8 +248,8 @@ const UI = {
     tabs: { zones: 'Zones', general: 'Algemeen', io: 'Import / Export', help: 'Help' },
     migration: {
       title: 'Vorige onderwerpen herstellen',
-      pending: '__count__ vorige onderwerpen wachten op herstel. __recovered__ al hersteld.',
-      complete: '__recovered__ vorige onderwerpen hersteld.',
+      pending: 'Oude onderwerpen die wachten op herstel: __count__. Al hersteld: __recovered__.',
+      complete: 'Oude onderwerpen hersteld: __recovered__.',
       error: 'De herstelstatus kon niet worden gecontroleerd.',
       instructions: 'Voeg vanuit Apparaten een GeoZones-apparaat toe en kies de vorige onderwerpen bij het koppelen van een handmatig onderwerp. Deze actie is nodig voor herstel. Controleer en verbind daarna je Flows opnieuw; gekoppelde locatiebronnen moeten worden vervangen door coördinaatupdates vanuit een Flow.',
       downloadBackup: 'Back-up van vorige gegevens downloaden',
@@ -245,6 +257,12 @@ const UI = {
       noBackup: 'Er is geen gecontroleerde back-up beschikbaar.',
     },
     actions: { save: 'Opslaan', reload: 'Herladen', addCircle: 'Cirkel toevoegen', addPolygon: 'Polygoon toevoegen', fitAll: 'Alles tonen', deleteZone: 'Zone verwijderen' },
+    map: {
+      zoomIn: 'Inzoomen', zoomOut: 'Uitzoomen',
+      circleStart: 'Klik en sleep om een cirkel te tekenen.', circleEnd: 'Laat los om het tekenen te voltooien.', radius: 'Straal',
+      polygonStart: 'Klik om een polygoon te beginnen.', polygonContinue: 'Klik om een punt toe te voegen.', polygonEnd: 'Klik op het eerste punt om de polygoon te sluiten.',
+      intersectionError: 'De zijden van de polygoon mogen elkaar niet kruisen.',
+    },
     common: { name: 'Naam', color: 'Kleur', active: 'Actief', inactive: 'Inactief', priority: 'Prioriteit', tags: 'Tags', empty: '—' },
     zones: {
       editor: 'Zone',
@@ -263,12 +281,12 @@ const UI = {
       hysteresis: 'Hysterese (m)',
       hysteresisHelp: 'Alleen voor cirkels. Vergroot de cirkel-uitgangsdrempel om schommelingen aan de rand te beperken.',
       appliesWithoutSubject: 'Toepassen op coördinaten zonder onderwerp',
-      appliesWithoutSubjectHelp: 'Gebruikt door kaarten die ruwe coördinaten zonder onderwerpdevice evalueren.',
+      appliesWithoutSubjectHelp: 'Gebruikt door kaarten die ruwe coördinaten zonder onderwerpapparaat evalueren.',
       subjectFilterMode: 'Onderwerpfilter',
-      subjectFilterHelp: 'Kies of alle onderwerpen zijn toegestaan, of alleen / behalve de opgegeven onderwerpnamen. Onderwerpfilters gaan vóór filters op onderwerpstype.',
+      subjectFilterHelp: 'Sta alle onderwerpen toe, alleen de opgegeven onderwerpen of alle behalve de opgegeven onderwerpen. Filters vergelijken onderwerpnamen en gaan vóór filters op onderwerpstype.',
       subjectFilterValues: 'Onderwerpen (kommagescheiden namen)',
       subjectTypeMode: 'Onderwerpstypefilter',
-      subjectTypeFilterHelp: 'Kies of alle onderwerpstypen zijn toegestaan, of alleen / behalve de opgegeven typen. Onderwerpstypen zijn vrije tekstwaarden, bijvoorbeeld person, car, bike of pet.',
+      subjectTypeFilterHelp: 'Sta alle onderwerpstypen toe, alleen de opgegeven typen of alle behalve de opgegeven typen. Onderwerpstypen zijn vrije tekstwaarden, bijvoorbeeld persoon, auto, fiets of huisdier.',
       subjectTypeValues: 'Onderwerpstypen (kommagescheiden)',
       filterAll: 'Alle',
       filterInclude: 'Alleen opnemen',
@@ -276,14 +294,14 @@ const UI = {
       filterPriority: 'Onderwerpfilters zijn specifieker dan filters op onderwerpstype.',
       addTag: 'Tag toevoegen',
       tagPlaceholder: 'Voer een tag in',
-      tagsHelp: 'Tags zijn vrije tekstwaarden die beschrijven waarvoor een zone wordt gebruikt, bijvoorbeeld home, work, school, charging of family. Gebruik overal dezelfde schrijfwijze.',
+      tagsHelp: 'Tags zijn vrije tekstwaarden die beschrijven waarvoor een zone wordt gebruikt, bijvoorbeeld thuis, werk, school, opladen of familie. Gebruik overal dezelfde schrijfwijze.',
     },
     general: {
       historyTitle: 'Configuratiegeschiedenis',
       historyHelp: 'Bewaar vorige JSON-versies gedurende een beperkt aantal dagen.',
       historyDays: 'Bewaartermijn (dagen)',
       debugTitle: 'Debug',
-      heavyDebug: 'Gedetailleerde logging inschakelen (heavy debug)',
+      heavyDebug: 'Gedetailleerde logging inschakelen',
       heavyDebugHelp: 'Schakel gedetailleerde logging alleen in om een probleem te onderzoeken. Het voegt beslissingslogs toe voor zone-evaluatie en moet niet langer aan blijven dan nodig.',
     },
     io: {
@@ -291,7 +309,7 @@ const UI = {
       copy: 'Kopiëren',
       download: 'Downloaden',
       importTitle: 'Import',
-      copyCurrent: 'Kopieer van huidig',
+      copyCurrent: 'Huidige configuratie kopiëren',
       loadFile: 'Bestand laden',
       importReplace: 'Importeren en vervangen',
       importMerge: 'Secties importeren en samenvoegen',
@@ -305,12 +323,12 @@ const UI = {
       intro: 'GeoZones slaat herbruikbare geografische zones op in de app-instellingen en hergebruikt ze in Homey Flows.',
       sections: [
         { title: '1. Zones', body: ['Maak cirkels wanneer een middelpunt en straal voldoende zijn. Gebruik polygonen wanneer de echte vorm belangrijk is.', 'Als meerdere zones overeenkomen, wint de hoogste prioriteit. Bij gelijke prioriteit wint het kleinste oppervlak.'] },
-        { title: '2. Tags en typen', body: ['Tags zijn vrije tekstwaarden die beschrijven waarvoor een zone wordt gebruikt. Onderwerpstypen zijn ook vrije tekstwaarden, bijvoorbeeld person, car, bike of pet.', 'Onderwerpfilters werken op onderwerpnaam en hebben voorrang op filters op onderwerpstype wanneer beide zijn ingesteld.'] },
+        { title: '2. Tags en typen', body: ['Tags zijn vrije tekstwaarden die beschrijven waarvoor een zone wordt gebruikt. Onderwerpstypen zijn ook vrije tekstwaarden, bijvoorbeeld persoon, auto, fiets of huisdier.', 'Onderwerpfilters werken op onderwerpnaam en hebben voorrang op filters op onderwerpstype wanneer beide zijn ingesteld.'] },
         { title: '3. Vertragingen en hysterese', body: ['Ingangs- en uitgangsvertraging vertragen overgangen om valse aanwezigheidswissels te voorkomen.', 'Hysterese geldt alleen voor cirkels en vergroot alleen de uitgangsdrempel van de cirkel.'] },
-        { title: '4. Handmatige onderwerpen', body: ['Een handmatig onderwerp is een GeoZones-device waarvan de coördinaten via een Flow-kaart worden bijgewerkt.', 'Gebruik handmatige onderwerpen om een persoon, voertuig of object tegen je opgeslagen zones te evalueren.'] },
+        { title: '4. Handmatige onderwerpen', body: ['Een handmatig onderwerp is een GeoZones-apparaat waarvan de coördinaten via een Flow-kaart worden bijgewerkt.', 'Gebruik handmatige onderwerpen om een persoon, voertuig of object tegen je opgeslagen zones te evalueren.'] },
         { title: '5. Import, export en geschiedenis', body: ['Gebruik export vóór risicovolle wijzigingen. Import kan de hele configuratie vervangen of secties op hoofdniveau samenvoegen.', 'De huidige samenvoegmodus is geen slimme zone-voor-zone merge: als de geïmporteerde JSON een zones-sectie bevat, vervangt die de volledige huidige zones-sectie. Met de geschiedenislijst kun je eerdere opgeslagen configuraties herstellen.'] },
-        { title: '6. Bewegingsdrempel', body: ['De minimale bewegingsafstand wordt opgeslagen op elk onderwerpdevice, niet op de zone.', 'Kleine bewegingen onder deze drempel worden genegeerd om GPS-ruis te verminderen.'] },
-        { title: '7. Coördinaten verkrijgen', body: ['GeoZones berekent zones uit coördinaten; de app volgt geen telefoons en heeft geen ingebouwde locatiebron.', 'Gebruik voor een iPhone een compatibele locatiebron die breedte- en lengtegraad aan een Homey Flow levert en daarna de GeoZones-kaart om de positie bij te werken en te evalueren. Controleer last_update en de updatefrequentie van de bron: een oude positie bewijst niet dat iemand er nog is.'] },
+        { title: '6. Bewegingsdrempel', body: ['De minimale bewegingsafstand wordt opgeslagen op elk onderwerpapparaat, niet op de zone.', 'Kleine bewegingen onder deze drempel worden genegeerd om GPS-ruis te verminderen.'] },
+        { title: '7. Coördinaten verkrijgen', body: ['GeoZones berekent zones uit coördinaten; de app volgt geen telefoons en heeft geen ingebouwde locatiebron.', 'Gebruik voor een iPhone een compatibele locatiebron die breedte- en lengtegraad aan een Homey Flow levert en daarna de GeoZones-kaart om de positie bij te werken en te evalueren. Laatste update (last_update) toont wanneer GeoZones de coördinaten heeft ontvangen, niet wanneer de bron de positie heeft gemeten. Controleer de ouderdom van de positie en de updatefrequentie bij je bron: opgeslagen posities verlopen niet automatisch en een oude positie bewijst niet dat iemand er nog is.'] },
         { title: '8. Kaart en privacy', body: ['Kaarttegels worden bij OpenStreetMap opgevraagd. Deze aanvragen delen het bekeken kaartgebied en je netwerkadres met de kaartdienst.', 'Kopiëren en Downloaden exporteren het huidige JSON-concept rechtstreeks in je browser. De volledige geometrie wordt bij het opslaan gecontroleerd. Exports kunnen gevoelige coördinaten bevatten; bewaar en deel ze zorgvuldig.'] },
       ],
     },
@@ -335,8 +353,8 @@ const UI = {
     tabs: { zones: 'Zonen', general: 'Allgemein', io: 'Import / Export', help: 'Hilfe' },
     migration: {
       title: 'Frühere Subjekte wiederherstellen',
-      pending: '__count__ frühere Subjekte warten auf Wiederherstellung. __recovered__ bereits wiederhergestellt.',
-      complete: '__recovered__ frühere Subjekte wiederhergestellt.',
+      pending: 'Noch wiederherzustellende frühere Subjekte: __count__. Bereits wiederhergestellt: __recovered__.',
+      complete: 'Wiederhergestellte frühere Subjekte: __recovered__.',
       error: 'Der Wiederherstellungsstatus konnte nicht geprüft werden.',
       instructions: 'Fügen Sie unter Geräte ein GeoZones-Gerät hinzu und wählen Sie beim Koppeln eines manuellen Subjekts die früheren Subjekte aus. Diese Aktion ist erforderlich. Prüfen und verbinden Sie danach Ihre Flows erneut; verknüpfte Standortquellen müssen durch Koordinatenaktualisierungen aus einem Flow ersetzt werden.',
       downloadBackup: 'Sicherung früherer Daten herunterladen',
@@ -344,14 +362,20 @@ const UI = {
       noBackup: 'Keine geprüfte Sicherung verfügbar.',
     },
     actions: { save: 'Speichern', reload: 'Neu laden', addCircle: 'Kreis hinzufügen', addPolygon: 'Polygon hinzufügen', fitAll: 'Alles anzeigen', deleteZone: 'Zone löschen' },
+    map: {
+      zoomIn: 'Vergrößern', zoomOut: 'Verkleinern',
+      circleStart: 'Klicken und ziehen Sie, um einen Kreis zu zeichnen.', circleEnd: 'Lassen Sie los, um die Zeichnung abzuschließen.', radius: 'Radius',
+      polygonStart: 'Klicken Sie, um ein Polygon zu beginnen.', polygonContinue: 'Klicken Sie, um einen Punkt hinzuzufügen.', polygonEnd: 'Klicken Sie auf den ersten Punkt, um das Polygon zu schließen.',
+      intersectionError: 'Die Seiten des Polygons dürfen sich nicht kreuzen.',
+    },
     common: { name: 'Name', color: 'Farbe', active: 'Aktiv', inactive: 'Inaktiv', priority: 'Priorität', tags: 'Tags', empty: '—' },
     zones: {
       editor: 'Zone',
       selectZone: 'Zone auswählen',
       circle: 'Kreis',
       polygon: 'Polygon',
-      centerLat: 'Breitengrad Mittelpunkt',
-      centerLng: 'Längengrad Mittelpunkt',
+      centerLat: 'Breitengrad des Mittelpunkts',
+      centerLng: 'Längengrad des Mittelpunkts',
       radius: 'Radius (m)',
       points: 'Polygonpunkte (JSON)',
       advanced: 'Erweiterte Optionen',
@@ -364,10 +388,10 @@ const UI = {
       appliesWithoutSubject: 'Auf Koordinaten ohne Subjekt anwenden',
       appliesWithoutSubjectHelp: 'Wird von Karten verwendet, die rohe Koordinaten ohne Subjektgerät auswerten.',
       subjectFilterMode: 'Subjektfilter',
-      subjectFilterHelp: 'Wählen Sie, ob alle Subjekte erlaubt sind oder nur / außer den angegebenen Subjektnamen. Subjektfilter haben Vorrang vor Subjekttypfiltern.',
+      subjectFilterHelp: 'Wählen Sie, ob alle Subjekte, nur die angegebenen Subjekte oder alle außer den angegebenen Subjekten zugelassen sind. Die Filter gleichen Subjektnamen ab und haben Vorrang vor Subjekttypfiltern.',
       subjectFilterValues: 'Subjekte (kommagetrennte Namen)',
       subjectTypeMode: 'Subjekttypfilter',
-      subjectTypeFilterHelp: 'Wählen Sie, ob alle Subjekttypen erlaubt sind oder nur / außer den angegebenen Typen. Subjekttypen sind freie Textwerte, zum Beispiel person, car, bike oder pet.',
+      subjectTypeFilterHelp: 'Wählen Sie, ob alle Subjekttypen, nur die angegebenen Typen oder alle außer den angegebenen Typen zugelassen sind. Subjekttypen sind freie Textwerte, zum Beispiel Person, Auto, Fahrrad oder Haustier.',
       subjectTypeValues: 'Subjekttypen (kommagetrennt)',
       filterAll: 'Alle',
       filterInclude: 'Nur einschließen',
@@ -375,14 +399,14 @@ const UI = {
       filterPriority: 'Subjektfilter sind spezifischer als Subjekttypfilter.',
       addTag: 'Tag hinzufügen',
       tagPlaceholder: 'Tag eingeben',
-      tagsHelp: 'Tags sind freie Textwerte, die die Nutzung einer Zone beschreiben, zum Beispiel home, work, school, charging oder family. Verwenden Sie überall dieselbe Schreibweise.',
+      tagsHelp: 'Tags sind freie Textwerte, die die Nutzung einer Zone beschreiben, zum Beispiel Zuhause, Arbeit, Schule, Laden oder Familie. Verwenden Sie überall dieselbe Schreibweise.',
     },
     general: {
       historyTitle: 'Konfigurationsverlauf',
       historyHelp: 'Vorherige JSON-Versionen für eine begrenzte Anzahl von Tagen aufbewahren.',
       historyDays: 'Aufbewahrung (Tage)',
       debugTitle: 'Debug',
-      heavyDebug: 'Detaillierte Protokollierung aktivieren (Heavy Debug)',
+      heavyDebug: 'Detaillierte Protokollierung aktivieren',
       heavyDebugHelp: 'Aktivieren Sie die detaillierte Protokollierung nur, um ein Problem zu untersuchen. Sie fügt Entscheidungslogs für die Zonenauswertung hinzu und sollte nicht länger als nötig aktiv bleiben.',
     },
     io: {
@@ -404,12 +428,12 @@ const UI = {
       intro: 'GeoZones speichert wiederverwendbare geografische Zonen in den App-Einstellungen und nutzt sie in Homey Flows wieder.',
       sections: [
         { title: '1. Zonen', body: ['Erstellen Sie Kreise, wenn Mittelpunkt und Radius ausreichen. Verwenden Sie Polygone, wenn die reale Form wichtig ist.', 'Wenn mehrere Zonen passen, gewinnt die höchste Priorität. Bei gleicher Priorität gewinnt die kleinste Fläche.'] },
-        { title: '2. Tags und Typen', body: ['Tags sind freie Textwerte, die die Nutzung einer Zone beschreiben. Subjekttypen sind ebenfalls freie Textwerte, zum Beispiel person, car, bike oder pet.', 'Subjektfilter arbeiten mit dem Subjektnamen und haben Vorrang vor Subjekttypfiltern, wenn beides konfiguriert ist.'] },
+        { title: '2. Tags und Typen', body: ['Tags sind freie Textwerte, die die Nutzung einer Zone beschreiben. Subjekttypen sind ebenfalls freie Textwerte, zum Beispiel Person, Auto, Fahrrad oder Haustier.', 'Subjektfilter arbeiten mit dem Subjektnamen und haben Vorrang vor Subjekttypfiltern, wenn beides konfiguriert ist.'] },
         { title: '3. Verzögerungen und Hysterese', body: ['Eintritts- und Austrittsverzögerungen verlangsamen Übergänge, um falsche Präsenzwechsel zu vermeiden.', 'Hysterese gilt nur für Kreise und vergrößert nur die Austrittsschwelle des Kreises.'] },
-        { title: '4. Manuelle Subjekte', body: ['Ein manuelles Subjekt ist ein GeoZones-Gerät, dessen Koordinaten über eine Flow-Karte aktualisiert werden.', 'Verwenden Sie manuelle Subjekte, um eine Person, ein Fahrzeug oder ein Objekt mit Ihren gespeicherten Zonen auszuwerten.'] },
+        { title: '4. Manuelle Subjekte', body: ['Ein manuelles Subjekt ist ein GeoZones-Gerät, dessen Koordinaten über eine Flow-Karte aktualisiert werden.', 'Verwenden Sie manuelle Subjekte, um zu ermitteln, in welchen Ihrer gespeicherten Zonen sich eine Person, ein Fahrzeug oder ein Objekt befindet.'] },
         { title: '5. Import, Export und Verlauf', body: ['Verwenden Sie Export vor riskanten Änderungen. Import kann die gesamte Konfiguration ersetzen oder Abschnitte auf oberster Ebene zusammenführen.', 'Der aktuelle Zusammenführungsmodus ist keine intelligente Zone-für-Zone-Zusammenführung: Wenn das importierte JSON einen Abschnitt zones enthält, ersetzt er den gesamten aktuellen Abschnitt zones. Über die Verlaufsliste können frühere gespeicherte Konfigurationen wiederhergestellt werden.'] },
         { title: '6. Bewegungsdistanz', body: ['Die minimale Bewegungsdistanz wird pro Subjektgerät gespeichert, nicht pro Zone.', 'Kleine Bewegungen unterhalb dieser Schwelle werden ignoriert, um GPS-Rauschen zu reduzieren.'] },
-        { title: '7. Koordinaten erhalten', body: ['GeoZones berechnet Zonen aus Koordinaten; die App verfolgt keine Telefone und enthält keine integrierte Standortquelle.', 'Verwenden Sie für ein iPhone eine kompatible Standortquelle, die Breiten- und Längengrad an einen Homey Flow liefert, und danach die GeoZones-Karte zur Positionsaktualisierung und Auswertung. Prüfen Sie last_update und das Aktualisierungsintervall der Quelle: Eine alte Position beweist nicht, dass die Person noch dort ist.'] },
+        { title: '7. Koordinaten erhalten', body: ['GeoZones berechnet Zonen aus Koordinaten; die App verfolgt keine Telefone und enthält keine integrierte Standortquelle.', 'Verwenden Sie für ein iPhone eine kompatible Standortquelle, die Breiten- und Längengrad an einen Homey Flow liefert, und danach die GeoZones-Karte zur Positionsaktualisierung und Auswertung. Letzte Aktualisierung (last_update) zeigt, wann GeoZones die Koordinaten empfangen hat, nicht wann die Quelle die Position ermittelt hat. Prüfen Sie das Alter der Position und das Aktualisierungsintervall in Ihrer Quelle: Gespeicherte Positionen verfallen nicht automatisch, und eine alte Position beweist nicht, dass die Person noch dort ist.'] },
         { title: '8. Karte und Datenschutz', body: ['Kartenkacheln werden von OpenStreetMap geladen. Diese Anfragen übermitteln den betrachteten Kartenausschnitt und Ihre Netzwerkadresse an den Kartendienst.', 'Kopieren und Herunterladen exportieren den aktuellen JSON-Entwurf direkt im Browser. Die vollständige Geometrie wird beim Speichern geprüft. Exporte können sensible Koordinaten enthalten; bewahren und teilen Sie sie mit Bedacht.'] },
       ],
     },
@@ -595,7 +619,9 @@ function ensureMap() {
     ['#btnAddCircle', '#btnAddPolygon', '#btnFitAll'].forEach(selector => { qs(selector).disabled = true; });
     return false;
   }
-  map = L.map('map').setView([config.ui.mapCenter.lat, config.ui.mapCenter.lng], config.ui.mapZoom || 6);
+  applyMapTranslations();
+  map = L.map('map', { zoomControl: false }).setView([config.ui.mapCenter.lat, config.ui.mapCenter.lng], config.ui.mapZoom || 6);
+  L.control?.zoom?.({ zoomInTitle: t('map.zoomIn'), zoomOutTitle: t('map.zoomOut') }).addTo(map);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
   drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
@@ -637,6 +663,18 @@ function ensureMap() {
     config.ui.mapZoom = map.getZoom();
   });
   return true;
+}
+
+function applyMapTranslations() {
+  const handlers = L.drawLocal?.draw?.handlers;
+  if (!handlers) return;
+  handlers.circle.tooltip.start = t('map.circleStart');
+  handlers.circle.radius = t('map.radius');
+  handlers.simpleshape.tooltip.end = t('map.circleEnd');
+  handlers.polygon.tooltip.start = t('map.polygonStart');
+  handlers.polygon.tooltip.cont = t('map.polygonContinue');
+  handlers.polygon.tooltip.end = t('map.polygonEnd');
+  handlers.polyline.error = t('map.intersectionError');
 }
 
 function layerForZone(zone) {
@@ -1020,7 +1058,9 @@ async function handleImport(mode) {
   try {
     const text = cleanText(qs('#importBox').value);
     if (!text) throw new Error(t('messages.invalidImport'));
-    const parsed = JSON.parse(text);
+    let parsed;
+    try { parsed = JSON.parse(text); }
+    catch (error) { throw new Error(t('messages.invalidJson')); }
     const imported = inspectImportPayload(parsed, mode);
     if (mode === 'replace' || Object.prototype.hasOwnProperty.call(imported, 'zones')) {
       const confirmed = await HomeyApp.confirm(t(mode === 'replace' ? 'messages.confirmReplace' : 'messages.confirmMergeZones'));

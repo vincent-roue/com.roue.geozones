@@ -119,13 +119,13 @@
         "title": {
           "en": "Any subject moved",
           "fr": "N’importe quel sujet a bougé",
-          "nl": "Willekeurig onderwerp is verplaatst",
+          "nl": "Een onderwerp is verplaatst",
           "de": "Beliebiges Subjekt hat sich bewegt"
         },
         "titleFormatted": {
           "en": "Any subject moved",
           "fr": "N’importe quel sujet a bougé",
-          "nl": "Willekeurig onderwerp is verplaatst",
+          "nl": "Een onderwerp is verplaatst",
           "de": "Beliebiges Subjekt hat sich bewegt"
         },
         "args": [],
@@ -183,13 +183,13 @@
         "title": {
           "en": "Any subject was recalculated",
           "fr": "N’importe quel sujet a été recalculé",
-          "nl": "Willekeurig onderwerp is opnieuw berekend",
+          "nl": "Een onderwerp is opnieuw berekend",
           "de": "Beliebiges Subjekt wurde neu berechnet"
         },
         "titleFormatted": {
           "en": "Any subject was recalculated",
           "fr": "N’importe quel sujet a été recalculé",
-          "nl": "Willekeurig onderwerp is opnieuw berekend",
+          "nl": "Een onderwerp is opnieuw berekend",
           "de": "Beliebiges Subjekt wurde neu berechnet"
         },
         "args": [],
@@ -225,16 +225,16 @@
       {
         "id": "any_subject_transition",
         "title": {
-          "en": "Any subject is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "fr": "N’importe quel sujet est [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "nl": "Willekeurig onderwerp is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "de": "Beliebiges Subjekt ist [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+          "en": "Any subject — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "fr": "Un sujet — [[transition]] : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "nl": "Een onderwerp — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "de": "Beliebiges Subjekt — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
         },
         "titleFormatted": {
-          "en": "Any subject is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "fr": "N’importe quel sujet est [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "nl": "Willekeurig onderwerp is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "de": "Beliebiges Subjekt ist [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+          "en": "Any subject — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "fr": "Un sujet — [[transition]] : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "nl": "Een onderwerp — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "de": "Beliebiges Subjekt — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
         },
         "args": [
           {
@@ -251,19 +251,19 @@
               {
                 "id": "entered",
                 "title": {
-                  "en": "entered",
-                  "fr": "entré",
-                  "nl": "binnengekomen",
-                  "de": "eingetreten"
+                  "en": "entry",
+                  "fr": "entrée",
+                  "nl": "binnenkomst",
+                  "de": "Zone betreten"
                 }
               },
               {
                 "id": "left",
                 "title": {
-                  "en": "left",
-                  "fr": "sorti",
-                  "nl": "verlaten",
-                  "de": "verlassen"
+                  "en": "exit",
+                  "fr": "sortie",
+                  "nl": "vertrek",
+                  "de": "Zone verlassen"
                 }
               }
             ]
@@ -387,13 +387,13 @@
         "title": {
           "en": "Any subject changed zone",
           "fr": "N’importe quel sujet a changé de zone",
-          "nl": "Willekeurig onderwerp veranderde van zone",
+          "nl": "Een onderwerp veranderde van zone",
           "de": "Beliebiges Subjekt hat die Zone gewechselt"
         },
         "titleFormatted": {
           "en": "Any subject changed zone",
           "fr": "N’importe quel sujet a changé de zone",
-          "nl": "Willekeurig onderwerp veranderde van zone",
+          "nl": "Een onderwerp veranderde van zone",
           "de": "Beliebiges Subjekt hat die Zone gewechselt"
         },
         "args": [],
@@ -677,16 +677,16 @@
       {
         "id": "global_subject_transition",
         "title": {
-          "en": "[[subject]] / [[subjectType]] is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "fr": "[[subject]] / [[subjectType]] est [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "nl": "[[subject]] / [[subjectType]] is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "de": "[[subject]] / [[subjectType]] ist [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+          "en": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "fr": "[[subject]] / [[subjectType]] — [[transition]] : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "nl": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "de": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
         },
         "titleFormatted": {
-          "en": "[[subject]] / [[subjectType]] is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "fr": "[[subject]] / [[subjectType]] est [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "nl": "[[subject]] / [[subjectType]] is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "de": "[[subject]] / [[subjectType]] ist [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+          "en": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "fr": "[[subject]] / [[subjectType]] — [[transition]] : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "nl": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "de": "[[subject]] / [[subjectType]] — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
         },
         "args": [
           {
@@ -725,19 +725,19 @@
               {
                 "id": "entered",
                 "title": {
-                  "en": "entered",
-                  "fr": "entré",
-                  "nl": "binnengekomen",
-                  "de": "eingetreten"
+                  "en": "entry",
+                  "fr": "entrée",
+                  "nl": "binnenkomst",
+                  "de": "Zone betreten"
                 }
               },
               {
                 "id": "left",
                 "title": {
-                  "en": "left",
-                  "fr": "sorti",
-                  "nl": "verlaten",
-                  "de": "verlassen"
+                  "en": "exit",
+                  "fr": "sortie",
+                  "nl": "vertrek",
+                  "de": "Zone verlassen"
                 }
               }
             ]
@@ -986,16 +986,16 @@
       {
         "id": "subject_transition",
         "title": {
-          "en": "Is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "fr": "Est [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "nl": "Is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "de": "Ist [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+          "en": "Zone transition — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "fr": "Transition de zone — [[transition]] : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "nl": "Zoneovergang — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "de": "[[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
         },
         "titleFormatted": {
-          "en": "Is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "fr": "Est [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "nl": "Is [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]",
-          "de": "Ist [[transition]] [[zone]] / [[zones]] / [[tag]] / [[tags]]"
+          "en": "Zone transition — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "fr": "Transition de zone — [[transition]] : [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "nl": "Zoneovergang — [[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]",
+          "de": "[[transition]]: [[zone]] / [[zones]] / [[tag]] / [[tags]]"
         },
         "args": [
           {
@@ -1017,19 +1017,19 @@
               {
                 "id": "entered",
                 "title": {
-                  "en": "entered",
-                  "fr": "entré",
-                  "nl": "binnengekomen",
-                  "de": "eingetreten"
+                  "en": "entry",
+                  "fr": "entrée",
+                  "nl": "binnenkomst",
+                  "de": "Zone betreten"
                 }
               },
               {
                 "id": "left",
                 "title": {
-                  "en": "left",
-                  "fr": "sorti",
-                  "nl": "verlaten",
-                  "de": "verlassen"
+                  "en": "exit",
+                  "fr": "sortie",
+                  "nl": "vertrek",
+                  "de": "Zone verlassen"
                 }
               }
             ]
@@ -1133,7 +1133,7 @@
         ],
         "hint": {
           "en": "Triggers when this subject enters or leaves a zone. Optional filters can restrict the transition, zone or tag. The exposed zone tokens always describe the zone involved in the transition.",
-          "fr": "Déclenche quand ce sujet entre dans une zone ou la quitte. Des filtres optionnels peuvent limiter la transition, la zone ou le tag. Les tags exposés décrivent toujours la zone concernée par la transition.",
+          "fr": "Déclenche quand ce sujet entre ou sort d’une zone. Les filtres optionnels permettent de limiter la transition, la zone ou le tag. Les jetons de zone décrivent toujours la zone concernée par la transition.",
           "nl": "Wordt geactiveerd wanneer dit onderwerp een zone binnengaat of verlaat. Optionele filters kunnen de overgang, zone of tag beperken. De getoonde zone-tags beschrijven altijd de zone die bij de overgang hoort.",
           "de": "Wird ausgelöst, wenn dieses Subjekt eine Zone betritt oder verlässt. Optionale Filter können den Übergang, die Zone oder das Tag einschränken. Die ausgegebenen Zonen-Tokens beschreiben immer die von der Transition betroffene Zone."
         }
@@ -1273,7 +1273,7 @@
         ],
         "hint": {
           "en": "Triggers when the stored latitude and/or longitude of this subject really changes.",
-          "fr": "Déclenche quand la latitude et/ou la longitude stockée de ce sujet change réellement.",
+          "fr": "Déclenche quand les coordonnées enregistrées de ce sujet changent réellement.",
           "nl": "Wordt geactiveerd wanneer de opgeslagen breedtegraad en/of lengtegraad van dit onderwerp echt verandert.",
           "de": "Wird ausgelöst, wenn sich der gespeicherte Breitengrad und/oder Längengrad dieses Subjekts tatsächlich ändert."
         }
@@ -1323,16 +1323,16 @@
       {
         "id": "coordinates_match_tag",
         "title": {
-          "en": "[[lat]], [[long]] !{{matches|does not match}} [[tag]] / [[tags]]",
-          "fr": "[[lat]], [[long]] !{{correspond à|ne correspond pas à}} [[tag]] / [[tags]]",
-          "nl": "[[lat]], [[long]] !{{komt overeen met|komt niet overeen met}} [[tag]] / [[tags]]",
-          "de": "[[lat]], [[long]] !{{entspricht|entspricht nicht}} [[tag]] / [[tags]]"
+          "en": "Coordinates [[lat]], [[long]] !{{match|do not match}} [[tag]] / [[tags]]",
+          "fr": "Les coordonnées [[lat]], [[long]] !{{correspondent à|ne correspondent pas à}} [[tag]] / [[tags]]",
+          "nl": "Coördinaten [[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[tag]] / [[tags]]",
+          "de": "Koordinaten [[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[tag]] / [[tags]]"
         },
         "titleFormatted": {
-          "en": "[[lat]], [[long]] !{{matches|does not match}} [[tag]] / [[tags]]",
-          "fr": "[[lat]], [[long]] !{{correspond à|ne correspond pas à}} [[tag]] / [[tags]]",
-          "nl": "[[lat]], [[long]] !{{komt overeen met|komt niet overeen met}} [[tag]] / [[tags]]",
-          "de": "[[lat]], [[long]] !{{entspricht|entspricht nicht}} [[tag]] / [[tags]]"
+          "en": "Coordinates [[lat]], [[long]] !{{match|do not match}} [[tag]] / [[tags]]",
+          "fr": "Les coordonnées [[lat]], [[long]] !{{correspondent à|ne correspondent pas à}} [[tag]] / [[tags]]",
+          "nl": "Coördinaten [[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[tag]] / [[tags]]",
+          "de": "Koordinaten [[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[tag]] / [[tags]]"
         },
         "args": [
           {
@@ -1390,16 +1390,16 @@
       {
         "id": "coordinates_match_zone",
         "title": {
-          "en": "[[lat]], [[long]] !{{matches|does not match}} [[zone]] / [[zones]]",
-          "fr": "[[lat]], [[long]] !{{correspond à|ne correspond pas à}} [[zone]] / [[zones]]",
-          "nl": "[[lat]], [[long]] !{{komt overeen met|komt niet overeen met}} [[zone]] / [[zones]]",
-          "de": "[[lat]], [[long]] !{{entspricht|entspricht nicht}} [[zone]] / [[zones]]"
+          "en": "Coordinates [[lat]], [[long]] !{{match|do not match}} [[zone]] / [[zones]]",
+          "fr": "Les coordonnées [[lat]], [[long]] !{{correspondent à|ne correspondent pas à}} [[zone]] / [[zones]]",
+          "nl": "Coördinaten [[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[zone]] / [[zones]]",
+          "de": "Koordinaten [[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[zone]] / [[zones]]"
         },
         "titleFormatted": {
-          "en": "[[lat]], [[long]] !{{matches|does not match}} [[zone]] / [[zones]]",
-          "fr": "[[lat]], [[long]] !{{correspond à|ne correspond pas à}} [[zone]] / [[zones]]",
-          "nl": "[[lat]], [[long]] !{{komt overeen met|komt niet overeen met}} [[zone]] / [[zones]]",
-          "de": "[[lat]], [[long]] !{{entspricht|entspricht nicht}} [[zone]] / [[zones]]"
+          "en": "Coordinates [[lat]], [[long]] !{{match|do not match}} [[zone]] / [[zones]]",
+          "fr": "Les coordonnées [[lat]], [[long]] !{{correspondent à|ne correspondent pas à}} [[zone]] / [[zones]]",
+          "nl": "Coördinaten [[lat]], [[long]] !{{komen overeen met|komen niet overeen met}} [[zone]] / [[zones]]",
+          "de": "Koordinaten [[lat]], [[long]] !{{entsprechen|entsprechen nicht}} [[zone]] / [[zones]]"
         },
         "args": [
           {
@@ -1850,10 +1850,10 @@
           }
         ],
         "hint": {
-          "en": "Checks whether this subject is currently inside the selected zone or one of the selected tags.",
-          "fr": "Vérifie si ce sujet est actuellement dans la zone sélectionnée ou dans l’un des tags sélectionnés.",
-          "nl": "Controleert of dit onderwerp zich momenteel in de geselecteerde zone of onder een van de geselecteerde tags bevindt.",
-          "de": "Prüft, ob sich dieses Subjekt aktuell in der ausgewählten Zone oder unter einem der ausgewählten Tags befindet."
+          "en": "Checks whether this subject is currently inside the selected zone or a zone with one of the selected tags.",
+          "fr": "Vérifie si ce sujet est actuellement dans la zone sélectionnée ou dans une zone portant l’un des tags sélectionnés.",
+          "nl": "Controleert of dit onderwerp zich momenteel in de geselecteerde zone of in een zone met een van de geselecteerde tags bevindt.",
+          "de": "Prüft, ob sich dieses Subjekt aktuell in der ausgewählten Zone oder in einer Zone mit einem der ausgewählten Tags befindet."
         }
       },
       {
@@ -1882,9 +1882,9 @@
             "required": true,
             "title": {
               "en": "Movement state",
-              "fr": "Movement state",
-              "nl": "Movement state",
-              "de": "Movement state"
+              "fr": "État de mouvement",
+              "nl": "Bewegingsstatus",
+              "de": "Bewegungsstatus"
             }
           }
         ],
@@ -1964,8 +1964,8 @@
             "title": {
               "en": "Distance (m)",
               "fr": "Distance (m)",
-              "nl": "Distance (m)",
-              "de": "Distance (m)"
+              "nl": "Afstand (m)",
+              "de": "Entfernung (m)"
             }
           }
         ],
@@ -2032,8 +2032,8 @@
             "title": {
               "en": "Distance (m)",
               "fr": "Distance (m)",
-              "nl": "Distance (m)",
-              "de": "Distance (m)"
+              "nl": "Afstand (m)",
+              "de": "Entfernung (m)"
             }
           }
         ],
@@ -2382,9 +2382,9 @@
             "type": "string",
             "title": {
               "en": "Zone tags",
-              "fr": "Zone tags",
-              "nl": "Zone tags",
-              "de": "Zone tags"
+              "fr": "Tags de zone",
+              "nl": "Zone-tags",
+              "de": "Zonen-Tags"
             }
           }
         ],
@@ -2479,13 +2479,13 @@
         "id": "device_set_enabled_state",
         "title": {
           "en": "Set subject to [[enabled_state]]",
-          "fr": "Passer le sujet en [[enabled_state]]",
+          "fr": "Définir l’état du sujet sur [[enabled_state]]",
           "nl": "Onderwerp op [[enabled_state]] zetten",
           "de": "Subjekt auf [[enabled_state]] setzen"
         },
         "titleFormatted": {
           "en": "Set subject to [[enabled_state]]",
-          "fr": "Passer le sujet en [[enabled_state]]",
+          "fr": "Définir l’état du sujet sur [[enabled_state]]",
           "nl": "Onderwerp op [[enabled_state]] zetten",
           "de": "Subjekt auf [[enabled_state]] setzen"
         },
@@ -2623,8 +2623,8 @@
             "title": {
               "en": "Distance (m)",
               "fr": "Distance (m)",
-              "nl": "Distance (m)",
-              "de": "Distance (m)"
+              "nl": "Afstand (m)",
+              "de": "Entfernung (m)"
             }
           }
         ],
@@ -2674,8 +2674,8 @@
             "title": {
               "en": "Distance (m)",
               "fr": "Distance (m)",
-              "nl": "Distance (m)",
-              "de": "Distance (m)"
+              "nl": "Afstand (m)",
+              "de": "Entfernung (m)"
             }
           }
         ],
@@ -2725,8 +2725,8 @@
             "title": {
               "en": "Distance (m)",
               "fr": "Distance (m)",
-              "nl": "Distance (m)",
-              "de": "Distance (m)"
+              "nl": "Afstand (m)",
+              "de": "Entfernung (m)"
             }
           }
         ],
@@ -2787,8 +2787,8 @@
             "title": {
               "en": "Distance (m)",
               "fr": "Distance (m)",
-              "nl": "Distance (m)",
-              "de": "Distance (m)"
+              "nl": "Afstand (m)",
+              "de": "Entfernung (m)"
             }
           }
         ],
@@ -2943,9 +2943,9 @@
           "value": "",
           "hint": {
             "en": "Free text value used to classify the subject, for example person, car, bike or pet. Reuse the same spelling everywhere.",
-            "fr": "Valeur libre utilisée pour classer le sujet, par exemple person, car, bike ou pet. Réutilisez toujours la même écriture.",
-            "nl": "Vrije tekstwaarde om het onderwerp te classificeren, bijvoorbeeld person, car, bike of pet. Gebruik overal dezelfde schrijfwijze.",
-            "de": "Freier Textwert zur Klassifizierung des Subjekts, zum Beispiel person, car, bike oder pet. Verwenden Sie überall dieselbe Schreibweise."
+            "fr": "Valeur libre utilisée pour classer le sujet, par exemple personne, voiture, vélo ou animal. Réutilisez toujours la même orthographe.",
+            "nl": "Vrije tekstwaarde om het onderwerp te classificeren, bijvoorbeeld persoon, auto, fiets of huisdier. Gebruik overal dezelfde schrijfwijze.",
+            "de": "Freier Textwert zur Klassifizierung des Subjekts, zum Beispiel Person, Auto, Fahrrad oder Haustier. Verwenden Sie überall dieselbe Schreibweise."
           }
         },
         {
@@ -2960,7 +2960,7 @@
           "value": true,
           "hint": {
             "en": "When disabled, GeoZones keeps the device but ignores location updates and evaluations.",
-            "fr": "Quand désactivé, GeoZones conserve le device mais ignore les mises à jour de position et les évaluations.",
+            "fr": "Lorsque le sujet est désactivé, GeoZones conserve l’appareil mais ignore les mises à jour de position et les évaluations.",
             "nl": "Wanneer uitgeschakeld behoudt GeoZones het apparaat, maar negeert het locatie-updates en evaluaties.",
             "de": "Wenn deaktiviert, behält GeoZones das Gerät bei, ignoriert aber Positionsupdates und Auswertungen."
           }

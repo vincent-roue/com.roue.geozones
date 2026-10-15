@@ -2,10 +2,13 @@
 
 ## 2.0.4 — publication candidate
 
-- Keep the runtime and Flow behavior of the tested 2.0.3 release.
+- Keep the zone engine, Flow identifiers and permission scope of the tested 2.0.3 release.
+- Complete and review English, French, Dutch and German text in settings, pairing, Flow cards and server errors; translate map controls and movement choices without changing their identifiers.
+- Add checks for language completeness, nonempty text, preserved parameters and translated error paths.
 - Clarify that external sources and Flows provide coordinates to manual subject devices.
 - Explain source freshness, position reception times and the absence of automatic position expiry.
 - Add installation, migration, privacy and troubleshooting guides, plus publication drafts.
+- Refresh Store images and provide a distinct manual-subject icon.
 - Synchronize the public repository with the tested manual-subject implementation; remove checked-in dependencies and obsolete development files.
 
 ## 2.0.3 — test channel

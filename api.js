@@ -11,12 +11,13 @@ const {
 const { determineBestZone } = require('./lib/zone-engine');
 const { getMigrationStatus, getLegacyBackup } = require('./lib/migration');
 const { log } = require('./lib/logger');
+const { translate } = require('./lib/i18n');
 
 const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const owns = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 
-function inspectConfigPayload(body, mode) {
-  const invalid = () => { throw new Error('Invalid configuration import: provide an exported configuration object with recognized sections. Replacing requires zones or legacy subject data.'); };
+function inspectConfigPayload(body, mode, homey) {
+  const invalid = () => { throw new Error(translate(homey, 'invalidConfigImport', 'Invalid configuration import: provide an exported configuration object with recognized sections. Replacing requires zones or legacy subject data.')); };
   if (!isObject(body)) invalid();
   let settings = body;
   if (owns(body, 'payload')) {
@@ -62,7 +63,7 @@ module.exports = {
   },
 
   async setConfig({ homey, body }) {
-    inspectConfigPayload(body, 'replace');
+    inspectConfigPayload(body, 'replace', homey);
     const result = await setConfig(homey, body);
     log(homey, 'api', 'Configuration replaced', { zones: Array.isArray(result?.zones) ? result.zones.length : 0 });
     await homey.app.triggerConfigChangedEvent('config_set');
@@ -71,7 +72,7 @@ module.exports = {
   },
 
   async mergeConfig({ homey, body }) {
-    const { config: incoming, settings } = inspectConfigPayload(body, 'merge');
+    const { config: incoming, settings } = inspectConfigPayload(body, 'merge', homey);
     const result = await updateConfig(homey, current => retainImportWrapper(body, settings, {
       ...current,
       ...incoming,
