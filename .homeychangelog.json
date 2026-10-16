@@ -37,5 +37,11 @@
     "fr": "Actualise l’icône GeoZones avec un SVG équivalent simplifié et une nouvelle identité de ressource. Le repère conserve la même apparence. Calculs de zones, réglages, appareils, Flows et permissions inchangés.",
     "nl": "Vernieuwt het GeoZones-appicoon met een gelijkwaardige, vereenvoudigde SVG en een nieuwe bestandsidentiteit. De pin behoudt hetzelfde uiterlijk. Zoneberekeningen, instellingen, apparaten, Flows en machtigingen blijven ongewijzigd.",
     "de": "Aktualisiert das GeoZones-App-Symbol mit einer gleichwertigen, vereinfachten SVG-Datei und neuer Ressourcenkennung. Die Markierung behält ihr Aussehen. Zonenberechnung, Einstellungen, Geräte, Flows und Berechtigungen bleiben unverändert."
+  },
+  "2.0.7": {
+    "en": "Uses a minimal app icon SVG without declared colors, styles, groups or transforms. Preserves the pin shape and transparency.",
+    "fr": "Utilise une icône SVG minimale sans couleur, style, groupe ni transformation déclarés. La forme du repère et la transparence sont conservées.",
+    "nl": "Gebruikt een minimaal SVG-appicoon zonder opgegeven kleuren, stijlen, groepen of transformaties. De vorm van de pin en de transparantie blijven behouden.",
+    "de": "Verwendet ein minimales SVG-App-Symbol ohne angegebene Farben, Stile, Gruppen oder Transformationen. Form und Transparenz der Markierung bleiben erhalten."
   }
 }
