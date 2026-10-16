@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.6 — app icon refresh
+
+- Flatten the app icon into direct 960 × 960 coordinates with an explicit opaque fill; preserve its exact appearance and transparency.
+- Renew the icon content hash and published asset URL to avoid reusing the previous resource.
+- Keep runtime code, configuration schema, devices, Flow identifiers and permissions unchanged.
+
 ## 2.0.5 — publication submission
 
 - Remove parentheses from the zone-condition Flow titles in all four languages, following Store guidelines.
