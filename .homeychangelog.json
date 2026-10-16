@@ -31,5 +31,11 @@
     "fr": "Ajuste les titres de la condition de zone dans les quatre langues selon les règles du Homey Store. Inclut l’aide multilingue complète, les traductions, la documentation et les visuels préparés en 2.0.4.",
     "nl": "Past de Flow-titels van de zonevoorwaarde in alle vier talen aan de Homey Store-richtlijnen aan. Bevat de volledige meertalige hulp, vertalingen, documentatie en Store-presentatie uit 2.0.4.",
     "de": "Passt die Flow-Titel der Zonenbedingung in allen vier Sprachen an die Homey-Store-Richtlinien an. Enthält die vollständige mehrsprachige Hilfe, Übersetzungen, Dokumentation und Store-Darstellung aus 2.0.4."
+  },
+  "2.0.6": {
+    "en": "Refreshes the GeoZones app icon with an equivalent, simplified SVG and a new asset identity. The pin keeps the same appearance. Zone calculations, settings, devices, Flows and permissions are unchanged.",
+    "fr": "Actualise l’icône GeoZones avec un SVG équivalent simplifié et une nouvelle identité de ressource. Le repère conserve la même apparence. Calculs de zones, réglages, appareils, Flows et permissions inchangés.",
+    "nl": "Vernieuwt het GeoZones-appicoon met een gelijkwaardige, vereenvoudigde SVG en een nieuwe bestandsidentiteit. De pin behoudt hetzelfde uiterlijk. Zoneberekeningen, instellingen, apparaten, Flows en machtigingen blijven ongewijzigd.",
+    "de": "Aktualisiert das GeoZones-App-Symbol mit einer gleichwertigen, vereinfachten SVG-Datei und neuer Ressourcenkennung. Die Markierung behält ihr Aussehen. Zonenberechnung, Einstellungen, Geräte, Flows und Berechtigungen bleiben unverändert."
   }
 }
