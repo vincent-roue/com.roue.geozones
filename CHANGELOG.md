@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.7 — minimal app icon
+
+- Remove explicit paint, style, grouping and transform attributes from the app icon.
+- Preserve the pin and transparent hole using a single compound path with the default winding rule.
+- Keep application logic, settings, devices, Flows and permissions unchanged.
+
 ## 2.0.6 — app icon refresh
 
 - Flatten the app icon into direct 960 × 960 coordinates with an explicit opaque fill; preserve its exact appearance and transparency.

@@ -1,12 +1,22 @@
-# Publication de GeoZones 2.0.6
+# Publication de GeoZones 2.0.7
 
-GeoZones **2.0.6 build 18 est officiellement publié en Live et installé sur Homey Pro 2023**. Le portail confirme le statut Live après la soumission. La version avait d’abord été publiée en Test ; 2.0.5 build 17 était la version Live précédente.
+GeoZones **2.0.7 build 19 est publié en Live** : la version a été proposée en Test, soumise à certification, puis le portail a confirmé son statut Live. L’épingle blanche est visible sur les fiches Store Test et Live et sur la page récapitulative de l’application dans [Homey Developer Tools](https://tools.developer.homey.app/apps/app/com.roue.geozones). Après chaque visite du Store Test puis Live, un retour et un rechargement du récapitulatif conservent l’épingle.
 
-La version 2.0.6 simplifie le SVG de l’icône sans changer sa forme, les fonctions ou les permissions. Le nouveau SVG de 322 octets est présent dans la page Homey et l’épingle blanche s’y affiche correctement. Après installation et redémarrage, la sauvegarde des réglages, la configuration et les deux identités de sujets sont conservées ; les deux sujets sont disponibles. Les Stores Test et Live consultés dans Chrome affichent toujours le cercle bleu sans épingle : leur correction reste non confirmée. Ces constats ne démontrent pas que l’ancien SVG était défectueux.
+Le SVG minimal de 248 octets ne contient aucun attribut explicite de remplissage, couleur, style, transformation ou règle de remplissage ; l’orientation des contours forme l’évidement de l’épingle. Les neuf suites de tests et la validation Homey au niveau publication réussissent ; les 76 fichiers du paquet correspondent au candidat et aux fichiers de liaison SDK officiels.
+
+La même page affiche l’épingle de 2.0.7 à côté des icônes vides de 2.0.5/2.0.6 et des épingles visibles de 2.0.4. Les SVG archivés de 2.0.4 et 2.0.5 sont pourtant identiques et utilisent currentColor : cette variation ne permet pas d’attribuer toute la cause à un simple attribut de couleur ou d’affirmer une correction du cache/CDN. Voir les [observations 2.0.7 et contrôles restants](ICON-REPAIR-2.0.7.md).
+
+Les contrôles API Homey confirment 2.0.7 installé sur Homey Pro 2023, la somme de contrôle de la configuration inchangée, les deux identités de sujets conservées et les deux sujets disponibles après redémarrage. L’apparence de l’icône dans l’interface web Homey et sur iPhone n’est pas encore vérifiée pour 2.0.7. Le premier chargement navigateur de la nouvelle ressource avait été effectué par le masque CSS du récapitulatif en Draft, avant les visites Test puis Live et leurs rechargements de contrôle ; cela ne garantit pas l’absence universelle d’un défaut de cache. [Installation Live](https://homey.app/a/com.roue.geozones/).
+
+## Historique de la version 2.0.6
+
+GeoZones **2.0.6 build 18 avait été publié en Live et installé sur Homey Pro 2023**. Le portail avait confirmé son statut Live après la soumission. Cette version, d’abord publiée en Test après 2.0.5 build 17, est désormais remplacée par 2.0.7 sur le Homey et sur le canal Live.
+
+La version 2.0.6 avait simplifié le SVG de l’icône sans changer sa forme, les fonctions ou les permissions. Le SVG de 322 octets était présent dans la page Homey et l’épingle blanche s’y affichait correctement. Après installation et redémarrage, la sauvegarde des réglages, la configuration et les deux identités de sujets avaient été conservées ; les deux sujets étaient disponibles. Lors de ce contrôle, les Stores Test et Live consultés dans Chrome affichaient le cercle bleu sans épingle. Ces constats ne démontraient pas que l’ancien SVG était défectueux.
 
 ## Suivi de la version 2.0.6
 
-- [Installation Live](https://homey.app/a/com.roue.geozones/) et [Homey 2.0.6 build 18](https://tools.developer.homey.app/apps/app/com.roue.geozones/build/18) : statut Live confirmé.
+- [Homey 2.0.6 build 18](https://tools.developer.homey.app/apps/app/com.roue.geozones/build/18) : ancien statut Live confirmé.
 - [Contrôles de l’icône et limite du Store](ICON-REPAIR-2.0.6.md) : neuf suites réussies, validation Homey au niveau publication réussie et 76 fichiers du paquet identiques au candidat et aux fichiers de liaison SDK officiels. Les réponses du service d’icônes varient selon l’en-tête Origin ; le problème d’affichage du Store reste distinct de l’icône désormais visible dans Homey.
 
 ## Dossier de la version 2.0.5
@@ -29,8 +39,8 @@ Les visuels de Store utilisent une capture de la carte avec des zones de démons
 
 ## Recette matérielle et étapes de publication
 
-La [checklist de publication](../RELEASE_CHECKLIST.md) conserve les essais matériels encore à confirmer : installation neuve, récupération d’anciens sujets, redémarrage pendant une transition différée, import/export et parcours iPhone. La mise à jour réelle de 2.0.2 vers 2.0.3 avait été observée sur Homey Pro 2023 ; 2.0.6 a maintenant été installé et redémarré avec les réglages et les deux identités de sujets conservés. Cela ne constitue pas une migration matérielle complète depuis les anciens sujets. Les autres limites restent ouvertes.
+La [checklist de publication](../RELEASE_CHECKLIST.md) conserve les essais matériels encore à confirmer : installation neuve, récupération d’anciens sujets, redémarrage pendant une transition différée, import/export et parcours iPhone. La mise à jour réelle de 2.0.2 vers 2.0.3 avait été observée sur Homey Pro 2023 ; 2.0.6 puis 2.0.7 ont été installés et redémarrés avec la configuration et les deux identités de sujets conservées. Cela ne constitue pas une migration matérielle complète depuis les anciens sujets. Les autres limites restent ouvertes.
 
-La version 2.0.5 reste archivée par son tag et sa préversion GitHub. Le dossier 2.0.6 consigne la publication Live et les contrôles de l’icône. L’affichage du Store demeure non résolu. La note de suivi pour Athom reste un brouillon non envoyé : le contrôle de messagerie était désactivé après la publication Live. Les textes du forum restent des brouillons.
+La version 2.0.5 reste archivée par son tag et sa préversion GitHub. Les dossiers 2.0.6 et 2.0.7 distinguent les observations de chaque version. La note de suivi préparée pour Athom concernant 2.0.6 reste un brouillon non envoyé : le contrôle de messagerie était désactivé après la publication Live. Les textes du forum restent des brouillons.
 
-À ce stade, 2.0.6 est en Live et son icône est correcte dans Homey ; la correction de l’icône du Store n’est pas confirmée. Aucun message n’a été publié sur le forum pendant ces préparatifs.
+À ce stade, 2.0.7 est en Live ; son épingle est confirmée sur les Stores Test et Live et dans le récapitulatif Developer Tools après les retours et rechargements. Les autres interfaces restent à vérifier séparément. Aucun message n’a été publié sur le forum pendant ces préparatifs.

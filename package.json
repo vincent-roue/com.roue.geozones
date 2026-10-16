@@ -1,6 +1,6 @@
 {
   "name": "com.roue.geozones",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "private": true,
   "description": "GeoZones for Homey Pro 2023 (manual subjects edition)",
   "scripts": {
